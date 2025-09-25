@@ -117,29 +117,36 @@
     </div>
   </header>
 
-  <!-- 회사소개: 5장 슬라이드 -->
-  <section id="about" class="section alt">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-6">
-          <h2>회사소개</h2>
-          <p>더브릿지플러스는 공유오피스와 비상주 오피스를 제공하는 전문 기업입니다.
-            효율적인 공간과 안정적인 주소지, 네트워크 기회를 함께 제공합니다.</p>
-        </div>
-        <div class="col-lg-6">
-          <div id="aboutCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2800">
-            <div class="carousel-inner">
-              <div class="carousel-item active"><img src="image/about1.jpg" alt="소개1"></div>
-              <div class="carousel-item"><img src="image/about2.jpg" alt="소개2"></div>
-              <div class="carousel-item"><img src="image/about3.jpg" alt="소개3"></div>
-              <div class="carousel-item"><img src="image/about4.jpg" alt="소개4"></div>
-              <div class="carousel-item"><img src="image/about5.jpg" alt="소개5"></div>
-            </div>
-          </div>
-        </div>
+<!-- 회사소개: 텍스트 + 4장 이미지 그리드 -->
+<section id="about" class="section alt">
+  <div class="container">
+    <h2 class="mb-4 text-center">회사소개</h2>
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto">
+        <p class="lead text-center">
+          더브릿지플러스는 공유오피스와 비상주 오피스를 제공하는 전문 기업입니다.<br>
+          효율적인 공간과 안정적인 주소지, 네트워크 기회를 함께 제공합니다.
+        </p>
       </div>
     </div>
-  </section>
+
+    <!-- 이미지 4장 그리드 -->
+    <div class="row g-3">
+      <div class="col-md-6">
+        <img src="image/about1.jpg" class="img-fluid rounded shadow-sm w-100" alt="소개 이미지1">
+      </div>
+      <div class="col-md-6">
+        <img src="image/about2.jpg" class="img-fluid rounded shadow-sm w-100" alt="소개 이미지2">
+      </div>
+      <div class="col-md-6">
+        <img src="image/about3.jpg" class="img-fluid rounded shadow-sm w-100" alt="소개 이미지3">
+      </div>
+      <div class="col-md-6">
+        <img src="image/about4.jpg" class="img-fluid rounded shadow-sm w-100" alt="소개 이미지4">
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- 서비스: 5개(공용회의실+라운지 통합), 각 박스 이미지, 가운데 강조 -->
   <section id="services" class="section sky">
@@ -285,3 +292,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
