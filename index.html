@@ -22,14 +22,14 @@
     .frame{max-width:1140px; margin:0 auto; padding:0 20px;}
 
     /* NAV */
-    .navbar{background:var(--brand-dark);}
+    .navbar{background:var(--brand-dark); min-height:80px;} /* 로고 키움에 맞춰 높이 보정 */
     .navbar .nav-link{color:#fff!important;}
-    .navbar-brand img{height:40px;}
-    @media (max-width:576px){ .navbar-brand img{height:32px;} }
-    .nav-left-tight {padding-left:8px !important;}
+    .navbar-brand img{height:64px;}                         /* 데스크톱 표시 높이 */
+    @media (max-width:576px){ .navbar-brand img{height:40px;} } /* 모바일 표시 높이 */
+    .nav-left-tight{padding-left:8px !important;}           /* 상단/푸터 좌측 대칭 여백 */
 
     /* 섹션 공통 */
-    .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
+    .section{min-height:100vh; padding-top:96px; padding-bottom:60px; display:flex; align-items:center;}
     .section.paper{background:var(--paper);}
     .section.alt{background:linear-gradient(180deg,#fff 0%, var(--offwhite) 100%);}
     .section.sky{background:linear-gradient(180deg,var(--brand-sky) 0%, #e8f7ff 100%);}
@@ -37,7 +37,7 @@
 
     /* HERO */
     #hero { position: relative; }
-    #hero .carousel-item{height:calc(100vh - 74px);}
+    #hero .carousel-item{height:calc(100vh - 80px);} /* 상단바 높이에 맞춰 보정 */
     #hero .carousel-item img{
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
     }
@@ -71,14 +71,14 @@
     /* 푸터 */
     footer{background:var(--brand-dark); color:#fff;}
     footer .legal{font-size:.95rem; line-height:1.6;}
-    footer img{filter:grayscale(100%);}
+    footer img{filter:grayscale(100%); height:56px;} /* 하단 로고도 크게 */
   </style>
 </head>
 <body>
   <!-- NAV -->
   <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
     <div class="container nav-left-tight">
-      <!-- 로고만 -->
+      <!-- 로고만 (텍스트 제거) -->
       <a class="navbar-brand" href="#">
         <img src="images/logotop.png" alt="더브릿지플러스 로고 상단">
       </a>
@@ -274,7 +274,7 @@
   <footer class="py-5">
     <div class="container nav-left-tight">
       <div class="d-flex align-items-start gap-3">
-        <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" height="44">
+        <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단">
         <div class="legal">
           <div>대표 : 김배기 &nbsp;|&nbsp; 사업자등록번호 : 309-88-03426</div>
           <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
