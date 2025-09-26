@@ -78,23 +78,22 @@
   </style>
 </head>
 <body>
-  <!-- NAV (교체본) -->
-<nav class="navbar navbar-expand-lg fixed-top shadow-sm position-relative py-0">
-  <div class="container-fluid ps-0">
-    <a class="navbar-brand p-0 m-0" href="#">
-      <!-- 데스크탑 로고 -->
-      <img src="images/logotop.png"
-           class="d-none d-sm-block"
-           style="height:170px; display:block;"
-           alt="더브릿지플러스 로고">
+<!-- NAV (슬림 바탕 띠 방식) -->
+<nav id="siteNav" class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm position-relative py-0" style="background:transparent;">
+  <!-- 배경 띠: 실제 네비바 높이(배경 두께)를 이 div로 통제 -->
+  <div id="navBand" aria-hidden="true"
+       style="position:absolute; left:0; top:0; right:0; height:56px; background:#003366; z-index:0;"></div>
+
+  <div id="navBox" class="container-fluid ps-0 d-flex align-items-center" style="min-height:56px; position:relative; z-index:1;">
+    <a class="navbar-brand p-0 m-0" href="#" style="line-height:0;">
+      <!-- 데스크탑 로고(원하는 크기로 유지) -->
+      <img src="images/logotop.png" class="d-none d-sm-block" style="height:170px; display:block;" alt="더브릿지플러스 로고">
       <!-- 모바일 로고 -->
-      <img src="images/logotop.png"
-           class="d-block d-sm-none"
-           style="height:90px; display:block;"
-           alt="더브릿지플러스 로고">
+      <img src="images/logotop.png" class="d-block d-sm-none" style="height:90px; display:block;" alt="더브릿지플러스 로고">
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+    <button class="navbar-toggler ms-auto me-3" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+            aria-controls="nav" aria-expanded="false" aria-label="메뉴">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -109,6 +108,21 @@
     </div>
   </div>
 </nav>
+  <!-- 네비바 전용 보정(HTML 안에 스타일로 바로) -->
+<style>
+  /* 모바일: 띠/박스 64px */
+  @media (max-width: 576.98px){
+    #navBand{height:64px !important;}
+    #navBox{min-height:64px !important;}
+  }
+  /* 데스크탑: 띠/박스 56px */
+  @media (min-width: 577px){
+    #navBand{height:56px !important;}
+    #navBox{min-height:56px !important;}
+  }
+  #siteNav{padding-top:0 !important; padding-bottom:0 !important;}
+  .navbar-brand{margin:0 !important; padding:0 !important;}
+</style>
 
   <!-- HERO: 페이드 슬라이드(5장), 중앙 카피 -->
   <header id="hero" class="position-relative">
