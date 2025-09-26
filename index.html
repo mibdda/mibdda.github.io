@@ -78,37 +78,37 @@
   </style>
 </head>
 <body>
-  <!-- NAV -->
+  <!-- NAV (교체본) -->
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm position-relative py-0">
-  <a class="navbar-brand p-0 m-0" href="#">
-    <!-- 데스크탑 로고 -->
-  <img src="images/logotop.png" 
-       class="d-none d-sm-block" 
-       style="height:170px;" 
-       alt="더브릿지플러스 로고">
+  <div class="container-fluid ps-0">
+    <a class="navbar-brand p-0 m-0" href="#">
+      <!-- 데스크탑 로고 -->
+      <img src="images/logotop.png"
+           class="d-none d-sm-block"
+           style="height:170px; display:block;"
+           alt="더브릿지플러스 로고">
+      <!-- 모바일 로고 -->
+      <img src="images/logotop.png"
+           class="d-block d-sm-none"
+           style="height:90px; display:block;"
+           alt="더브릿지플러스 로고">
+    </a>
 
-  <!-- 모바일 로고 -->
-  <img src="images/logotop.png" 
-       class="d-block d-sm-none" 
-       style="height:90px;" 
-       alt="더브릿지플러스 로고">
-</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="nav">
-<div class="collapse navbar-collapse" id="nav">
-<ul class="navbar-nav ms-auto" style="transform:translateX(-200px);">
-  <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
-  <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
-  <li class="nav-item"><a class="nav-link" href="#pricing">가격</a></li>
-  <li class="nav-item"><a class="nav-link" href="#location">위치</a></li>
-  <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
-</ul>
-      </div>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto" style="transform:translateX(-200px);">
+        <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">가격</a></li>
+        <li class="nav-item"><a class="nav-link" href="#location">위치</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <!-- HERO: 페이드 슬라이드(5장), 중앙 카피 -->
   <header id="hero" class="position-relative">
@@ -343,5 +343,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</style>
 </body>
 </html>
