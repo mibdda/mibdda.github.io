@@ -83,6 +83,12 @@
 <body>
   <!-- ▼▼ 네비바 전용 스타일 (head 안 or nav 근처에 넣어도 됨) ▼▼ -->
 <style>
+/* 데스크탑에서 메뉴 오른쪽 여백 → 메뉴가 살짝 왼쪽으로 이동 */
+@media (min-width: 992px){
+  .navbar.slimbar .navbar-nav{
+    margin-right: 120px;     /* 80~160px 사이로 취향대로 조절 */
+  }
+}
   /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
   .navbar.slimbar{
     position: relative;
@@ -105,7 +111,7 @@
   /* 메뉴는 로고 폭만큼 왼쪽 패딩으로 피해가기 (겹침 방지) */
   .navbar.slimbar > .container-fluid{
 
-    padding-left: 260px;!important;          /* 로고 실제 가로폭에 맞춰 조절(필요시 200~260px) */
+    padding-left: 260px !important;         /* 로고 실제 가로폭에 맞춰 조절(필요시 200~260px) */
   }
 
   /* 모바일: 바 높이/패딩 조정 + 모바일 로고 공간 축소 */
