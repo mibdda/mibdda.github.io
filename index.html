@@ -248,14 +248,20 @@
     </div>
   </section>
 
-  <!-- 위치: 연회색 바탕 -->
-  <section id="location" class="section paper">
-    <div class="container text-center">
-      <h2 class="mb-3">위치</h2>
-      <p>서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</p>
-      <img src="images/map.jpg" class="img-fluid rounded shadow-sm" alt="위치 지도" style="max-width:600px;">
+<!-- 위치: 여백 넉넉 + 흰 프레임으로 안전공간 확보 -->
+<section id="location" class="section paper" style="padding-top:80px; padding-bottom:80px;">
+  <div class="container text-center">
+    <h2 class="mb-3">위치</h2>
+    <p class="mb-4">서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</p>
+
+    <!-- 지도 프레임(좌우/상하 여백 + 라운드 + 그림자) -->
+    <div class="mx-auto" style="max-width:760px;">
+      <div class="bg-white rounded-4 shadow-sm p-2 p-md-3">
+        <img src="images/map.jpg" class="img-fluid rounded-3" alt="위치 지도">
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- 문의: 이미지 포함, '문의 분류' + 이메일 + 이름 placeholder -->
   <section id="contact" class="section alt">
