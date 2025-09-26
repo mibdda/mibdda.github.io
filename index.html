@@ -95,22 +95,18 @@
 </a>
 
 <style>
-  /* 공통: 네비바 패딩/여백 최소화, 로고는 블록화해서 여백 제거 */
-  .navbar { padding:0; }
-  .navbar-brand { margin:0; padding:0; line-height:0; }
-  .navbar-brand img { display:block; }
-
-  /* 데스크탑(로고 180px) → 박스는 살짝 크게 200px */
-  @media (min-width: 577px) {
-    .navbar .container-fluid { min-height:182px; }   /* ← 파란 박스 높이 */
-    .navbar-brand img.d-sm-block { height:180px; }   /* ← 로고 */
+  /* 모바일: 로고 90 → 박스 105 */
+  @media (max-width: 576.98px){
+    .navbar .container-fluid{ min-height:105px !important; }
   }
-
-  /* 모바일(로고 90px) → 박스는 105px */
-  @media (max-width: 576px) {
-    .navbar .container-fluid { min-height:100px; }
-    .navbar-brand img.d-sm-none { height:90px; }
+  /* 데스크탑: 로고 180 → 박스 181 (로고보다 1px만 크게) */
+  @media (min-width: 577px){
+    .navbar .container-fluid{ min-height:181px !important; }
   }
+  /* 잔여 여백 제거(혹시 모를 패딩/라인높이 영향 차단) */
+  .navbar{ padding:0 !important; }
+  .navbar-brand{ margin:0 !important; padding:0 !important; line-height:0 !important; }
+  .navbar-brand img{ display:block; }
 </style>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
         <span class="navbar-toggler-icon"></span>
@@ -317,10 +313,10 @@
   </section>
  <!-- 말풍선 -->
 <div id="kakao-hint"
-     style="position:fixed; right:20px; bottom:92px; z-index:1000;
+     style="position:fixed; right:90px; bottom:35px; z-index:1000;
             background:#fff; color:#333; border-radius:12px; padding:10px 12px;
             box-shadow:0 6px 18px rgba(0,0,0,.15); font-size:14px; line-height:1.25;
-            display:flex; align-items:center; gap:8px;">
+            display:flex; align-items:center; gap:8px; font-family:'Comic Sans MS', 'Nanum Pen Script', cursive;">
   <span>채팅으로 문의하세요.</span>
   <button id="kakao-hint-close" aria-label="닫기"
           style="background:#eee; border:none; width:18px; height:18px; border-radius:50%;
@@ -328,10 +324,10 @@
     ×
   </button>
   <!-- 꼬리 -->
-  <span style="position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
-               width:0; height:0; border-left:8px solid transparent;
-               border-right:8px solid transparent; border-top:8px solid #fff;"></span>
-</div> 
+  <span style="position:absolute; right:-7px; top:50%; transform:translateY(-50%);
+               width:0; height:0; border-top:7px solid transparent;
+               border-bottom:7px solid transparent; border-left:7px solid #fff;"></span>
+</div>
 <!-- 카톡 플로팅 버튼 -->
 <a href="http://pf.kakao.com/_xlxgpkn/chat" target="_blank" 
    style="position:fixed; right:20px; bottom:20px; z-index:9999; background:none; padding:0; border:none;">
