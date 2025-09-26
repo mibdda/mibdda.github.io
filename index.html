@@ -82,24 +82,26 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow-sm position-relative py-0">
   <a class="navbar-brand p-0 m-0" href="#">
     <!-- 데스크탑 로고 -->
-    <img src="images/logotop.png" 
-         class="d-none d-sm-block" 
-         style="height:180px; display:block;" 
-         alt="더브릿지플러스 로고">
+  <img src="images/logotop.png" 
+       class="d-none d-sm-block" 
+       style="height:180px;" 
+       alt="더브릿지플러스 로고">
 
-    <!-- 모바일 로고 -->
-    <img src="images/logotop.png" 
-         class="d-block d-sm-none" 
-         style="height:90px; display:block;" 
-         alt="더브릿지플러스 로고">
-  </a>
-</nav>
+  <!-- 모바일 로고 -->
+  <img src="images/logotop.png" 
+       class="d-block d-sm-none" 
+       style="height:90px;" 
+       alt="더브릿지플러스 로고">
+</a>
 
 <style>
-  /* 모바일 전용 navbar 높이 */
+  /* navbar 높이는 Bootstrap 기본값을 그대로 */
+  .navbar { padding-top: 0; padding-bottom: 0; }
+
+  /* 모바일에서만 로고 조금 키움 */
   @media (max-width: 576px) {
-    .navbar {
-      height: 105px !important;
+    .navbar-brand img {
+      max-height: 90px;   /* 로고 크기 */
     }
   }
 </style>
