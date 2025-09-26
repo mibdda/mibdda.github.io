@@ -95,13 +95,23 @@
 </a>
 
 <style>
-  /* navbar 높이는 Bootstrap 기본값을 그대로 */
-  .navbar { padding-top: 0; padding-bottom: 0; }
+  /* 공통: padding 제거 */
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
-  /* 모바일에서만 로고 조금 키움 */
+  /* 데스크탑 navbar 고정 */
+  @media (min-width: 577px) {
+    .navbar {
+      height: 200px;   /* 로고(180px)보다 살짝 크게 */
+    }
+  }
+
+  /* 모바일 navbar 고정 */
   @media (max-width: 576px) {
-    .navbar-brand img {
-      max-height: 90px;   /* 로고 크기 */
+    .navbar {
+      height: 105px;   /* 로고(90px)보다 살짝 크게 */
     }
   }
 </style>
