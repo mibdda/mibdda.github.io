@@ -81,28 +81,52 @@
   </style>
 </head>
 <body>
-  <!-- NAV (교체본) -->
-<nav class="navbar navbar-expand-lg fixed-top shadow-sm position-relative py-0">
-  <div class="container-fluid ps-0">
-    <a class="navbar-brand p-0 m-0" href="#">
-      <!-- 데스크탑 로고 -->
-      <img src="images/logotop.png"
-           class="d-none d-sm-block"
-           style="height:170px; display:block;"
-           alt="더브릿지플러스 로고">
-      <!-- 모바일 로고 -->
-      <img src="images/logotop.png"
-           class="d-block d-sm-none"
-           style="height:90px; display:block;"
-           alt="더브릿지플러스 로고">
-    </a>
+  <!-- ▼▼ 네비바 전용 스타일 (head 안 or nav 근처에 넣어도 됨) ▼▼ -->
+<style>
+  /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
+  .navbar.slimbar{
+    position: relative;
+    height: 70px;                 /* 데스크탑 바 높이 */
+    background: #003366 !important;
+    padding: 0 !important;
+    overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
+  }
+  .navbar.slimbar .nav-link{ color:#fff !important; }
+  .navbar.slimbar .navbar-toggler{ filter: invert(1); } /* 햄버거 아이콘 보정 */
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+  /* 로고: 플로우에서 분리 → 바 높이 계산에 영향 X */
+  .brand-abs{
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    line-height: 0; z-index: 1001; /* 가려지지 않게 충분히 높게 */
+  }
+  .brand-abs img{ display:block; }
+
+  /* 메뉴는 로고 폭만큼 왼쪽 패딩으로 피해가기 (겹침 방지) */
+  .navbar.slimbar > .container-fluid{
+    height: 100%;
+    padding-left: 220px;          /* 로고 실제 가로폭에 맞춰 조절(필요시 200~260px) */
+  }
+
+  /* 모바일: 바 높이/패딩 조정 + 모바일 로고 공간 축소 */
+  @media (max-width: 576.98px){
+    .navbar.slimbar{ height: 80px; }
+    .navbar.slimbar > .container-fluid{ padding-left: 120px; } /* 필요시 100~130px */
+  }
+</style>
+
+<!-- ▼▼ NAV (슬림 바 + 절대 위치 로고) ▼▼ -->
+<nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
+  <div class="container-fluid">
+    <!-- 메뉴(오른쪽) -->
+    <button class="navbar-toggler ms-auto me-2" type="button"
+            data-bs-toggle="collapse" data-bs-target="#nav"
+            aria-controls="nav" aria-expanded="false" aria-label="메뉴">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto" style="transform:translateX(-200px);">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
         <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
         <li class="nav-item"><a class="nav-link" href="#pricing">가격</a></li>
@@ -111,6 +135,14 @@
       </ul>
     </div>
   </div>
+
+  <!-- 로고: 절대 위치(바 중앙 기준 정렬) -->
+  <a class="navbar-brand brand-abs" href="#">
+    <!-- 데스크탑 로고 -->
+    <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스" style="height:170px;">
+    <!-- 모바일 로고 -->
+    <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스" style="height:90px;">
+  </a>
 </nav>
 
   <!-- HERO: 페이드 슬라이드(5장), 중앙 카피 -->
