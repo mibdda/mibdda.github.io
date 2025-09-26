@@ -95,24 +95,21 @@
 </a>
 
 <style>
-  /* 공통: padding 제거 */
-  .navbar {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  /* 공통: 네비바 패딩/여백 최소화, 로고는 블록화해서 여백 제거 */
+  .navbar { padding:0; }
+  .navbar-brand { margin:0; padding:0; line-height:0; }
+  .navbar-brand img { display:block; }
 
-  /* 데스크탑 navbar 고정 */
+  /* 데스크탑(로고 180px) → 박스는 살짝 크게 200px */
   @media (min-width: 577px) {
-    .navbar {
-      height: 200px;   /* 로고(180px)보다 살짝 크게 */
-    }
+    .navbar .container-fluid { min-height:200px; }   /* ← 파란 박스 높이 */
+    .navbar-brand img.d-sm-block { height:180px; }   /* ← 로고 */
   }
 
-  /* 모바일 navbar 고정 */
+  /* 모바일(로고 90px) → 박스는 105px */
   @media (max-width: 576px) {
-    .navbar {
-      height: 105px;   /* 로고(90px)보다 살짝 크게 */
-    }
+    .navbar .container-fluid { min-height:105px; }
+    .navbar-brand img.d-sm-none { height:90px; }
   }
 </style>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
