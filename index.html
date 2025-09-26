@@ -24,9 +24,9 @@
     .navbar-brand img{height:300px;}
     @media (max-width:576px){ .navbar-brand img{height:64px;} }
     .navbar .container{padding-left:8px;} /* 더 왼쪽 */
-
     /* 섹션 공통 */
-    .padding-top:90px; padding-bottom:60px;}
+    .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
+
     .section.paper{background:var(--paper);}
     .section.alt{background:linear-gradient(180deg,#fff 0%, var(--offwhite) 100%);}
     .section.sky{background:linear-gradient(180deg,var(--brand-sky) 0%, #e8f7ff 100%);}
@@ -34,7 +34,7 @@
 
     /* HERO: 가운데 정렬, 두 줄 카피 */
     #hero { position: relative; }
-    #hero .carousel-item{height:calc(100vh - 74px);}
+    #hero .carousel-item{height:calc(100vh - 56px);}
     #hero .carousel-item img{
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
     }
@@ -360,6 +360,5 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</style>
 </body>
 </html>
