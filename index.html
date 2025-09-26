@@ -79,10 +79,15 @@
 </head>
 <body>
   <!-- NAV -->
-<nav class="navbar navbar-expand-lg fixed-top shadow-sm position-relative py-0" style="height:72px;overflow:visible;">
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm position-relative py-0" style="height:90px;overflow:visible;">
   <div class="container-fluid ps-0">
-      <a class="navbar-brand d-flex align-items-center p-0 m-0" href="#">
-  <img src="images/logotop.png" alt="더브릿지플러스 로고 상단" style="height:180px;display:block;">
+      <a class="navbar-brand p-0 m-0" href="#">
+  <!-- 데스크탑 이상: 크게 -->
+  <img src="images/logotop.png" alt="더브릿지플러스" 
+       class="d-none d-sm-block" style="height:180px; display:block;">
+  <!-- 모바일(xs): 작게 -->
+  <img src="images/logotop.png" alt="더브릿지플러스" 
+       class="d-block d-sm-none" style="height:56px; display:block;">
 </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
         <span class="navbar-toggler-icon"></span>
