@@ -315,15 +315,35 @@
       </div>
     </div>
   </section>
-  
+ <!-- 말풍선 -->
+<div id="kakao-hint"
+     style="position:fixed; right:20px; bottom:92px; z-index:1000;
+            background:#fff; color:#333; border-radius:12px; padding:10px 12px;
+            box-shadow:0 6px 18px rgba(0,0,0,.15); font-size:14px; line-height:1.25;
+            display:flex; align-items:center; gap:8px;">
+  <span>채팅으로 문의하세요.</span>
+  <button id="kakao-hint-close" aria-label="닫기"
+          style="background:#eee; border:none; width:18px; height:18px; border-radius:50%;
+                 display:flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer;">
+    ×
+  </button>
+  <!-- 꼬리 -->
+  <span style="position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
+               width:0; height:0; border-left:8px solid transparent;
+               border-right:8px solid transparent; border-top:8px solid #fff;"></span>
+</div> 
 <!-- 카톡 플로팅 버튼 -->
 <a href="http://pf.kakao.com/_xlxgpkn/chat" target="_blank" 
-   style="position:fixed; bottom:20px; right:20px; z-index:1000;">
-  <img src="images/kakao-icon.png" 
-       alt="카카오톡 문의" 
-       style="width:60px; height:60px; background:none; border:none; box-shadow:none;">
+   style="position:fixed; right:20px; bottom:20px; z-index:9999; background:none; padding:0; border:none;">
+  <img src="images/kakao-icon.png" alt="카카오톡 문의"
+       style="width:60px; height:60px; display:block; background:none; border:none; box-shadow:none;">
 </a>
-  
+  <script>
+  document.getElementById('kakao-hint-close')?.addEventListener('click', function(){
+    var b = document.getElementById('kakao-hint');
+    if(b) b.style.display = 'none';
+  });
+</script>
   <!-- 푸터: 상단 로고 영역과 대칭되게 -->
   <footer class="py-3">
     <div class="container-fluid ps-0">
