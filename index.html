@@ -330,7 +330,7 @@ window.karrotPixel.track('Lead');
   <section id="contact" class="section alt">
     <div class="container">
       <h2 class="text-center mb-4">문의</h2>
-      <div class="col-lg-6 d-flex align-items-center justify-content-center">
+  <div class="row g-4 align-items-center">
         <div class="col-lg-6">
           <img src="images/contact.jpg" class="img-fluid rounded shadow-sm" alt="문의 이미지">
         </div>
@@ -368,13 +368,13 @@ window.karrotPixel.track('Lead');
     </select>
   </div>
  <!-- 개인정보 수집 동의 체크박스 -->
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="privacyCheck" required>
-    <label class="form-check-label" for="privacyCheck">
-      개인정보 수집 및 이용에 동의합니다. 
-      <a href="/privacy.html" target="_blank">자세히 보기</a>
-    </label>
-  </div>
+ <div class="mb-3 form-check d-flex justify-content-center">
+  <input type="checkbox" class="form-check-input me-2" id="privacyCheck" required>
+  <label class="form-check-label" for="privacyCheck">
+    개인정보 수집 및 이용에 동의합니다. 
+    <a href="/privacy.html" target="_blank">자세히 보기</a>
+  </label>
+</div>
 <!-- 제출 버튼 -->
   <button type="submit" 
         class="btn btn-primary d-block mx-auto" 
