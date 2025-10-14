@@ -321,7 +321,11 @@
     </div>
   </div>
 </section>
-
+<!-- Danggeun Market Code -->
+<script>
+window.karrotPixel.track('Lead');
+</script>
+<!-- End Danggeun Market Code -->
   <!-- 문의: 이미지 포함, '문의 분류' + 이메일 + 이름 placeholder -->
   <section id="contact" class="section alt">
     <div class="container">
@@ -374,6 +378,12 @@
       </div>
     </div>
   </section>
+  <!-- 전환 추적 실행 스크립트 -->
+<script>
+document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
+  window.karrotPixel.track('Lead');
+});
+</script>
  <!-- 말풍선 -->
 <div id="kakao-hint"
      style="position:fixed; right:90px; bottom:35px; z-index:1000;
