@@ -310,43 +310,39 @@
 <div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
 
 <!-- Kakao Maps SDK (JavaScript 키 사용) -->
-<!-- SDK에 services 라이브러리 추가 -->
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&libraries=services"></script>
+<!-- SDK 로드 -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&libraries=services" defer></script>
 
+<!-- 지도 초기화 코드 -->
 <script>
-  var container = document.getElementById('map');
-  var map = new kakao.maps.Map(container, {
-    center: new kakao.maps.LatLng(37.5665, 126.9780),
-    level: 3
-  });
+  window.onload = function() {
+    var container = document.getElementById('map');
+    var map = new kakao.maps.Map(container, {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 3
+    });
 
-  // 확대/축소 컨트롤(선택)
-  var zoomControl = new kakao.maps.ZoomControl();
-  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-  // 주소 → 좌표 변환
-  var geocoder = new kakao.maps.services.Geocoder();
-  var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
+    var geocoder = new kakao.maps.services.Geocoder();
+    var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
 
-  geocoder.addressSearch(address, function(result, status) {
-    if (status === kakao.maps.services.Status.OK && result.length > 0) {
-      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    geocoder.addressSearch(address, function(result, status) {
+      if (status === kakao.maps.services.Status.OK && result.length > 0) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        map.setCenter(coords);
 
-      // 지도 중심 이동
-      map.setCenter(coords);
+        var marker = new kakao.maps.Marker({ position: coords });
+        marker.setMap(map);
 
-      // 마커 및 인포윈도우
-      var marker = new kakao.maps.Marker({ position: coords });
-      marker.setMap(map);
-
-      var infowindow = new kakao.maps.InfoWindow({
-        content: '<div style="padding:8px 12px;font-size:13px;">더브릿지플러스<br/>서울특별시 강남구 강남대로114길 18, 4층</div>'
-      });
-      infowindow.open(map, marker);
-    } else {
-      console.warn('주소 변환 실패: 입력 주소를 확인하거나 좌표를 직접 설정하세요.');
-    }
-  });
+        var infowindow = new kakao.maps.InfoWindow({
+          content: '<div style="padding:8px 12px;font-size:13px;">더브릿지플러스<br/>서울특별시 강남구 강남대로114길 18, 4층</div>'
+        });
+        infowindow.open(map, marker);
+      }
+    });
+  }
 </script>
 <!-- Danggeun Market Code -->
 <script>
