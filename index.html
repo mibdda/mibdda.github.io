@@ -306,20 +306,56 @@
     </div>
   </section>
 
-<!-- 위치: 여백 넉넉 + 흰 프레임으로 안전공간 확보 -->
-<section id="location" class="section paper" style="padding-top:80px; padding-bottom:80px;">
-  <div class="container text-center">
-    <h2 class="mb-3">위치</h2>
-    <p class="mb-4">서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</p>
+<!-- 지도 영역 -->
+<div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
 
-    <!-- 지도 프레임(좌우/상하 여백 + 라운드 + 그림자) -->
-    <div class="mx-auto" style="max-width:760px;">
-      <div class="bg-white rounded-4 shadow-sm p-2 p-md-3">
-        <img src="images/map.jpg" class="img-fluid rounded-3" alt="위치 지도">
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Kakao Maps SDK (JavaScript 키 사용) -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&libraries=services"></script>
+
+<script>
+  // 1) 지도 컨테이너
+  var container = document.getElementById('map');
+
+  // 2) 기본 옵션 (임시 좌표: 서울 시청 근처. 실제 주소 변환 후 setCenter로 재설정)
+  var options = {
+    center: new kakao.maps.LatLng(37.5665, 126.9780),
+    level: 3 // 숫자 작을수록 더 확대
+  };
+
+  // 3) 지도 생성
+  var map = new kakao.maps.Map(container, options);
+
+  // 4) 확대/축소 컨트롤 추가
+  var zoomControl = new kakao.maps.ZoomControl();
+  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+  // 5) 주소 → 좌표 변환 (Geocoder)
+  var geocoder = new kakao.maps.services.Geocoder();
+  var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
+
+  geocoder.addressSearch(address, function(result, status) {
+    if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
+      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+      // 지도 중심 이동
+      map.setCenter(coords);
+
+      // 마커 추가
+      var marker = new kakao.maps.Marker({
+        position: coords
+      });
+      marker.setMap(map);
+
+      // 말풍선(인포윈도우) 추가: 클릭 없이 바로 열기
+      var infowindow = new kakao.maps.InfoWindow({
+        content: '<div style="padding:8px 12px; font-size:13px;">더브릿지플러스<br>서울특별시 강남구 강남대로114길 18, 4층</div>'
+      });
+      infowindow.open(map, marker);
+    } else {
+      console.warn('주소 변환에 실패했습니다. 좌표를 직접 설정하세요.');
+    }
+  });
+</script>
 <!-- Danggeun Market Code -->
 <script>
 window.karrotPixel.track('Lead');
