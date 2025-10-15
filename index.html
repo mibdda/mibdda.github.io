@@ -367,6 +367,18 @@ window.karrotPixel.track('Lead');
       <option value="기타">기타</option>
     </select>
   </div>
+  <style>
+    /* ================================
+       모바일 전용 스타일 (최대 767px)
+       - 데스크탑에서는 그대로 두고
+       - 모바일에서만 이미지 margin-top 초기화
+       ================================ */
+    @media (max-width: 767px) {
+      #contact img {
+        margin-top: 0 !important; /* 모바일에서는 음수 마진 제거 */
+      }
+    }
+  </style>
  <!-- 개인정보 수집 동의 체크박스 -->
  <div class="mb-3 form-check d-flex justify-content-center">
   <input type="checkbox" class="form-check-input me-2" id="privacyCheck" required>
