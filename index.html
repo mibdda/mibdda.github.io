@@ -307,42 +307,49 @@
   </section>
 
 <!-- 지도 영역 -->
-<div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
+<div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto;"></div>
 
-<!-- Kakao Maps SDK (JavaScript 키 사용) -->
-<!-- SDK 로드 -->
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&libraries=services" defer></script>
+<!-- Kakao Maps SDK (autoload=false 필수) -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&libraries=services&autoload=false"></script>
 
-<!-- 지도 초기화 코드 -->
 <script>
-  window.onload = function() {
+  // SDK 로드 완료 후 실행
+  kakao.maps.load(function() {
     var container = document.getElementById('map');
     var map = new kakao.maps.Map(container, {
-      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      center: new kakao.maps.LatLng(37.5665, 126.9780), // 초기 좌표
       level: 3
     });
 
+    // 확대/축소 컨트롤
     var zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+    // 주소 → 좌표 변환
     var geocoder = new kakao.maps.services.Geocoder();
     var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
 
     geocoder.addressSearch(address, function(result, status) {
       if (status === kakao.maps.services.Status.OK && result.length > 0) {
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 지도 중심 이동
         map.setCenter(coords);
 
+        // 마커 추가
         var marker = new kakao.maps.Marker({ position: coords });
         marker.setMap(map);
 
+        // 말풍선
         var infowindow = new kakao.maps.InfoWindow({
           content: '<div style="padding:8px 12px;font-size:13px;">더브릿지플러스<br/>서울특별시 강남구 강남대로114길 18, 4층</div>'
         });
         infowindow.open(map, marker);
+      } else {
+        alert('주소 변환 실패');
       }
     });
-  }
+  });
 </script>
 <!-- Danggeun Market Code -->
 <script>
