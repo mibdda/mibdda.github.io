@@ -345,12 +345,19 @@
       // 지도 중심 이동
       map.setCenter(coords);
 
-      // 마커 추가
-      var marker = new kakao.maps.Marker({
-        position: coords
-      });
-      marker.setMap(map);
+      // 커스텀 마커 (회사 로고 포함된 이미지)
+   var imageSrc = 'images/thebridgeplus-marker.png'; // 업로드한 로고 마커 이미지 경로
+   var imageSize = new kakao.maps.Size(48, 60);       // 마커 크기
+   var imageOption = { offset: new kakao.maps.Point(24, 60) }; // 기준점 (중앙 하단)
 
+   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+   var marker = new kakao.maps.Marker({
+  position: coords,
+  image: markerImage
+});
+marker.setMap(map);
+   
       // 말풍선(인포윈도우) 추가: 클릭 없이 바로 열기
       var infowindow = new kakao.maps.InfoWindow({
         content: '<div style="padding:8px 12px; font-size:13px;">더브릿지플러스<br>서울특별시 강남구 강남대로114길 18, 4층</div>'
