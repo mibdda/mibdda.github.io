@@ -311,7 +311,14 @@
 
 <!-- Kakao Maps SDK (JavaScript 키 사용) -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&libraries=services"></script>
-
+<!-- 위치 섹션 -->
+<section id="location" class="section alt">
+  <div class="container">
+    <h2 class="text-center mb-4">위치</h2>
+    <div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto;
+                         border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
+  </div>
+</section>
 <script>
   // 1) 지도 컨테이너
   var container = document.getElementById('map');
