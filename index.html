@@ -502,8 +502,18 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   상담신청
 </a>
 
+<!-- 상담신청 플로팅 버튼 (아래쪽에 고정) -->
+<a href="#contact"
+   style="position:fixed; right:20px; bottom:100px; z-index:10000;
+          background: linear-gradient(135deg, #007BFF, #00BFFF); color:#fff;
+          text-decoration:none; padding:14px 28px; border-radius:30px;
+          font-size:16px; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.15);
+          display:inline-block; text-align:center; transition: all 0.3s ease;">
+  상담신청
+</a>
+
 <!-- 말풍선 + 채널추가 버튼 (하단 고정) -->
-<div style="position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:16px;">
+<div style="position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:24px;">
 
   <!-- 말풍선 -->
   <div id="kakao-hint"
