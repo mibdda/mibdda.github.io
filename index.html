@@ -493,7 +493,7 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 });
 </script>
 <!-- 플로팅 영역: 말풍선 + 채널추가 버튼 + 상담신청 버튼 -->
-<div style="position:fixed; right:20px; bottom:20px; z-index:1000; display:flex; align-items:center; gap:10px;">
+<div style="position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:10px;">
 
   <!-- 말풍선 -->
   <div id="kakao-hint"
@@ -515,13 +515,14 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   <!-- 카카오 채널 추가 버튼 (확대) -->
   <div id="kakao-add-channel-button" style="transform: scale(1.2); transform-origin: right center;"></div>
 
-  <!-- 상담신청 버튼 -->
-  <button style="background: linear-gradient(135deg, #007BFF, #00BFFF); color:#fff;
-                 padding:10px 18px; border:none; border-radius:30px; font-size:15px;
-                 font-weight:600; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);
-                 transition: all 0.3s ease;">
+  <!-- 상담신청 버튼 (스크롤 이동) -->
+  <a href="#contact"
+     style="background:#87CEFA; color:#fff; text-decoration:none;
+            padding:18px 40px; border-radius:50px; font-size:20px;
+            font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2);
+            display:inline-block; text-align:center;">
     상담신청
-  </button>
+  </a>
 </div>
 
 <!-- 카카오 SDK 로드 및 버튼 생성 -->
