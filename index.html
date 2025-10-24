@@ -158,25 +158,15 @@ if(window.wcs) {
 <!-- ▼▼ NAV (슬림 바 + 절대 위치 로고) ▼▼ -->
 <nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
   <div class="container-fluid">
-    <!-- 메뉴 토글(모바일 햄버거) + 모바일 상담신청 버튼 -->
-    <button class="navbar-toggler order-3" type="button"
+    <!-- 메뉴(오른쪽) -->
+    <button class="navbar-toggler ms-auto me-2" type="button"
             data-bs-toggle="collapse" data-bs-target="#nav"
             aria-controls="nav" aria-expanded="false" aria-label="메뉴">
       <span class="navbar-toggler-icon"></span>
-</button>
-    <!-- 모바일 전용 상담신청 버튼 -->
-    <a href="#contact"
-       class="d-inline-block d-lg-none order-1 me-2"
-       style="background: linear-gradient(135deg, #007BFF, #00BFFF); color:#fff;
-              text-decoration:none; padding:10px 18px; border-radius:30px;
-              font-size:14px; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.15);
-              display:inline-block; text-align:center; transition: all 0.3s ease;">
-      상담신청
-    </a>
+    </button>
 
-    <!-- 메뉴 (가운데 정렬) -->
-    <div class="collapse navbar-collapse justify-content-center" id="nav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
         <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
         <li class="nav-item"><a class="nav-link" href="#pricing">가격</a></li>
@@ -184,17 +174,7 @@ if(window.wcs) {
         <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
       </ul>
     </div>
-
-    <!-- 데스크탑 전용 상담신청 버튼 -->
-     <a href="#contact"
-         class="d-none d-lg-inline-block ms-3"
-         style="background: linear-gradient(135deg, #007BFF, #00BFFF); color:#fff;
-                text-decoration:none; padding:14px 28px; border-radius:30px;
-                font-size:16px; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.15);
-                display:inline-block; text-align:center; transition: all 0.3s ease;">
-        상담신청
-      </a>
-    </div>
+  </div>
 
   <!-- 로고: 절대 위치(바 중앙 기준 정렬) -->
   <a class="navbar-brand brand-abs" href="#">
@@ -561,8 +541,8 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 <a href="#contact"
    style="position:fixed; right:20px; bottom:80px; z-index:10000;
           background: linear-gradient(135deg, #007BFF, #00BFFF); color:#fff;
-          text-decoration:none; padding:8px 16px; border-radius:20px;
-          font-size:13px; font-weight:600; box-shadow:0 3px 8px rgba(0,0,0,0.15);
+          text-decoration:none; padding:14px 28px; border-radius:30px;
+          font-size:16px; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.15);
           display:inline-block; text-align:center; transition: all 0.3s ease;">
   상담신청
 </a>
