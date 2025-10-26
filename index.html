@@ -360,19 +360,20 @@ if(window.wcs) {
       }
       /* 반응형 */
       @media (max-width: 768px) {
-       .five-col {
-         flex: 0 0 50%;
-         max-width: 50%;
+  .five-col {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
   }
 }
-      @media (max-width: 576px) {
-       .five-col {
-         flex: 0 0 50%;
-         max-width: 50%;
+
+@media (max-width: 576px) {
+  .five-col {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
   }
-      .five-col:nth-child(5) {
-        flex: 0 0 100%;
-        max-width: 100%;
+  .five-col:nth-child(5) {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
   }
 }
     </style>
