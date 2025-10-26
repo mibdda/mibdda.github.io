@@ -177,9 +177,9 @@ if(window.wcs) {
     <!-- 가운데 메뉴 -->
     <div class="collapse navbar-collapse justify-content-center" id="nav">
       <ul class="navbar-nav" style="gap:30px;">
-        <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
         <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
-        <li class="nav-item"><a class="nav-link" href="#pricing">가격</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">이용요금</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
         <li class="nav-item"><a class="nav-link" href="#location">위치</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
       </ul>
@@ -227,7 +227,207 @@ if(window.wcs) {
     </div>
   </header>
 
-  <!-- 회사소개: 텍스트 + 2×2 이미지 그리드 (가운데) -->
+<section id="services" style="padding:80px 0; background:#ffffff;">
+  <div class="container" style="max-width:1140px;">
+
+    <!-- 섹션 제목 -->
+    <h2 class="mb-5 text-center fw-bold text-dark">서비스</h2>
+
+   <!-- 1. 사업자금 확보 -->
+<div class="row align-items-center justify-content-center" style="margin-bottom:80px;">
+  <div class="col-md-6 text-center mb-4 mb-md-0">
+    <i class="fa fa-hand-holding-usd fa-6x text-dark"></i>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3 class="fw-bold fs-1 text-dark mb-3">사업자금 확보 지원</h3>
+    <p class="fs-4 text-secondary">
+      지금 내게 맞는 정책자금이나 사업자금 확보<br>
+      방법은 뭐가 있을까?<br><br>
+      👉 정책자금·보증·바우처 안내부터 자격 조건 체크,<br>
+        신청 준비 코칭까지 전문가가 함께 도와드립니다!
+    </p>
+  </div>
+</div>
+
+<!-- 2. 미팅룸 & OA존 -->
+<div class="row align-items-center justify-content-center flex-md-row-reverse" style="margin-bottom:80px;">
+  <div class="col-md-6 text-center mb-4 mb-md-0">
+    <i class="fa fa-people-arrows fa-6x text-dark"></i>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3 class="fw-bold fs-1 text-dark mb-3">미팅룸 & OA존 지원</h3>
+    <p class="fs-4 text-secondary">
+      주소만 빌려주는 게 아니라, 사업자 주소지에서<br>
+      미팅룸이나 OA존은 이용 가능할까?<br><br>
+      👉 저희는 건물 내 회의실과 OA존을 지원합니다!
+    </p>
+  </div>
+</div>
+
+<!-- 3. 세무·회계 서비스 -->
+<div class="row align-items-center justify-content-center" style="margin-bottom:80px;">
+  <div class="col-md-6 text-center mb-4 mb-md-0">
+    <i class="fa fa-calculator fa-6x text-dark"></i>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3 class="fw-bold fs-1 text-dark mb-3">세무·회계 서비스</h3>
+    <p class="fs-4 text-secondary">
+      비상주 오피스를 쓰면 세무·회계 같은 사업주 필수 서비스도 연계가 가능할까?<br><br>
+      👉 세무·회계 서비스와 비상주서비스를 연계하시면<br>
+      비상주 이용요금이 월 1만원!
+    </p>
+  </div>
+</div>
+
+<!-- 4. 관공서 현장 실사 지원 -->
+<div class="row align-items-center justify-content-center flex-md-row-reverse" style="margin-bottom:80px;">
+  <div class="col-md-6 text-center mb-4 mb-md-0">
+    <i class="fa fa-building fa-6x text-dark"></i>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3 class="fw-bold fs-1 text-dark mb-3">관공서 현장 실사 지원</h3>
+    <p class="fs-4 text-secondary">
+      사업자등록 시 관공서 실사가 나오면 어떻게 대응할까?<br><br>
+      👉 주소지에 사업자등록 전문가가 상주하며<br>
+      즉각 대응합니다!
+    </p>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<section id="pricing" style="padding:40px 0; background:#ffffff;">
+  <div class="container" style="max-width:1140px;">
+
+    <!-- 공통 내장 스타일: 5열 카드, 반응형 정리 -->
+    <style>
+      /* 한 줄에 5개 카드 */
+      .five-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px; /* 카드 사이 간격 */
+      }
+      .five-col {
+       flex: 0 0 calc(20% - 13px); /* gap 고려해서 5개 한 줄 */
+       max-width: calc(20% - 13px);
+   }
+      /* 카드 스타일 */
+      .price-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 18px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        text-align: left;
+      }
+      .price-label {
+        font-weight: 700;
+        font-size: 16px;
+        color: #222;
+        margin-bottom: 6px;
+      }
+      .price-value {
+        font-weight: 800;
+        font-size: 22px;
+        color: #0d6efd;
+        margin-bottom: 8px;
+      }
+      .price-sub {
+        font-size: 14px;
+        color: #6b7280;
+      }
+      .section-title {
+        font-weight: 800;
+        font-size: 28px;
+        color: #111827;
+        margin-bottom: 8px;
+        text-align: center; /* 가운데 정렬 */
+      }
+      .section-desc {
+        font-size: 18px;
+        color: #374151;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+      .group-title {
+        font-weight: 700;
+        font-size: 18px;
+        color: #111827;
+        margin: 24px 0 12px;
+        text-align: left;
+      }
+      /* 반응형 */
+      @media (max-width: 768px) {
+       .five-col {
+         flex: 0 0 50%;
+         max-width: 50%;
+  }
+}
+      @media (max-width: 576px) {
+       .five-col {
+         flex: 0 0 50%;
+         max-width: 50%;
+  }
+      .five-col:nth-child(5) {
+        flex: 0 0 100%;
+        max-width: 100%;
+  }
+}
+    </style>
+
+    <!-- 섹션 제목 -->
+    <h2 class="section-title">이용요금
+     <span style="font-size:16px; color:#6b7280; margin-left:8px;">(VAT별도)</span>
+</h2>
+    <div style="height:80px;"></div> <!-- 여백 추가 -->
+    <!-- 비상주 서비스 -->
+    <div class="mb-5">
+      <h3 class="section-title" style="margin-bottom:6px; text-align:left;">비상주서비스</h3>
+      <p class="section-desc">보증금, 예치금 없이 이용하고 회의실 · OA존 혜택까지!</p>
+
+      <!-- 개인사업자 -->
+      <h4 class="group-title">개인사업자</h4>
+      <div class="five-row">
+        <div class="five-col"><div class="price-card"><div class="price-label">3개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">6개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">12개월</div><div class="price-value">25,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">24개월</div><div class="price-value">20,800원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">36개월</div><div class="price-value">18,000원<span class="price-sub"> / 월</span></div></div></div>
+      </div>
+
+      <!-- 법인사업자 -->
+      <h4 class="group-title">법인사업자</h4>
+      <div class="five-row">
+        <div class="five-col"><div class="price-card"><div class="price-label">3개월</div><div class="price-value">55,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">6개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">12개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">24개월</div><div class="price-value">31,200원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">36개월</div><div class="price-value">27,700원<span class="price-sub"> / 월</span></div></div></div>
+      </div>
+    </div>
+    <!-- 여백 추가 -->
+    <div style="height:40px;"></div>
+
+    <!-- 상주 서비스 -->
+    <div>
+      <h3 class="section-title" style="margin-bottom:6px; text-align:left;">상주서비스</h3>
+      <p class="section-desc">24시간 출입, 유/무선 초고속 인터넷, 회의실 · 라운지 무제한 이용!</p>
+
+      <div class="five-row">
+        <div class="five-col"><div class="price-card"><div class="price-label">2인실</div><div class="price-value">600,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">4인실</div><div class="price-value">1,100,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">5인실</div><div class="price-value">1,400,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">6인실</div><div class="price-value">1,800,000원<span class="price-sub"> / 월</span></div></div></div>
+        <div class="five-col"><div class="price-card"><div class="price-label">10인실</div><div class="price-value">3,000,000원<span class="price-sub"> / 월</span></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 회사소개: 텍스트 + 2×2 이미지 그리드 (가운데) -->
 <section id="about" class="section" style="padding:80px 0;">    <div class="container about-wrap">
       <h2 class="mb-4 text-center">회사소개</h2>
       <div class="row mb-4">
@@ -244,113 +444,6 @@ if(window.wcs) {
         <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img src="images/about2.jpg" class="w-100 h-100" alt="소개 이미지2"></div></div>
         <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img src="images/about3.jpg" class="w-100 h-100" alt="소개 이미지3"></div></div>
         <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img src="images/about4.jpg" class="w-100 h-100" alt="소개 이미지4"></div></div>
-      </div>
-    </div>
-  </section>
-
-<section id="services" style="padding:80px 0; background:linear-gradient(135deg,#6EC6FF,#2196F3);">
-  <div class="container" style="max-width:1140px;">
-
-    <!-- 섹션 제목 -->
-    <h2 class="mb-5 text-center fw-bold text-dark">서비스</h2>
-
-    <!-- 1. 사업자금 확보 -->
-    <div class="row align-items-center justify-content-center" style="margin-bottom:80px;">
-      <div class="col-md-6 text-center mb-4 mb-md-0">
-        <i class="fa fa-hand-holding-usd fa-6x text-dark"></i>
-      </div>
-      <div class="col-md-6 text-center">
-        <h3 class="fw-bold fs-1 text-dark mb-3">사업자금 확보 지원</h3>
-        <p class="fs-4 text-secondary">
-          정책자금·보증·바우처 안내부터<br>
-          자격조건 체크,<br>
-          신청 준비 코칭까지 전문가가 함께 준비해 드립니다.
-        </p>
-      </div>
-    </div>
-
-    <!-- 2. 미팅룸 & OA존 -->
-    <div class="row align-items-center justify-content-center flex-md-row-reverse" style="margin-bottom:80px;">
-      <div class="col-md-6 text-center mb-4 mb-md-0">
-        <i class="fa fa-people-arrows fa-6x text-dark"></i>
-      </div>
-      <div class="col-md-6 text-center">
-        <h3 class="fw-bold fs-1 text-dark mb-3">미팅룸 & OA존 지원</h3>
-        <p class="fs-4 text-secondary">
-          공유오피스 선택 시 가장 중요한 요소,<br>
-          회의실과 OA존을<br>
-          편리하게 이용할 수 있도록 지원합니다.
-        </p>
-      </div>
-    </div>
-
-    <!-- 3. 세무·회계 서비스 -->
-    <div class="row align-items-center justify-content-center" style="margin-bottom:80px;">
-      <div class="col-md-6 text-center mb-4 mb-md-0">
-        <i class="fa fa-calculator fa-6x text-dark"></i>
-      </div>
-      <div class="col-md-6 text-center">
-        <h3 class="fw-bold fs-1 text-dark mb-3">세무·회계 서비스</h3>
-        <p class="fs-4 text-secondary">
-          비상주 서비스와 결합 시<br>
-          월 1만원대의 합리적인 비용으로<br>
-          세무·회계 서비스를 제공합니다.
-        </p>
-      </div>
-    </div>
-
-    <!-- 4. 관공서 현장 실사 지원 -->
-    <div class="row align-items-center justify-content-center flex-md-row-reverse" style="margin-bottom:80px;">
-      <div class="col-md-6 text-center mb-4 mb-md-0">
-        <i class="fa fa-building fa-6x text-dark"></i>
-      </div>
-      <div class="col-md-6 text-center">
-        <h3 class="fw-bold fs-1 text-dark mb-3">관공서 현장 실사 지원</h3>
-        <p class="fs-4 text-secondary">
-          사업자등록 현장 실사까지 지원하여<br>
-          신뢰성 있는 등록을<br>
-          보장합니다.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
- 
-
-  <!-- 가격: 연회색 바탕, 카드에 이미지 + '부터' -->
-  <section id="pricing" class="section white" style="padding:80px 0;">
-    <div class="container">
-      <h2 class="text-center mb-4">가격</h2>
-      <div class="row justify-content-center g-4 align-items-stretch">
-        <div class="col-md-5">
-          <div class="price-card p-4 h-100 text-center" 
-     style="transform:scale(0.7); transform-origin:top center;">
-            <img src="images/price-nonresident.jpg" alt="비상주 오피스">
-            <h5 class="fw-bold">비상주 오피스</h5>
-            <p class="fs-4 mb-2">월 20,000원부터</p>
-            <ul class="mb-0 list-unstyled">
-              <li>사업자 등록지</li>
-              <li>월 15시간 회의실</li>
-              <li>우편 수령/알림</li>
-              <li>관공서 실사 시 완벽 지원</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <div class="price-card p-4 h-100 text-center" 
-     style="transform:scale(0.7); transform-origin:top center;">
-            <img src="images/price-resident.jpg" alt="상주 오피스">
-            <h5 class="fw-bold">상주 오피스</h5>
-            <p class="fs-4 mb-2">월 300,000원부터</p>
-            <ul class="mb-0 list-unstyled">
-              <li>개인 전용 좌석</li>
-              <li>24시간 출입</li>
-              <li>유선/무선 초고속 인터넷</li>
-              <li>공용회의실 · 라운지 무제한 이용</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   </section>
