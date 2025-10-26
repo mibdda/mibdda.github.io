@@ -157,16 +157,24 @@ if(window.wcs) {
 
 <!-- ▼▼ NAV (슬림 바 + 절대 위치 로고) ▼▼ -->
 <nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
-  <div class="container-fluid justify-content-center">
-    <!-- 메뉴(오른쪽) -->
-    <button class="navbar-toggler ms-auto me-2" type="button"
+  <div class="container-fluid">
+
+    <!-- 로고: 절대 위치 -->
+    <a class="navbar-brand brand-abs" href="#">
+      <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스" style="height:170px;">
+      <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스" style="height:90px;">
+    </a>
+
+    <!-- 햄버거 버튼 (collapse 바깥에 둠) -->
+    <button class="navbar-toggler ms-auto" type="button"
             data-bs-toggle="collapse" data-bs-target="#nav"
             aria-controls="nav" aria-expanded="false" aria-label="메뉴">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
+    <!-- 가운데 메뉴 -->
+    <div class="collapse navbar-collapse justify-content-center" id="nav">
+      <ul class="navbar-nav" style="gap:30px;">
         <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
         <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
         <li class="nav-item"><a class="nav-link" href="#pricing">가격</a></li>
@@ -174,17 +182,16 @@ if(window.wcs) {
         <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
       </ul>
     </div>
+
+    <!-- 오른쪽 CTA 버튼 (데스크탑 전용) -->
+    <a href="#contact" class="btn fw-bold d-none d-lg-block"
+       style="background:linear-gradient(135deg,#007BFF,#00BFFF);
+              color:#fff; border:none; border-radius:24px;
+              padding:10px 22px; font-size:15px;
+              white-space:nowrap; min-width:120px;
+              margin-right:80px;">지금 신청하기</a>
   </div>
-
-  <!-- 로고: 절대 위치(바 중앙 기준 정렬) -->
-  <a class="navbar-brand brand-abs" href="#">
-    <!-- 데스크탑 로고 -->
-    <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스" style="height:170px;">
-    <!-- 모바일 로고 -->
-    <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스" style="height:90px;">
-  </a>
 </nav>
-
   <!-- HERO: 페이드 슬라이드(5장), 중앙 카피 -->
   <header id="hero" class="position-relative">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3800">
@@ -198,13 +205,21 @@ if(window.wcs) {
       <div class="overlay"></div>
       <div class="hero-caption">
         <div class="container">
-          <h1 class="display-5 hero-title mb-3">10년의 공유오피스 노하우로<br class="d-none d-md-inline">사업주에게 최적의 업무 환경과 서비스를 제공합니다.</h1>
+          <!-- 메인 타이틀 -->
+          <h1 class="display-5 hero-title mb-3">비상주 사무실, 그 이상의 비즈니스 파트너</h1>
           <!-- SEO 최적화된 h1 숨김-->
           <h2 style="position:absolute; left:-9999px;">강남 신논현역 비상주오피스 전문 | 더브릿지플러스</h2>
-          <p class="hero-sub">연결과 확장, 그 이상의 오피스.</p>
+          <!-- 서브 타이틀 -->
+          <p class="hero-sub">사업자금부터 세무·법무까지, 비즈니스에 필요한 모든 지원을<br>
+      <strong>더브릿지플러스</strong>와 함께하세요.
           <!-- SEO 최적화된 p class 숨김-->
           <p class="lead text-center" style="position:absolute; left:-9999px;">더브릿지플러스는 강남 신논현역에서 <strong>비상주오피스</strong>와 <strong>상주형 공유오피스</strong>를 제공하는 전문 기업입니다.
 </p>
+    <!-- ✅ 히어로 지금 신청하기 버튼 -->
+    <a href="#contact" class="btn btn-primary btn-lg fw-bold mt-3"
+       style="padding:18px 44px; font-size:1.25rem; border-radius:30px;">
+      지금 신청하기
+    </a>
         </div>
       </div>
     </div>
