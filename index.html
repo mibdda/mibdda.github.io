@@ -302,17 +302,7 @@ if(window.wcs) {
 
     <!-- 공통 내장 스타일: 5열 카드, 반응형 정리 -->
     <style>
-      /* 한 줄에 5개 카드 */
-      .five-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px; /* 카드 사이 간격 */
-      }
-      .five-col {
-       flex: 0 0 calc(20% - 13px); /* gap 고려해서 5개 한 줄 */
-       max-width: calc(20% - 13px);
-   }
-      /* 카드 스타일 */
+     /* 카드 스타일 */
       .price-card {
         border: 1px solid #e5e7eb;
         border-radius: 12px;
@@ -359,21 +349,40 @@ if(window.wcs) {
         text-align: left;
       }
       /* 반응형 */
-      @media (max-width: 768px) {
-  .five-col {
-    flex: 0 0 50% !important;
-    max-width: 50% !important;
+/* 공통: 박스 모델 안정화 */
+#pricing .five-col,
+#pricing .price-card {
+  box-sizing: border-box;
+}
+
+/* 한 줄에 5개 (gap 고려) */
+#pricing .five-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+#pricing .five-col {
+  flex: 0 0 calc((100% - 64px) / 5); /* 64px = 4 * 16px (5칸이면 간격 4개) */
+  max-width: calc((100% - 64px) / 5);
+}
+
+/* 태블릿: 2열 */
+@media (max-width: 768px) {
+  #pricing .five-col {
+    flex: 0 0 calc((100% - 16px) / 2); /* 2칸이면 간격 1개 */
+    max-width: calc((100% - 16px) / 2);
   }
 }
 
+/* 모바일: 2,2,1 구조 */
 @media (max-width: 576px) {
-  .five-col {
-    flex: 0 0 50% !important;
-    max-width: 50% !important;
+  #pricing .five-col {
+    flex: 0 0 calc((100% - 16px) / 2);
+    max-width: calc((100% - 16px) / 2);
   }
-  .five-col:nth-child(5) {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
+  #pricing .five-col:nth-child(5) {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
     </style>
