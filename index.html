@@ -187,9 +187,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .brand-abs img{ display:block; }
 
   /* 메뉴는 로고 폭만큼 왼쪽 패딩으로 피해가기 (겹침 방지) */
+  @media (min-width: 992px) {
   .navbar.slimbar > .container-fluid{
 
     padding-left: 260px !important;         /* 로고 실제 가로폭에 맞춰 조절(필요시 200~260px) */
+  }
   }
 /* 모바일에서 메뉴 끝으로 */
 @media (max-width: 991.98px) {
