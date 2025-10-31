@@ -698,6 +698,14 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   window.karrotPixel.track('Lead');
 });
 </script>
+  <!-- ✅ 여기에 Google Ads 전환 스니펫 추가 -->
+<script>
+  document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
+    gtag('event', 'conversion_event_submit_lead_form', {
+      // event_parameters
+    });
+  });
+</script>
   <!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 --> 
 <script>
 document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
