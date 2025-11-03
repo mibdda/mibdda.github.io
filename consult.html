@@ -51,15 +51,38 @@
   .navbar.slimbar > .container-fluid{ padding-left: 120px; }
 }
 
-/* 푸터 */
-footer{
+/* 푸터 전체 */
+.footer-custom {
   background:#2c2c2c;
   color:#fff;
+  padding: 1rem 0;   /* py-3 수준 */
+  overflow: visible; /* 로고가 삐져나와도 배경 유지 */
 }
-footer .container{max-width:1140px; padding-left:8px;}
-footer .legal{font-size:.95rem; line-height:1.5; margin-left:.6rem;}
-@media (min-width:576px){ footer .legal{margin-left:.75rem;} }
-footer img{filter:none;}
+
+/* 푸터 로고 (데스크탑 기본) */
+.footer-logo {
+  height: 120px;     /* 데스크탑에서 크게 */
+  flex-shrink: 0;
+  margin-top: -10px; /* 살짝 위로 올려서 배경 늘어남 방지 */
+}
+
+/* 푸터 텍스트 */
+.footer-text {
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+/* 모바일 대응 */
+@media (max-width: 576px) {
+  .footer-logo {
+    height: 70px;     /* 모바일에서는 로고 크기 줄임 */
+    margin-top: 0;    /* 음수 마진 제거 */
+  }
+  .footer-text {
+    font-size: 0.85rem; /* 글자도 살짝 줄여서 가독성 확보 */
+    line-height: 1.4;
+  }
+}
   </style>
   <!-- Digitalcamp SK MESSAGE BEGIN -->
   <script type="text/javascript" src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&type=cpa"></script>
@@ -272,11 +295,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <!-- Footer (심플) -->
-<footer class="py-4" style="background:#2c2c2c; color:#fff;">
+<footer class="footer-custom py-3">
   <div class="container">
     <div class="d-flex align-items-center gap-3">
-      <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" height="120">
-      <div style="font-size:.95rem; line-height:1.5;">
+      <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" class="footer-logo">
+      <div class="footer-text">
         <div>대표이사 : 김배기 | 사업자등록번호 : 309-88-03426</div>
         <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
         <div><strong>TEL</strong> : 02-2135-8227 | <strong>FAX</strong> : 0503-8379-0633</div>
