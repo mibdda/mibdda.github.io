@@ -55,19 +55,20 @@
 .footer-custom {
   background:#2c2c2c;
   color:#fff;
-  padding: 1rem 0;   /* py-3 수준 */
-  overflow: visible; /* 로고가 삐져나와도 배경 유지 */
+  padding: 1rem 0;      /* py-3 수준 */
+  position: relative;   /* 로고를 절대 위치시킬 수 있게 */
+  overflow: visible;    /* 로고가 삐져나와도 보이게 */
 }
 
-/* 푸터 로고 (데스크탑 기본) */
 .footer-logo {
-  height: 120px;     /* 데스크탑에서 크게 */
-  flex-shrink: 0;
-  margin-top: -10px; /* 살짝 위로 올려서 배경 늘어남 방지 */
+  height: 120px;        /* 로고 크게 */
+  position: absolute;   /* 푸터 안에서 독립 배치 */
+  top: 50%;             /* 세로 가운데 */
+  transform: translateY(-50%); /* 정확히 중앙 정렬 */
+  left: 0;              /* 왼쪽 붙이기 */
 }
-
-/* 푸터 텍스트 */
 .footer-text {
+  margin-left: 140px;   /* 로고 폭만큼 오른쪽으로 밀기 */
   font-size: .95rem;
   line-height: 1.5;
 }
@@ -75,12 +76,18 @@
 /* 모바일 대응 */
 @media (max-width: 576px) {
   .footer-logo {
-    height: 70px;     /* 모바일에서는 로고 크기 줄임 */
-    margin-top: 0;    /* 음수 마진 제거 */
+    height: 70px;       /* 모바일에서는 로고 줄이기 */
+    position: static;   /* 절대 위치 해제 */
+    transform: none;
+    margin-bottom: 10px;
   }
   .footer-text {
-    font-size: 0.85rem; /* 글자도 살짝 줄여서 가독성 확보 */
-    line-height: 1.4;
+    margin-left: 0;     /* 텍스트 다시 기본 정렬 */
+    text-align: center;
+  }
+  .footer-custom .container {
+    flex-direction: column;
+    align-items: center;
   }
 }
   </style>
@@ -295,16 +302,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <!-- Footer (심플) -->
-<footer class="footer-custom py-3">
-  <div class="container">
-    <div class="d-flex align-items-center gap-3">
-      <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" class="footer-logo">
-      <div class="footer-text">
-        <div>대표이사 : 김배기 | 사업자등록번호 : 309-88-03426</div>
-        <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
-        <div><strong>TEL</strong> : 02-2135-8227 | <strong>FAX</strong> : 0503-8379-0633</div>
-        <div>ⓒ (주)더브릿지플러스 All Rights Reserved.</div>
-      </div>
+<footer class="footer-custom">
+  <div class="container d-flex align-items-center">
+    <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" class="footer-logo">
+    <div class="footer-text">
+      <div>대표이사 : 김배기 | 사업자등록번호 : 309-88-03426</div>
+      <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
+      <div><strong>TEL</strong> : 02-2135-8227 | <strong>FAX</strong> : 0503-8379-0633</div>
+      <div>ⓒ (주)더브릿지플러스 All Rights Reserved.</div>
     </div>
   </div>
 </footer>
