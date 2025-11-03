@@ -21,34 +21,6 @@
     .btn-primary:hover{background:#002244; border-color:#002244;}
     .navbar{background:#2c2c2c;}
     .navbar .navbar-brand,.navbar .nav-link{color:#fff!important;}
-/* ===== 상단 네비게이션 로고 ===== */
-.navbar {
-  height: 80px; /* 네비바 높이 고정 */
-}
-.nav-logo {
-  height: 120px; /* 로고는 크게 */
-  margin-top: -20px; /* 위아래로 삐져나오게 조정 */
-}
-@media (max-width: 576px) {
-  .nav-logo {
-    height: 100px; /* 모바일에서는 조금 줄임 */
-  }
-}
-
-/* ===== 푸터 ===== */
-.footer-custom {
-  background:#2c2c2c;
-  color:#fff;
-  padding: 1rem 0;   /* py-3 수준 유지 */
-  min-height: 100px; /* 푸터 높이 최소값 */
-  display: flex;
-  align-items: center;
-}
-.footer-logo {
-  height: 120px; /* 로고 크게 */
-  flex-shrink: 0; /* 로고 크기 줄어들지 않게 */
-  margin-top: -10px; /* 필요시 위로 살짝 올려서 배경 늘어남 방지 */
-}
   </style>
   <!-- Digitalcamp SK MESSAGE BEGIN -->
   <script type="text/javascript" src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&type=cpa"></script>
@@ -73,22 +45,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGSJ25R9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- Top navbar (심플) -->
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
-  <div class="container">
-    <!-- 브랜드 로고 -->
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="images/logotop.png" alt="더브릿지플러스 로고" class="nav-logo me-2">
-      <span class="visually-hidden">더브릿지플러스</span>
+<!-- ▼▼ NAV (슬림 바 + 절대 위치 로고) ▼▼ -->
+<nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
+  <div class="container-fluid">
+
+    <!-- 로고: 절대 위치 -->
+    <a class="navbar-brand brand-abs" href="index.html">
+      <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스" style="height:170px;">
+      <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스" style="height:90px;">
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+    <!-- 햄버거 버튼 -->
+    <button class="navbar-toggler ms-auto" type="button"
+            data-bs-toggle="collapse" data-bs-target="#nav"
             aria-controls="nav" aria-expanded="false" aria-label="메뉴">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="nav">
-      <ul class="navbar-nav" style="gap:18px;">
+      <ul class="navbar-nav" style="gap:30px;">
         <li class="nav-item"><a class="nav-link" href="index.html#pricing">이용요금</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#services">서비스</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#location">위치</a></li>
@@ -258,11 +233,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <!-- Footer (심플) -->
-<footer class="footer-custom">
+<footer class="py-4" style="background:#2c2c2c; color:#fff;">
   <div class="container">
     <div class="d-flex align-items-center gap-3">
-      <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" class="footer-logo">
-      <div class="footer-text">
+      <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" height="120">
+      <div style="font-size:.95rem; line-height:1.5;">
         <div>대표이사 : 김배기 | 사업자등록번호 : 309-88-03426</div>
         <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
         <div><strong>TEL</strong> : 02-2135-8227 | <strong>FAX</strong> : 0503-8379-0633</div>
