@@ -33,7 +33,7 @@
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
-    /* 로고: 절대 위치 (요청에 따라 유지) */
+    /* 로고: 절대 위치 */
     .brand-abs{
       position: absolute; left: 12px; top: 50%;
       transform: translateY(-50%);
@@ -55,25 +55,47 @@
     /* 햄버거/사이드 드로어 스타일 */
     .side-drawer {
       position: fixed;
-      top: 0;
+      /* 🚨 네비바 (80px) 아래에서 시작하도록 수정 */
+      top: 80px; 
       right: -250px; /* 처음엔 화면 밖 */
       width: 250px;
-      height: 100%;
+      /* 🚨 높이를 컨텐츠 기반으로 조정 (스크롤 방지 및 하단 여백 확보) */
+      height: auto; 
+      max-height: calc(100vh - 80px); 
+      overflow-y: auto; 
       background: #2c2c2c;
       color: #fff;
       transition: right 0.3s ease; /* 전환 효과 명시 */
       z-index: 1050;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem 2rem 1rem; /* 하단 패딩을 더 주어 컷 오프 지점 확보 */
     }
     .side-drawer.open {
       right: 0; /* 열리면 화면 안으로 */
     }
+
+    /* 🚨 닫기 버튼 스타일 */
+    .side-drawer .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      filter: invert(1); /* 흰색으로 변환 */
+      opacity: 0.8;
+      z-index: 1060;
+    }
+
     .side-drawer a {
       display: block;
       color: #fff;
       margin: 1rem 0;
       text-decoration: none;
+      /* 닫기 버튼과 겹치지 않도록 첫 링크 위치 조정 */
+      padding-top: 20px; 
     }
+    /* 첫 번째 링크만 닫기 버튼 아래로 밀어내기 */
+    .side-drawer a:first-of-type {
+        margin-top: 3rem;
+    }
+
 
     /* 푸터 스타일 정리 */
     .footer-bg {
@@ -120,6 +142,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   
   <div id="drawer" class="side-drawer">
+    <button type="button" class="btn-close btn-close-white" aria-label="메뉴 닫기" id="closeDrawerBtn"></button>
+    
     <a href="index.html#pricing">이용요금</a>
     <a href="index.html#services">서비스</a>
     <a href="index.html#location">위치</a>
@@ -297,6 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 document.addEventListener("DOMContentLoaded", function() {
     const menuBtn = document.getElementById('menuBtn');
     const drawer = document.getElementById('drawer');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn'); // 닫기 버튼 요소
     const navbar = document.querySelector('.navbar.slimbar');
     const header = document.querySelector('header.py-5');
 
@@ -306,17 +331,23 @@ document.addEventListener("DOMContentLoaded", function() {
         header.style.paddingTop = `${navbarHeight + 20}px`; 
     }
 
-    // 2. 🚨 햄버거 버튼 클릭 이벤트 처리
-    if (menuBtn && drawer) {
-        menuBtn.addEventListener('click', function(){
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            
-            // 드로어 상태 토글 (open 클래스 추가/제거)
-            drawer.classList.toggle('open'); 
-            
-            // aria-expanded 상태 업데이트
-            this.setAttribute('aria-expanded', !isExpanded);
-        });
+    // 드로어 열기/닫기 토글 함수
+    function toggleDrawer() {
+        if (!menuBtn || !drawer) return;
+        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        
+        drawer.classList.toggle('open'); 
+        menuBtn.setAttribute('aria-expanded', !isExpanded);
+    }
+
+    // 2. 햄버거 버튼 클릭 이벤트 처리
+    if (menuBtn) {
+        menuBtn.addEventListener('click', toggleDrawer);
+    }
+    
+    // 3. 🚨 닫기 버튼 클릭 이벤트 처리
+    if (closeDrawerBtn) {
+        closeDrawerBtn.addEventListener('click', toggleDrawer);
     }
 });
 </script>
