@@ -55,9 +55,11 @@
     /* 햄버거/사이드 드로어 스타일 */
     .side-drawer {
       position: fixed;
+      /* 🚨 네비바 (80px) 아래에서 시작하도록 수정 */
       top: 80px; 
       right: -250px; /* 처음엔 화면 밖 */
       width: 250px;
+      /* 🚨 높이를 컨텐츠 기반으로 조정 (스크롤 방지 및 하단 여백 확보) */
       height: auto; 
       max-height: calc(100vh - 80px); 
       overflow-y: auto; 
@@ -71,27 +73,27 @@
       right: 0; /* 열리면 화면 안으로 */
     }
 
-    /* 🚨 닫기 버튼 스타일: 상단/우측 여백 5px로 축소 */
+    /* 🚨 닫기 버튼 스타일 */
     .side-drawer .btn-close {
       position: absolute;
-      top: 5px; /* 간격 축소 */
-      right: 5px; /* 간격 축소 */
+      top: 10px;
+      right: 10px;
       filter: invert(1); /* 흰색으로 변환 */
       opacity: 0.8;
       z-index: 1060;
     }
 
-    /* 드로어 내 메뉴 링크 */
     .side-drawer a {
       display: block;
       color: #fff;
-      margin: 1rem 0; /* 링크 사이 간격 유지 */
+      margin: 1rem 0;
       text-decoration: none;
+      /* 닫기 버튼과 겹치지 않도록 첫 링크 위치 조정 */
+      padding-top: 20px; 
     }
-
-    /* 🚨 첫 번째 링크 (이용요금) 간격 조정: X 버튼과의 간격 축소 */
+    /* 첫 번째 링크만 닫기 버튼 아래로 밀어내기 */
     .side-drawer a:first-of-type {
-        margin-top: 1.5rem; /* 3rem에서 1.5rem으로 축소 */
+        margin-top: 3rem;
     }
 
 
@@ -277,6 +279,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
       }
     });
+<script>
+    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function (e) {
+      // 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
+      e.target.reset();
+    });
+  </script>
   </script>
   <script>
     document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
@@ -343,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function() {
         menuBtn.addEventListener('click', toggleDrawer);
     }
     
-    // 3. 닫기 버튼 클릭 이벤트 처리
+    // 3. 🚨 닫기 버튼 클릭 이벤트 처리
     if (closeDrawerBtn) {
         closeDrawerBtn.addEventListener('click', toggleDrawer);
     }
