@@ -95,11 +95,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     html,body{height:100%;}
     body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:#222;}
 
-    /* NAV (조금 더 왼쪽) */
-    .navbar{background:var(--brand-dark);}
-    .navbar .navbar-brand,.navbar .nav-link{color:#fff!important;}
-    .navbar .container{padding-left:8px;} /* 더 왼쪽 */
-
     /* 섹션 공통 */
     .padding-top:90px; padding-bottom:60px;}
     .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
@@ -182,6 +177,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     height: 80px;                 /* 데스크탑 바 높이 */
     background: #2c2c2c !important; /* 기존 블루 #003366 */
     padding: 0 !important;
+    padding-left: 8px !important;
     overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
   }
   .navbar.slimbar .nav-link{ color:#fff !important; }
