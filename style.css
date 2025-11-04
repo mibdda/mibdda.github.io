@@ -1,0 +1,206 @@
+<!-- Fonts & Bootstrap -->
+<style>
+    :root{
+      --brand-dark:#003366; /* 기존 #2C2C2C → 네이비 */
+}
+      --brand-sky:#66CCFF;    /* 연하늘 */
+      --paper:#ECEFF1;        /* 연회색(배경) */
+      --offwhite:#F7F9FB;
+    }
+    /* 페이드인 효과 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 호버 효과 */
+    .price-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+    }
+    html,body{height:100%;}
+    body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:#222;}
+
+    /* 섹션 공통 */
+    .padding-top:90px; padding-bottom:60px;}
+    .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
+
+    .section.paper{background:var(--paper);}
+    .section.alt{background:linear-gradient(180deg,#fff 0%, var(--offwhite) 100%);}
+    .section.sky{background:linear-gradient(180deg,var(--brand-sky) 0%, #e8f7ff 100%);}
+    .section h2{font-weight:700; margin-bottom:1rem;}
+
+    /* HERO: 가운데 정렬, 두 줄 카피 */
+    #hero { position: relative; }
+#hero .carousel-item{ height: calc(100vh - 80px); }
+@media (max-width: 576.98px){
+  #hero .carousel-item{ height: calc(100vh - 80px); }
+}
+    #hero .carousel-item img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+    }
+    #hero .overlay{position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)); z-index:1;}
+    #hero .hero-caption{
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; z-index:2; padding:0 4vw;
+    }
+    #hero .hero-title{font-weight:700;}
+    #hero .hero-sub{opacity:.95; font-size:1.05rem;}
+
+
+    /* 버튼 */
+    .btn-primary{background:var(--brand-dark); border-color:var(--brand-dark);}
+    .btn-primary:hover{background:#002244; border-color:#002244;}
+
+    /* 푸터: 상단 로고 영역과 대칭 (왼쪽 여백 약간) */
+    footer{background:#2c2c2c; color:#fff;} /* background:var(--brand-dark); 원래색상 */
+    footer .container{max-width:1140px; padding-left:8px;}
+    footer .legal{font-size:.95rem; line-height:1.5; margin-left:.6rem;}
+    @media (min-width:576px){ footer .legal{margin-left:.75rem;} }
+    footer img{filter:none;}
+    
+    /* 문의이름 뒤에 "*" */
+    .form-label.required::after {
+  content: " *";
+  color: red;
+}
+  </style><style>
+/* 데스크탑에서 메뉴 오른쪽 여백 → 메뉴가 살짝 왼쪽으로 이동 */
+@media (min-width: 992px){
+  .navbar.slimbar .navbar-nav{
+    margin-right: 120px;     /* 80~160px 사이로 취향대로 조절 */
+  }
+}
+  /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
+  .navbar.slimbar{
+    position: relative;
+    height: 80px;                 /* 데스크탑 바 높이 */
+    background: #2c2c2c !important; /* 기존 블루 #003366 */
+    padding: 0 !important;
+    padding-left: 8px !important;
+    overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
+  }
+  .navbar.slimbar .nav-link{ color:#fff !important; }
+  .navbar.slimbar .navbar-toggler{ filter: invert(1); } /* 햄버거 아이콘 보정 */
+
+  /* 로고: 플로우에서 분리 → 바 높이 계산에 영향 X */
+  .brand-abs{
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    line-height: 0; z-index: 1001; /* 가려지지 않게 충분히 높게 */
+  }
+  .brand-abs img{ display:block; }
+
+  /* 메뉴는 로고 폭만큼 왼쪽 패딩으로 피해가기 (겹침 방지) */
+  .navbar.slimbar > .container-fluid{
+
+    padding-left: 260px !important;         /* 로고 실제 가로폭에 맞춰 조절(필요시 200~260px) */
+  }
+
+  /* 모바일: 바 높이/패딩 조정 + 모바일 로고 공간 축소 */
+  @media (max-width: 576.98px){
+    .navbar.slimbar{ height: 80px; }
+    .navbar.slimbar > .container-fluid{ padding-left: 120px; } /* 필요시 100~130px */
+  }
+</style><style>
+     /* 카드 스타일 공통 내장 스타일: 5열 카드, 반응형 정리 */ 
+      .price-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 18px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        text-align: left;
+      }
+      .price-label {
+        font-weight: 700;
+        font-size: 16px;
+        color: #222;
+        margin-bottom: 6px;
+      }
+      .price-value {
+        font-weight: 800;
+        font-size: 22px;
+        color: #0d6efd;
+        margin-bottom: 8px;
+      }
+      .price-sub {
+        font-size: 14px;
+        color: #6b7280;
+      }
+      .section-title {
+        font-weight: 800;
+        font-size: 28px;
+        color: #111827;
+        margin-bottom: 8px;
+        text-align: center; /* 가운데 정렬 */
+      }
+      .section-desc {
+        font-size: 18px;
+        color: #374151;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+      .group-title {
+        font-weight: 700;
+        font-size: 18px;
+        color: #111827;
+        margin: 24px 0 12px;
+        text-align: left;
+      }
+      /* 반응형 */
+/* 공통: 박스 모델 안정화 */
+#pricing .five-col,
+#pricing .price-card {
+  box-sizing: border-box;
+}
+
+/* 한 줄에 5개 (gap 고려) */
+#pricing .five-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+#pricing .five-col {
+  flex: 0 0 calc((100% - 64px) / 5); /* 64px = 4 * 16px (5칸이면 간격 4개) */
+  max-width: calc((100% - 64px) / 5);
+}
+
+/* 태블릿: 2열 */
+@media (max-width: 768px) {
+  #pricing .five-col {
+    flex: 0 0 calc((100% - 16px) / 2); /* 2칸이면 간격 1개 */
+    max-width: calc((100% - 16px) / 2);
+  }
+}
+
+/* 모바일: 2,2,1 구조 */
+@media (max-width: 576px) {
+  #pricing .five-col {
+    flex: 0 0 calc((100% - 16px) / 2);
+    max-width: calc((100% - 16px) / 2);
+  }
+  #pricing .five-col:nth-child(5) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+    </style><style>
+    /* ================================
+       모바일 전용 스타일 (최대 767px)
+       - 데스크탑에서는 그대로 두고
+       - 모바일에서만 이미지 margin-top 초기화
+       ================================ */
+    @media (max-width: 767px) {
+      #contact img {
+        margin-top: 0 !important; /* 모바일에서는 음수 마진 제거 */
+      }
+    }
+  </style>
