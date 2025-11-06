@@ -48,9 +48,9 @@
     #hero .hero-sub{opacity:.95; font-size:1.05rem;}
 
 
-    /* 버튼 */
-    .btn-primary{background:var(--brand-dark); border-color:var(--brand-dark);}
-    .btn-primary:hover{background:#002244; border-color:#002244;}
+    /* 버튼 */ /* 부트스트랩의 .btn-primary:not([disabled])와 경쟁하여 우선순위에서 이기거나 최소한 동등하게 만듭니다. */
+    .btn-primary:not([disabled]){background:var(--brand-dark); border-color:var(--brand-dark); }
+    .btn-primary:hover:not([disabled]){background:#002244; border-color:#002244; }
 
     /* 푸터: 상단 로고 영역과 대칭 (왼쪽 여백 약간) */
     footer{background:#2c2c2c; color:#fff;} /* background:var(--brand-dark); 원래색상 */
