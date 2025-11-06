@@ -523,18 +523,7 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   window.karrotPixel.track('Lead');
 });
 </script>
-<!-- Google Ads 전환 추적: 구글폼 제출 시 -->
-<script>
-  document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
-    gtag('event', 'conversion', {
-      'send_to': 'AW-17686731415/GT-NBXHJ27G',
-      'event_callback': function() {
-    console.log('전환 이벤트 전송 완료');
-  },
-      'event_timeout': 2000
-    });
-  });
-</script>
+
 <!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 -->
 <script>
 document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
