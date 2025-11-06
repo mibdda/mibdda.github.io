@@ -5,110 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>더브릿지플러스 | 무료 상담 신청</title>
 
-  <!-- Fonts & CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Brand colors -->
-  <style>
-    :root{
-      --brand-dark:#003366;
-      --paper:#ffffff; /* 흰 배경 */
-    }
-    html,body{height:100%;}
-    body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:#222;}
-    .btn-primary{background:var(--brand-dark); border-color:var(--brand-dark);}
-    .btn-primary:hover{background:#002244; border-color:#002244;}
-    .navbar{background:#2c2c2c;}
-    .navbar .navbar-brand,.navbar .nav-link{color:#fff!important;}
-    /* 네비바: 슬림 바 + 절대 위치 로고 */
-.navbar.slimbar{
-  position: relative;
-  height: 80px;
-  background: #2c2c2c !important;
-  padding: 0 !important;
-  overflow: visible;
-}
-.navbar.slimbar .nav-link{ color:#fff !important; }
-.navbar.slimbar .navbar-toggler{ filter: invert(1); }
-
-/* 로고: 절대 위치 */
-.brand-abs{
-  position: absolute; left: 12px; top: 50%;
-  transform: translateY(-50%);
-  line-height: 0; z-index: 1001;
-}
-.brand-abs img{ display:block; }
-
-/* 메뉴는 로고 폭만큼 왼쪽 패딩 */
-.navbar.slimbar > .container-fluid{
-  padding-left: 260px !important;
-}
-
-/* 모바일 대응 */
-@media (max-width: 576.98px){
-  .navbar.slimbar{ height: 80px; }
-  .navbar.slimbar > .container-fluid{ padding-left: 120px; }
-}
-.form-label.required::after {
-  content: " *";
-  color: red;
-}
-  </style>
-  <!-- Digitalcamp SK MESSAGE BEGIN -->
+<link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&type=cpa"></script>
-  <!-- Digitalcamp SK MESSAGE END -->
-<!-- Karrot Pixel -->
-<script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
+  <script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
 <script>
   // 실제 발급받은 pixel 키로 초기화
   window.karrotPixel && window.karrotPixel.init('1759197528761893001');
   // 페이지뷰 기본 트래킹(옵션)
   window.karrotPixel && window.karrotPixel.track('ViewPage');
   </script>
-<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MGSJ25R9');</script>
-<!-- End Google Tag Manager -->
-
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGSJ25R9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- ▼▼ NAV (슬림 바 + 절대 위치 로고) ▼▼ -->
-<nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
+
+<nav class="navbar navbar-dark slimbar fixed-top shadow-sm">
   <div class="container-fluid">
 
-    <!-- 로고: 절대 위치 -->
     <a class="navbar-brand brand-abs" href="index.html">
-      <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스" style="height:170px;">
-      <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스" style="height:90px;">
+      <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스 로고" style="height:170px;">
+      <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스 로고" style="height:90px;">
     </a>
 
-    <!-- 햄버거 버튼 -->
-    <button class="navbar-toggler ms-auto" type="button"
-            data-bs-toggle="collapse" data-bs-target="#nav"
-            aria-controls="nav" aria-expanded="false" aria-label="메뉴">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<button class="navbar-toggler ms-auto" type="button" id="menuBtn" aria-controls="drawer" aria-expanded="false" aria-label="메뉴 열기/닫기">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="nav">
-      <ul class="navbar-nav" style="gap:30px;">
-        <li class="nav-item"><a class="nav-link" href="index.html#pricing">이용요금</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#services">서비스</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#location">위치</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#about">회사소개</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html">홈페이지 바로가기</a></li>
-      </ul>
-    </div>
+  </div>
+  
+  <div id="drawer" class="side-drawer">
+    <button type="button" class="btn-close btn-close-white" aria-label="메뉴 닫기" id="closeDrawerBtn"></button>
+
+    <a href="index.html">홈으로</a>
+    <a href="index.html#pricing">이용요금</a>
+    <a href="index.html#services">서비스</a>
+    <a href="index.html#location">위치</a>
+    <a href="index.html#about">회사소개</a>
+    
   </div>
 </nav>
 
-  <!-- Page header -->
   <header class="py-5">
     <div class="container text-center">
       <h1 class="fw-bold mb-3">무료 상담 신청</h1>
@@ -119,18 +62,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </header>
 
-  <!-- Contact form section (index에서 그대로 이동) -->
   <section class="section" style="padding:40px 0;">
     <div class="container">
       <div class="row g-4 align-items-start">
-        <!-- 폼 -->
         <div class="col-lg-8 mx-auto">
           <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" 
                 method="POST">
 
             <div class="mb-3">
-              <label class="form-label required">문의 분류</label>
-              <select class="form-select" name="entry.989899118" required>
+              <label class="form-label required" for="inquiryCategory">문의 분류</label>
+              <select class="form-select" name="entry.989899118" id="inquiryCategory" required>
                 <option value="" selected disabled>선택하세요</option>
                 <option value="상주">상주</option>
                 <option value="비상주">비상주</option>
@@ -139,42 +80,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div class="mb-3">
-              <label class="form-label required">이름</label>
-              <input type="text" class="form-control" name="entry.1727161775" required>
+              <label class="form-label required" for="userName">이름</label>
+              <input type="text" class="form-control" name="entry.1727161775" id="userName" required>
             </div>
 
             <div class="mb-3">
-              <label class="form-label required">전화번호</label>
-              <input type="tel" class="form-control" name="entry.53713410" required>
+              <label class="form-label required" for="userPhone">전화번호</label>
+              <input type="tel" class="form-control" name="entry.53713410" id="userPhone" required>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">이메일 (선택)</label>
-              <input type="email" class="form-control" name="entry.1336222686" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요">
+              <label class="form-label" for="userEmail">이메일 (선택)</label>
+              <input type="email" class="form-control" name="entry.1336222686" id="userEmail" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요 (선택입력)">
             </div>
 
             <div class="mb-3">
-              <label class="form-label">문의내용 (선택)</label>
-              <textarea class="form-control" rows="4" name="entry.701133298"></textarea>
+              <label class="form-label" for="inquiryDetails">문의 내용 (선택)</label>
+              <textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
+               placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
             </div>
 
-            <!-- 개인정보 수집 동의 체크박스 -->
             <div class="mb-3 form-check d-flex justify-content-center">
               <input type="checkbox" class="form-check-input me-2" id="privacyCheck" required>
               <label class="form-check-label" for="privacyCheck">
                 개인정보 수집 및 이용에 동의합니다.
-                <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">자세히 보기</a>
+                <a href="#" role="button" data-bs-toggle="modal" data-bs-target="#privacyModal" aria-controls="privacyModal" aria-expanded="false">자세히 보기</a>
               </label>
             </div>
 
-            <!-- 개인정보 처리방침 모달 -->
             <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
 
                   <div class="modal-header">
                     <h5 class="modal-title" id="privacyModalLabel">개인정보 수집 및 이용 안내</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="개인정보 수집 안내 닫기"></button>
                   </div>
 
                   <div class="modal-body">
@@ -187,8 +127,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                     <p><strong>수집 항목</strong></p>
                     <ul>
-                      <li><b>필수</b> : 성함, 연락처(전화번호), 문의 내용</li>
-                      <li><b>선택</b> : 이메일 주소</li>
+                      <li><b>필수</b> : 성함, 연락처(전화번호)</li>
+                      <li><b>선택</b> : 이메일 주소, 문의내용</li>
                     </ul>
 
                     <p><strong>보유 및 이용 기간</strong><br>
@@ -210,12 +150,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
 
-            <!-- CTA -->
-            <button type="submit" class="btn btn-primary d-block mx-auto fw-bold" style="width:50%; margin-bottom:10px;">
+            <button type="submit" class="btn btn-primary d-block mx-auto fw-bold w-50 mb-3">
               무료 상담 신청하기
             </button>
-</form>
-            <!-- 신뢰 문구 -->
+
             <p class="text-center mt-2" style="font-size:0.9rem; color:#666;">
               입력하신 개인정보는 상담 목적 외에는 사용되지 않으며, 안전하게 보호됩니다.
             </p>
@@ -228,7 +166,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- 추적 스크립트: 당근/Google Ads/디지털캠프 (폼 제출 이벤트) -->
   <script>
     document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
       window.karrotPixel.track('Lead');
@@ -243,14 +180,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
       }
     });
+<script>
+    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function (e) {
+      // 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
+      e.target.reset();
+    });
+  </script>
   </script>
   <script>
     document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
-      const name = e.target.querySelector('input[name="entry.1727161775"]').value;
-      const phone = e.target.querySelector('input[name="entry.53713410"]').value;
-      const email = e.target.querySelector('input[name="entry.1336222686"]').value;
-      const message = e.target.querySelector('textarea[name="entry.701133298"]').value;
-      const category = e.target.querySelector('select[name="entry.989899118"]').value;
+      const form = e.target;
+      const name = form.querySelector('input[name="entry.1727161775"]').value;
+      const phone = form.querySelector('input[name="entry.53713410"]').value;
+      const email = form.querySelector('input[name="entry.1336222686"]').value;
+      const message = form.querySelector('textarea[name="entry.701133298"]').value;
+      const category = form.querySelector('select[name="entry.989899118"]').value;
 
       if (typeof dcampconv_sp_1601 === 'function') {
         dcampconv_sp_1601('submit', {
@@ -266,21 +210,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   </script>
 
-  <!-- Footer (심플) -->
-  <footer class="py-3" style="background:#2c2c2c; color:#fff;">
+  <footer class="py-3 footer-bg">
     <div class="container-fluid ps-0">
-          <div class="d-flex align-items-center gap-3"> <!-- ← 수직 가운데 정렬 -->
-        <img src="images/logobottom.png" alt="더브릿지플러스 로고 하단" height="152">
-        <div class="legal">
+          <div class="footer-logo-container"> 
+        <img src="images/logobottom.png" alt="더브릿지플러스 하단 로고" height="152">
+        <address class="legal" style="font-style: normal;">
           <div>대표이사 : 김배기 &nbsp;|&nbsp; 사업자등록번호 : 309-88-03426</div>
           <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
           <div><strong>TEL</strong> : 02-2135-8227 &nbsp;|&nbsp; <strong>FAX</strong> : 0503-8379-0633</div>
           <div>ⓒ (주)더브릿지플러스 All Rights Reserved.</div>
-        </div>
+        </address>
       </div>
     </div>
   </footer>
-  <!-- Bootstrap JS -->
+  
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn'); // 닫기 버튼 요소
+    const navbar = document.querySelector('.navbar.slimbar');
+    const header = document.querySelector('header.py-5');
+
+    // 1. Fixed Navbar가 Header 컨텐츠를 가리는 문제 해결
+    if (navbar && header) {
+        const navbarHeight = navbar.offsetHeight;
+        header.style.paddingTop = `${navbarHeight + 20}px`; 
+    }
+
+    // 드로어 열기/닫기 토글 함수
+    function toggleDrawer() {
+        if (!menuBtn || !drawer) return;
+        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        
+        drawer.classList.toggle('open'); 
+        menuBtn.setAttribute('aria-expanded', !isExpanded);
+    }
+
+    // 2. 햄버거 버튼 클릭 이벤트 처리
+    if (menuBtn) {
+        menuBtn.addEventListener('click', toggleDrawer);
+    }
+    
+    // 3. 🚨 닫기 버튼 클릭 이벤트 처리
+    if (closeDrawerBtn) {
+        closeDrawerBtn.addEventListener('click', toggleDrawer);
+    }
+});
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
