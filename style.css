@@ -211,6 +211,51 @@
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
+    
+    /* 햄버거/사이드 드로어 스타일 (consult2.html용) */
+    .side-drawer {
+      position: fixed;
+      /* 🚨 네비바 (80px) 아래에서 시작하도록 수정 */
+      top: 80px; 
+      right: -250px; /* 처음엔 화면 밖 */
+      width: 250px;
+      /* 🚨 높이를 컨텐츠 기반으로 조정 (스크롤 방지 및 하단 여백 확보) */
+      height: auto; 
+      max-height: calc(100vh - 80px); 
+      overflow-y: auto; 
+      background: #2c2c2c;
+      color: #fff;
+      transition: right 0.3s ease; /* 전환 효과 명시 */
+      z-index: 1050;
+      padding: 0 1rem 2rem 1rem; /* 하단 패딩을 더 주어 컷 오프 지점 확보,🚨 상단 패딩 0으로 변경 */
+    }
+    .side-drawer.open {
+      right: 0; /* 열리면 화면 안으로 */
+    }
+
+    /* 🚨 닫기 버튼 스타일 */
+    .side-drawer .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      filter: invert(1); /* 흰색으로 변환 */
+      opacity: 0.8;
+      z-index: 1060;
+    }
+
+    .side-drawer a {
+      display: block;
+      color: #fff;
+      margin: 1rem 0;
+      text-decoration: none;
+      /* 닫기 버튼과 겹치지 않도록 첫 링크 위치 조정 */
+      padding-top: 20px; 
+    }
+    /* 첫 번째 링크만 닫기 버튼 아래로 밀어내기 */
+    .side-drawer a:first-of-type {
+        margin-top: 2rem; padding-top: 0;
+    }
+
 
     /* 푸터 스타일 정리 (consult2.html용) */
     .footer-bg {
