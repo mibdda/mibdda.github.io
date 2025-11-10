@@ -79,7 +79,6 @@
     overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
   }
   .navbar.slimbar .nav-link{ color:#fff !important; }
-  .navbar.slimbar .navbar-toggler{ filter: invert(1); } /* 햄버거 아이콘 보정 */
 
   /* 로고: 플로우에서 분리 → 바 높이 계산에 영향 X */
   .brand-abs{
@@ -308,4 +307,8 @@
   border: 1px solid #e0e0e0 !important;
   /* 상단 모서리가 버튼이 눌렸을 때도 유지되도록 */
   border-radius: 12px !important; 
+}
+  /* 흰색 SVG 데이터 URL 복구 및 !important 추가 */
+.navbar.slimbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
