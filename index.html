@@ -436,8 +436,8 @@ marker.setMap(map);
 <div class="col-lg-6">
 <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST" onsubmit="submitted=true;" target="hidden_iframe">
 <div class="mb-3">
-<label class="form-label required">문의 분류</label>
-<select class="form-select" name="entry.989899118" required="">
+<label class="form-label required" for="inquiryCategory">문의 분류</label>
+<select class="form-select" name="entry.989899118" id="inquiryCategory" required="">
 <option disabled="" selected="" value="">선택하세요</option>
 <option value="상주">상주</option>
 <option value="비상주">비상주</option>
@@ -445,22 +445,22 @@ marker.setMap(map);
 </select>
 </div>
 <div class="mb-3">
-<label class="form-label required">이름</label>
-<input class="form-control" name="entry.1727161775" required="" type="text"/>
+<label class="form-label required" for="userName">이름</label>
+<input class="form-control" name="entry.1727161775" id="userName" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label required">전화번호</label>
-<input class="form-control" name="entry.53713410" required="" type="tel"/>
+<label class="form-label required" for="userPhone">전화번호</label>
+<input class="form-control" name="entry.53713410" id="userPhone" required="" type="tel"/>
 </div>
 <div class="mb-3">
-<label class="form-label">이메일 (선택)</label>
-<input class="form-control" name="entry.1336222686" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email"/>
+<label class="form-label" for="userEmail">이메일 (선택)</label>
+<input class="form-control" name="entry.1336222686" id="userEmail" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email"/>
 </div>
 <div class="mb-3">
-<label class="form-label">문의내용 (선택)</label>
-<textarea class="form-control" name="entry.701133298" rows="4"></textarea>
+<label class="form-label" for="inquiryDetails">문의내용 (선택)</label>
+<textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
+    placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
 </div>
-
 <!-- 개인정보 수집 동의 체크박스 -->
 <div class="mb-3 form-check d-flex justify-content-center">
 <input class="form-check-input me-2" id="privacyCheck" required="" type="checkbox"/>
@@ -525,7 +525,12 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   window.karrotPixel.track('Lead');
 });
 </script>
-
+<script>
+    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function (e) {
+      // 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
+      e.target.reset();
+    });
+  </script>
 <!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 -->
 <script>
 document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
