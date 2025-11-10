@@ -21,12 +21,6 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.12);
       transition: all 0.3s ease;
     }
-    /* 햄버거 아이콘을 흰색 SVG로 강제 변경 */
- <style>
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-</style>
     /* 섹션 공통 */
     .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
 
@@ -223,8 +217,9 @@
     
     /* 햄버거 버튼 아이콘 색상을 흰색으로 강제 지정 (consult2.html용) */
     .navbar.slimbar .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
+  /* 기존 'white' 대신 %23ffffff 사용 (URL 인코딩) */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; 
+}
 
     
     /* 햄버거/사이드 드로어 스타일 (consult2.html용) */
