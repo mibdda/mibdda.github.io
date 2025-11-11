@@ -66,7 +66,6 @@
 /* 데스크탑에서 메뉴 오른쪽 여백 → 메뉴가 살짝 왼쪽으로 이동 */
 @media (min-width: 992px){
   .navbar.slimbar .navbar-nav{
-    margin-right: 120px;     /* 80~160px 사이로 취향대로 조절 */
   }
 }
   /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
