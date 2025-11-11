@@ -556,14 +556,15 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 <!-- 전화상담 버튼 (상담신청 바로 위, 데스크탑 전용) -->
 <a href="tel:0221358227" style="position:fixed; right:20px; bottom:130px; z-index:10000;
           width: 50px; height:50px;
-          background: linear-gradient(135deg, #007BFF, #00BFFF);
-          color:#fff; font-size:20px;
-          display:flex; align-items:center; justify-content:center;
+          background:#003366;  /* ✅ 브랜드 남색 적용 */
+          color:#fff;
+          display:flex; flex-direction:column; align-items:center; justify-content:center;
           border-radius:20px;
           box-shadow:0 4px 12px rgba(0,0,0,0.15);
-          text-decoration:none; text-align:center;"
+          text-decoration:none; text-align:center; line-height:1.2;"
    class="d-none d-lg-flex">
-  <i class="fa fa-phone"></i>
+  <i class="fa fa-phone" style="font-size:18px; margin-bottom:2px;"></i>
+  <span style="font-size:11px;">전화</span>
 </a>
 
 
