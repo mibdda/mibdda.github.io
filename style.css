@@ -79,6 +79,7 @@
     overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
   }
   .navbar.slimbar .nav-link{ color:#fff !important; }
+  .navbar.slimbar .navbar-toggler{ filter: invert(1); } /* 햄버거 아이콘 보정 */
 
   /* 로고: 플로우에서 분리 → 바 높이 계산에 영향 X */
   .brand-abs{
@@ -308,7 +309,64 @@
   /* 상단 모서리가 버튼이 눌렸을 때도 유지되도록 */
   border-radius: 12px !important; 
 }
-  /* 흰색 SVG 데이터 URL 복구 및 !important 추가 */
-.navbar.slimbar .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+
+/* === 모바일 하단 고정 CTA 바 스타일 (max-width: 991.98px 이하에서만) === */
+.cta-bar-mobile {
+    display: none; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* 바 높이 */
+    z-index: 1050;
+    background: #fff; 
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-bar-mobile .btn-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-grow: 1; 
+    width: 50%; /* ✅ 5:5 비율 강제 */
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    white-space: nowrap;
+}
+
+/* 첫 번째 버튼: 문의하기 (남색) */
+.cta-bar-mobile .btn-cta:first-child {
+    background: var(--brand-dark) !important; /* ✅ 남색(003366) 적용 */
+}
+
+/* 두 번째 버튼: 전화 상담하기 (어두운 색 유지) */
+.cta-bar-mobile .btn-cta:last-child {
+    background: #444 !important; /* 어두운 색 유지 */
+}
+
+/* PC 화면에서는 숨기고 모바일 화면에서만 표시 & 위치 조정 */
+@media (max-width: 991.98px) {
+    .cta-bar-mobile {
+        display: flex; /* 모바일에서 하단 바 표시 */
+    }
+    
+    /* 1. 상담 신청 플로팅 버튼 숨기기 (인라인 스타일 bottom: 70px을 타겟) */
+    /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
+    a[href="#contact"][style*="bottom:70px"] {
+        display: none !important;
+    }
+
+    /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
+    /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
+    div[style*="right:20px"][style*="bottom:20px"] {
+        bottom: 70px !important; 
+        z-index: 1060 !important; /* 하단 바(1050) 위에 오도록 z-index를 올림 */
+    }
 }
