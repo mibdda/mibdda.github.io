@@ -23,7 +23,8 @@
     }
     /* 섹션 공통 */
     .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
-
+    /* 특정 섹션만 화면 전체 높이 강제 해제 */
+    #faq, #location, #contact { min-height: auto !important; }
     .section.paper{background:var(--paper);}
     .section.alt{background:linear-gradient(180deg,#fff 0%, var(--offwhite) 100%);}
     .section.sky{background:linear-gradient(180deg,var(--brand-sky) 0%, #e8f7ff 100%);}
