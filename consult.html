@@ -200,10 +200,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   </script>
 <script>
-    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function (e) {
-      // 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
-      e.target.reset();
-    });
+<script>
+ document.querySelector('form[action*="formResponse"]')// 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
+  ?.addEventListener('submit', function (e) {
+    // 리셋 지연: 전송 직후 사용자 입력이 즉시 사라지는 혼란 방지
+    setTimeout(() => e.target.reset(), 1200);
+  });
+  </script>
   </script>
   </script>
   <script>
