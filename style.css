@@ -1,285 +1,400 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>더브릿지플러스 | 무료 상담 신청</title>
-  <!-- ✅ Font Awesome 링크 추가 -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+:root{
+      --brand-dark:#003366; /* 기존 #2C2C2C → 네이비 */
+      --brand-sky:#66CCFF;    /* 연하늘 */
+      --paper:#ECEFF1;        /* 연회색(배경) */
+      --offwhite:#F7F9FB;
+    }
+    /* 페이드인 효과 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    /* 호버 효과 */
+    .price-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transition: all 0.3s ease;
+    }
+    /* 섹션 공통 */
+    .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
+        /* 특정 섹션만 화면 전체 높이 강제 해제 */
+    #faq, #location { min-height: auto !important; }
+    .section.paper{background:var(--paper);}
+    .section.alt{background:linear-gradient(180deg,#fff 0%, var(--offwhite) 100%);}
+    .section.sky{background:linear-gradient(180deg,var(--brand-sky) 0%, #e8f7ff 100%);}
+    .section h2{font-weight:700; margin-bottom:1rem;}
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&type=cpa"></script>
-  <script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
-<script>
-  // 실제 발급받은 pixel 키로 초기화
-  window.karrotPixel && window.karrotPixel.init('1759197528761893001');
-  // 페이지뷰 기본 트래킹(옵션)
-  window.karrotPixel && window.karrotPixel.track('ViewPage');
-  </script>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MGSJ25R9');</script>
-<!-- naver 방문분석 Code -->
-<script src="//wcs.pstatic.net/wcslog.js" type="text/javascript"></script>
-<script type="text/javascript">
-if(!wcs_add) var wcs_add = {};
-wcs_add["wa"] = "157800945592230";
-if(window.wcs) {
-  wcs_do();
+    /* HERO: 가운데 정렬, 두 줄 카피 */
+    #hero { position: relative; }
+#hero .carousel-item{ height: calc(100vh - 80px); }
+@media (max-width: 576.98px){
+  #hero .carousel-item{ height: calc(100vh - 80px); }
 }
-</script>
-<!--End naver 방문분석 Code -->
-</head>
-<body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGSJ25R9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    #hero .carousel-item img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+    }
+    #hero .overlay{position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)); z-index:1;}
+    #hero .hero-caption{
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; z-index:2; padding:0 4vw;
+    }
+    #hero .hero-title{font-weight:700;}
+    #hero .hero-sub{opacity:.95; font-size:1.05rem;}
 
-<nav class="navbar navbar-dark slimbar fixed-top shadow-sm">
-  <div class="container-fluid">
 
-    <a class="navbar-brand brand-abs" href="index.html">
-      <img src="images/logotop.png" class="d-none d-sm-block" alt="더브릿지플러스 로고" style="height:170px;">
-      <img src="images/logotop.png" class="d-block d-sm-none" alt="더브릿지플러스 로고" style="height:90px;">
-    </a>
+    /* 버튼 */ /* 부트스트랩의 .btn-primary:not([disabled])와 경쟁하여 우선순위에서 이기거나 최소한 동등하게 만듭니다. */
+    .btn-primary:not([disabled]){background:var(--brand-dark); border-color:var(--brand-dark); }
+    .btn-primary:hover:not([disabled]){background:#002244; border-color:#002244; }
 
-<button class="navbar-toggler ms-auto" type="button" id="menuBtn" aria-controls="drawer" aria-expanded="false" aria-label="메뉴 열기/닫기">
-  <span class="navbar-toggler-icon"></span>
-</button>
-
-  </div>
-  
-  <div id="drawer" class="side-drawer">
-    <button type="button" class="btn-close btn-close-white" aria-label="메뉴 닫기" id="closeDrawerBtn"></button>
-
-    <a href="index.html">홈으로</a>
-    <a href="index.html#pricing">이용요금</a>
-    <a href="index.html#services">서비스</a>
-    <a href="index.html#faq">자주묻는질문</a>
-    <a href="index.html#location">위치</a>
-    <a href="index.html#about">회사소개</a>
+    /* 푸터: 상단 로고 영역과 대칭 (왼쪽 여백 약간) */
+    footer{background:#2c2c2c; color:#fff;} /* background:var(--brand-dark); 원래색상 */
+    footer .container{max-width:1140px; padding-left:8px;}
+    footer .legal{font-size:.95rem; line-height:1.5; margin-left:.6rem;}
+    @media (min-width:576px){ footer .legal{margin-left:.75rem;} }
+    footer img{filter:none;}
     
-  </div>
-</nav>
+    /* 문의이름 뒤에 "*" */
+    .form-label.required::after {
+  content: " *";
+  color: red;
+}
+/* 데스크탑에서 메뉴 오른쪽 여백 → 메뉴가 살짝 왼쪽으로 이동 */
+@media (min-width: 992px){
+  .navbar.slimbar .navbar-nav{
+  }
+}
+  /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
+  .navbar.slimbar{
+    position: relative;
+    height: 80px;                 /* 데스크탑 바 높이 */
+    background: #2c2c2c !important; /* 기존 블루 #003366 */
+    padding: 0 !important;
+    padding-left: 8px !important;
+    overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
+  }
+  .navbar.slimbar .nav-link{ color:#fff !important; }
+  .navbar.slimbar .navbar-toggler{ filter: invert(0); } /* 햄버거 아이콘 보정 */
 
-  <header class="py-5">
-    <div class="container text-center">
-      <h1 class="fw-bold mb-3">무료 상담 신청</h1>
-      <p class="lead mb-0">
-        더브릿지플러스는 강남 상주·비상주 공유오피스 전문 기업입니다.<br>
-        무료 상담을 통해 사업자 등록, 회의실 이용, 세무·자금 지원까지 맞춤 안내를 드립니다
-      </p>
-    </div>
-  </header>
+  /* 로고: 플로우에서 분리 → 바 높이 계산에 영향 X */
+  .brand-abs{
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    line-height: 0; z-index: 1001; /* 가려지지 않게 충분히 높게 */
+  }
+  .brand-abs img{ display:block; }
 
-  <section class="section" style="padding:40px 0;">
-    <div class="container">
-      <div class="row g-4 align-items-start">
-        <div class="col-lg-8 mx-auto">
-          <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" 
-                method="POST">
-
-            <div class="mb-3">
-              <label class="form-label required" for="inquiryCategory">문의 분류</label>
-              <select class="form-select" name="entry.989899118" id="inquiryCategory" required>
-                <option value="" selected disabled>선택하세요</option>
-                <option value="상주">상주</option>
-                <option value="비상주">비상주</option>
-                <option value="기타">기타</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label required" for="userName">이름</label>
-              <input type="text" class="form-control" name="entry.1727161775" id="userName" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label required" for="userPhone">전화번호</label>
-              <input type="tel" class="form-control" name="entry.53713410" id="userPhone" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label" for="userEmail">이메일 (선택)</label>
-              <input type="email" class="form-control" name="entry.1336222686" id="userEmail" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요 (선택입력)">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label" for="inquiryDetails">문의 내용 (선택)</label>
-              <textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
-               placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
-            </div>
-
-            <div class="mb-3 form-check d-flex justify-content-center">
-              <input type="checkbox" class="form-check-input me-2" id="privacyCheck" required>
-              <label class="form-check-label" for="privacyCheck">
-                개인정보 수집 및 이용에 동의합니다.
-                <a href="#" role="button" data-bs-toggle="modal" data-bs-target="#privacyModal" aria-controls="privacyModal" aria-expanded="false">자세히 보기</a>
-              </label>
-            </div>
-
-            <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="privacyModalLabel">개인정보 수집 및 이용 안내</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="개인정보 수집 안내 닫기"></button>
-                  </div>
-
-                  <div class="modal-body">
-                    <p><strong>개인정보 수집 주체</strong> : (주)더브릿지플러스</p>
-
-                    <p><strong>수집 및 이용 목적</strong><br>
-                      고객님의 문의에 신속하고 정확하게 답변드리기 위해 최소한의 개인정보를 수집합니다. 
-                      또한 상담 이력 관리를 통해 더 나은 서비스 품질을 제공하는 데 활용됩니다.
-                    </p>
-
-                    <p><strong>수집 항목</strong></p>
-                    <ul>
-                      <li><b>필수</b> : 성함, 연락처(전화번호)</li>
-                      <li><b>선택</b> : 이메일 주소, 문의내용</li>
-                    </ul>
-
-                    <p><strong>보유 및 이용 기간</strong><br>
-                      수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 
-                      최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
-                    </p>
-
-                    <p class="mt-3">
-                      ※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 
-                      다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.
-                    </p>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary d-block mx-auto fw-bold w-50 mb-3">
-              무료 상담 신청하기
-            </button>
-
-            <p class="text-center mt-2" style="font-size:0.9rem; color:#666;">
-              입력하신 개인정보는 상담 목적 외에는 사용되지 않으며, 안전하게 보호됩니다.
-            </p>
-            <p class="text-center mt-3">
-              가격이 궁금하신가요? <a href="index.html#pricing" class="fw-bold text-primary">이용요금 보기</a>
-            </p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-<!-- 전화상담 버튼 (상담신청 바로 위, 모든 화면에서 표시) -->
-<a href="tel:0221358227" style="position:fixed; right:20px; bottom:50px; z-index:10000;
-          width: 50px; height:50px;
-          background:#003366;  /* ✅ 브랜드 남색 적용 */
-          color:#fff; font-size:14px;
-          display:flex; flex-direction:column; align-items:center; justify-content:center;
-          border-radius:20px;
-          box-shadow:0 4px 12px rgba(0,0,0,0.15);
-          text-decoration:none; text-align:center; line-height:1.2;">
-  <i class="fa fa-phone" style="font-size:18px; margin-bottom:2px;"></i>
-  <span style="font-size:11px;">전화</span>
-</a>
-  <script>
-    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
-      window.karrotPixel.track('Lead');
-    });
-  </script>
-<script>
-<script>
- document.querySelector('form[action*="formResponse"]')// 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
-  ?.addEventListener('submit', function (e) {
-    // 리셋 지연: 전송 직후 사용자 입력이 즉시 사라지는 혼란 방지
-    setTimeout(() => e.target.reset(), 1200);
-  });
-  </script>
-  </script>
-  </script>
-  <script>
-    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
-      const form = e.target;
-      const name = form.querySelector('input[name="entry.1727161775"]').value;
-      const phone = form.querySelector('input[name="entry.53713410"]').value;
-      const email = form.querySelector('input[name="entry.1336222686"]').value;
-      const message = form.querySelector('textarea[name="entry.701133298"]').value;
-      const category = form.querySelector('select[name="entry.989899118"]').value;
-
-      if (typeof dcampconv_sp_1601 === 'function') {
-        dcampconv_sp_1601('submit', {
-          'items': [
-            { 'name': name },
-            { 'phone': phone },
-            { 'email': email },
-            { 'message': message },
-            { 'category': category }
-          ]
-        }, 'cpa');
+  /* 메뉴는 로고 폭만큼 왼쪽 패딩으로 피해가기 (겹침 방지) */
+  .navbar.slimbar > .container-fluid{
+    padding-left: 12px !important; /* Bootstrap 기본값 또는 작은 값으로 복구 */
+  padding-right: 12px !important;
+}
+@media (min-width: 992px){
+  
+  /* [추가] Flexbox의 메뉴 영역(flex-fill)을 오른쪽으로 밀어냅니다. */
+  /* 로고 공간(260px)과 CTA 공간(200px)의 차이인 60px을 마진으로 추가합니다. */
+  .navbar.slimbar .d-lg-flex.flex-fill {
+      /* 시각적 중앙 보정 마진: 260px - 200px = 60px */
+      margin-left: 60px; 
+  }
+}
+  /* 모바일: 바 높이/패딩 조정 + 모바일 로고 공간 축소 */
+ @media (max-width: 576.98px){
+  .navbar.slimbar > .container-fluid{ 
+      /* margin-left: 120px; 삭제 */
+      padding-left: 12px !important; /* 기본값으로 복구 */
+  }
+ }
+     /* 카드 스타일 공통 내장 스타일: 5열 카드, 반응형 정리 */ 
+      .price-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 18px;
+        height: 100%;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        text-align: left;
       }
-    });
-  </script>
+      .price-label {
+        font-weight: 700;
+        font-size: 16px;
+        color: #222;
+        margin-bottom: 6px;
+      }
+      .price-value {
+        font-weight: 800;
+        font-size: 22px;
+        color: #0d6efd;
+        margin-bottom: 8px;
+      }
+      .price-sub {
+        font-size: 14px;
+        color: #6b7280;
+      }
+      .section-title {
+        font-weight: 800;
+        font-size: 28px;
+        color: #111827;
+        margin-bottom: 8px;
+        text-align: center; /* 가운데 정렬 */
+      }
+      .section-desc {
+        font-size: 18px;
+        color: #374151;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+      .group-title {
+        font-weight: 700;
+        font-size: 18px;
+        color: #111827;
+        margin: 24px 0 12px;
+        text-align: left;
+      }
+      /* 반응형 */
+/* 공통: 박스 모델 안정화 */
+#pricing .five-col,
+#pricing .price-card {
+  box-sizing: border-box;
+}
 
-  <footer class="py-3 footer-bg">
-    <div class="container-fluid ps-0">
-          <div class="footer-logo-container"> 
-        <img src="images/logobottom.png" alt="더브릿지플러스 하단 로고" height="152">
-        <address class="legal" style="font-style: normal;">
-          <div>대표이사 : 김배기 &nbsp;|&nbsp; 사업자등록번호 : 309-88-03426</div>
-          <div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
-          <div><strong>TEL</strong> : 02-2135-8227 &nbsp;|&nbsp; <strong>FAX</strong> : 0503-8379-0633</div>
-          <div>ⓒ (주)더브릿지플러스 All Rights Reserved.</div>
-        </address>
-      </div>
-    </div>
-  </footer>
-  
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const menuBtn = document.getElementById('menuBtn');
-    const drawer = document.getElementById('drawer');
-    const closeDrawerBtn = document.getElementById('closeDrawerBtn'); // 닫기 버튼 요소
-    const navbar = document.querySelector('.navbar.slimbar');
-    const header = document.querySelector('header.py-5');
+/* 한 줄에 5개 (gap 고려) */
+#pricing .five-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+#pricing .five-col {
+  flex: 0 0 calc((100% - 64px) / 5); /* 64px = 4 * 16px (5칸이면 간격 4개) */
+  max-width: calc((100% - 64px) / 5);
+}
 
-    // 1. Fixed Navbar가 Header 컨텐츠를 가리는 문제 해결
-    if (navbar && header) {
-        const navbarHeight = navbar.offsetHeight;
-        header.style.paddingTop = `${navbarHeight + 20}px`; 
+/* 태블릿: 2열 */
+@media (max-width: 768px) {
+  #pricing .five-col {
+    flex: 0 0 calc((100% - 16px) / 2); /* 2칸이면 간격 1개 */
+    max-width: calc((100% - 16px) / 2);
+  }
+}
+
+/* 모바일: 2,2,1 구조 */
+@media (max-width: 576px) {
+  #pricing .five-col {
+    flex: 0 0 calc((100% - 16px) / 2);
+    max-width: calc((100% - 16px) / 2);
+  }
+  #pricing .five-col:nth-child(5) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+    /* ================================
+       모바일 전용 스타일 (최대 767px)
+       - 데스크탑에서는 그대로 두고
+       - 모바일에서만 이미지 margin-top 초기화
+       ================================ */
+    @media (max-width: 767px) {
+      #contact img {
+        margin-top: 0 !important; /* 모바일에서는 음수 마진 제거 */
+      }
     }
 
-    // 드로어 열기/닫기 토글 함수
-    function toggleDrawer() {
-        if (!menuBtn || !drawer) return;
-        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-        
-        drawer.classList.toggle('open'); 
-        menuBtn.setAttribute('aria-expanded', !isExpanded);
+    html,body{height:100%;}
+    body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:#222;}
+    
+    /* [수정]
+      .btn-primary, .navbar.slimbar, .navbar.slimbar .nav-link,
+      .brand-abs, .form-label.required::after 및
+      관련 미디어 쿼리 등 중복되는 스타일을 모두 제거했습니다.
+      index.html과 consult2.html 양쪽에서 이 파일을
+      공통으로 사용할 수 있습니다.
+    */
+
+    
+    /* 햄버거/사이드 드로어 스타일 (consult2.html용) */
+    .side-drawer {
+      position: fixed;
+      /* 🚨 네비바 (80px) 아래에서 시작하도록 수정 */
+      top: 80px; 
+      right: -250px; /* 처음엔 화면 밖 */
+      width: 250px;
+      /* 🚨 높이를 컨텐츠 기반으로 조정 (스크롤 방지 및 하단 여백 확보) */
+      height: auto; 
+      max-height: calc(100vh - 80px); 
+      overflow-y: auto; 
+      background: #2c2c2c;
+      color: #fff;
+      transition: right 0.3s ease; /* 전환 효과 명시 */
+      z-index: 1050;
+      padding: 0 1rem 2rem 1rem; /* 하단 패딩을 더 주어 컷 오프 지점 확보,🚨 상단 패딩 0으로 변경 */
+    }
+    .side-drawer.open {
+      right: 0; /* 열리면 화면 안으로 */
     }
 
-    // 2. 햄버거 버튼 클릭 이벤트 처리
-    if (menuBtn) {
-        menuBtn.addEventListener('click', toggleDrawer);
+    /* 🚨 닫기 버튼 스타일 */
+    .side-drawer .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      filter: invert(1); /* 흰색으로 변환 */
+      opacity: 0.8;
+      z-index: 1060;
+    }
+
+    .side-drawer a {
+      display: block;
+      color: #fff;
+      margin: 1rem 0;
+      text-decoration: none;
+      /* 닫기 버튼과 겹치지 않도록 첫 링크 위치 조정 */
+      padding-top: 20px; 
+    }
+    /* 첫 번째 링크만 닫기 버튼 아래로 밀어내기 */
+    .side-drawer a:first-of-type {
+        margin-top: 2rem; padding-top: 0;
+    }
+
+
+    /* 푸터 스타일 정리 (consult2.html용) */
+    .footer-bg {
+      background: #2c2c2c; 
+      color: #fff;
+    }
+    .footer-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+/* FAQ 아코디언 스타일 (이미지 기반) */
+.accordion-button {
+  /* 배경을 연한 하늘색 계열로 설정 (이미지 참고) */
+  background-color: var(--offwhite) !important; 
+  /* 연한 하늘색 배경 대신 offwhite 변수 사용 */
+  color: #222 !important; 
+  font-size: 1.1rem;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+/* 버튼이 닫혀 있을 때의 스타일 */
+.accordion-button.collapsed {
+  background-color: #fff !important; /* 닫혀 있을 땐 흰색 배경 */
+}
+
+/* 버튼이 눌려서 열렸을 때의 스타일 */
+.accordion-button:not(.collapsed) {
+  background-color: #e8f7ff !important; /* 열려 있을 땐 연한 하늘색 */
+  color: var(--brand-dark) !important; /* 텍스트 색상을 브랜드 색상으로 */
+}
+
+/* 아코디언 바디 (답변 내용) */
+.accordion-body {
+  background-color: #fff;
+  border-top: 1px solid #f0f0f0;
+  color: #444;
+  padding: 1.25rem 1.5rem;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* 아코디언 아이템 공통 */
+.accordion-item {
+  border: 1px solid #e0e0e0 !important;
+  /* 상단 모서리가 버튼이 눌렸을 때도 유지되도록 */
+  border-radius: 12px !important; 
+}
+
+/* === 모바일 하단 고정 CTA 바 스타일 (max-width: 991.98px 이하에서만) === */
+.cta-bar-mobile {
+    display: none; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* 바 높이 */
+    z-index: 1050;
+    background: #fff; 
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-bar-mobile .btn-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-grow: 1; 
+    width: 50%; /* ✅ 5:5 비율 강제 */
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    white-space: nowrap;
+}
+
+/* 첫 번째 버튼: 문의하기 (남색) */
+.cta-bar-mobile .btn-cta:first-child {
+    background: var(--brand-dark) !important; /* ✅ 남색(003366) 적용 */
+}
+
+/* 두 번째 버튼: 전화 상담하기 (어두운 색 유지) */
+.cta-bar-mobile .btn-cta:last-child {
+    background: #444 !important; /* 어두운 색 유지 */
+}
+
+/* PC 화면에서는 숨기고 모바일 화면에서만 표시 & 위치 조정 */
+@media (max-width: 991.98px) {
+    .cta-bar-mobile {
+        display: flex; /* 모바일에서 하단 바 표시 */
     }
     
-    // 3. 🚨 닫기 버튼 클릭 이벤트 처리
-    if (closeDrawerBtn) {
-        closeDrawerBtn.addEventListener('click', toggleDrawer);
+    /* 1. 상담 신청 플로팅 버튼 숨기기 (인라인 스타일 bottom: 70px을 타겟) */
+    /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
+    a[href="#contact"][style*="bottom:70px"] {
+        display: none !important;
     }
-});
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+    /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
+    /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
+    div[style*="right:20px"][style*="bottom:20px"] {
+        bottom: 70px !important; 
+        z-index: 1060 !important; /* 하단 바(1050) 위에 오도록 z-index를 올림 */
+    }
+}
+/* ================================
+   부트스트랩 탭(nav-pills) 스타일 오버라이드
+   ================================ */
+
+/* 1. 활성화된 탭 버튼 (선택된 상태) */
+.nav-pills .nav-link.active, 
+.nav-pills .show > .nav-link {
+    /* 기존 부트스트랩의 파란색 대신 
+      style2.css에 정의된 브랜드 색상(--brand-dark)을 사용합니다.
+    */
+    background-color: var(--brand-dark) !important; 
+    color: #fff !important;
+    border-radius: 8px; /* 모서리를 살짝 둥글게 */
+}
+
+/* 2. 비활성화된 탭 버튼 (선택되지 않은 상태) */
+.nav-pills .nav-link {
+    color: #333; /* 기본 글자색 */
+    font-weight: 500;
+    background-color: #f0f0f0; /* 연한 회색 배경 */
+    border-radius: 8px;
+    margin: 0 4px; /* 버튼 사이 간격 */
+}
+
+/* 3. 비활성화 탭에 마우스 올렸을 때 */
+.nav-pills .nav-link:hover:not(.active) {
+    background-color: #e9e9e9; /* 살짝 더 진한 회색 */
+}
