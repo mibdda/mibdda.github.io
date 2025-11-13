@@ -83,7 +83,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <span class="navbar-toggler-icon"></span>
 </button>
 <!-- 가운데 메뉴 -->
-<div class="d-none d-lg-flex justify-content-center align-items-center" style="gap:30px;"><ul class="navbar-nav" style="gap:30px;">
+<div class="d-none d-lg-flex flex-fill justify-content-center align-items-center" style="gap:30px;">
+  <ul class="navbar-nav" style="gap:30px;">
 <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
 <li class="nav-item"><a class="nav-link" href="#pricing">이용요금</a></li>
 <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
@@ -97,7 +98,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               color:#fff; border:none; border-radius:24px;
               padding:10px 22px; font-size:15px;
               white-space:nowrap; min-width:120px;
-              margin-right:80px;">지금 신청하기</a>
+              margin-right:80px;">지금 문의하기</a>
 </div>
 </nav>
 <div id="drawer" class="side-drawer">
@@ -136,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </p>
 <!-- ✅ 히어로 지금 신청하기 버튼 -->
 <a class="btn btn-primary btn-lg fw-bold mt-3" href="#contact" style="padding:18px 44px; font-size:1.25rem; border-radius:30px;">
-      지금 신청하기
+      지금 문의하기
     </a>
 </p></div>
 </div>
@@ -270,7 +271,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <button class="nav-link active" id="sinnonhyeon-about-tab" data-bs-toggle="tab" data-bs-target="#sinnonhyeon-about-pane" type="button" role="tab" aria-controls="sinnonhyeon-about-pane" aria-selected="true">신논현점</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="seolleung-about-tab" data-bs-toggle="tab" data-bs-target="#seolleung-about-pane" type="button" role="tab" aria-controls="seolleung-about-pane" aria-selected="false">선릉역점</button>
+    <button class="nav-link" id="seolleung-about-tab" data-bs-toggle="tab" data-bs-target="#seolleung-about-pane" type="button" role="tab" aria-controls="seolleung-about-pane" aria-selected="false">선릉점</button>
   </li>
 </ul>
 
@@ -287,10 +288,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div class="tab-pane fade" id="seolleung-about-pane" role="tabpanel" aria-labelledby="seolleung-about-tab">
     <div class="row g-3 about-grid justify-content-center">
-    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지1" class="w-100 h-100" src="images/seolleung1.jpg"/></div></div>
-    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지2" class="w-100 h-100" src="images/seolleung2.jpg"/></div></div>
-    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지3" class="w-100 h-100" src="images/seolleung3.jpg"/></div></div>
-    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지4" class="w-100 h-100" src="images/seolleung4.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지1" class="w-100 h-100" src="images/seolleung1.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지2" class="w-100 h-100" src="images/seolleung2.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지3" class="w-100 h-100" src="images/seolleung3.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지4" class="w-100 h-100" src="images/seolleung4.jpg"/></div></div>
     </div>
   </div>
 
@@ -400,7 +401,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <button class="nav-link active" id="sinnonhyeon-map-tab" data-bs-toggle="tab" data-bs-target="#sinnonhyeon-map-pane" type="button" role="tab" aria-controls="sinnonhyeon-map-pane" aria-selected="true">신논현점</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="seolleung-map-tab" data-bs-toggle="tab" data-bs-target="#seolleung-map-pane" type="button" role="tab" aria-controls="seolleung-map-pane" aria-selected="false">선릉역점</button>
+    <button class="nav-link" id="seolleung-map-tab" data-bs-toggle="tab" data-bs-target="#seolleung-map-pane" type="button" role="tab" aria-controls="seolleung-map-pane" aria-selected="false">선릉점</button>
   </li>
 </ul>
 
@@ -420,57 +421,156 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </section>
 <script>
-  // 1) 지도 컨테이너
-  var container = document.getElementById('map');
+  // [수정] 두 개의 지도 객체를 담을 변수와 지오코더를 미리 선언합니다.
+  var sinnonhyeonMap; // 신논현점 지도 객체
+  var seolleungMap;   // 선릉점 지도 객체
+  var geocoder = new kakao.maps.services.Geocoder(); // 주소 변환 객체 (공통 사용)
 
-  // 2) 기본 옵션 (임시 좌표: 서울 시청 근처. 실제 주소 변환 후 setCenter로 재설정)
-  var options = {
-    center: new kakao.maps.LatLng(37.5665, 126.9780),
-    level: 3 // 숫자 작을수록 더 확대
-  };
+  // ----------------------------------------------------
+  // [수정] 1. 신논현점 지도 생성 함수 (기존 코드 기반)
+  // ----------------------------------------------------
+  function createSinnonhyeonMap() {
+    // 1) 지도 컨테이너
+    var container = document.getElementById('map_sinnonhyeon'); // [수정] ID 변경
 
-  // 3) 지도 생성
-  var map = new kakao.maps.Map(container, options);
+      // 2) 기본 옵션 (임시 좌표: 서울 시청 근처. 실제 주소 변환 후 setCenter로 재설정)
+    var options = {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 3 
+    };
 
-  // 4) 확대/축소 컨트롤 추가
-  var zoomControl = new kakao.maps.ZoomControl();
-  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    // 3) 지도 생성
+    sinnonhyeonMap = new kakao.maps.Map(container, options); // [수정] 변수에 지도 할당
 
-  // 5) 주소 → 좌표 변환 (Geocoder)
-  var geocoder = new kakao.maps.services.Geocoder();
-  var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
+    // 4) 확대/축소 컨트롤 추가
+    var zoomControl = new kakao.maps.ZoomControl();
+    sinnonhyeonMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-  geocoder.addressSearch(address, function(result, status) {
-    if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
-      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    // 5) 주소 → 좌표 변환 (Geocoder)
+    var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)'; // 신논현점 주소
 
-      // 지도 중심 이동
-      map.setCenter(coords);
+    geocoder.addressSearch(address, function(result, status) {
+      if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-      // 커스텀 마커 (회사 로고 포함된 이미지)
-   var imageSrc = 'images/thebridgeplus-marker.png'; // 업로드한 로고 마커 이미지 경로
-   var imageSize = new kakao.maps.Size(48, 60);       // 마커 크기
-   var imageOption = { offset: new kakao.maps.Point(24, 60) }; // 기준점 (중앙 하단)
+        // 지도 중심 이동
+        sinnonhyeonMap.setCenter(coords); // [수정]
 
-   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        // 커스텀 마커
+        var imageSrc = 'images/thebridgeplus-marker.png'; // 업로드한 로고 마커 이미지 경로
+        var imageSize = new kakao.maps.Size(48, 60);        // 마커 크기
+        var imageOption = { offset: new kakao.maps.Point(24, 60) }; // 기준점 (중앙 하단)
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        var marker = new kakao.maps.Marker({
+            position: coords,
+            image: markerImage
+        });
+        marker.setMap(sinnonhyeonMap); // [수정]
 
-   var marker = new kakao.maps.Marker({
-  position: coords,
-  image: markerImage
-});
-marker.setMap(map);
+        // 말풍선(인포윈도우) 추가
+        var infowindow = new kakao.maps.InfoWindow({
+        content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">
+        더브릿지플러스<br>
+        서울특별시 강남구 강남대로114길 18, 4층</div>`
+        });
+        infowindow.open(sinnonhyeonMap, marker); // [수정]
+      } else {
+        console.warn('신논현점 주소 변환에 실패했습니다.');
+      }
+    });
+  }
 
-      // 말풍선(인포윈도우) 추가: 클릭 없이 바로 열기
-      var infowindow = new kakao.maps.InfoWindow({
-      content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">
-      더브릿지플러스<br>
-      서울특별시 강남구 강남대로114길 18, 4층</div>`
-      });
-      infowindow.open(map, marker);
-    } else {
-      console.warn('주소 변환에 실패했습니다. 좌표를 직접 설정하세요.');
+  // ----------------------------------------------------
+  // [수정] 2. 선릉점 지도 생성 함수 (1번 함수 복제 및 수정)
+  // ----------------------------------------------------
+  function createSeolleungMap() {
+    // 1) 지도 컨테이너
+    var container = document.getElementById('map_seolleung'); // ★★★ ID 변경 ★★★
+
+    // 2) 기본 옵션 (임시 좌표를 선릉역 근처로 변경)
+    var options = {
+      center: new kakao.maps.LatLng(37.5044, 127.0489), // 선릉역
+      level: 3
+    };
+
+    // 3) 지도 생성
+    seolleungMap = new kakao.maps.Map(container, options); // ★★★ 변수명 변경 ★★★
+
+    // 4) 확대/축소 컨트롤 추가
+    var zoomControl = new kakao.maps.ZoomControl();
+    seolleungMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    // 5) 주소 → 좌표 변환 (Geocoder)
+    var address = '서울특별시 강남구 선릉로92길 28, 4층'; // ★★★ 선릉점 주소 ★★★
+
+    geocoder.addressSearch(address, function(result, status) {
+      if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 지도 중심 이동
+        seolleungMap.setCenter(coords); // ★★★
+
+        // 커스텀 마커 (동일한 마커 이미지 사용)
+        var imageSrc = 'images/thebridgeplus-marker.png'; 
+        var imageSize = new kakao.maps.Size(48, 60);       
+        var imageOption = { offset: new kakao.maps.Point(24, 60) }; 
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        var marker = new kakao.maps.Marker({
+            position: coords,
+            image: markerImage
+        });
+        marker.setMap(seolleungMap); // ★★★
+
+        // 말풍선(인포윈도우) 추가
+        var infowindow = new kakao.maps.InfoWindow({
+        // ★★★ 인포윈도우 내용 수정 ★★★
+        content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">
+        더브릿지플러스 (선릉점)<br>
+        서울특별시 강남구 선릉로92길 28, 4층</div>`
+        });
+        infowindow.open(seolleungMap, marker); // ★★★
+      } else {
+        console.warn('선릉점 주소 변환에 실패했습니다.');
+      }
+    });
+  }
+
+  // ----------------------------------------------------
+  // [수정] 3. 탭 이벤트에 맞춰 지도 생성 및 재조정
+  // ----------------------------------------------------
+
+  // A. 페이지 로드 시: 기본 탭(신논현점) 지도를 바로 생성합니다.
+  createSinnonhyeonMap();
+
+  // B. 선릉점 탭을 위한 준비
+  var seolleungTab = document.getElementById('seolleung-map-tab');
+  var isSeolleungMapLoaded = false; // 선릉점 지도가 로드되었는지 확인하는 변수
+
+  seolleungTab.addEventListener('shown.bs.tab', function (event) {
+    // 'shown.bs.tab' 이벤트는 탭이 화면에 *보여진 후* 발생합니다.
+    
+    // B-1: 선릉점 지도가 아직 로드되지 않았다면(처음 클릭 시)
+    if (!isSeolleungMapLoaded) {
+      createSeolleungMap(); // 지도를 생성합니다.
+      isSeolleungMapLoaded = true; // 로드되었음을 표시합니다.
+    }
+    
+    // B-2: (이미 로드된 경우 포함) 탭이 전환되어 지도가 다시 보일 때,
+    //      지도가 깨지는 현상을 방지하기 위해 크기를 재조정합니다.
+    if (seolleungMap) {
+      seolleungMap.relayout();
     }
   });
+
+  // C. 신논현점 탭이 다시 보일 때 (선릉점 갔다가 돌아올 때)
+  var sinnonhyeonTab = document.getElementById('sinnonhyeon-map-tab');
+  sinnonhyeonTab.addEventListener('shown.bs.tab', function (event) {
+    // 신논현점 지도도 크기를 재조정합니다.
+    if (sinnonhyeonMap) {
+      sinnonhyeonMap.relayout();
+    }
+  });
+
 </script>
 <!-- 문의: 이미지 포함, '문의 분류' + 이메일 + 이름 placeholder -->
 <section class="section" id="contact" style="margin-top:80px;">
@@ -481,10 +581,10 @@ marker.setMap(map);
 <img alt="문의 이미지" class="img-fluid rounded shadow-sm" src="images/contact.jpg" style="margin-top:-130px;"/>
 </div>
 <div class="col-lg-6">
-<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST" onsubmit="submitted=true;" target="hidden_iframe">
+<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST">
 <div class="mb-3">
-<label class="form-label required">문의 분류</label>
-<select class="form-select" name="entry.989899118" required="">
+<label class="form-label required" for="inquiryCategory">문의 분류</label>
+<select class="form-select" name="entry.989899118" id="inquiryCategory" required="">
 <option disabled="" selected="" value="">선택하세요</option>
 <option value="상주">상주</option>
 <option value="비상주">비상주</option>
@@ -492,22 +592,22 @@ marker.setMap(map);
 </select>
 </div>
 <div class="mb-3">
-<label class="form-label required">이름</label>
-<input class="form-control" name="entry.1727161775" required="" type="text"/>
+<label class="form-label required" for="userName">이름</label>
+<input class="form-control" name="entry.1727161775" id="userName" required="" type="text"/>
 </div>
 <div class="mb-3">
-<label class="form-label required">전화번호</label>
-<input class="form-control" name="entry.53713410" required="" type="tel"/>
+<label class="form-label required" for="userPhone">전화번호</label>
+<input class="form-control" name="entry.53713410" id="userPhone" required="" type="tel"/>
 </div>
 <div class="mb-3">
-<label class="form-label">이메일 (선택)</label>
-<input class="form-control" name="entry.1336222686" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email"/>
+<label class="form-label" for="userEmail">이메일 (선택)</label>
+<input class="form-control" name="entry.1336222686" id="userEmail" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email"/>
 </div>
 <div class="mb-3">
-<label class="form-label">문의내용 (선택)</label>
-<textarea class="form-control" name="entry.701133298" rows="4"></textarea>
+<label class="form-label" for="inquiryDetails">문의내용 (선택)</label>
+<textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
+    placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
 </div>
-
 <!-- 개인정보 수집 동의 체크박스 -->
 <div class="mb-3 form-check d-flex justify-content-center">
 <input class="form-check-input me-2" id="privacyCheck" required="" type="checkbox"/>
@@ -572,18 +672,12 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   window.karrotPixel.track('Lead');
 });
 </script>
-<!-- Google Ads 전환 추적: 구글폼 제출 시 -->
 <script>
-  document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
-    gtag('event', 'conversion', {
-      'send_to': 'AW-17686731415/GT-NBXHJ27G',
-      'event_callback': function() {
-    console.log('전환 이벤트 전송 완료');
-  },
-      'event_timeout': 2000
+    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function (e) {
+      // 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
+      e.target.reset();
     });
-  });
-</script>
+  </script>
 <!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 -->
 <script>
 document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
@@ -605,6 +699,21 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 });
 </script>
 <!-- digitalcamp SK MSSAGE view END -->
+<!-- 전화상담 버튼 (상담신청 바로 위, 데스크탑 전용) -->
+<a href="tel:0221358227" style="position:fixed; right:20px; bottom:130px; z-index:10000;
+          width: 50px; height:50px;
+          background:#003366;  /* ✅ 브랜드 남색 적용 */
+          color:#fff;
+          display:flex; flex-direction:column; align-items:center; justify-content:center;
+          border-radius:20px;
+          box-shadow:0 4px 12px rgba(0,0,0,0.15);
+          text-decoration:none; text-align:center; line-height:1.2;"
+   class="d-none d-lg-flex">
+  <i class="fa fa-phone" style="font-size:18px; margin-bottom:2px;"></i>
+  <span style="font-size:11px;">전화</span>
+</a>
+
+
 <!-- 상담신청 버튼 (채널추가 버튼 바로 위) -->
 <a href="#contact" style="position:fixed; right:20px; bottom:70px; z-index:10000;
           width: 50px; height:50px;
@@ -721,6 +830,10 @@ document.addEventListener("DOMContentLoaded", function() {
     faders.forEach(fader => observer.observe(fader));
   });
 </script>
+
+    <!-- 모바일 하단 고정 CTA 바 -->
+<div class="cta-bar-mobile d-lg-none"> <a href="#contact" class="btn-cta text-white"> 문의하기 </a> 
+<a href="tel:0221358227" class="btn-cta text-white"> <i class="fas fa-phone-alt me-2"></i> 전화 상담 하기 </a> </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
