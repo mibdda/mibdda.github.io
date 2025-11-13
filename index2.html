@@ -2,7 +2,7 @@
 
 <html lang="ko">
 <head>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style2.css">
 <meta charset="utf-8"/>
 <meta content="1290180e5807a892540712eaf05c22f0a072d4d1" name="naver-site-verification">
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -264,12 +264,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </p>
 </div>
 </div>
-<div class="row g-3 about-grid justify-content-center">
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지1" class="w-100 h-100" src="images/about1.jpg"/></div></div>
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지2" class="w-100 h-100" src="images/about2.jpg"/></div></div>
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지3" class="w-100 h-100" src="images/about3.jpg"/></div></div>
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지4" class="w-100 h-100" src="images/about4.jpg"/></div></div>
+
+<ul class="nav nav-pills justify-content-center mb-4" id="aboutTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="sinnonhyeon-about-tab" data-bs-toggle="tab" data-bs-target="#sinnonhyeon-about-pane" type="button" role="tab" aria-controls="sinnonhyeon-about-pane" aria-selected="true">신논현점</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="seolleung-about-tab" data-bs-toggle="tab" data-bs-target="#seolleung-about-pane" type="button" role="tab" aria-controls="seolleung-about-pane" aria-selected="false">선릉역점</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="aboutTabContent">
+  
+  <div class="tab-pane fade show active" id="sinnonhyeon-about-pane" role="tabpanel" aria-labelledby="sinnonhyeon-about-tab">
+    <div class="row g-3 about-grid justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지1" class="w-100 h-100" src="images/about1.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지2" class="w-100 h-100" src="images/about2.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지3" class="w-100 h-100" src="images/about3.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지4" class="w-100 h-100" src="images/about4.jpg"/></div></div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="seolleung-about-pane" role="tabpanel" aria-labelledby="seolleung-about-tab">
+    <div class="row g-3 about-grid justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지1" class="w-100 h-100" src="images/seolleung1.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지2" class="w-100 h-100" src="images/seolleung2.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지3" class="w-100 h-100" src="images/seolleung3.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉역점 소개 이미지4" class="w-100 h-100" src="images/seolleung4.jpg"/></div></div>
+    </div>
+  </div>
+
 </div>
+
 </div>
 </section>
     <section class="section alt" id="faq" style="padding:80px 0;">
@@ -368,8 +394,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section class="section alt" id="location" style="padding:80px 0;">
 <div class="container">
 <h2 class="text-center mb-4">위치</h2>
-<div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto;
+
+<ul class="nav nav-pills justify-content-center mb-4" id="locationTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="sinnonhyeon-map-tab" data-bs-toggle="tab" data-bs-target="#sinnonhyeon-map-pane" type="button" role="tab" aria-controls="sinnonhyeon-map-pane" aria-selected="true">신논현점</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="seolleung-map-tab" data-bs-toggle="tab" data-bs-target="#seolleung-map-pane" type="button" role="tab" aria-controls="seolleung-map-pane" aria-selected="false">선릉역점</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="locationTabContent">
+  
+  <div class="tab-pane fade show active" id="sinnonhyeon-map-pane" role="tabpanel" aria-labelledby="sinnonhyeon-map-tab">
+    <div id="map_sinnonhyeon" style="width:100%; max-width:900px; height:380px; margin:0 auto;
                          border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
+  </div>
+  
+  <div class="tab-pane fade" id="seolleung-map-pane" role="tabpanel" aria-labelledby="seolleung-map-tab">
+    <div id="map_seolleung" style="width:100%; max-width:900px; height:380px; margin:0 auto;
+                         border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
+  </div>
+
+</div>
 </div>
 </section>
 <script>
