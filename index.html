@@ -2,7 +2,7 @@
 
 <html lang="ko">
 <head>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style2.css">
 <meta charset="utf-8"/>
 <meta content="1290180e5807a892540712eaf05c22f0a072d4d1" name="naver-site-verification">
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -265,15 +265,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </p>
 </div>
 </div>
-<div class="row g-3 about-grid justify-content-center">
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지1" class="w-100 h-100" src="images/about1.jpg"/></div></div>
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지2" class="w-100 h-100" src="images/about2.jpg"/></div></div>
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지3" class="w-100 h-100" src="images/about3.jpg"/></div></div>
-<div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="소개 이미지4" class="w-100 h-100" src="images/about4.jpg"/></div></div>
+
+<ul class="nav nav-pills justify-content-center mb-4" id="aboutTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="sinnonhyeon-about-tab" data-bs-toggle="tab" data-bs-target="#sinnonhyeon-about-pane" type="button" role="tab" aria-controls="sinnonhyeon-about-pane" aria-selected="true">신논현점</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="seolleung-about-tab" data-bs-toggle="tab" data-bs-target="#seolleung-about-pane" type="button" role="tab" aria-controls="seolleung-about-pane" aria-selected="false">선릉점</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="aboutTabContent">
+  
+  <div class="tab-pane fade show active" id="sinnonhyeon-about-pane" role="tabpanel" aria-labelledby="sinnonhyeon-about-tab">
+    <div class="row g-3 about-grid justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지1" class="w-100 h-100" src="images/about1.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지2" class="w-100 h-100" src="images/about2.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지3" class="w-100 h-100" src="images/about3.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="신논현점 소개 이미지4" class="w-100 h-100" src="images/about4.jpg"/></div></div>
+    </div>
+  </div>
+
+  <div class="tab-pane fade" id="seolleung-about-pane" role="tabpanel" aria-labelledby="seolleung-about-tab">
+    <div class="row g-3 about-grid justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지1" class="w-100 h-100" src="images/seolleung1.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지2" class="w-100 h-100" src="images/seolleung2.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지3" class="w-100 h-100" src="images/seolleung3.jpg"/></div></div>
+    <div class="col-12 col-md-6 col-lg-5"><div class="cell"><img alt="선릉점 소개 이미지4" class="w-100 h-100" src="images/seolleung4.jpg"/></div></div>
+    </div>
+  </div>
+
 </div>
+
 </div>
 </section>
-    <section class="section alt" id="faq" style="padding:80px 0;">
+    <section class="section alt" id="faq" style="padding:60px 0;">
     <div class="container" style="max-width:900px;">
         <h2 class="text-center fw-bold mb-3">자주 묻는 질문</h2>
         <p class="lead text-center text-secondary mb-5">
@@ -366,65 +392,185 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Kakao Maps SDK (JavaScript 키 사용) -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&amp;libraries=services"></script>
 <!-- 위치 섹션 -->
-<section class="section alt" id="location" style="padding:80px 0;">
+<section class="section alt" id="location" style="padding:60px 0;">
 <div class="container">
 <h2 class="text-center mb-4">위치</h2>
-<div id="map" style="width:100%; max-width:900px; height:380px; margin:0 auto;
+
+<ul class="nav nav-pills justify-content-center mb-4" id="locationTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="sinnonhyeon-map-tab" data-bs-toggle="tab" data-bs-target="#sinnonhyeon-map-pane" type="button" role="tab" aria-controls="sinnonhyeon-map-pane" aria-selected="true">신논현점</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="seolleung-map-tab" data-bs-toggle="tab" data-bs-target="#seolleung-map-pane" type="button" role="tab" aria-controls="seolleung-map-pane" aria-selected="false">선릉점</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="locationTabContent">
+  
+  <div class="tab-pane fade show active" id="sinnonhyeon-map-pane" role="tabpanel" aria-labelledby="sinnonhyeon-map-tab">
+    <div id="map_sinnonhyeon" style="width:100%; max-width:900px; height:380px; margin:0 auto;
                          border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
+  </div>
+  
+  <div class="tab-pane fade" id="seolleung-map-pane" role="tabpanel" aria-labelledby="seolleung-map-tab">
+    <div id="map_seolleung" style="width:100%; max-width:900px; height:380px; margin:0 auto;
+                         border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.08);"></div>
+  </div>
+
+</div>
 </div>
 </section>
 <script>
-  // 1) 지도 컨테이너
-  var container = document.getElementById('map');
+  // [수정] 두 개의 지도 객체를 담을 변수와 지오코더를 미리 선언합니다.
+  var sinnonhyeonMap; // 신논현점 지도 객체
+  var seolleungMap;   // 선릉점 지도 객체
+  var geocoder = new kakao.maps.services.Geocoder(); // 주소 변환 객체 (공통 사용)
 
-  // 2) 기본 옵션 (임시 좌표: 서울 시청 근처. 실제 주소 변환 후 setCenter로 재설정)
-  var options = {
-    center: new kakao.maps.LatLng(37.5665, 126.9780),
-    level: 3 // 숫자 작을수록 더 확대
-  };
+  // ----------------------------------------------------
+  // [수정] 1. 신논현점 지도 생성 함수 (기존 코드 기반)
+  // ----------------------------------------------------
+  function createSinnonhyeonMap() {
+    // 1) 지도 컨테이너
+    var container = document.getElementById('map_sinnonhyeon'); // [수정] ID 변경
 
-  // 3) 지도 생성
-  var map = new kakao.maps.Map(container, options);
+      // 2) 기본 옵션 (임시 좌표: 서울 시청 근처. 실제 주소 변환 후 setCenter로 재설정)
+    var options = {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 3 
+    };
 
-  // 4) 확대/축소 컨트롤 추가
-  var zoomControl = new kakao.maps.ZoomControl();
-  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    // 3) 지도 생성
+    sinnonhyeonMap = new kakao.maps.Map(container, options); // [수정] 변수에 지도 할당
 
-  // 5) 주소 → 좌표 변환 (Geocoder)
-  var geocoder = new kakao.maps.services.Geocoder();
-  var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
+    // 4) 확대/축소 컨트롤 추가
+    var zoomControl = new kakao.maps.ZoomControl();
+    sinnonhyeonMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-  geocoder.addressSearch(address, function(result, status) {
-    if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
-      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    // 5) 주소 → 좌표 변환 (Geocoder)
+    var address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)'; // 신논현점 주소
 
-      // 지도 중심 이동
-      map.setCenter(coords);
+    geocoder.addressSearch(address, function(result, status) {
+      if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-      // 커스텀 마커 (회사 로고 포함된 이미지)
-   var imageSrc = 'images/thebridgeplus-marker.png'; // 업로드한 로고 마커 이미지 경로
-   var imageSize = new kakao.maps.Size(48, 60);       // 마커 크기
-   var imageOption = { offset: new kakao.maps.Point(24, 60) }; // 기준점 (중앙 하단)
+        // 지도 중심 이동
+        sinnonhyeonMap.setCenter(coords); // [수정]
 
-   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        // 커스텀 마커
+        var imageSrc = 'images/thebridgeplus-marker.png'; // 업로드한 로고 마커 이미지 경로
+        var imageSize = new kakao.maps.Size(48, 60);        // 마커 크기
+        var imageOption = { offset: new kakao.maps.Point(24, 60) }; // 기준점 (중앙 하단)
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        var marker = new kakao.maps.Marker({
+            position: coords,
+            image: markerImage
+        });
+        marker.setMap(sinnonhyeonMap); // [수정]
 
-   var marker = new kakao.maps.Marker({
-  position: coords,
-  image: markerImage
-});
-marker.setMap(map);
+        // 말풍선(인포윈도우) 추가
+        var infowindow = new kakao.maps.InfoWindow({
+        content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">
+        더브릿지플러스<br>
+        서울특별시 강남구 강남대로114길 18, 4층</div>`
+        });
+        infowindow.open(sinnonhyeonMap, marker); // [수정]
+      } else {
+        console.warn('신논현점 주소 변환에 실패했습니다.');
+      }
+    });
+  }
 
-      // 말풍선(인포윈도우) 추가: 클릭 없이 바로 열기
-      var infowindow = new kakao.maps.InfoWindow({
-      content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">
-      더브릿지플러스<br>
-      서울특별시 강남구 강남대로114길 18, 4층</div>`
-      });
-      infowindow.open(map, marker);
-    } else {
-      console.warn('주소 변환에 실패했습니다. 좌표를 직접 설정하세요.');
+  // ----------------------------------------------------
+  // [수정] 2. 선릉점 지도 생성 함수 (1번 함수 복제 및 수정)
+  // ----------------------------------------------------
+  function createSeolleungMap() {
+    // 1) 지도 컨테이너
+    var container = document.getElementById('map_seolleung'); // ★★★ ID 변경 ★★★
+
+    // 2) 기본 옵션 (임시 좌표를 선릉역 근처로 변경)
+    var options = {
+      center: new kakao.maps.LatLng(37.5044, 127.0489), // 선릉역
+      level: 3
+    };
+
+    // 3) 지도 생성
+    seolleungMap = new kakao.maps.Map(container, options); // ★★★ 변수명 변경 ★★★
+
+    // 4) 확대/축소 컨트롤 추가
+    var zoomControl = new kakao.maps.ZoomControl();
+    seolleungMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    // 5) 주소 → 좌표 변환 (Geocoder)
+    var address = '서울특별시 강남구 선릉로92길 28, 4층'; // ★★★ 선릉점 주소 ★★★
+
+    geocoder.addressSearch(address, function(result, status) {
+      if (status === kakao.maps.services.Status.OK && result && result.length > 0) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 지도 중심 이동
+        seolleungMap.setCenter(coords); // ★★★
+
+        // 커스텀 마커 (동일한 마커 이미지 사용)
+        var imageSrc = 'images/thebridgeplus-marker.png'; 
+        var imageSize = new kakao.maps.Size(48, 60);       
+        var imageOption = { offset: new kakao.maps.Point(24, 60) }; 
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        var marker = new kakao.maps.Marker({
+            position: coords,
+            image: markerImage
+        });
+        marker.setMap(seolleungMap); // ★★★
+
+        // 말풍선(인포윈도우) 추가
+        var infowindow = new kakao.maps.InfoWindow({
+        // ★★★ 인포윈도우 내용 수정 ★★★
+        content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">
+        더브릿지플러스 (선릉점)<br>
+        서울특별시 강남구 선릉로92길 28, 4층</div>`
+        });
+        infowindow.open(seolleungMap, marker); // ★★★
+      } else {
+        console.warn('선릉점 주소 변환에 실패했습니다.');
+      }
+    });
+  }
+
+  // ----------------------------------------------------
+  // [수정] 3. 탭 이벤트에 맞춰 지도 생성 및 재조정
+  // ----------------------------------------------------
+
+  // A. 페이지 로드 시: 기본 탭(신논현점) 지도를 바로 생성합니다.
+  createSinnonhyeonMap();
+
+  // B. 선릉점 탭을 위한 준비
+  var seolleungTab = document.getElementById('seolleung-map-tab');
+  var isSeolleungMapLoaded = false; // 선릉점 지도가 로드되었는지 확인하는 변수
+
+  seolleungTab.addEventListener('shown.bs.tab', function (event) {
+    // 'shown.bs.tab' 이벤트는 탭이 화면에 *보여진 후* 발생합니다.
+    
+    // B-1: 선릉점 지도가 아직 로드되지 않았다면(처음 클릭 시)
+    if (!isSeolleungMapLoaded) {
+      createSeolleungMap(); // 지도를 생성합니다.
+      isSeolleungMapLoaded = true; // 로드되었음을 표시합니다.
+    }
+    
+    // B-2: (이미 로드된 경우 포함) 탭이 전환되어 지도가 다시 보일 때,
+    //      지도가 깨지는 현상을 방지하기 위해 크기를 재조정합니다.
+    if (seolleungMap) {
+      seolleungMap.relayout();
     }
   });
+
+  // C. 신논현점 탭이 다시 보일 때 (선릉점 갔다가 돌아올 때)
+  var sinnonhyeonTab = document.getElementById('sinnonhyeon-map-tab');
+  sinnonhyeonTab.addEventListener('shown.bs.tab', function (event) {
+    // 신논현점 지도도 크기를 재조정합니다.
+    if (sinnonhyeonMap) {
+      sinnonhyeonMap.relayout();
+    }
+  });
+
 </script>
 <!-- 문의: 이미지 포함, '문의 분류' + 이메일 + 이름 placeholder -->
 <section class="section" id="contact" style="margin-top:80px;">
