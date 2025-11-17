@@ -2,19 +2,21 @@
 
 <html lang="ko">
 <head>
-<link rel="stylesheet" href="style2.css">
+<link rel="stylesheet" href="style.css">
 <meta charset="utf-8"/>
 <meta content="1290180e5807a892540712eaf05c22f0a072d4d1" name="naver-site-verification">
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <!-- Font Awesome 6 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
 <title>더브릿지플러스 | 강남 신논현 비상주오피스 · 회의실 · 창업지원센터</title>
-<meta content="비상주오피스, 공유오피스, 신논현역 오피스, 강남 비상주사무실, 사업자등록지, 더브릿지플러스" keywords"="" name="description"/>
-<link href="https://www.thebridgeplus.co.kr" rel="canonical"/>
 <!-- SEO 메타 -->
 <meta content="강남 신논현역 비상주오피스 전문. 사업자등록 주소지, 우편 관리, 회의실 무료 제공은 기본! 세무·회계 연계, 정부지원금·사업자금 상담까지 더브릿지플러스에서 안정적인 창업 환경을 만나보세요." name="description"/>
 <meta content="비상주오피스, 공유오피스, 신논현역 오피스, 강남 비상주사무실, 사업자등록지, 더브릿지플러스" name="keywords"/>
 <!-- Open Graph (SNS 공유용) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="더브릿지플러스 | 비상주오피스 전문">
+<meta name="twitter:description" content="강남 신논현·선릉 비상주 오피스, 회의실 제공, 창업지원까지 한 번에.">
+<meta name="twitter:image" content="https://www.thebridgeplus.co.kr/images/logotop.png">
 <link href="https://www.thebridgeplus.co.kr" rel="canonical"/>
 <meta content="website" property="og:type"/>
 <meta content="더브릿지플러스 | 비상주오피스 전문" property="og:title"/>
@@ -111,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <a href="#location">위치</a>
   <a href="#contact">문의</a>
 </div>
-<!-- HERO: 페이드 슬라이드(5장), 중앙 카피 -->
+<!-- HERO: 페이드 슬라이드(6장), 중앙 카피 -->
 <header class="position-relative" id="hero">
 <div class="carousel slide carousel-fade" data-bs-interval="3800" data-bs-ride="carousel" id="heroCarousel">
 <div class="carousel-inner">
@@ -673,10 +675,11 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 });
 </script>
 <script>
-    document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function (e) {
-      // 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
-      e.target.reset();
-    });
+document.querySelector('form[action*="formResponse"]')// 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
+  ?.addEventListener('submit', function (e) {
+    // 리셋 지연: 전송 직후 사용자 입력이 즉시 사라지는 혼란 방지
+    setTimeout(() => e.target.reset(), 1200);
+  });
   </script>
 <!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 -->
 <script>
