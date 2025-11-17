@@ -357,11 +357,13 @@
         display: flex; /* 모바일에서 하단 바 표시 */
     }
     
-    /* 1. 상담 신청 플로팅 버튼 숨기기 (인라인 스타일 bottom: 25px을 타겟) */
+    /* 1. 상담 신청 플로팅 버튼 숨기기
     /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
-    a[href="#contact"][style*="bottom:25px"] {
-        display: none !important;
-    }
+@media (max-width: 991.98px) {
+  .consult-btn {
+    display: none !important;
+  }
+}
 
     /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
     /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
