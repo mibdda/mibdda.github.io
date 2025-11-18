@@ -883,6 +883,10 @@ ChannelIO('boot', {
   pluginKey: '608452ed-a477-4ecb-9b90-9cb96631cfbc'
   // memberId/profile은 추후 로그인 연동 시 추가 가능
 });
+// 채널톡 창이 열릴 때 당근 이벤트 전송
+ChannelIO('onShowMessenger', function () {
+  window.karrotPixel.track('SubmitApplication'); // ✅ 서비스 신청 이벤트
+});
 </script>
 <!-- 한 줄짜리 이벤트 위임으로 setPage 처리 •  역할: 메뉴 클릭 시 섹션 id를 자동으로 page로 보내기 -->
     <script>
