@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>더브릿지플러스</title>
+    <link>https://www.thebridgeplus.co.kr</link>
+    <description>더브릿지플러스 공지 · 소식 RSS</description>
+    <lastBuildDate>Thu, 28 Nov 2025 12:00:00 +0900</lastBuildDate>
+    <language>ko</language>
+
+    <item>
+      <title>더브릿지플러스 안내</title>
+      <link>https://www.thebridgeplus.co.kr</link>
+      <description>더브릿지플러스 RSS가 정상적으로 구성되었습니다.</description>
+      <pubDate>Thu, 28 Nov 2025 12:00:00 +0900</pubDate>
+    </item>
+
+  </channel>
+</rss>
