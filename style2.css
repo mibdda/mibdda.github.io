@@ -4,6 +4,15 @@
       --paper:#ECEFF1;        /* 연회색(배경) */
       --offwhite:#F7F9FB;
     }
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    sans-serif;
+  background: var(--paper);
+  color: #222;
+}
     /* 페이드인 효과 */
     .fade-in {
       opacity: 0;
@@ -114,7 +123,8 @@
       .price-card {
         border: 1px solid #e5e7eb;
         border-radius: 12px;
-        padding: 18px;
+        padding: 18px;                /* 기본값 유지 */
+        padding-top: 42px !important; /* 위만 늘림 */
         height: 100%;
         background: #fff;
         box-shadow: 0 2px 10px rgba(0,0,0,0.06);
@@ -198,15 +208,19 @@
        - 데스크탑에서는 그대로 두고
        - 모바일에서만 이미지 margin-top 초기화
        ================================ */
-    @media (max-width: 767px) {
-      #contact img {
-        margin-top: 0 !important; /* 모바일에서는 음수 마진 제거 */
-      }
-    }
+/* 모바일 + 데스크탑 좁은화면 + 태블릿 모두 적용 */
+@media (max-width: 991px) {
+  #contact img {
+    margin-top: 0 !important;
+  }
+}
+@media (max-width: 991px) {
+  #contact {
+    margin-top: 20px !important;
+  }
+}
 
-    html,body{height:100%;}
-    body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:#222;}
-    
+   
     /* [수정]
       .btn-primary, .navbar.slimbar, .navbar.slimbar .nav-link,
       .brand-abs, .form-label.required::after 및
@@ -357,11 +371,13 @@
         display: flex; /* 모바일에서 하단 바 표시 */
     }
     
-    /* 1. 상담 신청 플로팅 버튼 숨기기 (인라인 스타일 bottom: 70px을 타겟) */
+    /* 1. 상담 신청 플로팅 버튼 숨기기
     /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
-    a[href="#contact"][style*="bottom:70px"] {
-        display: none !important;
-    }
+@media (max-width: 991.98px) {
+  .consult-btn {
+    display: none !important;
+  }
+}
 
     /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
     /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
@@ -398,18 +414,39 @@
 .nav-pills .nav-link:hover:not(.active) {
     background-color: #e9e9e9; /* 살짝 더 진한 회색 */
 }
-
-/* 회사소개 섹션의 이미지 그리드 내 모든 이미지에 적용 */
-.about-grid .cell img {
-    width: 100%;       /* 컨테이너 너비에 맞춤 */
-    height: 250px;     /* 고정 높이 (다른 이미지들과 통일감을 위해) */
-    object-fit: cover; /* 이미지가 잘리지 않고 컨테이너를 꽉 채우도록 */
-    display: block;    /* 불필요한 하단 여백 제거 */
-    border-radius: 8px; /* 이미지 모서리를 살짝 둥글게 */
+/* BEST 강조 카드 */
+.price-card.price-card-best {
+  border: 3px solid var(--brand-dark);
+  position: relative;
+  padding-top: 42px;
 }
-/* 모바일 환경에서는 높이를 조금 더 유연하게 조정 (선택 사항) */
-@media (max-width: 767.98px) {
-    .about-grid .cell img {
-        height: 200px;
-    }
+/* BEST 뱃지 */
+.price-card.price-card-best .best-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;    /* 균형 중심 */
+  background: var(--brand-dark);
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 4px 4px 4px 8px;  /* 좌우 동일 패딩으로 기본 균형 확보 */
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+/* ✨을 가상요소로 붙이는 방식 — HTML 변경 필요 없음 */
+.price-card.price-card-best .best-badge::after {
+  content: "✨";
+  display: inline-block;
+  margin-left: -1px;          /* 공백 제거 핵심값 */
+  transform: translateY(-0.4px); /* 이모지 baseline 미세 보정 */
+  font-size: 11px;            /* BEST와 완전 동일 크기 */
+  line-height: 1;
+}
+.price-card .price-label {
+  margin-bottom: 18px !important;
 }
