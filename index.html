@@ -101,11 +101,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <!-- 오른쪽 CTA 버튼 (데스크탑 전용) -->
-<a class="btn fw-bold d-none d-lg-block" href="#contact" style="background:linear-gradient(135deg,#007BFF,#00BFFF);
-              color:#fff; border:none; border-radius:24px;
-              padding:10px 22px; font-size:15px;
-              white-space:nowrap; min-width:120px;
-              margin-right:80px;">지금 문의하기</a>
+<a class="btn fw-bold d-none d-lg-block"
+  style="background:linear-gradient(135deg,#007BFF,#00BFFF);
+         color:#fff; border:none; border-radius:24px;
+         padding:10px 22px; font-size:15px;
+         white-space:nowrap; min-width:120px;
+         margin-right:80px;"
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+>
+  지금 문의하기
+</a>
 </div>
 </nav>
 <div id="drawer" class="side-drawer">
@@ -142,10 +148,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <!-- SEO 최적화된 p class 숨김-->
 <p class="lead text-center" style="position:absolute; left:-9999px;">더브릿지플러스는 강남 신논현역에서 <strong>비상주오피스</strong>와 <strong>상주형 공유오피스</strong>를 제공하는 전문 기업입니다.
 </p>
-<!-- ✅ 히어로 지금 신청하기 버튼 -->
-<a class="btn btn-primary btn-lg fw-bold mt-3" href="#contact" style="padding:18px 44px; font-size:1.25rem; border-radius:30px;">
-      지금 문의하기
-    </a>
+<!-- ✅ 히어로 지금 문의하기 버튼 (모달 호출 버전) -->
+<a 
+  class="btn btn-primary btn-lg fw-bold mt-3"
+  style="padding:18px 44px; font-size:1.25rem; border-radius:30px;"
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+>
+  지금 문의하기
+</a>
 </p></div>
 </div>
 </div>
@@ -579,99 +590,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 
 </script>
-<!-- 문의: 이미지 포함, '문의 분류' + 이메일 + 이름 placeholder -->
-<section class="section" id="contact" style="margin-top:80px;">
-<div class="container">
-<h2 class="text-center fw-bold mb-5">무료 상담 및 문의하기</h2>
-<div class="row g-4 align-items-center">
-<div class="col-lg-6">
-<img alt="문의 이미지" class="img-fluid rounded shadow-sm" src="images/contact.jpg" style="margin-top:-130px;"/>
-</div>
-<div class="col-lg-6">
-<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST">
-<div class="mb-3">
-<label class="form-label required" for="inquiryCategory">문의 분류</label>
-<select class="form-select" name="entry.989899118" id="inquiryCategory" required="">
-<option disabled="" selected="" value="">선택하세요</option>
-<option value="상주">상주</option>
-<option value="비상주">비상주</option>
-<option value="기타">기타</option>
-</select>
-</div>
-<div class="mb-3">
-<label class="form-label required" for="userName">이름</label>
-<input class="form-control" name="entry.1727161775" id="userName" required="" type="text"/>
-</div>
-<div class="mb-3">
-<label class="form-label required" for="userPhone">전화번호</label>
-<input class="form-control" name="entry.53713410" id="userPhone" required="" type="tel"/>
-</div>
-<div class="mb-3">
-<label class="form-label" for="userEmail">이메일 (선택)</label>
-<input class="form-control" name="entry.1336222686" id="userEmail" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email"/>
-</div>
-<div class="mb-3">
-<label class="form-label" for="inquiryDetails">문의내용 (선택)</label>
-<textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
-    placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
-</div>
-<!-- 개인정보 수집 동의 체크박스 -->
-<div class="mb-3 form-check d-flex justify-content-center">
-<input class="form-check-input me-2" id="privacyCheck" required="" type="checkbox"/>
-<label class="form-check-label" for="privacyCheck">
-    개인정보 수집 및 이용에 동의합니다. 
-    <a data-bs-target="#privacyModal" data-bs-toggle="modal" href="#">자세히 보기</a>
-</label>
-</div>
-<!-- 개인정보 처리방침 모달 -->
-<div aria-hidden="true" aria-labelledby="privacyModalLabel" class="modal fade" id="privacyModal" tabindex="-1">
-<div class="modal-dialog modal-dialog-centered modal-lg">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="privacyModalLabel">개인정보 수집 및 이용 안내</h5>
-<button aria-label="닫기" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-</div>
-<div class="modal-body">
-<p><strong>개인정보 수집 주체</strong> : (주)더브릿지플러스</p>
-<p><strong>수집 및 이용 목적</strong><br/>
-          고객님의 문의에 신속하고 정확하게 답변드리기 위해 최소한의 개인정보를 수집합니다. 
-          또한 상담 이력 관리를 통해 더 나은 서비스 품질을 제공하는 데 활용됩니다.
-        </p>
-<p><strong>수집 항목</strong></p>
-<ul>
-<li><b>필수</b> : 성함, 연락처(전화번호), 문의 내용</li>
-<li><b>선택</b> : 이메일 주소</li>
-</ul>
-<p><strong>보유 및 이용 기간</strong><br/>
-          수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 
-          최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
-        </p>
-<p class="mt-3">
-          ※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 
-          다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.
-        </p>
-</div>
-<div class="modal-footer">
-<button class="btn btn-secondary" data-bs-dismiss="modal" type="button">닫기</button>
-</div>
-</div>
-</div>
-</div>
-<!-- CTA 버튼 -->
-<button class="btn btn-primary d-block mx-auto fw-bold" id="contactSubmit" style="width:50%; margin-bottom:10px;" type="submit">
-    무료 상담 신청하기
-</button>
-<!-- 신뢰 문구 -->
-<p class="text-center mt-2" style="font-size:0.9rem; color:#666;">
-  입력하신 개인정보는 상담 목적 외에는 사용되지 않으며, 안전하게 보호됩니다.
-</p>
-<p class="text-center mt-3">
-  요금이 궁금하신가요? <a class="fw-bold text-primary" href="#pricing">이용요금 보기</a>
-</p>
-</form>
-</div>
-</div>
-</div>
+<!-- 문의: 이미지 + 설명 + 모달 열기 CTA -->
+<section class="section" id="contact"
+  style="margin-top:30px; padding:20px 0; min-height:auto; display:block;">
+  <div class="container">
+
+    <div class="row g-4">
+      <!-- 이미지 + 모든 텍스트를 한 덩어리로 묶음 -->
+      <div class="col-lg-12 position-relative text-center">
+
+        <!-- 이미지 -->
+        <img 
+          src="images/overlaycontact.jpg"
+          class="img-fluid w-100 rounded shadow-sm"
+          style="max-height:380px; object-fit:cover;"
+        >
+
+        <!-- 오버레이 전체 묶음 -->
+        <div 
+          class="position-absolute top-50 start-50 translate-middle"
+          style="color:white; width:100%; text-shadow:0 2px 6px rgba(0,0,0,0.6);"
+        >
+          <!-- 제목 -->
+          <h2 class="fw-bold mb-3" style="font-size:2rem;">
+            무료 상담 및 문의하기
+          </h2>
+
+          <!-- 설명 -->
+          <p class="mb-4" style="font-size:1.2rem;">
+            1분 만에 상담 요청을 완료하실 수 있어요.<br>
+            비상주·상주 오피스, 사업자등록 주소지, 회의실 문의까지 빠르게 도와드립니다.
+          </p>
+
+          <!-- 버튼 -->
+          <button 
+            type="button" 
+            class="btn btn-primary fw-bold"
+            style="padding:14px 28px; font-size:1.1rem;"
+            data-bs-toggle="modal"
+            data-bs-target="#consultModal"
+          >
+            상담 신청하기
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 <!-- 당근 전환 추적 실행 스크립트 -->
 <script>
@@ -737,15 +703,21 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 </a>
     -->
 
-<!-- 상담신청 플로팅 버튼 (채널추가 버튼 바로 위) -->
-<a href="#contact" class="consult-btn" style="position:fixed; right:100px; bottom:70px; z-index:10000;
-          width: 55px; height:55px;
-          background: linear-gradient(135deg, #007BFF, #00BFFF);
-          color:#fff; font-size:13px; font-weight:700; letter-spacing:1px;
-          display:flex; align-items:center; justify-content:center;
-          border-radius:20px;   /* ← 네 모서리를 둥글게 */
-          box-shadow:0 4px 12px rgba(0,0,0,0.15);
-          text-decoration:none; text-align:center;line-height:1.3">
+<!-- 상담신청 플로팅 버튼 (채널톡 버튼 바로 옆) -->
+<a 
+  class="consult-btn"
+  style="position:fixed; right:100px; bottom:70px; z-index:10000;
+        width: 55px; height:55px;
+        background: linear-gradient(135deg, #007BFF, #00BFFF);
+        color:#fff; font-size:13px; font-weight:700; letter-spacing:1px;
+        display:flex; align-items:center; justify-content:center;
+        border-radius:20px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        text-decoration:none; text-align:center; line-height:1.3"
+  
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+>
   상담<br/>신청
 </a>
     <!-- 카카오채널 추가 버튼 -->
@@ -866,7 +838,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
     <!-- 모바일 하단 고정 CTA 바 -->
-<div class="cta-bar-mobile d-lg-none"> <a href="#contact" class="btn-cta text-white"> 문의하기 </a> 
+<div class="cta-bar-mobile d-lg-none"> <a class="btn-cta text-white" data-bs-toggle="modal" data-bs-target="#consultModal">지금 문의하기 </a> 
 <a href="tel:0221358227" class="btn-cta text-white"> <i class="fas fa-phone-alt me-2"></i> 전화 상담 하기 </a> </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
  <!-- 채널톡-->   
@@ -937,5 +909,120 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: [0.6] });
 sections.forEach(s => io.observe(s));
 </script>
+<!-- 상담 신청 모달 -->
+<div class="modal fade" id="consultModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- 헤더 -->
+      <div class="modal-header">
+        <h5 class="modal-title">무료 상담 신청</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- 바디 -->
+      <div class="modal-body">
+
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST">
+
+          <div class="mb-3">
+            <label class="form-label required" for="inquiryCategory">문의 분류</label>
+            <select class="form-select" name="entry.989899118" id="inquiryCategory" required>
+              <option disabled selected value="">선택하세요</option>
+              <option value="상주">상주</option>
+              <option value="비상주">비상주</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required" for="userName">이름</label>
+            <input class="form-control" name="entry.1727161775" id="userName" required type="text">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required" for="userPhone">전화번호</label>
+            <input class="form-control" name="entry.53713410" id="userPhone" required type="tel">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="userEmail">이메일 (선택)</label>
+            <input class="form-control" name="entry.1336222686" id="userEmail" 
+            placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inquiryDetails">문의내용 (선택)</label>
+            <textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
+            placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
+          </div>
+
+          <!-- 개인정보 수집 동의 -->
+          <div class="mb-3 form-check d-flex justify-content-center">
+            <input class="form-check-input me-2" id="privacyCheck" required type="checkbox">
+            <label class="form-check-label" for="privacyCheck">
+              개인정보 수집 및 이용에 동의합니다.
+              <a href="#" data-bs-toggle="offcanvas" data-bs-target="#privacyDrawer">자세히 보기</a>
+            </label>
+          </div>
+
+          <!-- CTA 버튼 -->
+          <button class="btn btn-primary d-block mx-auto fw-bold" id="contactSubmit"
+          style="width:50%; margin-bottom:10px;" type="submit">
+              무료 상담 신청하기
+          </button>
+
+          <!-- 신뢰 문구 -->
+          <p class="text-center mt-2" style="font-size:0.9rem; color:#666;">
+            입력하신 개인정보는 상담 목적 외에는 사용되지 않으며, 안전하게 보호됩니다.
+          </p>
+
+         <p class="text-center mt-3">
+  요금이 궁금하신가요?
+  <a
+    class="fw-bold text-primary"
+    href="#pricing"
+    onclick="var m = bootstrap.Modal.getInstance(document.getElementById('consultModal')); if(m){ m.hide(); }"
+  >
+    이용요금 보기
+  </a>
+</p>
+        </form>
+
+      </div> <!-- modal-body 끝 -->
+
+    </div>
+  </div>
+</div>
+
+
+<!-- 개인정보처리방침 Drawer (모달 밖으로 이동) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="privacyDrawer">
+  <div class="offcanvas-header">
+    <h5>개인정보 수집 및 이용 안내</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <p><strong>개인정보 수집 주체</strong> : (주)더브릿지플러스</p>
+    <p><strong>수집 및 이용 목적</strong><br>
+      고객님의 문의에 신속하고 정확하게 답변드리기 위해 최소한의 개인정보를 수집합니다. 
+      또한 상담 이력 관리를 통해 더 나은 서비스 품질을 제공하는 데 활용됩니다.
+    </p>
+    <p><strong>수집 항목</strong></p>
+    <ul>
+      <li><b>필수</b> : 성함, 연락처(전화번호), 문의 내용</li>
+      <li><b>선택</b> : 이메일 주소</li>
+    </ul>
+    <p><strong>보유 및 이용 기간</strong><br>
+      수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 
+      최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
+    </p>
+    <p class="mt-3">
+      ※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 
+      다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.
+    </p>
+  </div>
+</div>
 </body>
 </html>
