@@ -450,3 +450,22 @@ body {
 .price-card .price-label {
   margin-bottom: 18px !important;
 }
+/* ---------------------------------------------------------
+   드로워(privacyDrawer)를 모달 위에 표시하기 위한 z-index 재정의
+   - Bootstrap 기본값: offcanvas 1045 < modal 1055
+   - 그래서 Drawer가 모달 뒤로 숨어버리는 문제가 발생함
+   - 해결: Drawer z-index를 모달보다 높게 설정 (1060)
+--------------------------------------------------------- */
+#privacyDrawer.offcanvas {
+  z-index: 1060 !important;
+}
+
+/* ---------------------------------------------------------
+   드로워 백드롭(offcanvas-backdrop) z-index 재정의
+   - Drawer가 모달 위에 올라오면 백드롭도 모달 위여야 자연스러움
+   - 백드롭이 모달 뒤에 있으면 화면이 투명하게 보이고 UX 깨짐
+   - 해결: 모달(1055)보다 약간 높은 1058로 설정
+--------------------------------------------------------- */
+.offcanvas-backdrop {
+  z-index: 1058 !important;
+}
