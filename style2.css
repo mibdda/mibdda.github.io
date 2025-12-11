@@ -333,7 +333,7 @@ body {
 /* === 모바일 하단 고정 CTA 바 스타일 (max-width: 991.98px 이하에서만) === */
 .cta-bar-mobile {
     display: none; 
-    position: fixed;
+    position: fixed 
     bottom: 0;
     left: 0;
     width: 100%;
@@ -610,4 +610,10 @@ body {
   display: block;
   font-size: 0.8rem;
   opacity: 0.75;
+}
+/* 모바일 전용 푸터 cta가 푸터 가림을 방지*/
+@media (max-width: 576px) {
+  footer {
+    padding-bottom: 60px !important; /* CTA 높이만큼 여유 공간 확보 */
+  }
 }
