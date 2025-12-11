@@ -101,11 +101,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <!-- 오른쪽 CTA 버튼 (데스크탑 전용) -->
-<a class="btn fw-bold d-none d-lg-block" href="#contact" style="background:linear-gradient(135deg,#007BFF,#00BFFF);
-              color:#fff; border:none; border-radius:24px;
-              padding:10px 22px; font-size:15px;
-              white-space:nowrap; min-width:120px;
-              margin-right:80px;">지금 문의하기</a>
+<a class="open-general btn fw-bold d-none d-lg-block"
+  style="background:linear-gradient(135deg,#007BFF,#00BFFF);
+         color:#fff; border:none; border-radius:24px;
+         padding:10px 22px; font-size:15px;
+         white-space:nowrap; min-width:120px;
+         margin-right:80px;"
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+>
+  지금 문의하기
+</a>
 </div>
 </nav>
 <div id="drawer" class="side-drawer">
@@ -142,10 +148,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <!-- SEO 최적화된 p class 숨김-->
 <p class="lead text-center" style="position:absolute; left:-9999px;">더브릿지플러스는 강남 신논현역에서 <strong>비상주오피스</strong>와 <strong>상주형 공유오피스</strong>를 제공하는 전문 기업입니다.
 </p>
-<!-- ✅ 히어로 지금 신청하기 버튼 -->
-<a class="btn btn-primary btn-lg fw-bold mt-3" href="#contact" style="padding:18px 44px; font-size:1.25rem; border-radius:30px;">
-      지금 문의하기
-    </a>
+<!-- ✅ 히어로 지금 문의하기 버튼 (모달 호출 버전) -->
+<a 
+  class="open-general btn btn-primary btn-lg fw-bold mt-3"
+  style="padding:18px 44px; font-size:1.25rem; border-radius:30px;"
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+>
+  지금 문의하기
+</a>
 </p></div>
 </div>
 </div>
@@ -228,36 +239,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- 개인사업자 -->
 <h4 class="group-title">개인사업자</h4>
 <div class="five-row">
-<div class="five-col"><div class="price-card"><div class="price-label">3개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">6개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card price-card-best"><div class="best-badge">BEST</div><div class="price-label">12개월</div><div class="price-value">25,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">24개월</div><div class="price-value">20,800원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">36개월</div><div class="price-value">18,000원<span class="price-sub"> / 월</span></div></div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">3개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="개인사업자" data-plan-name="3개월" data-monthly="45000" data-months="3">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">6개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="개인사업자" data-plan-name="6개월" data-monthly="35000" data-months="6">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card price-card-best">
+  <div class="best-badge">BEST</div><div class="price-label">12개월</div><div class="price-value">25,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="개인사업자" data-plan-name="12개월" data-monthly="25000" data-months="12">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">24개월</div><div class="price-value">20,800원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="개인사업자" data-plan-name="24개월" data-monthly="20800" data-months="24">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">36개월</div><div class="price-value">18,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="개인사업자" data-plan-name="36개월" data-monthly="18000" data-months="36">선택 하기</button>
+</div></div>
+
 </div>
 <!-- 법인사업자 -->
 <h4 class="group-title">법인사업자</h4>
 <div class="five-row">
-<div class="five-col"><div class="price-card"><div class="price-label">3개월</div><div class="price-value">55,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">6개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card price-card-best"><div class="best-badge">BEST</div><div class="price-label">12개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">24개월</div><div class="price-value">31,200원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">36개월</div><div class="price-value">27,700원<span class="price-sub"> / 월</span></div></div></div>
-</div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">3개월</div><div class="price-value">55,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="법인사업자" data-plan-name="3개월" data-monthly="55000" data-months="3">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">6개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="법인사업자" data-plan-name="6개월" data-monthly="45000" data-months="6">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card price-card-best">
+  <div class="best-badge">BEST</div><div class="price-label">12개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="법인사업자" data-plan-name="12개월" data-monthly="35000" data-months="12">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">24개월</div><div class="price-value">31,200원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="법인사업자" data-plan-name="24개월" data-monthly="31200" data-months="24">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card">
+  <div class="price-label">36개월</div><div class="price-value">27,700원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="법인사업자" data-plan-name="36개월" data-monthly="27700" data-months="36">선택 하기</button>
+</div></div>
+
 </div>
 <!-- 여백 추가 -->
 <div style="height:40px;"></div>
 <!-- 상주 서비스 -->
-<div>
-<h3 class="section-title" style="margin-bottom:6px; text-align:left;">상주서비스</h3>
-<p class="section-desc">24시간 출입, 유/무선 초고속 인터넷, 회의실 · 라운지 무제한 이용!</p>
+<h3 class="section-title mb-1" style="text-align:left;">상주서비스</h3>
+
+<div class="d-flex align-items-center flex-wrap gap-2 mb-2">
+  <p class="section-desc m-0">
+    24시간 출입, 유/무선 초고속 인터넷, 회의실 · 라운지 무제한 이용!
+  </p>
+<button
+  type="button"
+  class="btn btn-outline-secondary floorplan-btn"
+  data-bs-toggle="modal"
+  data-bs-target="#floorplanModal"
+>
+  <span class="fp-strong">평면도 보기</span>
+  <span class="fp-weak">신논현점</span>
+</button>
+</div>
 <div class="five-row">
-<div class="five-col"><div class="price-card"><div class="price-label">2인실</div><div class="price-value">600,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">4인실</div><div class="price-value">1,100,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">5인실</div><div class="price-value">1,400,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">6인실</div><div class="price-value">1,800,000원<span class="price-sub"> / 월</span></div></div></div>
-<div class="five-col"><div class="price-card"><div class="price-label">10인실</div><div class="price-value">3,000,000원<span class="price-sub"> / 월</span></div></div></div>
-</div>
-</div>
+<div class="five-col"><div class="price-card stay-card">
+  <div class="price-label">1인실</div><div class="price-value">300,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="상주오피스" data-plan-name="1인실" data-monthly="300000" data-months="1">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card stay-card">
+  <div class="price-label">2인실</div><div class="price-value">600,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="상주오피스" data-plan-name="2인실" data-monthly="600000" data-months="1">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card stay-card">
+  <div class="price-label">4인실</div><div class="price-value">1,100,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="상주오피스" data-plan-name="4인실" data-monthly="1100000" data-months="1">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card stay-card">
+  <div class="price-label">5인실</div><div class="price-value">1,400,000원<span class="price-sub"> / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="상주오피스" data-plan-name="5인실" data-monthly="1400000" data-months="1">선택 하기</button>
+</div></div>
+
+<div class="five-col"><div class="price-card stay-card">
+  <div class="price-label">6인실 이상</div><div class="price-value st-fixed">1,700,000원<span class="price-sub">부터 / 월</span></div>
+  <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+    data-type="상주오피스" data-plan-name="6인실 이상" data-monthly="1700000" data-months="1">선택 하기</button>
+</div></div>
 </div>
 </section>
 <!-- 회사소개: 텍스트 + 2×2 이미지 그리드 (가운데) -->
@@ -579,99 +676,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 
 </script>
-<!-- 문의: 이미지 포함, '문의 분류' + 이메일 + 이름 placeholder -->
-<section class="section" id="contact" style="margin-top:80px;">
-<div class="container">
-<h2 class="text-center fw-bold mb-5">무료 상담 및 문의하기</h2>
-<div class="row g-4 align-items-center">
-<div class="col-lg-6">
-<img alt="문의 이미지" class="img-fluid rounded shadow-sm" src="images/contact.jpg" style="margin-top:-130px;"/>
-</div>
-<div class="col-lg-6">
-<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST">
-<div class="mb-3">
-<label class="form-label required" for="inquiryCategory">문의 분류</label>
-<select class="form-select" name="entry.989899118" id="inquiryCategory" required="">
-<option disabled="" selected="" value="">선택하세요</option>
-<option value="상주">상주</option>
-<option value="비상주">비상주</option>
-<option value="기타">기타</option>
-</select>
-</div>
-<div class="mb-3">
-<label class="form-label required" for="userName">이름</label>
-<input class="form-control" name="entry.1727161775" id="userName" required="" type="text"/>
-</div>
-<div class="mb-3">
-<label class="form-label required" for="userPhone">전화번호</label>
-<input class="form-control" name="entry.53713410" id="userPhone" required="" type="tel"/>
-</div>
-<div class="mb-3">
-<label class="form-label" for="userEmail">이메일 (선택)</label>
-<input class="form-control" name="entry.1336222686" id="userEmail" placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email"/>
-</div>
-<div class="mb-3">
-<label class="form-label" for="inquiryDetails">문의내용 (선택)</label>
-<textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
-    placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
-</div>
-<!-- 개인정보 수집 동의 체크박스 -->
-<div class="mb-3 form-check d-flex justify-content-center">
-<input class="form-check-input me-2" id="privacyCheck" required="" type="checkbox"/>
-<label class="form-check-label" for="privacyCheck">
-    개인정보 수집 및 이용에 동의합니다. 
-    <a data-bs-target="#privacyModal" data-bs-toggle="modal" href="#">자세히 보기</a>
-</label>
-</div>
-<!-- 개인정보 처리방침 모달 -->
-<div aria-hidden="true" aria-labelledby="privacyModalLabel" class="modal fade" id="privacyModal" tabindex="-1">
-<div class="modal-dialog modal-dialog-centered modal-lg">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="privacyModalLabel">개인정보 수집 및 이용 안내</h5>
-<button aria-label="닫기" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-</div>
-<div class="modal-body">
-<p><strong>개인정보 수집 주체</strong> : (주)더브릿지플러스</p>
-<p><strong>수집 및 이용 목적</strong><br/>
-          고객님의 문의에 신속하고 정확하게 답변드리기 위해 최소한의 개인정보를 수집합니다. 
-          또한 상담 이력 관리를 통해 더 나은 서비스 품질을 제공하는 데 활용됩니다.
-        </p>
-<p><strong>수집 항목</strong></p>
-<ul>
-<li><b>필수</b> : 성함, 연락처(전화번호), 문의 내용</li>
-<li><b>선택</b> : 이메일 주소</li>
-</ul>
-<p><strong>보유 및 이용 기간</strong><br/>
-          수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 
-          최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
-        </p>
-<p class="mt-3">
-          ※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 
-          다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.
-        </p>
-</div>
-<div class="modal-footer">
-<button class="btn btn-secondary" data-bs-dismiss="modal" type="button">닫기</button>
-</div>
-</div>
-</div>
-</div>
-<!-- CTA 버튼 -->
-<button class="btn btn-primary d-block mx-auto fw-bold" id="contactSubmit" style="width:50%; margin-bottom:10px;" type="submit">
-    무료 상담 신청하기
-</button>
-<!-- 신뢰 문구 -->
-<p class="text-center mt-2" style="font-size:0.9rem; color:#666;">
-  입력하신 개인정보는 상담 목적 외에는 사용되지 않으며, 안전하게 보호됩니다.
-</p>
-<p class="text-center mt-3">
-  요금이 궁금하신가요? <a class="fw-bold text-primary" href="#pricing">이용요금 보기</a>
-</p>
-</form>
-</div>
-</div>
-</div>
+<!-- 문의: 이미지 + 설명 + 모달 열기 CTA -->
+<section class="section" id="contact"
+  style="margin-top:30px; padding:20px 0; min-height:auto; display:block;">
+  <div class="container">
+
+    <div class="row g-4">
+      <!-- 이미지 + 모든 텍스트를 한 덩어리로 묶음 -->
+      <div class="col-lg-12 position-relative text-center">
+
+        <!-- 이미지 -->
+        <img 
+          src="images/overlaycontact.jpg"
+          class="img-fluid w-100 rounded shadow-sm"
+          style="max-height:380px; object-fit:cover;"
+        >
+
+        <!-- 오버레이 전체 묶음 -->
+        <div 
+          class="position-absolute top-50 start-50 translate-middle"
+          style="color:white; width:100%; text-shadow:0 2px 6px rgba(0,0,0,0.6);"
+        >
+          <!-- 제목 -->
+          <h2 class="fw-bold mb-3" style="font-size:2rem;">
+            무료 상담 및 문의하기
+          </h2>
+
+          <!-- 설명 -->
+          <p class="mb-4" style="font-size:1.2rem;">
+            1분 만에 상담 요청을 완료하실 수 있어요.<br>
+            상주오피스·비상주 주소지·사업자등록, 자금·세무 상담까지 빠르게 도와드립니다.
+          </p>
+
+          <!-- 버튼 -->
+          <button 
+            type="button" 
+            class="open-general btn btn-primary fw-bold"
+            style="padding:14px 28px; font-size:1.1rem;"
+            data-bs-toggle="modal"
+            data-bs-target="#consultModal"
+          >
+            상담 신청하기
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 <!-- 당근 전환 추적 실행 스크립트 -->
 <script>
@@ -737,15 +789,21 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
 </a>
     -->
 
-<!-- 상담신청 플로팅 버튼 (채널추가 버튼 바로 위) -->
-<a href="#contact" class="consult-btn" style="position:fixed; right:100px; bottom:70px; z-index:10000;
-          width: 55px; height:55px;
-          background: linear-gradient(135deg, #007BFF, #00BFFF);
-          color:#fff; font-size:13px; font-weight:700; letter-spacing:1px;
-          display:flex; align-items:center; justify-content:center;
-          border-radius:20px;   /* ← 네 모서리를 둥글게 */
-          box-shadow:0 4px 12px rgba(0,0,0,0.15);
-          text-decoration:none; text-align:center;line-height:1.3">
+<!-- 상담신청 플로팅 버튼 (채널톡 버튼 바로 옆) -->
+<a 
+  class="consult-btn open-general"
+  style="position:fixed; right:100px; bottom:70px; z-index:10000;
+        width: 55px; height:55px;
+        background: linear-gradient(135deg, #007BFF, #00BFFF);
+        color:#fff; font-size:13px; font-weight:700; letter-spacing:1px;
+        display:flex; align-items:center; justify-content:center;
+        border-radius:20px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        text-decoration:none; text-align:center; line-height:1.3"
+  
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+>
   상담<br/>신청
 </a>
     <!-- 카카오채널 추가 버튼 -->
@@ -866,7 +924,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
     <!-- 모바일 하단 고정 CTA 바 -->
-<div class="cta-bar-mobile d-lg-none"> <a href="#contact" class="btn-cta text-white"> 문의하기 </a> 
+<div class="cta-bar-mobile d-lg-none"> <a class="consult-btn open-general" data-bs-toggle="modal" data-bs-target="#consultModal">지금 문의하기 </a> 
 <a href="tel:0221358227" class="btn-cta text-white"> <i class="fas fa-phone-alt me-2"></i> 전화 상담 하기 </a> </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
  <!-- 채널톡-->   
@@ -936,6 +994,318 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: [0.6] });
 sections.forEach(s => io.observe(s));
+</script>
+<!-- 상담 신청 모달 -->
+<div class="modal fade" id="consultModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- 헤더 -->
+      <div class="modal-header">
+        <h5 class="modal-title">무료 상담 신청</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- 요약 div -->
+      <div id="planSummary" style="font-size:14px; color:#666; margin:8px 16px 0; display:none;">
+      </div>
+      
+      <!-- 바디 -->
+      <div class="modal-body">
+
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST">
+
+          <div class="mb-3">
+            <label class="form-label required" for="inquiryCategory">문의 분류</label>
+            <select class="form-select" name="entry.989899118" id="inquiryCategory" required>
+              <option disabled selected value="">선택하세요</option>
+              <option value="상주">상주</option>
+              <option value="비상주">비상주</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required" for="userName">이름</label>
+            <input class="form-control" name="entry.1727161775" id="userName" required type="text">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label required" for="userPhone">전화번호</label>
+            <input class="form-control" name="entry.53713410" id="userPhone" required type="tel">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="userEmail">이메일 (선택)</label>
+            <input class="form-control" name="entry.1336222686" id="userEmail" 
+            placeholder="견적서/자료를 이메일로 받고 싶으신 경우 입력해주세요" type="email">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inquiryDetails">문의내용 (선택)</label>
+            <textarea class="form-control" rows="4" name="entry.701133298" id="inquiryDetails"
+            placeholder="추가로 전달하고 싶은 내용을 자유롭게 적어주세요. (선택 입력)"></textarea>
+          </div>
+
+          <!-- 개인정보 수집 동의 -->
+          <div class="mb-3 form-check d-flex justify-content-center">
+            <input class="form-check-input me-2" id="privacyCheck" required type="checkbox">
+            <label class="form-check-label" for="privacyCheck">
+              개인정보 수집 및 이용에 동의합니다.
+              <a href="#" data-bs-toggle="offcanvas" data-bs-target="#privacyDrawer">자세히 보기</a>
+            </label>
+          </div>
+
+          <!-- CTA 버튼 -->
+          <button class="btn btn-primary d-block mx-auto fw-bold" id="contactSubmit"
+          style="width:50%; margin-bottom:10px;" type="submit">
+              무료 상담 신청하기
+          </button>
+
+          <!-- 신뢰 문구 -->
+          <p class="text-center mt-2" style="font-size:0.9rem; color:#666;">
+            입력하신 개인정보는 상담 목적 외에는 사용되지 않으며, 안전하게 보호됩니다.
+          </p>
+
+         <p class="text-center mt-3">
+  요금이 궁금하신가요?
+  <a
+    class="fw-bold text-primary"
+    href="#pricing"
+    onclick="var m = bootstrap.Modal.getInstance(document.getElementById('consultModal')); if(m){ m.hide(); }"
+  >
+    이용요금 보기
+  </a>
+</p>
+        </form>
+
+      </div> <!-- modal-body 끝 -->
+
+    </div>
+  </div>
+</div>
+
+
+<!-- 개인정보처리방침 Drawer (모달 밖으로 이동) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="privacyDrawer">
+  <div class="offcanvas-header">
+    <h5>개인정보 수집 및 이용 안내</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <p><strong>개인정보 수집 주체</strong> : (주)더브릿지플러스</p>
+    <p><strong>수집 및 이용 목적</strong><br>
+      고객님의 문의에 신속하고 정확하게 답변드리기 위해 최소한의 개인정보를 수집합니다. 
+      또한 상담 이력 관리를 통해 더 나은 서비스 품질을 제공하는 데 활용됩니다.
+    </p>
+    <p><strong>수집 항목</strong></p>
+    <ul>
+      <li><b>필수</b> : 성함, 연락처(전화번호), 문의 내용</li>
+      <li><b>선택</b> : 이메일 주소</li>
+    </ul>
+    <p><strong>보유 및 이용 기간</strong><br>
+      수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 
+      최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
+    </p>
+    <p class="mt-3">
+      ※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 
+      다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.
+    </p>
+  </div>
+</div>
+<!-- 가격표 스크립트 삽입-->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("consultModal");
+  const modalTitle = modal.querySelector(".modal-title");
+  const textarea = modal.querySelector("#inquiryDetails");
+
+  // 3개월 기준 정상가
+const basePrice = {
+  "개인사업자": 45000,
+  "법인사업자": 55000
+};
+
+// 일반 상담 모드
+function resetGeneralMode() {
+  modalTitle.innerHTML = "상담 신청하기";
+  textarea.value = "";
+  const inquirySelect = document.getElementById("inquiryCategory");
+  if (inquirySelect) inquirySelect.value = ""; // 분류 초기화
+}
+
+document.querySelectorAll(".open-general").forEach(btn => {
+  btn.addEventListener("click", resetGeneralMode);
+});
+
+// ✅ 문의 분류 select
+const inquirySelect = document.getElementById("inquiryCategory");
+
+// 요금제 선택 버튼
+document.querySelectorAll(".open-plan").forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    const type = btn.dataset.type;          // 개인사업자 / 법인사업자 / 상주오피스
+    const planName = btn.dataset.planName;
+    const monthly = Number(btn.dataset.monthly);
+    const months = Number(btn.dataset.months);
+
+    // ✅ 1) 상주오피스 분기: 할인율 없이, 문의 분류 자동 '상주'
+    if (type === "상주오피스") {
+
+      if (inquirySelect) inquirySelect.value = "상주";
+
+      const total = monthly * months;
+      const deposit = monthly * 2;  // ⭐ 보증금 계산
+
+      modalTitle.innerHTML = `
+        <div style="font-size:20px; font-weight:700;">
+          상주오피스 ${planName} 요금제
+        </div>
+        <div style="font-size:14px; margin-top:4px; color:#555;">
+          월 ${monthly.toLocaleString()}원 · 보증금 ${deposit.toLocaleString()}원
+        </div>
+      `;
+
+      textarea.value =
+         `상주오피스 ${planName} 상담을 요청합니다.\n` +
+         `(추가 문의는 아래 작성해주세요.)`;
+
+  return; 
+}
+
+    // ✅ 2) 비상주 (개인/법인) 기존 로직 + 문의 분류 자동 '비상주'
+
+    if (inquirySelect) inquirySelect.value = "비상주";
+
+    // 총액 계산
+    let total;
+    if (type === "개인사업자" && planName === "24개월") total = 500000;
+    else if (type === "개인사업자" && planName === "36개월") total = 650000;
+    else if (type === "법인사업자" && planName === "24개월") total = 750000;
+    else if (type === "법인사업자" && planName === "36개월") total = 1000000;
+    else total = monthly * months;
+
+    // 기준가(정상이)
+    const normal = basePrice[type] * months;
+    let discountRate = Math.round((1 - (total / normal)) * 100);
+
+    // 🔥 3개월은 할인율 문구 제거
+    let discountText = "";
+    if (planName !== "3개월") {
+      discountText = ` · 할인율 ${discountRate}% (3개월 대비)`;
+    }
+
+    // 🔥 BEST 표시 (12개월인 경우만)  ← 유지
+    let bestLabel = "";
+    if (planName === "12개월") {
+      bestLabel = ` <span style="color:#0d6efd; font-weight:700; font-size:14px;">BEST</span>`;
+    }
+
+    // 제목 구성 (2줄 가독성 버전)
+    modalTitle.innerHTML = `
+      <div style="font-size:20px; font-weight:700;">
+        ${type} ${planName} 요금제${bestLabel}
+      </div>
+      <div style="font-size:14px; margin-top:4px; color:#555;">
+        월 ${monthly.toLocaleString()}원 · 총액 ${total.toLocaleString()}원${discountText}
+      </div>
+    `;
+
+    // 문의내용은 금액 제외
+    textarea.value =
+      `${type} ${planName} 상담을 요청합니다.\n` +
+      `(추가 문의는 아래 작성해주세요.)`;
+  });
+});
+});
+</script>
+<!-- 평면도 보기 모달 -->
+<div class="modal fade" id="floorplanModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">평면도 안내</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <p class="text-center small text-muted">
+          방을 선택해주세요.<br>
+          평면도의 원형 영역을 터치하면 실제 사진을 볼 수 있어요.
+        </p>
+
+        <div class="floorplan-wrap">
+          <img src="images/floorplan_main.jpg" class="floorplan-img">
+
+          <!-- 원형 클릭영역(투명) -->
+          <button class="room-hotspot room-1607" data-room="room_1607"></button>
+          <button class="room-hotspot room-588"  data-room="room_588"></button>
+          <button class="room-hotspot room-1062" data-room="room_1062"></button>
+          <button class="room-hotspot room-995"  data-room="room_995"></button>
+          <button class="room-hotspot room-639"  data-room="room_639"></button>
+          <button class="room-hotspot room-138"  data-room="room_138"></button>
+          <button class="room-hotspot room-hallway"  data-room="room_hallway"></button>
+          <button class="room-hotspot room-oazone"   data-room="room_oazone"></button>
+          <button class="room-hotspot room-restroom" data-room="room_restroom"></button>     
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 방 사진 모달 (완전 분리, X 1개만) -->
+<div class="modal fade" id="roomPhotoModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-black">
+
+      <div class="modal-body p-0 position-relative d-flex justify-content-center align-items-center">
+
+        <!-- 유일한 X 버튼 -->
+        <button type="button"
+                class="btn-close btn-close-white position-absolute"
+                style="top:12px; right:12px; z-index:20;"
+                data-bs-dismiss="modal"></button>
+
+        <img id="roomPhoto" alt="">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 클릭 스크립트 -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // 방 클릭하면 사진 모달 열기
+  const hotspots = document.querySelectorAll(".room-hotspot");
+  const roomPhoto = document.getElementById("roomPhoto");
+  const roomPhotoModal = document.getElementById("roomPhotoModal");
+
+  hotspots.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.room;
+      roomPhoto.src = "images/" + id + ".jpg";
+
+      const modal = new bootstrap.Modal(roomPhotoModal);
+      modal.show();
+    });
+  });
+
+
+  // 사진 클릭하면 모달 닫기
+  roomPhoto.addEventListener("click", () => {
+    const modal = bootstrap.Modal.getInstance(roomPhotoModal);
+    modal.hide();
+  });
+
+});
 </script>
 </body>
 </html>
