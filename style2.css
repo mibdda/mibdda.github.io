@@ -73,10 +73,6 @@ body {
   content: " *";
   color: red;
 }
-/* 데스크탑에서 메뉴 오른쪽 여백 → 메뉴가 살짝 왼쪽으로 이동 */
-@media (min-width: 992px){
-  .navbar.slimbar .navbar-nav
-  }
   /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
   .navbar.slimbar{
     position: relative;
@@ -166,7 +162,7 @@ body {
         text-align: left;
       }
 .price-card .st-fixed {
-  font-size: 1.25rem;     /* 가격 줄바꿈 방지용 축소 */
+  font-size: 1.20rem;     /* 가격 줄바꿈 방지용 축소 */
   line-height: 1.43;
 }
 .stay-card {
@@ -379,11 +375,10 @@ body {
     
     /* 1. 상담 신청 플로팅 버튼 숨기기 */
     /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
-@media (max-width: 991.98px) {
   .consult-btn {
     display: none !important;
   }
-}
+
 
     /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
     /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
@@ -614,6 +609,6 @@ body {
 /* 모바일 전용 푸터 cta가 푸터 가림을 방지*/
 @media (max-width: 576px) {
 footer {
-    padding-bottom: 60px !important; /* CTA 높이만큼 여유 공간 확보 */
+    padding-bottom: 80px !important; /* CTA 높이만큼 여유 공간 확보 */
   }
 }
