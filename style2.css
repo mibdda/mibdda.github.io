@@ -75,9 +75,8 @@ body {
 }
 /* 데스크탑에서 메뉴 오른쪽 여백 → 메뉴가 살짝 왼쪽으로 이동 */
 @media (min-width: 992px){
-  .navbar.slimbar .navbar-nav{
+  .navbar.slimbar .navbar-nav
   }
-}
   /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
   .navbar.slimbar{
     position: relative;
@@ -166,6 +165,13 @@ body {
         margin: 24px 0 12px;
         text-align: left;
       }
+.price-card .st-fixed {
+  font-size: 1.25rem;     /* 가격 줄바꿈 방지용 축소 */
+  line-height: 1.43;
+}
+.stay-card {
+  height: 175px; /* 비상주 카드 높이와 동일하게 조정 (필요하면 숫자 미세조정) */
+}
       /* 반응형 */
 /* 공통: 박스 모델 안정화 */
 #pricing .five-col,
@@ -449,4 +455,159 @@ body {
 }
 .price-card .price-label {
   margin-bottom: 18px !important;
+}
+/* ---------------------------------------------------------
+   드로워(privacyDrawer)를 모달 위에 표시하기 위한 z-index 재정의
+   - Bootstrap 기본값: offcanvas 1045 < modal 1055
+   - 그래서 Drawer가 모달 뒤로 숨어버리는 문제가 발생함
+   - 해결: Drawer z-index를 모달보다 높게 설정 (1060)
+--------------------------------------------------------- */
+#privacyDrawer.offcanvas {
+  z-index: 1060 !important;
+}
+
+/* ---------------------------------------------------------
+   드로워 백드롭(offcanvas-backdrop) z-index 재정의
+   - Drawer가 모달 위에 올라오면 백드롭도 모달 위여야 자연스러움
+   - 백드롭이 모달 뒤에 있으면 화면이 투명하게 보이고 UX 깨짐
+   - 해결: 모달(1055)보다 약간 높은 1058로 설정
+--------------------------------------------------------- */
+.offcanvas-backdrop {
+  z-index: 1058 !important;
+}
+.price-card .price-btn {
+  display: block;
+  width: 60%;              /* ← 좌우 더 줄임 (원하면 65~80% 조절 가능) */
+  margin: 0 auto;      /* ← 위쪽 여백 약간 추가해 안정감 */
+  background: #f5f6f7;
+  border: 1px solid #e4e5e7;
+  color: #003366;
+  border-radius: 10px;
+  padding: 5px 0;         /* ← 위아래 더 크게 */
+  line-height: 1.2;
+  font-weight: 600;
+  font-size: 14px;         /* ← 버튼이 좁아졌으니 14px로 살짝 키움 */
+  transition: all .2s ease;
+}
+.price-card .price-btn:hover {
+  background: #e8e9eb;
+}
+/* =============== 평면도 모달 반응형 =============== */
+/* 평면도 레이아웃 */
+.floorplan-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.floorplan-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* 클릭 영역: 원형 + 투명 */
+.room-hotspot {
+  position: absolute;
+  width: 11%;
+  height: 11%;
+  border-radius: 999px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: .22s ease;
+}
+
+/* hover 하이라이트 */
+.room-hotspot:hover {
+  background: rgba(255,255,255,0.32);
+  box-shadow: 0 0 0 3px rgba(0, 92, 180, 0.45);
+  transform: scale(1.08);
+}
+
+
+/* 각 방 좌표(원본 평면도 기준) */
+.room-1607 { top: 37%; left: 15%; }
+.room-588  { top: 35%; left: 27%; }
+.room-1062 { top: 35%; left: 43%; }
+.room-995  { top: 70%; left: 32%; }
+.room-639  { top: 70%; left: 45%; }
+.room-138  { top:68%; left: 18%; }
+.room-hallway  { top: 50%; left: 50%; }
+.room-oazone   { top: 50%; left: 65%; }
+.room-restroom { top: 68%; left: 65%; }
+/* ---------------------------------------------------
+   📌 roomPhotoModal 전체 높이 제한
+   - 화면(뷰포트) 높이의 90%까지만 모달 허용
+   - 모달이 너무 커져서 화면 밖으로 튀어나가는 것 방지
+--------------------------------------------------- */
+#roomPhotoModal .modal-dialog {
+  max-height: 90vh;
+}
+
+/* ---------------------------------------------------
+   📌 modal-body 설정
+   - padding 제거: 사진이 모달 내부에 꽉 차도록
+   - flex 중앙 정렬: 사진을 가로·세로 모두 중앙 배치
+   - max-height 통일: 부모 크기 제한과 동일하게 맞춤
+   - overflow hidden: 큰 사진이 범위를 넘으면 숨김(튀어나옴 방지)
+   - 배경 검정: 사진 감상용 배경(사진 외부 여백이 안 보이게)
+--------------------------------------------------- */
+#roomPhotoModal .modal-body {
+  padding: 0;
+  display: flex;
+  justify-content: center;  /* 가로 중앙 */
+  align-items: center;      /* 세로 중앙 */
+  max-height: 90vh;
+  overflow: hidden;
+  background:#000;
+}
+
+/* ---------------------------------------------------
+   📌 실제 사진 스타일
+   - 최대 높이: 화면 90% 이내에서 자동 축소
+   - 최대 너비: 모달 너비 내에서 자동 축소
+   - object-fit: contain → 사진 비율 유지 + 중앙 정렬
+   - border-radius: 살짝 둥근 모서리
+--------------------------------------------------- */
+#roomPhoto {
+  max-height: 90vh;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* ---------------------------------------------------
+   📌 X 버튼 스타일
+   - invert(1): 밝은 사진·어두운 사진에서도 항상 보이게 색 반전
+   - scale(1.4): X 버튼 크기 확대(조작 편함)
+--------------------------------------------------- */
+#roomPhotoModal .btn-close {
+  filter: invert(1);
+  transform: scale(1.4);
+}
+/* ===========================
+   평면도 버튼 전용 스타일
+=========================== */
+.floorplan-btn {
+  white-space: normal !important;   /* 줄바꿈 허용 */
+  border-color: var(--brand-dark) !important; 
+  text-align: center;
+  padding: 8px 14px;
+}
+
+/* 강조 줄 */
+.floorplan-btn .fp-strong {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* 약한 줄 */
+.floorplan-btn .fp-weak {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.75;
 }
