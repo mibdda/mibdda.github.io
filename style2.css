@@ -162,7 +162,7 @@ body {
         text-align: left;
       }
 .price-card .st-fixed {
-  font-size: 1.20rem;     /* 가격 줄바꿈 방지용 축소 */
+  font-size: 1.15rem;     /* 가격 줄바꿈 방지용 축소 */
   line-height: 1.43;
 }
 .stay-card {
