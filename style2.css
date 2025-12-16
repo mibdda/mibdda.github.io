@@ -73,18 +73,47 @@ body {
   content: " *";
   color: red;
 }
-  /* 네비바: 슬림 바(데스크탑 70px / 모바일 80px), 로고는 크게 유지 */
-  .navbar.slimbar{
-    position: relative;
-    height: 80px;                 /* 데스크탑 바 높이 */
-    background: #2c2c2c !important; /* 기존 블루 #003366 */
-    padding: 0 !important;
-    padding-left: 8px !important;
-    overflow: visible;            /* 큰 로고가 바 밖으로 나와도 보이게 */
-  }
+/* ✅ fixed-top이 CSS에 의해 풀리지 않게 강제 */
+.navbar.slimbar.fixed-top{
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 1030;
+}
+
+/* ✅ 기본값: 전환 효과만 깔아두기 (색은 상태 클래스가 결정) */
+.navbar.slimbar{
+  position: relative;
+  height: 80px;
+  padding: 0 !important;
+  padding-left: 8px !important;
+  overflow: visible;
+  transition: background-color .18s ease, box-shadow .18s ease;
+}
   .navbar.slimbar .nav-link{ color:#fff !important; }
   .navbar.slimbar .navbar-toggler{ filter: invert(0); } /* 햄버거 아이콘 보정 */
 
+/* ✅ 첫 진입(스크롤 0): 투명 */
+.navbar.slimbar.is-top{
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ✅ 스크롤 시작: 기존 네비 색으로 */
+.navbar.slimbar.is-scrolled{
+  background: #2c2c2c !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* 모바일 네비 CTA 버튼 */
+.nav-cta-mobile{
+  background: linear-gradient(135deg,#007BFF,#00BFFF);
+  color:#fff;
+  border:none;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+  white-space: nowrap;
+}
   /* 로고: 플로우에서 분리 → 바 높이 계산에 영향 X */
   .brand-abs{
     position: absolute; left: 12px; top: 50%;
@@ -325,15 +354,20 @@ body {
   /* 상단 모서리가 버튼이 눌렸을 때도 유지되도록 */
   border-radius: 12px !important; 
 }
-
-/* === 모바일 하단 고정 CTA 바 스타일 (max-width: 991.98px 이하에서만) === */
-.cta-bar-mobile {
+/*
+================================================
+모바일 하단 고정 CTA 바 스타일 (max-width: 991.98px 이하에서만) (현재 비활성화)
+- 네비 CTA를 모바일에서도 유지
+- 중복 CTA 제거 목적
+================================================*/
+/*
+.cta-bar-mobile. {
     display: none; 
     position: fixed; 
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* 바 높이 */
+    height: 60px; 
     z-index: 1050;
     background: #fff; 
     border-top: 1px solid #ddd;
@@ -346,7 +380,7 @@ body {
     align-items: center;
     height: 100%;
     flex-grow: 1; 
-    width: 50%; /* ✅ 5:5 비율 강제 */
+    width: 50%;
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
@@ -357,28 +391,31 @@ body {
     white-space: nowrap;
 }
 
-/* 첫 번째 버튼: 문의하기 (남색) */
 .cta-bar-mobile .btn-cta:first-child {
-    background: var(--brand-dark) !important; /* ✅ 남색(003366) 적용 */
+    background: var(--brand-dark) !important; 
 }
-
-/* 두 번째 버튼: 전화 상담하기 (어두운 색 유지) */
 .cta-bar-mobile .btn-cta:last-child {
-    background: #444 !important; /* 어두운 색 유지 */
+    background: #444 !important;
 }
-
-/* PC 화면에서는 숨기고 모바일 화면에서만 표시 & 위치 조정 */
 @media (max-width: 991.98px) {
     .cta-bar-mobile {
-        display: flex; /* 모바일에서 하단 바 표시 */
+        display: flex;
     }
-    
+*/
     /* 1. 상담 신청 플로팅 버튼 숨기기 */
     /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
   .consult-btn {
     display: none !important;
   }
-
+.navbar .nav-cta {
+  position: relative;
+  z-index: 1100;
+}
+@media (max-width: 991.98px) {
+  .navbar .nav-cta {
+    display: inline-flex !important;
+  }
+}
 
     /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
     /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
@@ -612,3 +649,226 @@ footer {
     padding-bottom: 80px !important; /* CTA 높이만큼 여유 공간 확보 */
   }
 }
+#hero .carousel-item {
+  height: 80vh;
+}
+/* =========================
+   USP TAB SECTION STYLE START
+   ========================= */
+
+/* ✅ 튜닝 포인트 */
+:root{
+  --usp-accent:#ff6a00;
+  --usp-slide-dur:900ms;      /* 너무 빠르면 여기만 늘리면 됨 */
+  --usp-peek:360px;           /* 데스크탑 “다음 화면 프리뷰” 보이는 폭 */
+}
+
+/* ✅ 섹션을 가로로 더 넓게: 왼쪽은 여백, 오른쪽은 더 쓰는 느낌 */
+.usp-tab-section{
+  padding-left: clamp(16px, 6vw, 84px) !important;
+  padding-right: 0 !important;
+}
+
+/* =========================
+   TABS (언더라인 유지)
+   ========================= */
+.usp-tabs{
+  max-width: 1240px;
+  margin: 0 auto 36px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #eee;
+  position: relative;
+  overflow: visible;
+}
+
+.usp-tab{
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 18px 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #b7b7b7;
+  cursor: pointer;
+  position: relative;
+  line-height: 1.2;
+}
+
+.usp-tab.active{
+  color: #111;
+}
+
+/* ✅ “현재 탭 언더라인” */
+.usp-tab::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:2px;
+  background: transparent;
+  transform: scaleX(.45);
+  transform-origin: center;
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+.usp-tab.active::after{
+  background: var(--usp-accent);
+  transform: scaleX(1);
+}
+
+/* =========================
+   PANELS (슬라이드 핵심)
+   ========================= */
+.usp-panels{
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden; /* 프리뷰는 ‘잘린 채로’ 보이게 */
+}
+
+/* 기본 상태: next는 오른쪽(100%)에 대기, prev는 왼쪽(-100%)으로 퇴장 */
+.usp-panel{
+  display: flex;
+  align-items: center;
+  gap: min(5vw, 60px);
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    transform var(--usp-slide-dur) cubic-bezier(.22,.61,.36,1),
+    opacity   var(--usp-slide-dur) cubic-bezier(.22,.61,.36,1);
+  will-change: transform, opacity;
+
+  pointer-events: none;
+}
+
+.usp-panel img{
+  width: clamp(320px, 44%, 640px);
+  max-width: 640px;
+  border-radius: 18px;
+  flex: 0 0 auto;
+}
+
+.usp-text{
+  flex: 1 1 auto;
+  min-width: 240px;
+  max-width: 560px;
+}
+
+.usp-text h3{
+  margin: 0 0 12px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.usp-text p{
+  margin: 0;
+  color: #6b6b6b;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* 현재(보임) */
+.usp-panel.active{
+  position: relative;   /* ✅ 컨테이너 높이를 이 패널로 잡음 */
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* 이전(왼쪽으로 사라짐) */
+.usp-panel.prev{
+  opacity: 0;
+  transform: translateX(-100%);
+  z-index: 1;
+}
+
+/* 다음(오른쪽 대기) */
+.usp-panel.next{
+  opacity: 0;
+  transform: translateX(100%);
+  z-index: 1;
+}
+
+/* ✅ 초기/리셋 순간 “튀는 애니메이션” 방지 */
+.usp-panels.no-anim .usp-panel{
+  transition: none !important;
+}
+
+/* =========================
+   DESKTOP PREVIEW (다음 화면 흐릿하게 대기)
+   ========================= */
+@media (min-width:992px){
+  .usp-panel.next{
+    opacity: .18;
+    filter: blur(1px);
+
+    /* 🔑 프리뷰가 보이도록: ‘오른쪽 끝에 일부만’ 남김 */
+    transform: translateX(calc(100% - var(--usp-peek)));
+
+    /* 🔑 다음 프리뷰는 자리 잡을 때 슬라이드 애니메이션 불필요 */
+    transition: none;
+  }
+
+  /* 프리뷰는 이미지 맛보기만 */
+  .usp-panel.next .usp-text{ display:none; }
+}
+
+/* =========================
+   TABLET & SMALL DESKTOP (글이 아래로 내려가도록)
+   ========================= */
+@media (max-width:991px){
+  .usp-tab-section{
+    padding-right: clamp(16px, 6vw, 84px) !important; /* 좁아지면 양쪽 여백 */
+  }
+
+  .usp-panels{
+    max-width: 760px;
+  }
+
+  /* ✅ 모바일/태블릿에서도 “슬라이드”는 유지해야 하므로
+     transform/transition/position을 강제로 죽이지 말고
+     레이아웃만 column으로 바꿈 */
+  .usp-panel{
+    flex-direction: column;
+    text-align: center;
+    gap: 22px;
+  }
+
+  .usp-panel img{
+    width: min(92vw, 560px);
+    max-width: none;
+  }
+
+  .usp-text{
+    max-width: 640px;
+  }
+
+  .usp-text h3{
+    font-size: 1.55rem;
+  }
+}
+
+/* =========================
+   MOBILE TABS (2개만 노출)
+   ========================= */
+@media (max-width:576px){
+  .usp-tabs{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .usp-tab{
+    font-size: .95rem;
+    padding: 14px 8px;
+  }
+}
+
+/* =========================
+   USP TAB SECTION STYLE END
+   ========================= */
