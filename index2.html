@@ -79,40 +79,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager (noscript) -->
 <!-- ▼▼ NAV (슬림 바 + 절대 위치 로고) ▼▼ -->
 <nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
-<div class="container-fluid">
-<!-- 로고: 절대 위치 -->
-<a class="navbar-brand brand-abs" href="#">
-<img alt="더브릿지플러스" class="d-none d-sm-block" src="images/logotop.png" style="height:170px;"/>
-<img alt="더브릿지플러스" class="d-block d-sm-none" src="images/logotop.png" style="height:90px;"/>
-</a>
-<!-- 햄버거 버튼 (collapse 바깥에 둠) -->
-<button class="navbar-toggler ms-auto" type="button" id="menuBtn" aria-controls="drawer" aria-expanded="false" aria-label="메뉴 열기/닫기">
-      <span class="navbar-toggler-icon"></span>
-</button>
-<!-- 가운데 메뉴 -->
-<div class="d-none d-lg-flex flex-fill justify-content-center align-items-center" style="gap:30px;">
-  <ul class="navbar-nav" style="gap:30px;">
-<li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
-<li class="nav-item"><a class="nav-link" href="#pricing">이용요금</a></li>
-<li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
-<li class="nav-item"><a class="nav-link" href="#faq">자주 묻는 질문</a></li>
-<li class="nav-item"><a class="nav-link" href="#location">위치</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
-</ul>
-</div>
-<!-- 오른쪽 CTA 버튼 (데스크탑 전용) -->
-<a class="open-general btn fw-bold d-none d-lg-block"
-  style="background:linear-gradient(135deg,#007BFF,#00BFFF);
+  <div class="container-fluid">
+
+    <!-- 로고 -->
+    <a class="navbar-brand brand-abs" href="#">
+      <img alt="더브릿지플러스" class="d-none d-sm-block" src="images/logotop.png" style="height:170px;"/>
+      <img alt="더브릿지플러스" class="d-block d-sm-none" src="images/logotop.png" style="height:90px;"/>
+    </a>
+
+    <!-- 가운데 메뉴 (데스크탑 전용) -->
+    <div class="d-none d-lg-flex flex-fill justify-content-center align-items-center" style="gap:30px;">
+      <ul class="navbar-nav" style="gap:30px;">
+        <li class="nav-item"><a class="nav-link" href="#services">서비스</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">이용요금</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">회사소개</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">자주 묻는 질문</a></li>
+        <li class="nav-item"><a class="nav-link" href="#location">위치</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
+      </ul>
+    </div>
+
+    <!-- 오른쪽 영역: CTA + 햄버거 (PC / 모바일 공용) -->
+    <div class="ms-auto d-flex align-items-center gap-2">
+
+      <!-- CTA: 하나만 존재 (PC/모바일 공용) -->
+      <a class="open-general btn fw-bold nav-cta"  
+         style="background:linear-gradient(135deg,#007BFF,#00BFFF);
          color:#fff; border:none; border-radius:24px;
          padding:10px 22px; font-size:15px;
          white-space:nowrap; min-width:120px;
-         margin-right:80px;"
-  data-bs-toggle="modal"
-  data-bs-target="#consultModal"
->
-  지금 문의하기
-</a>
-</div>
+         data-bs-toggle="modal"
+         data-bs-target="#consultModal">
+        지금 문의하기
+      </a>
+
+      <!-- 햄버거 -->
+      <button class="navbar-toggler" type="button" id="menuBtn"
+              aria-controls="drawer" aria-expanded="false" aria-label="메뉴 열기/닫기">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    </div>
+
+  </div>
 </nav>
 <div id="drawer" class="side-drawer">
   <button type="button" class="btn-close btn-close-white" aria-label="메뉴 닫기" id="closeDrawerBtn"></button>
@@ -161,67 +170,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 </header>
-<section id="services" style="padding:80px 0; background:#ffffff;">
-<div class="container" style="max-width:1140px;">
-<h2 class="text-center fw-bold mb-5">비즈니스 성장에 필요한 주요 서비스</h2>
-<!-- 1. 사업자금 확보 -->
-<div class="row align-items-center justify-content-center fade-in" style="margin-bottom:80px;">
-<div class="col-md-6 text-center mb-4 mb-md-0">
-<i class="fa fa-hand-holding-usd fa-6x text-dark"></i>
-</div>
-<div class="col-md-6 text-center">
-<h3 class="fw-bold fs-1 text-dark mb-3">사업자금 확보 지원</h3>
-<p class="fs-4 text-secondary">
-      지금 내게 맞는 정책자금이나 사업자금 확보
-      방법은 뭐가 있을까?<br/><br/>
-      👉 정책자금·보증·바우처 안내부터 자격 조건 체크,
-        신청 준비 코칭까지 전문가가 함께 도와드립니다!
-    </p>
-</div>
-</div>
-<!-- 2. 미팅룸 & OA존 -->
-<div class="row align-items-center justify-content-center flex-md-row-reverse fade-in" style="margin-bottom:80px;">
-<div class="col-md-6 text-center mb-4 mb-md-0">
-<i class="fa fa-people-arrows fa-6x text-dark"></i>
-</div>
-<div class="col-md-6 text-center">
-<h3 class="fw-bold fs-1 text-dark mb-3">미팅룸 &amp; OA존 지원</h3>
-<p class="fs-4 text-secondary">
-      주소만 빌려주는 게 아니라, 사업자 주소지에서
-      미팅룸이나 OA존은 이용 가능할까?<br/><br/>
-      👉 저희는 건물 내 회의실과 OA존을 지원합니다!
-    </p>
-</div>
-</div>
-<!-- 3. 세무·회계 서비스 -->
-<div class="row align-items-center justify-content-center fade-in" style="margin-bottom:80px;">
-<div class="col-md-6 text-center mb-4 mb-md-0">
-<i class="fa fa-calculator fa-6x text-dark"></i>
-</div>
-<div class="col-md-6 text-center">
-<h3 class="fw-bold fs-1 text-dark mb-3">세무·회계 서비스</h3>
-<p class="fs-4 text-secondary">
-      비상주 오피스를 쓰면 세무·회계 같은 사업주 필수 서비스도 연계가 가능할까?<br/><br/>
-      👉 세무·회계 서비스와 비상주서비스를 연계하시면
-      비상주 이용요금이 월 1만원!
-    </p>
-</div>
-</div>
-<!-- 4. 관공서 현장 실사 지원 -->
-<div class="row align-items-center justify-content-center flex-md-row-reverse fade-in" style="margin-bottom:80px;">
-<div class="col-md-6 text-center mb-4 mb-md-0">
-<i class="fa fa-building fa-6x text-dark"></i>
-</div>
-<div class="col-md-6 text-center">
-<h3 class="fw-bold fs-1 text-dark mb-3">관공서 현장 실사 지원</h3>
-<p class="fs-4 text-secondary">
-      사업자등록 시 관공서 실사가 나오면 어떻게 대응할까?<br/><br/>
-      👉 주소지에 사업자등록 전문가가 상주하며
-      즉각 대응합니다!
-    </p>
-</div>
-</div>
-</div>
+<!-- =========================
+     USP TAB SECTION START
+     ========================= -->
+<section id="services" class="usp-tab-section" style="padding:80px 0; background:#ffffff;">
+  <!-- 섹션 타이틀 -->
+  <h2 class="text-center fw-bold">
+    한 번에 해결하는 비즈니스 핵심 지원 서비스
+  </h2>
+
+  <!-- 섹션 부제목 -->
+  <p class="text-center text-secondary mb-5">
+    공간을 넘어, 사업 운영까지 연결합니다
+  </p>
+
+  <!-- USP 탭 버튼 영역 -->
+  <div class="usp-tabs" id="uspTabs">
+    <!-- JS에서 동적 생성 -->
+  </div>
+
+  <!-- USP 콘텐츠 패널 영역 -->
+  <div class="usp-panels" id="uspPanels">
+    <!-- JS에서 동적 생성 -->
+
+  </div>
 </section>
 <section id="pricing" style="padding:40px 0; background:#ffffff;">
 <div class="container" style="max-width:1140px;">
@@ -243,31 +215,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="five-col"><div class="price-card">
   <div class="price-label">3개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="개인사업자" data-plan-name="3개월" data-monthly="45000" data-months="3">선택 하기</button>
+    data-type="개인사업자" data-plan-name="3개월" data-monthly="45000" data-months="3">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card">
   <div class="price-label">6개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="개인사업자" data-plan-name="6개월" data-monthly="35000" data-months="6">선택 하기</button>
+    data-type="개인사업자" data-plan-name="6개월" data-monthly="35000" data-months="6">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card price-card-best">
   <div class="best-badge">BEST</div><div class="price-label">12개월</div><div class="price-value">25,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="개인사업자" data-plan-name="12개월" data-monthly="25000" data-months="12">선택 하기</button>
+    data-type="개인사업자" data-plan-name="12개월" data-monthly="25000" data-months="12">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card">
   <div class="price-label">24개월</div><div class="price-value">20,800원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="개인사업자" data-plan-name="24개월" data-monthly="20800" data-months="24">선택 하기</button>
+    data-type="개인사업자" data-plan-name="24개월" data-monthly="20800" data-months="24">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card">
   <div class="price-label">36개월</div><div class="price-value">18,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="개인사업자" data-plan-name="36개월" data-monthly="18000" data-months="36">선택 하기</button>
+    data-type="개인사업자" data-plan-name="36개월" data-monthly="18000" data-months="36">상담 하기</button>
 </div></div>
 
 </div>
@@ -278,31 +250,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="five-col"><div class="price-card">
   <div class="price-label">3개월</div><div class="price-value">55,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="법인사업자" data-plan-name="3개월" data-monthly="55000" data-months="3">선택 하기</button>
+    data-type="법인사업자" data-plan-name="3개월" data-monthly="55000" data-months="3">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card">
   <div class="price-label">6개월</div><div class="price-value">45,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="법인사업자" data-plan-name="6개월" data-monthly="45000" data-months="6">선택 하기</button>
+    data-type="법인사업자" data-plan-name="6개월" data-monthly="45000" data-months="6">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card price-card-best">
   <div class="best-badge">BEST</div><div class="price-label">12개월</div><div class="price-value">35,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="법인사업자" data-plan-name="12개월" data-monthly="35000" data-months="12">선택 하기</button>
+    data-type="법인사업자" data-plan-name="12개월" data-monthly="35000" data-months="12">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card">
   <div class="price-label">24개월</div><div class="price-value">31,200원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="법인사업자" data-plan-name="24개월" data-monthly="31200" data-months="24">선택 하기</button>
+    data-type="법인사업자" data-plan-name="24개월" data-monthly="31200" data-months="24">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card">
   <div class="price-label">36개월</div><div class="price-value">27,700원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="법인사업자" data-plan-name="36개월" data-monthly="27700" data-months="36">선택 하기</button>
+    data-type="법인사업자" data-plan-name="36개월" data-monthly="27700" data-months="36">상담 하기</button>
 </div></div>
 
 </div>
@@ -327,33 +299,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <div class="five-row">
 <div class="five-col"><div class="price-card stay-card">
-  <div class="price-label">1인실</div><div class="price-value">300,000원<span class="price-sub"> / 월</span></div>
+  <div class="price-label">1인실</div><div class="price-value st-fixed">300,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="상주오피스" data-plan-name="1인실" data-monthly="300000" data-months="1">선택 하기</button>
+    data-type="상주오피스" data-plan-name="1인실" data-monthly="300000" data-months="1">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card stay-card">
-  <div class="price-label">2인실</div><div class="price-value">600,000원<span class="price-sub"> / 월</span></div>
+  <div class="price-label">2인실</div><div class="price-value st-fixed">600,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="상주오피스" data-plan-name="2인실" data-monthly="600000" data-months="1">선택 하기</button>
+    data-type="상주오피스" data-plan-name="2인실" data-monthly="600000" data-months="1">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card stay-card">
   <div class="price-label">4인실</div><div class="price-value st-fixed">1,100,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="상주오피스" data-plan-name="4인실" data-monthly="1100000" data-months="1">선택 하기</button>
+    data-type="상주오피스" data-plan-name="4인실" data-monthly="1100000" data-months="1">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card stay-card">
   <div class="price-label">5인실</div><div class="price-value st-fixed">1,400,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="상주오피스" data-plan-name="5인실" data-monthly="1400000" data-months="1">선택 하기</button>
+    data-type="상주오피스" data-plan-name="5인실" data-monthly="1400000" data-months="1">상담 하기</button>
 </div></div>
 
 <div class="five-col"><div class="price-card stay-card">
   <div class="price-label">6인실 이상</div><div class="price-value st-fixed">1,700,000원<span class="price-sub">부터 / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
-    data-type="상주오피스" data-plan-name="6인실 이상" data-monthly="1700000" data-months="1">선택 하기</button>
+    data-type="상주오피스" data-plan-name="6인실 이상" data-monthly="1700000" data-months="1">상담 하기</button>
 </div></div>
 </div>
 </section>
@@ -909,6 +881,22 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('.navbar.slimbar');
+  if (!nav) return;
+
+  const threshold = 10; // 스크롤 10px만 내려도 전환
+  const sync = () => {
+    const scrolled = window.scrollY > threshold;
+    nav.classList.toggle('is-scrolled', scrolled);
+    nav.classList.toggle('is-top', !scrolled);
+  };
+
+  sync(); // 첫 로드 상태 반영
+  window.addEventListener('scroll', sync, { passive: true });
+});
+</script>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
     const faders = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
@@ -923,11 +911,16 @@ document.addEventListener("DOMContentLoaded", function() {
     faders.forEach(fader => observer.observe(fader));
   });
 </script>
-
-    <!-- 모바일 하단 고정 CTA 바 -->
+<!--
+==============================
+모바일 하단 고정 CTA 바 (현재 비활성화)
+- 네비 CTA를 모바일에서도 유지하는 구조로 변경됨
+- UX 중복 방지를 위해 임시 비활성화
+==============================
 <div class="cta-bar-mobile d-lg-none"> <a class="btn-cta open-general" data-bs-toggle="modal" data-bs-target="#consultModal">지금 문의하기 </a> 
 <a href="tel:0221358227" class="btn-cta text-white"> <i class="fas fa-phone-alt me-2"></i> 전화 상담 하기 </a> </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+-->
  <!-- 채널톡-->   
 <!-- SDK 로더 + boot 초기화, 역할: 채널톡 스크립트를 불러오고, 버튼을 활성화 -->
 <script>
@@ -1308,5 +1301,231 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<!-- =========================
+     USP TAB SCRIPT START
+     ========================= -->
+<script>
+/* =========================
+   USP DATA (탭/패널 공용)
+   ========================= */
+const USP_DATA = [
+  { title:"실사 대응 전문",     subtitle:"사업자등록 시 관공서 실사가 나오면 어떻게 대응할까?",        desc:"👉 실사 대응 경험이 있는 담당자가 준비부터 운영까지 안내합니다.",           img:"images/usp-inspection-support.png" },
+  { title:"정책자금 무료 체크",  subtitle:"지금 내게 맞는 정책자금이나 사업자금 확보방법은 뭐가 있을까?",  desc:"👉 정책자금·보증·바우처 안내부터 자격 조건 체크, 신청 준비까지 전문가가 함께 도와드립니다!",             img:"images/usp-policy-fund-check.png" },
+  { title:"세무 연계 혜택",     subtitle:"비상주 오피스를 쓰면 세무·회계 같은 사업주 필수 서비스도 연계가 가능할까?",     desc:"👉 세무,법무등 사업자에게 필요한 모든 상담과 서비스 연계 시 비용을 합리적으로 구성합니다.",              img:"images/usp-tax-benefit.png" },
+  { title:"회의실·OA 이용",     subtitle:"비상주 고객인데, 실제 사무실 미팅룸,OA존은 이용 가능할까?",         desc:"👉 비상주 고객도 회의실과 OA 환경을 예약하여 이용할 수 있습니다.",         img:"images/usp-meeting-oa.png" }
+];
+
+/* =========================
+   DOM
+   ========================= */
+const tabsEl   = document.getElementById("uspTabs");
+const panelsEl = document.getElementById("uspPanels");
+
+/* =========================
+   STATE
+   ========================= */
+let currentIndex = 0;
+let timer = null;
+let isAnimating = false;
+
+const AUTO_INTERVAL = 6500; // ✅ 자동 전환(느리게)
+
+/* =========================
+   UTIL
+   ========================= */
+function isMobile(){ return window.innerWidth <= 576; } // 모바일: 탭 2개만
+function idxPrev(i){ return (i - 1 + USP_DATA.length) % USP_DATA.length; }
+function idxNext(i){ return (i + 1) % USP_DATA.length; }
+
+/* ✅ CSS의 전환 시간과 JS 타이밍을 맞춤 */
+function slideDurationMs(){
+  const v = getComputedStyle(document.documentElement).getPropertyValue("--usp-slide-dur").trim();
+  if(!v) return 900;
+  if(v.endsWith("ms")) return parseFloat(v);
+  if(v.endsWith("s")) return parseFloat(v) * 1000;
+  return 900;
+}
+
+/* =========================
+   TAB RENDER (언더라인 active 유지)
+   ========================= */
+function renderTabs(){
+  if(!tabsEl) return;
+  tabsEl.innerHTML = "";
+
+  if(isMobile()){
+    // 모바일: 현재 + 다음 (2개만)
+    for(let i=0;i<2;i++){
+      const idx = (currentIndex + i) % USP_DATA.length;
+      createTab(idx, i===0);
+    }
+  }else{
+    // 데스크탑: 4개 전체
+    USP_DATA.forEach((_, idx) => createTab(idx, idx===currentIndex));
+  }
+}
+
+function createTab(idx, isActive){
+  const tab = document.createElement("button");
+  tab.type = "button";
+  tab.className = "usp-tab" + (isActive ? " active" : "");
+  tab.textContent = USP_DATA[idx].title;
+
+  tab.addEventListener("click", () => {
+    stopAuto();
+    slideTo(idx);
+    startAuto();
+  });
+
+  tabsEl.appendChild(tab);
+}
+
+/* =========================
+   PANEL SETUP (3장 고정: prev/active/next)
+   ========================= */
+function makePanel(role){
+  const el = document.createElement("div");
+  el.className = "usp-panel " + role;
+  el.innerHTML = `
+    <img src="" alt="">
+    <div class="usp-text">
+      <h3></h3>
+      <p></p>
+    </div>
+  `;
+  return el;
+}
+
+let panelPrev = makePanel("prev");
+let panelMain = makePanel("active");
+let panelNext = makePanel("next");
+
+if(panelsEl){
+  panelsEl.innerHTML = "";
+  panelsEl.appendChild(panelPrev);
+  panelsEl.appendChild(panelMain);
+  panelsEl.appendChild(panelNext);
+}
+
+function fillPanel(panelEl, idx){
+  const d = USP_DATA[idx];
+  const img = panelEl.querySelector("img");
+  const h3  = panelEl.querySelector(".usp-text h3");
+  const p   = panelEl.querySelector(".usp-text p");
+
+  img.src = d.img;
+  img.alt = d.title;
+
+  h3.textContent = d.subtitle;
+  p.textContent  = d.desc;
+}
+
+/* 초기 렌더 */
+function initPanels(){
+  if(!panelsEl) return;
+
+  panelsEl.classList.add("no-anim");
+
+  fillPanel(panelPrev, idxPrev(currentIndex));
+  fillPanel(panelMain, currentIndex);
+  fillPanel(panelNext, idxNext(currentIndex));
+
+  // 클래스 확실히 정리
+  panelPrev.className = "usp-panel prev";
+  panelMain.className = "usp-panel active";
+  panelNext.className = "usp-panel next";
+
+  // 다음 프레임에서 애니메이션 다시 허용
+  requestAnimationFrame(() => {
+    panelsEl.classList.remove("no-anim");
+  });
+}
+
+/* =========================
+   SLIDE (현재는 왼쪽으로 사라지고, 다음은 오른쪽에서 들어옴)
+   ========================= */
+function slideTo(targetIdx){
+  if(isAnimating) return;
+  if(targetIdx === currentIndex) return;
+
+  isAnimating = true;
+
+  // ✅ “항상 왼쪽으로 넘기는” 느낌을 유지하려면,
+  // 클릭이든 자동이든 target을 next 패널에 담아서 같은 애니메이션을 탄다.
+  fillPanel(panelNext, targetIdx);
+
+  // ✅ 애니메이션 트리거
+  requestAnimationFrame(() => {
+    panelMain.className = "usp-panel prev";    // 현재 → 왼쪽으로 퇴장
+    panelNext.className = "usp-panel active";  // 다음 → 현재 자리로 진입
+  });
+
+  // ✅ 전환 완료 후 3장 재배치
+  const dur = slideDurationMs();
+  window.setTimeout(() => {
+    currentIndex = targetIdx;
+
+    // 재활용 로테이션
+    const oldPrev = panelPrev;
+    panelPrev = panelMain;   // 방금 나간 애가 prev가 됨
+    panelMain = panelNext;   // 방금 들어온 애가 main이 됨
+    panelNext = oldPrev;     // 남은 하나를 next로 재활용
+
+    // next는 “다음 인덱스”로 채워서 대기
+    panelsEl.classList.add("no-anim");
+    panelPrev.className = "usp-panel prev";
+    panelMain.className = "usp-panel active";
+    panelNext.className = "usp-panel next";
+    fillPanel(panelNext, idxNext(currentIndex));
+
+    requestAnimationFrame(() => {
+      panelsEl.classList.remove("no-anim");
+    });
+
+    renderTabs();
+    isAnimating = false;
+  }, dur + 40);
+}
+
+/* =========================
+   AUTO
+   ========================= */
+function startAuto(){
+  stopAuto();
+  timer = setInterval(() => {
+    slideTo(idxNext(currentIndex));
+  }, AUTO_INTERVAL);
+}
+function stopAuto(){
+  if(timer){
+    clearInterval(timer);
+    timer = null;
+  }
+}
+
+/* =========================
+   RESIZE (탭 4/2 전환 + 프리뷰 반응)
+   ========================= */
+let resizeTick = null;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTick);
+  resizeTick = setTimeout(() => {
+    renderTabs();
+    initPanels();
+  }, 120);
+});
+
+/* =========================
+   INIT
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  renderTabs();
+  initPanels();
+  startAuto();
+});
+</script>
+<!-- =========================
+     USP TAB SCRIPT END
+     ========================= -->
 </body>
 </html>
