@@ -529,7 +529,7 @@ body {
 .floorplan-wrap {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -541,7 +541,7 @@ body {
 }
 
 /* 클릭 영역: 원형 + 투명 */
-.room-hotspot {
+.room-hotspot{
   position: absolute;
   width: 11%;
   height: 11%;
@@ -550,6 +550,23 @@ body {
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.25);
   transition: .22s ease;
+
+  /* ✅ 핵심 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-hotspot::after{
+  content: attr(data-cap);
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 999px;
+  white-space: nowrap;   /* ✅ 줄바꿈 방지 */
+  line-height: 1;        /* ✅ 이모지로 인한 줄높이 팽창 방지 */
+  pointer-events: none;
 }
 
 /* hover 하이라이트 */
