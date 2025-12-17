@@ -56,7 +56,7 @@ if (!wcs_add) var wcs_add={};
 wcs_add["wa"] = "s_17cea933ed8b";
 if (!_nasa) var _nasa={};
 if(window.wcs){
-wcs.inflow(thebridgeplus.co.kr);
+wcs.inflow("thebridgeplus.co.kr");
 wcs_do();
 }
 </script>
@@ -774,19 +774,36 @@ document.querySelector('form[action*="formResponse"]')// 폼 제출 시 모든 �
     setTimeout(() => e.target.reset(), 1200);
   });
   </script>
-<!-- NAVER CTS Lead 전환 -->
-<script type="text/javascript">
-document.querySelector('form[action*="formResponse"]')
-  ?.addEventListener('submit', function () {
-    if (!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "312052";
+<!-- NAVER CTS Lead 전환 (Google Form 안정형: 숨김 iframe target) -->
+<script>
+(() => {
+  const form = document.querySelector('form[action*="formResponse"]');
+  if (!form) return;
 
-    if (window.wcs) {
-      var _conv = {};
-      _conv.type = "lead";
-      wcs.trans(_conv);
-    }
-});
+  // 숨김 iframe 생성
+  let iframe = document.getElementById('gf_iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'gf_iframe';
+    iframe.name = 'gf_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+  }
+
+  // ✅ 제출 타깃을 숨김 iframe으로
+  form.setAttribute('target', 'gf_iframe');
+
+  let submitted = false;
+  form.addEventListener('submit', () => { submitted = true; });
+
+  // ✅ "전송이 끝나 iframe이 로드된 뒤" lead 전송
+  iframe.addEventListener('load', () => {
+    if (!submitted) return;
+    submitted = false;
+
+    if (window.wcs) wcs.trans({ type: 'lead' });
+  });
+})();
 </script>
 <!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 -->
 <script>
