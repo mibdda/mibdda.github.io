@@ -1078,3 +1078,243 @@ footer {
     object-fit: cover; /* 강제 크롭 */
     border-radius: 12px;
   }
+}
+/* =========================
+   REVIEWS (Warm band + Auto marquee)
+   ========================= */
+
+/* 혹시 이 섹션에 .section을 같이 줬을 때 flex 영향 제거 */
+.reviews-band.section{
+  display:block !important;
+  align-items: initial !important;
+}
+
+:root{
+  --reviews-speed: 52s; /* 기본 속도 (JS가 폭 보고 자동 조절함) */
+}
+
+/* 따뜻한 풀밴드 */
+.reviews-band{
+  padding: 78px 0;
+}
+.reviews-band.reviews-warm-band{
+  background: linear-gradient(180deg, #fff1e7 0%, #fff7ef 55%, #ffffff 100%);
+  border-top: 1px solid rgba(0,0,0,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.reviews-wrap{ max-width:1140px; }
+
+.reviews-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.reviews-title{
+  margin:0;
+  font-weight:900;
+  letter-spacing:-0.02em;
+}
+
+.reviews-sub{
+  margin: 10px 0 0;
+  color: rgba(17,24,39,0.7);
+  font-weight: 700;
+}
+
+.reviews-more{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.9);
+  color:#111;
+  font-weight: 900;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.reviews-more:hover{ background:#ffffff; }
+
+.reviews-marquee{
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(2px);
+}
+
+.reviews-track{
+  display:flex;
+  gap: 16px;
+  width: max-content;
+  padding: 12px 12px;
+  animation: reviews-marquee var(--reviews-speed, 52s) linear infinite;
+  will-change: transform;
+}
+
+.reviews-group{
+  display:flex;
+  gap: 16px;
+}
+
+/* 마우스 올리면 멈춤 */
+.reviews-marquee:hover .reviews-track,
+.reviews-marquee:focus-within .reviews-track{
+  animation-play-state: paused;
+}
+
+@keyframes reviews-marquee{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.review-card{
+  flex: 0 0 auto;
+  width: 360px;
+  min-width: 360px;
+  border-radius: 18px;
+  background:#fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+  overflow:hidden;
+}
+
+.review-top{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 14px 14px 0;
+}
+
+.review-avatar{
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  background: rgba(255, 122, 0, 0.12);
+  color: rgba(120, 55, 0, 0.95);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 900;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+}
+
+.review-topmeta{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.review-tag{
+  display:inline-flex;
+  align-items:center;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 122, 0, 0.10);
+  color: rgba(120, 55, 0, 0.95);
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.review-stars{
+  font-size: 12px;
+  opacity: .9;
+  letter-spacing: 1px;
+}
+
+.review-body{
+  padding: 12px 14px 16px;
+}
+
+.review-quote{
+  margin: 0 0 10px;
+  color:#222;
+  font-weight: 700;
+  line-height: 1.55;
+  font-size: 14px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;     /* ✅ 모바일에서도 3줄로 통일 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: calc(1.55em * 3); /* 카드 높이 들쑥날쑥 방지 */
+}
+
+.review-meta{
+  color:#6b7280;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* 좌우 페이드 (배경색은 warm band랑 맞춤) */
+.reviews-fade{
+  position:absolute; top:0; bottom:0;
+  width: 72px;
+  pointer-events:none;
+}
+.reviews-fade-left{
+  left:0;
+  background: linear-gradient(90deg, rgba(255,241,231,1) 0%, rgba(255,241,231,0) 100%);
+}
+.reviews-fade-right{
+  right:0;
+  background: linear-gradient(270deg, rgba(255,247,239,1) 0%, rgba(255,247,239,0) 100%);
+}
+
+/* 모바일 */
+@media (max-width: 576px){
+  .reviews-band{ padding: 56px 0; }
+  .reviews-head{ flex-direction: column; align-items:flex-start; }
+  .review-card{ width: 280px; min-width: 280px; }
+  .reviews-fade{ width: 42px; }
+}
+
+/* 접근성: 움직임 최소화 설정이면 자동스크롤 끄고 수동 스크롤 */
+@media (prefers-reduced-motion: reduce){
+  .reviews-track{ animation: none !important; }
+  .reviews-marquee{ overflow-x:auto; }
+  .reviews-track{ padding-bottom: 14px; }
+}
+/* 맨 위로 버튼 (채널톡 느낌: 반전 컬러) */
+.to-top{
+  position: fixed;
+  right: 24px;          /* 위치는 네가 조정 */
+  bottom: 140px;         /* 채널톡 위로 대충 (조정) */
+  width: 54px;
+  height: 56px;
+  border-radius: 999px;
+/* ✅ 완전 원형 말고 채널톡처럼 '둥근 사각' */
+  border-radius: 24px;
+  background: #fff;
+  color: var(--brand-dark);
+  border: 2px solid var(--brand-dark);
+  box-shadow: 0 6px 16px rgba(0,0,0,.14);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 1060;
+}
+.to-top.show{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
