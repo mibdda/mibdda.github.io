@@ -50,20 +50,20 @@
 </script>
 <!-- End Danggeun Market Code -->
 <!-- NAVER CTS 광고 전환 / 방문 추적 코드 -->
-<script src="//wcs.pstatic.net/wcslog.js" type="text/javascript"></script>
-<script type="text/javascript">
-if (!wcs_add) var wcs_add = {};
-
-// ★ 기존 애널리틱스 WA (사용안함, 기록용)
-// wcs_add["wa"] = "157800945592230";  // 구 네이버 애널리틱스 WA
-
-// ★ 신규 광고 전환 추적용 WA (실사용)
-wcs_add["wa"] = "312052";
-
-if (window.wcs) {
-  wcs_do();
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script> 
+<script type="text/javascript"> 
+if (!wcs_add) var wcs_add={};
+wcs_add["wa"] = "s_17cea933ed8b";
+if (!_nasa) var _nasa={};
+if(window.wcs){
+wcs.inflow(thebridgeplus.co.kr);
+wcs_do();
 }
 </script>
+
+<!--// ★ 기존 애널리틱스 WA (사용안함, 기록용)
+// wcs_add["wa"] = "157800945592230";  // 구 네이버 애널리틱스 WA-->
+
 <!-- END NAVER CTS -->
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -82,10 +82,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container-fluid">
 
     <!-- 로고 -->
-    <a class="navbar-brand brand-abs" href="#">
-      <img alt="더브릿지플러스" class="d-none d-sm-block" src="images/logotop.png" style="height:170px;"/>
-      <img alt="더브릿지플러스" class="d-block d-sm-none" src="images/logotop.png" style="height:90px;"/>
-    </a>
+   <a class="navbar-brand brand-abs" href="#">
+  <img alt="더브릿지플러스"src="images/logotop.png"style="height:160px;"/>
+</a>
 
     <!-- 가운데 메뉴 (데스크탑 전용) -->
     <div class="d-none d-lg-flex flex-fill justify-content-center align-items-center" style="gap:30px;">
@@ -192,12 +191,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- USP 콘텐츠 패널 영역 -->
   <div class="usp-panels" id="uspPanels">
     <!-- JS에서 동적 생성 -->
-
   </div>
 </section>
-<section id="pricing" style="padding:40px 0; background:#ffffff;">
+<!-- =========================
+     TRUST METRICS (USP 바로 아래)
+     ========================= -->
+<section id="trustMetrics" class="trust-metrics-band">
+  <div class="trust-metrics-wrap">
+    <h2 class="trust-title">계약 전에 꼭 확인해야 할 기준</h2>
+    <p class="trust-sub">운영 기준을 숫자로 보여드립니다</p>
+
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-label">계약 평균 소요시간</div>
+        <div class="trust-value">5분</div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-label">사업자등록 승인율</div>
+        <div class="trust-value">97%</div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-label">우편 수령·전달 처리율</div>
+        <div class="trust-value">100%</div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-label">클레임 평균 응답 시간</div>
+        <div class="trust-value">10분</div>
+      </div>
+    </div>
+
+    <div class="trust-note">사업자등록 반려 시 계약금액 100% 환불</div>
+  </div>
+</section>
+<section id="pricing" style="padding:80px 0; background:#ffffff;">
 <div class="container" style="max-width:1140px;">
-<h2 class="text-center fw-bold mb-5">이용요금 안내</h2>
+<h2 class="text-center fw-bold mb-3">이용요금 안내</h2>
 
 <!-- 섹션 제목 -->
 <h2 class="section-title" style="display:none;">이용요금
@@ -208,7 +239,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="mb-5">
 <h3 class="section-title" style="margin-bottom:6px; text-align:left;">비상주서비스</h3>
 <p class="section-desc">보증금, 예치금 없이 이용하고 회의실 · OA존 혜택까지!</p>
+<!-- ✅ 모바일 전용: 개인/법인 탭 (회사소개 탭 스타일과 동일 계열) -->
+<ul class="nav nav-pills justify-content-center pricing-mobile-tabs" role="tablist" aria-label="비상주 요금 탭">
+  <li class="nav-item" role="presentation">
+    <button type="button" class="nav-link pm-tab active" data-target="personal" role="tab" aria-selected="true">
+      개인
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button type="button" class="nav-link pm-tab" data-target="corp" role="tab" aria-selected="false">
+      법인
+    </button>
+  </li>
+</ul>
 <!-- 개인사업자 -->
+<div class="pricing-group" data-group="personal">
 <h4 class="group-title">개인사업자</h4>
 <div class="five-row">
 
@@ -242,8 +287,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     data-type="개인사업자" data-plan-name="36개월" data-monthly="18000" data-months="36">상담 하기</button>
 </div></div>
 
-</div>
+</div></div>
 <!-- 법인사업자 -->
+<div class="pricing-group" data-group="corp">
 <h4 class="group-title">법인사업자</h4>
 <div class="five-row">
 
@@ -277,27 +323,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     data-type="법인사업자" data-plan-name="36개월" data-monthly="27700" data-months="36">상담 하기</button>
 </div></div>
 
+</div></div>
+<!-- ✅ 모바일 전용: 전체 요금 보기 -->
+<div class="pricing-mobile-more">
+  <button type="button" class="pm-more-btn" id="pricingMoreBtn">전체 요금 보기</button>
 </div>
 <!-- 여백 추가 -->
-<div style="height:40px;"></div>
+<div style="height:18px;"></div>
 <!-- 상주 서비스 -->
-<h3 class="section-title mb-1" style="text-align:left;">상주서비스</h3>
+<div class="d-flex align-items-center gap-4 mb-1">
+  <h3 class="section-title m-0" style="text-align:left; white-space:nowrap;">상주서비스</h3>
+
+  <button
+    type="button"
+    class="btn btn-outline-secondary floorplan-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#floorplanModal"
+  >
+    <span class="fp-strong">평면도 보기</span>
+    <span class="fp-weak">신논현점</span>
+  </button>
+</div>
 
 <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
   <p class="section-desc m-0">
     24시간 출입, 유/무선 초고속 인터넷, 회의실 · 라운지 무제한 이용!
   </p>
-<button
-  type="button"
-  class="btn btn-outline-secondary floorplan-btn"
-  data-bs-toggle="modal"
-  data-bs-target="#floorplanModal"
->
-  <span class="fp-strong">평면도 보기</span>
-  <span class="fp-weak">신논현점</span>
-</button>
+<!-- ✅ 모바일 전용: 상주서비스 요약 카드(1개만 노출) -->
+<div class="stay-mobile-card">
+  <div class="price-card stay-card stay-card-summary">
+    <div class="price-label">상주 사무실</div>
+    <div class="price-value st-fixed">300,000원<span class="price-sub">부터 / 월</span></div>
+    <div class="stay-sub">1~6인실·팀 오피스 상담 가능</div>
+
+    <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
+      data-type="상주오피스" data-plan-name="상주 사무실" data-monthly="300000" data-months="1">상담 하기</button>
+  </div>
 </div>
-<div class="five-row">
+</div>
+<div class="five-row stay-grid">
 <div class="five-col"><div class="price-card stay-card">
   <div class="price-label">1인실</div><div class="price-value st-fixed">300,000원<span class="price-sub"> / 월</span></div>
   <button class="price-btn open-plan" data-bs-toggle="modal" data-bs-target="#consultModal"
@@ -330,7 +394,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </section>
 <!-- 회사소개: 텍스트 + 2×2 이미지 그리드 (가운데) -->
-<section class="section" id="about" style="padding:80px 0;">
+<section class="section" id="about" style="padding:40px 0;">
 <div class="container about-wrap">
 <h2 class="text-center fw-bold mb-5">더브릿지플러스 회사소개</h2>
 <div class="row mb-4">
@@ -1526,6 +1590,85 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <!-- =========================
      USP TAB SCRIPT END
+     ========================= -->
+<!-- =========================
+     모바일 전용 가격표 탭 스크립트 START
+     ========================= -->
+<script>
+(function(){
+  const MOBILE_W = 576;
+  const pricing = document.getElementById("pricing");
+  if(!pricing) return;
+
+  const tabs = pricing.querySelectorAll(".pricing-mobile-tabs .pm-tab");
+  const groups = pricing.querySelectorAll(".pricing-group");
+  const moreBtn = pricing.querySelector("#pricingMoreBtn");
+
+  let active = "personal";
+  let expanded = false;
+
+  function isMobile(){ return window.innerWidth <= MOBILE_W; }
+
+  function showCards(group, showAll){
+    const cols = group.querySelectorAll(".five-col");
+    cols.forEach(col => {
+      const btn = col.querySelector(".open-plan");
+      const months = btn ? Number(btn.dataset.months) : NaN;
+
+      if(!isMobile() || showAll){
+        col.style.display = "";
+        return;
+      }
+
+      // ✅ 모바일 접힘 상태: 6개월 + BEST(12개월)만 노출
+      const keep = (months === 12 || months === 6);
+      col.style.display = keep ? "" : "none";
+    });
+  }
+
+  function apply(){
+    // 데스크탑: 모두 원래대로
+    if(!isMobile()){
+      groups.forEach(g => { g.style.display = ""; showCards(g, true); });
+      if(moreBtn) moreBtn.style.display = "none";
+      return;
+    }
+
+    if(moreBtn) moreBtn.style.display = "";
+    groups.forEach(g => g.style.display = (g.dataset.group === active) ? "" : "none");
+
+    const current = pricing.querySelector(`.pricing-group[data-group="${active}"]`);
+    if(!current) return;
+
+    showCards(current, expanded);
+    if(moreBtn) moreBtn.textContent = expanded ? "요금 접기" : "전체 요금 보기";
+  }
+
+  function setActive(key){
+    active = key;
+    expanded = false;
+
+    tabs.forEach(t => {
+      const on = (t.dataset.target === key);
+      t.classList.toggle("active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+    });
+
+    apply();
+  }
+
+  tabs.forEach(t => t.addEventListener("click", () => setActive(t.dataset.target)));
+  if(moreBtn) moreBtn.addEventListener("click", () => { expanded = !expanded; apply(); });
+
+  window.addEventListener("resize", apply);
+
+  // init
+  if(tabs.length) setActive(tabs[0].dataset.target || "personal");
+  else apply();
+})();
+</script>
+<!-- =========================
+     모바일 전용 가격표 탭 스크립트 end
      ========================= -->
 </body>
 </html>
