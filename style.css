@@ -3,6 +3,10 @@
       --brand-sky:#66CCFF;    /* 연하늘 */
       --paper:#ECEFF1;        /* 연회색(배경) */
       --offwhite:#F7F9FB;
+      --usp-accent:#ff6a00;
+      --usp-slide-dur:900ms;      /* 너무 빠르면 여기만 늘리면 됨 */
+      --usp-peek:280px;           /* 데스크탑 “다음 화면 프리뷰” 보이는 폭 */
+      --usp-spill: clamp(16px, 4vw, 96px); /* next 프리뷰를 ‘추가로’ 오른쪽으로 미는 값 */
     }
 body {
   font-family:
@@ -31,9 +35,7 @@ body {
       transition: all 0.3s ease;
     }
     /* 섹션 공통 */
-    .section{min-height:100vh; padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
-        /* 특정 섹션만 화면 전체 높이 강제 해제 */
-    #faq, #location { min-height: auto !important; }
+    .section{padding-top:90px; padding-bottom:60px; display:flex; align-items:center;}
     .section.paper{background:var(--paper);}
     .section.alt{background:linear-gradient(180deg,#fff 0%, var(--offwhite) 100%);}
     .section.sky{background:linear-gradient(180deg,var(--brand-sky) 0%, #e8f7ff 100%);}
@@ -193,9 +195,6 @@ body {
 .price-card .st-fixed {
   font-size: 1.15rem;     /* 가격 줄바꿈 방지용 축소 */
   line-height: 1.43;
-}
-.stay-card {
-  height: 175px; /* 비상주 카드 높이와 동일하게 조정 (필요하면 숫자 미세조정) */
 }
       /* 반응형 */
 /* 공통: 박스 모델 안정화 */
@@ -419,11 +418,11 @@ body {
 
     /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
     /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
+/*
     div[style*="right:20px"][style*="bottom:20px"] {
         bottom: 70px !important; 
-        z-index: 1060 !important; /* 하단 바(1050) 위에 오도록 z-index를 올림 */
-    }
-}
+        z-index: 1060 !important;
+    }*/
 /* ================================
    부트스트랩 탭(nav-pills) 스타일 오버라이드
    ================================ */
@@ -666,20 +665,9 @@ footer {
     padding-bottom: 80px !important; /* CTA 높이만큼 여유 공간 확보 */
   }
 }
-#hero .carousel-item {
-  height: 80vh;
-}
 /* =========================
    USP TAB SECTION STYLE START
    ========================= */
-
-/* ✅ 튜닝 포인트 */
-:root{
-  --usp-accent:#ff6a00;
-  --usp-slide-dur:900ms;      /* 너무 빠르면 여기만 늘리면 됨 */
-  --usp-peek:280px;           /* 데스크탑 “다음 화면 프리뷰” 보이는 폭 */
-  --usp-spill: clamp(16px, 4vw, 96px); /* next 프리뷰를 ‘추가로’ 오른쪽으로 미는 값 */
-}
 
 /* ✅ 섹션을 가로로 더 넓게: 왼쪽은 여백, 오른쪽은 더 쓰는 느낌 */
 .usp-tab-section{
@@ -908,3 +896,185 @@ footer {
 /* =========================
    USP TAB SECTION STYLE END
    ========================= */
+/* =========================
+   TRUST METRICS (FULL BLEED + 4열 → 2x2)
+   ========================= */
+#trustMetrics.trust-metrics-band{
+  background:#2c2c2c;
+  color:#fff;
+
+  /* 어떤 부모 안에 있어도 좌우 끝까지 */
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+
+  padding:64px 0 56px;
+}
+
+#trustMetrics .trust-metrics-wrap{
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* 타이틀/서브 중앙정렬 */
+#trustMetrics .trust-title{
+  text-align:center;
+  margin:0 0 10px;
+  font-weight:800;
+  font-size:2.05rem;
+  letter-spacing:-0.02em;
+}
+#trustMetrics .trust-sub{
+  text-align:center;
+  margin:0 0 26px;
+  color:rgba(255,255,255,.82);
+  font-size:1.05rem;
+}
+
+/* 밴드보다 더 진한 차콜로 박스 구분 */
+#trustMetrics .trust-grid{
+  background:#1f1f1f;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:22px;
+  padding:26px 20px;
+
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:18px;
+}
+
+/* 각 칸: 제목 위 / 숫자 아래 중앙 */
+#trustMetrics .trust-item{
+  text-align:center;
+  padding:10px 6px;
+}
+#trustMetrics .trust-label{
+  margin:0 0 8px;
+  color:rgba(255,255,255,.72);
+  font-weight:700;
+  font-size:1.02rem;
+}
+#trustMetrics .trust-value{
+  margin:0;
+  font-weight:900;
+  font-size:2.35rem;
+  letter-spacing:-0.02em;
+  color:var(--brand-sky);
+}
+#trustMetrics .trust-note{
+  margin-top:18px;
+  color:rgba(255,255,255,.78);
+  font-size:.95rem;
+  padding-left:12px;
+  border-left:3px solid rgba(255,255,255,.22);
+}
+
+@media (max-width: 991.98px){
+  #trustMetrics .trust-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width: 576.98px){
+  #trustMetrics .trust-metrics-wrap{ padding:0 16px; }
+  #trustMetrics .trust-title{ font-size:1.65rem; }
+  #trustMetrics .trust-grid{ padding:22px 16px; border-radius:18px; }
+  #trustMetrics .trust-value{ font-size:2.05rem; }
+}
+
+/* =========================
+   특정 섹션만 100vh 강제 해제 (데스크탑 과한 공백 방지)
+   ========================= */
+#faq, #location, #about{
+  min-height:auto !important;
+}
+#about.section{
+  display:block !important; /* 회사소개는 flex 해제 */
+}
+
+/* =========================
+   MOBILE PRICING UI (탭 + 접기 + 상주 요약카드)
+   - 데스크탑은 기존 구조 그대로
+   - 모바일(<=576px)에서만 UX 변경
+   ========================= */
+
+/* 기본: 모바일 전용 UI 숨김 */
+.pricing-mobile-tabs{ display:none !important; }
+.pricing-mobile-more{ display:none }
+.stay-mobile-card{ display:none; }
+
+/* 모바일에서만 활성 */
+@media (max-width:576px){
+
+  /* (1) 개인/법인 탭: 2등분 */
+  .pricing-mobile-tabs{
+    display:grid !important;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    max-width:420px;
+    margin: 12px auto 18px !important; /* ⬅️ 아래 간격 늘림 */
+    padding-left:0;
+  }
+  .pricing-mobile-tabs .nav-link{
+    width:100%;
+    margin:0 !important;
+    text-align:center;
+    padding:10px 12px;
+  }
+
+  /* (2) 그룹 제목 숨김(탭이 대체) */
+  #pricing .group-title{ display:none; }
+
+  /* (3) “전체 요금 보기” 버튼: 카드와 간격 약간만 */
+  .pricing-mobile-more{
+    display:block !important;
+    margin-top: 12px !important;
+    text-align:center;
+  }
+
+  /* (4) 상주서비스: 요약 카드만 노출 */
+  #pricing .stay-grid{ display:none !important; }
+  #pricing .stay-mobile-card{
+    display:block !important;
+    width:100%;
+    margin:8px 0 12px;
+  }
+
+  /* (5) 상주 요약카드: 전체적으로 위로 (고정 높이/패딩 영향 제거) */
+  #pricing .stay-card-summary{
+    height:auto !important;          /* .stay-card(175px) 무력화 */
+    padding-top:24px !important;     /* 기본 42px보다 위로 */
+  }
+
+  /* 상주 요약 텍스트 간격도 위로 */
+  #pricing .stay-card-summary .price-label{ margin-bottom:10px; }
+  #pricing .stay-card-summary .price-value{ margin-bottom:10px; }
+  #pricing .stay-card-summary .stay-sub{ margin-top:0; }
+
+  /* (6) 상담하기 버튼: 풀폭 + 버튼도 위로 + 글씨 약간 위로 */
+  #pricing .stay-card-summary .price-btn{
+    width:100% !important;
+    margin:12px 0 0 !important;
+
+    /* 글씨를 버튼 안에서 살짝 위로 */
+    padding-top:8px !important;
+    padding-bottom:14px !important;
+    line-height:1.15;
+  }
+}
+/* 회사소개 이미지 모바일 2x2 */
+@media (max-width: 575.98px){
+  #about .about-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  #about .about-grid > div{
+    width: 100%;
+  }
+
+  #about .about-grid img{
+    width: 100%;
+    height: 160px;      /* 필요하면 150~180 조절 */
+    object-fit: cover; /* 강제 크롭 */
+    border-radius: 12px;
+  }
