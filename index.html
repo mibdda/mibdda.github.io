@@ -485,7 +485,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="text-center fw-bold mb-5">더브릿지플러스 회사소개</h2>
 <div class="row mb-4">
 <div class="col-lg-10 mx-auto">
-<p class="lead text-center">
+<p class="section-sub text-center">
             더브릿지플러스는 공유오피스와 비상주 오피스를 제공하는 전문 기업입니다.<br/>
             효율적인 공간과 안정적인 주소지, 네트워크 기회를 함께 제공합니다.
           </p>
@@ -528,7 +528,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <section class="section alt" id="faq" style="padding:60px 0;">
     <div class="container" style="max-width:900px;">
         <h2 class="text-center fw-bold mb-3">자주 묻는 질문</h2>
-        <p class="lead text-center text-secondary mb-5">
+        <p class="section-sub text-center mb-5">
             원하는 대답이 없을 경우 상담을 요청하시면 빠르게 상담 받을 수 있습니다.
         </p>
 
@@ -825,21 +825,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </h2>
 
           <!-- 설명 -->
-          <p class="mb-4" style="font-size:1.0rem;">
-            1분 만에 상담 요청을 완료하실 수 있어요.<br>
-            상주오피스·비상주 주소지·사업자등록,<br> 자금·세무 상담까지 빠르게 도와드립니다.
+          <p class="mb-4" style="font-size:0.9rem;">
+            1분 만에 상담 요청을 완료하실 수 있어요.<br>24시간 언제든지 문의 가능합니다.
           </p>
 
-          <!-- 버튼 -->
-          <button 
-            type="button" 
-            class="open-general btn btn-primary fw-bold"
-            style="padding:14px 28px; font-size:1.1rem;"
-            data-bs-toggle="modal"
-            data-bs-target="#consultModal"
-          >
-            상담 신청하기
-          </button>
+          <!-- 버튼 2개 -->
+<div class="contact-actions">
+  <button
+    type="button"
+    class="open-general btn contact-btn contact-btn-consult"
+    data-bs-toggle="modal"
+    data-bs-target="#consultModal"
+  >
+    상담 신청하기
+  </button>
+
+  <button
+    type="button"
+    class="btn contact-btn contact-btn-channel"
+    id="contactChannelTalkBtn"
+  >
+    <i class="fa-solid fa-comment-dots me-2"></i> 간편 상담 하기
+  </button>
+</div>
         </div>
 
       </div>
@@ -989,20 +997,46 @@ document.querySelector('form[action*="formResponse"]')?.addEventListener('submit
   });
 </script>
 -->
-<!-- 푸터: 상단 로고 영역과 대칭되게 -->
-<footer class="py-3">
-<div class="container-fluid ps-0">
-<div class="d-flex align-items-center gap-3"> <!-- ← 수직 가운데 정렬 -->
-<img alt="더브릿지플러스 로고 하단" height="152" src="images/logobottom.png"/>
-<div class="legal">
-<div>대표이사 : 김배기  |  사업자등록번호 : 309-88-03426</div>
-<div>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)</div>
-<div><strong>TEL</strong> : 02-2135-8227  |  <strong>FAX</strong> : 0503-8379-0633</div>
-<div><strong>MOBILE</strong> : 010-9453-4102  |  <strong>EMAIL</strong> : rayofusa@thebridgeplus.co.kr</div>
-<div>ⓒ (주)더브릿지플러스 All Rights Reserved.</div>
-</div>
-</div>
-</div>
+  <!-- =========================
+AFTER (스크린샷 스타일로 교체)
+========================= -->
+<footer class="site-footer" id="footer">
+  <div class="sf-top">
+    <div class="sf-inner">
+      <div class="sf-grid">
+
+        <!-- 대표이사 상담(24시간) -->
+        <section class="sf-col">
+          <h3 class="sf-title">대표이사 상담</h3>
+          <div class="sf-one">
+            <div class="sf-label">휴대폰 번호</div>
+            <a class="sf-num accent" href="tel:010-9453-4102">010-9453-4102</a>
+          </div>
+        </section>
+
+        <!-- 고객센터 -->
+        <section class="sf-col">
+          <h3 class="sf-title">고객센터</h3>
+          <div class="sf-one">
+            <div class="sf-label">대표 전화번호</div>
+            <a class="sf-num accent" href="tel:02-2135-8227">02-2135-8227</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="sf-bottom">
+    <div class="sf-inner">
+      <div class="sf-legal">
+        대표이사 : 김배기 | 사업자등록번호 : 309-88-03426<br/>
+        주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)<br/>
+        EMAIL : rayofusa@thebridgeplus.co.kr
+        <div class="sf-copy">© (주)더브릿지플러스 All Rights Reserved.</div>
+      </div>
+    </div>
+  </div>
 </footer>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -1133,6 +1167,20 @@ ChannelIO('onShowMessenger', function () {
     'event': 'channel_talk_open' 
   });
 });
+</script>
+<!-- 채널톡 상담 버튼 클릭 이벤트 -->
+<script>
+  (function(){
+    const btn = document.getElementById('contactChannelTalkBtn');
+    if(!btn) return;
+
+    btn.addEventListener('click', function(){
+      if (window.ChannelIO) {
+        ChannelIO('showMessenger');   // 메신저 열기
+        // ChannelIO('openChat');     // 필요하면 추가(환경에 따라 옵션)
+      }
+    });
+  })();
 </script>
 <!-- 한 줄짜리 이벤트 위임으로 setPage 처리 •  역할: 메뉴 클릭 시 섹션 id를 자동으로 page로 보내기 -->
     <script>
@@ -1518,34 +1566,37 @@ function slideDurationMs(){
    TAB RENDER (언더라인 active 유지)
    ========================= */
 function renderTabs(){
-  if(!tabsEl) return;
   tabsEl.innerHTML = "";
 
-  if(isMobile()){
-    // 모바일: 현재 + 다음 (2개만)
-    for(let i=0;i<2;i++){
-      const idx = (currentIndex + i) % USP_DATA.length;
-      createTab(idx, i===0);
-    }
-  }else{
-    // 데스크탑: 4개 전체
-    USP_DATA.forEach((_, idx) => createTab(idx, idx===currentIndex));
-  }
-}
-
-function createTab(idx, isActive){
-  const tab = document.createElement("button");
-  tab.type = "button";
-  tab.className = "usp-tab" + (isActive ? " active" : "");
-  tab.textContent = USP_DATA[idx].title;
-
-  tab.addEventListener("click", () => {
-    stopAuto();
-    slideTo(idx);
-    startAuto();
+  USP_DATA.forEach((d, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "usp-tab" + (i === currentIndex ? " active" : "");
+    btn.textContent = d.title;
+    btn.addEventListener("click", () => slideTo(i));
+    tabsEl.appendChild(btn);
   });
 
-  tabsEl.appendChild(tab);
+  // 모바일: active 탭이 화면 밖이면 "살짝만" 땡겨서 보이게
+  if (isMobile()){
+    requestAnimationFrame(() => {
+      const active = tabsEl.querySelector(".usp-tab.active");
+      if (!active) return;
+
+      const c = tabsEl;
+      const aRect = active.getBoundingClientRect();
+      const cRect = c.getBoundingClientRect();
+
+      const pad = 8;
+      const fullyVisible =
+        aRect.left >= cRect.left + pad &&
+        aRect.right <= cRect.right - pad;
+
+      if (!fullyVisible){
+        c.scrollTo({ left: active.offsetLeft - 2, behavior: "smooth" });
+      }
+    });
+  }
 }
 
 /* =========================
@@ -1689,9 +1740,42 @@ window.addEventListener("resize", () => {
 document.addEventListener("DOMContentLoaded", () => {
   renderTabs();
   initPanels();
+  enablePanelSwipe(); 
   startAuto();
 });
+function enablePanelSwipe(){
+  if(!panelsEl) return;
+
+  let sx=0, sy=0, tracking=false;
+
+  panelsEl.addEventListener("pointerdown", (e) => {
+    if(!isMobile()) return;
+    tracking = true;
+    sx = e.clientX; sy = e.clientY;
+    stopAuto();
+    try { panelsEl.setPointerCapture(e.pointerId); } catch(_) {}
+  }, { passive:true });
+
+  function end(e){
+    if(!tracking) return;
+    tracking = false;
+
+    const dx = e.clientX - sx;
+    const dy = e.clientY - sy;
+
+    // ✅ 가로 스와이프만 인식(세로 스크롤 방해 최소화)
+    if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.2){
+      if(dx < 0) slideTo(idxNext(currentIndex)); // 왼쪽으로 밀면 다음
+      else       slideTo(idxPrev(currentIndex)); // 오른쪽으로 밀면 이전
+    }
+    startAuto();
+  }
+
+  panelsEl.addEventListener("pointerup", end, { passive:true });
+  panelsEl.addEventListener("pointercancel", end, { passive:true });
+}
 </script>
+
 <!-- =========================
      USP TAB SCRIPT END
      ========================= -->
