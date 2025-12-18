@@ -810,7 +810,20 @@ footer {
 .usp-panels.no-anim .usp-panel{
   transition: none !important;
 }
+/* ✅ USP 이미지 세로 과성장(길쭉해짐) 눌러주기: 고정 높이 + cover 크롭 */
+.usp-panel img{
+  display: block;
+  height: clamp(220px, 32vh, 380px);   /* ← 여기만 조절하면 “위아래 눌림” */
+  object-fit: cover;                  /* 비율 유지하면서 박스에 맞게 크롭 */
+  object-position: center;
+}
 
+/* 태블릿/모바일: 폭은 기존대로 두고, 높이만 더 눌러주기 */
+@media (max-width: 991px){
+  .usp-panel img{
+    height: clamp(200px, 28vh, 320px);
+  }
+}
 /* =========================
    DESKTOP PREVIEW (다음 화면 흐릿하게 대기)
    ========================= */
@@ -1321,9 +1334,21 @@ footer {
 /* 모바일: 터치 디바이스에서만 축소 */
 @media (hover: none) and (pointer: coarse){
   .to-top{
+    border-radius: 24px;
     width: 40px;
     height: 40px;
     border-radius: 24px;
     font-size: 25px;
+    /* ✅ 핵심 수정: 하단 위치 고정 */
+    /* 기본 140px에 기기별 안전 영역 높이를 더함 */
+    bottom: calc(140px + env(safe-area-inset-bottom)); 
+    
+    /* ✅ 떨림 방지 추가 (매우 중요) */
+    /* 브라우저 UI가 변할 때 생기는 미세한 리렌더링 떨림을 막아줍니다 */
+    will-change: transform;
+    transform: translateZ(0); 
+    
+    /* 위치(bottom)가 변할 때 애니메이션이 작동하지 않도록 설정 */
+    transition: opacity .15s ease, transform .15s ease;
   }
 }
