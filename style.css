@@ -1318,3 +1318,12 @@ footer {
   pointer-events: auto;
   transform: translateY(0);
 }
+/* 모바일: 터치 디바이스에서만 축소 */
+@media (hover: none) and (pointer: coarse){
+  .to-top{
+    width: 40px;
+    height: 40px;
+    border-radius: 24px;
+    font-size: 25px;
+  }
+}
