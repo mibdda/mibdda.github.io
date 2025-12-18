@@ -45,7 +45,15 @@ body {
     #hero { position: relative; }
 #hero .carousel-item{ height: calc(100vh - 80px); }
 @media (max-width: 576.98px){
-  #hero .carousel-item{ height: calc(100vh - 80px); }
+  /* ✅ 핵심: 모바일 히어로 높이를 줄여서 cover 확대(=크롭)를 완화 */
+  #hero .carousel-item{
+    height: clamp(420px, 72vh, 640px);
+  }
+
+  /* ✅ 필요 시: 보여줄 포인트를 살짝 위로 (값은 30~45% 사이에서 튜닝) */
+  #hero .carousel-item img{
+    object-position: 50% 35%;
+  }
 }
     #hero .carousel-item img{
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
@@ -56,20 +64,106 @@ body {
       text-align:center; color:#fff; z-index:2; padding:0 4vw;
     }
     #hero .hero-title{font-weight:700;}
-    #hero .hero-sub{opacity:.95; font-size:1.05rem;}
+    #hero .hero-sub{opacity:.95; font-size:1rem;}
 
-
+  
     /* 버튼 */ /* 부트스트랩의 .btn-primary:not([disabled])와 경쟁하여 우선순위에서 이기거나 최소한 동등하게 만듭니다. */
     .btn-primary:not([disabled]){background:var(--brand-dark); border-color:var(--brand-dark); }
     .btn-primary:hover:not([disabled]){background:#002244; border-color:#002244; }
 
-    /* 푸터: 상단 로고 영역과 대칭 (왼쪽 여백 약간) */
-    footer{background:#2c2c2c; color:#fff;} /* background:var(--brand-dark); 원래색상 */
-    footer .container{max-width:1140px; padding-left:8px;}
-    footer .legal{font-size:.95rem; line-height:1.5; margin-left:.6rem;}
-    @media (min-width:576px){ footer .legal{margin-left:.75rem;} }
-    footer img{filter:none;}
-    
+   /* =========================
+   NEW FOOTER (스크린샷 스타일)
+   ========================= */
+.site-footer{
+  background:#121212;
+  color:#fff;
+}
+
+.site-footer .sf-inner{
+  max-width: 1320px;   /* ✅ 데스크탑 좌우 폭 넓힘 */
+  margin: 0 auto;
+  padding: 34px 16px;
+}
+
+.site-footer .sf-top{
+  border-top: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.site-footer .sf-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.site-footer .sf-title{
+  margin: 0 0 18px;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+/* ✅ 2열은 항상 유지(중간/큰 화면에서 흔들림 방지) */
+.sf-phones{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 48px;
+}
+
+.site-footer .sf-label{
+  font-size: .95rem;
+  opacity: .72;
+  margin-bottom: 8px;
+}
+
+.site-footer .sf-num{
+  display:inline-block;
+  text-decoration:none;
+  color:#fff;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+}
+
+/* ✅ 스샷처럼 포인트 컬러(오렌지) */
+.site-footer .sf-num.accent{
+  color: var(--usp-accent);
+}
+
+.site-footer .sf-bottom{
+  background:#101010;
+}
+
+.site-footer .sf-legal{
+  font-size: .95rem;
+  line-height: 1.7;
+  opacity: .9;
+}
+
+.site-footer .sf-copy{
+  margin-top: 14px;
+  opacity: .75;
+}
+
+/* ✅ 모바일에서도 2열 유지 + 폰트 살짝 축소 */
+@media (max-width: 576px){
+  .site-footer .sf-grid{
+    grid-template-columns: 1fr 1fr;  /* ✅ 2열 유지 */
+    gap: 18px;
+  }
+  .site-footer .sf-inner{ padding: 24px 16px; }
+  .site-footer .sf-title{ font-size: 1.15rem; margin-bottom: 12px; }
+  .site-footer .sf-num{ font-size: clamp(1.25rem, 4.8vw, 1.55rem); }
+}
+    /* =========================
+   2단 푸터 END(연락처/회사정보 분리)
+   ========================= */
     /* 문의이름 뒤에 "*" */
     .form-label.required::after {
   content: " *";
@@ -659,12 +753,6 @@ body {
   font-size: 0.8rem;
   opacity: 0.75;
 }
-/* 모바일 전용 푸터 cta가 푸터 가림을 방지*/
-@media (max-width: 576px) {
-footer {
-    padding-bottom: 80px !important; /* CTA 높이만큼 여유 공간 확보 */
-  }
-}
 /* =========================
    USP TAB SECTION STYLE START
    ========================= */
@@ -735,6 +823,11 @@ footer {
   margin: 0 auto;
   position: relative;
   overflow: hidden; /* 프리뷰는 ‘잘린 채로’ 보이게 */
+}
+/* ✅ 선택된 탭: 글자 더 진하게 */
+.usp-tab.active{
+  color:#111;
+  font-weight:800;
 }
 
 /* 기본 상태: next는 오른쪽(100%)에 대기, prev는 왼쪽(-100%)으로 퇴장 */
@@ -878,18 +971,47 @@ footer {
 }
 
 /* =========================
-   MOBILE TABS (2개만 노출)
+   MOBILE USP TABS (2개 + 다음탭 살짝 + 오른쪽 fade 힌트)
    ========================= */
 @media (max-width:576px){
-  .usp-tabs{
-    grid-template-columns: repeat(2, 1fr);
+  :root{
+    --usp-tab-gap: 10px;
+    --usp-tab-peek: 44px; /* 3번째 탭이 살짝 보이는 폭(원하면 32~64px) */
   }
 
+  .usp-tabs{
+    display:flex !important;
+    gap: var(--usp-tab-gap);
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+
+    /* ✅ 오른쪽 끝 페이드 = “다음 탭 있음” 힌트 */
+    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 88%, transparent 100%);
+            mask-image: linear-gradient(to right, #000 0%, #000 88%, transparent 100%);
+
+    margin: 0 0 14px;
+    padding: 0 var(--usp-tab-peek) 10px 0; /* 끝에 여유(스크롤 끝에서 답답함 방지) */
+  }
+
+  .usp-tabs::-webkit-scrollbar{ display:none; }
+  .usp-tabs{ scrollbar-width:none; }
+
+  /* ✅ 핵심: "2개는 완전히 보이고 + 3번째는 peek 만큼 보이게" */
   .usp-tab{
+    flex: 0 0 calc((100% - var(--usp-tab-gap) - var(--usp-tab-peek)) / 2);
+    max-width: 260px;
     font-size: .95rem;
-    padding: 14px 8px;
+    padding: 14px 10px;
+    text-align: left;
+    scroll-snap-align: start;
   }
 }
+
+/* 패널 스와이프 UX용 (세로 스크롤은 허용) */
+.usp-panels{ touch-action: pan-y; }
 
 @media (min-width: 992px){
   /* (2) 탭/패널 밖으로 튀어나오게 하되, 가로 스크롤바는 막기 */
@@ -1348,5 +1470,99 @@ footer {
     transform: translateZ(0); 
     /* 위치(bottom)가 변할 때 애니메이션이 작동하지 않도록 설정 */
     transition: opacity .15s ease, transform .15s ease;
+  }
+}
+/* =========================
+   CONTACT CTA (2 buttons) - stable layout
+   ========================= */
+
+/* 버튼 묶음 컨테이너 */
+#contact .contact-actions{
+  display: flex;
+  gap: 20px;
+
+  /* 🔑 덩치는 여기서 제어 */
+  max-width: 620px;          /* 데스크탑에서도 너무 길어지지 않게 */
+  padding: 16px 20px;        /* 상하 여유 넉넉 */
+  margin: 32px auto 0;
+
+  box-sizing: border-box;
+}
+
+/* 공통 버튼 */
+#contact .contact-btn{
+  flex: 1 1 50%;              /* 항상 좌우 반반 */
+  min-width: 0;               /* ❗ 삐져나옴 방지 핵심 */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 18px 16px;
+  border-radius: 20px;
+
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.15;
+
+  position: relative;
+  overflow: hidden;
+
+  color: #fff;
+  border: 0;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+/* 은은한 하이라이트 */
+#contact .contact-btn::before{
+  content:"";
+  position:absolute;
+  inset:-40% -30%;
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(255,255,255,.35),
+    rgba(255,255,255,0) 55%
+  );
+  transform: rotate(8deg);
+  pointer-events:none;
+}
+
+/* hover */
+#contact .contact-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.22);
+  filter: saturate(1.05);
+}
+
+/* 지금 문의하기 */
+#contact .contact-btn-consult{
+  background: linear-gradient(135deg, #003366 0%, #001a33 100%);
+}
+
+/* 채널톡 */
+#contact .contact-btn-channel{
+  background: linear-gradient(135deg, #ff8a00 0%, #ff4d00 100%);
+  box-shadow:
+    0 12px 26px rgba(255,106,0,.28),
+    0 10px 22px rgba(0,0,0,.16);
+}
+
+/* =========================
+   모바일 튜닝
+   ========================= */
+@media (max-width: 576px){
+  #contact .contact-actions{
+    max-width: 100%;
+    padding: 12px 14px;      /* 모바일에서 좌우 숨통 */
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  #contact .contact-btn{
+    padding: 16px 12px;
+    font-size: 1.1rem;
+    border-radius: 18px;
   }
 }
