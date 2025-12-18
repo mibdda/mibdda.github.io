@@ -1336,9 +1336,12 @@ footer {
   .to-top{
     width: 40px;
     height: 40px;
-    border-radius: 24px;
+    border-radius: 16px;
     font-size: 25px;
     bottom: 140px;
+    /* ✅ 방법: 기존 140px 위치를 유지하면서 안전 영역에 대응 */
+    /* 기기에 안전 여백이 있으면 그만큼 더하고, 없으면 140px을 유지합니다. */
+    bottom: calc(106px + env(safe-area-inset-bottom));
     /* ✅ 떨림 방지 추가 (매우 중요) */
     /* 브라우저 UI가 변할 때 생기는 미세한 리렌더링 떨림을 막아줍니다 */
     will-change: transform;
