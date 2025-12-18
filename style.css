@@ -1334,20 +1334,15 @@ footer {
 /* 모바일: 터치 디바이스에서만 축소 */
 @media (hover: none) and (pointer: coarse){
   .to-top{
-    border-radius: 24px;
     width: 40px;
     height: 40px;
     border-radius: 24px;
     font-size: 25px;
-    /* ✅ 핵심 수정: 하단 위치 고정 */
-    /* 기본 140px에 기기별 안전 영역 높이를 더함 */
-    bottom: calc(140px + env(safe-area-inset-bottom)); 
-    
+    bottom: 140px;
     /* ✅ 떨림 방지 추가 (매우 중요) */
     /* 브라우저 UI가 변할 때 생기는 미세한 리렌더링 떨림을 막아줍니다 */
     will-change: transform;
     transform: translateZ(0); 
-    
     /* 위치(bottom)가 변할 때 애니메이션이 작동하지 않도록 설정 */
     transition: opacity .15s ease, transform .15s ease;
   }
