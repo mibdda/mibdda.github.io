@@ -143,7 +143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="carousel-item"><img alt="공유오피스 전경5" src="images/hero5.jpg"/></div>
 </div>
 <div class="overlay"></div>
-<div class="hero-caption">
+<div class="hero-caption fade-in">
 <div class="container">
 <!-- 메인 타이틀 -->
 <h1 class="display-5 hero-title mb-3">강남 신논현 비상주사무실 · 공유오피스 전문</h1>
@@ -171,7 +171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- =========================
      USP TAB SECTION START
      ========================= -->
-<section id="services" class="usp-tab-section" style="padding:80px 0; background:#ffffff;">
+<section id="services" class="usp-tab-section fade-in" style="padding:80px 0; background:#ffffff;">
   <!-- 섹션 타이틀 -->
   <h2 class="text-center fw-bold">
     더브릿지플러스의 특별한 서비스
@@ -195,7 +195,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- =========================
      TRUST METRICS (USP 바로 아래)
      ========================= -->
-<section id="trustMetrics" class="trust-metrics-band">
+<section id="trustMetrics" class="trust-metrics-band fade-in">
   <div class="trust-metrics-wrap">
     <h2 class="trust-title">계약 전에 꼭 확인해야 할 기준</h2>
     <p class="trust-sub">운영 기준을 숫자로 보여드립니다</p>
@@ -225,7 +225,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="trust-note">사업자등록 반려 시 계약금액 100% 환불</div>
   </div>
 </section>
-<section id="pricing" style="padding:80px 0; background:#ffffff;">
+<section id="pricing" class="fade-in" style="padding:80px 0; background:#ffffff;">
 <div class="container" style="max-width:1140px;">
 <h2 class="text-center fw-bold mb-3">이용요금 안내</h2>
 
@@ -395,7 +395,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- =========================
      고객후기 (따뜻한 풀밴드 + 자동 스크롤)
      ========================= -->
-<section id="reviews" class="reviews-band reviews-warm-band">
+<section id="reviews" class="reviews-band reviews-warm-band fade-in">
   <div class="container reviews-wrap">
     <div class="reviews-head">
       <div>
@@ -479,7 +479,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 <!-- 회사소개: 텍스트 + 2×2 이미지 그리드 (가운데) -->
-<section class="section" id="about" style="padding:40px 0;">
+<section class="section fade-in" id="about" style="padding:40px 0;">
 <div class="container about-wrap">
 <h2 class="text-center fw-bold mb-5">더브릿지플러스 회사소개</h2>
 <div class="row mb-4">
@@ -524,7 +524,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </div>
 </section>
-    <section class="section alt" id="faq" style="padding:60px 0;">
+    <section class="section alt fade-in" id="faq" style="padding:60px 0;">
     <div class="container" style="max-width:900px;">
         <h2 class="text-center fw-bold mb-3">자주 묻는 질문</h2>
         <p class="section-sub text-center mb-5">
@@ -617,7 +617,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Kakao Maps SDK (JavaScript 키 사용) -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9afd461025355aea5741642fb73a9414&amp;libraries=services"></script>
 <!-- 위치 섹션 -->
-<section class="section alt" id="location" style="padding:60px 0;">
+<section class="section alt fade-in" id="location" style="padding:60px 0;">
 <div class="container">
 <h2 class="text-center mb-4">위치</h2>
 
@@ -798,7 +798,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </script>
 <!-- 문의: 이미지 + 설명 + 모달 열기 CTA -->
-<section class="section" id="contact"
+<section class="section fade-in" id="contact"
   style="margin-top:30px; padding:20px 0; min-height:auto; display:block;">
   <div class="container">
 
@@ -1915,5 +1915,29 @@ function enablePanelSwipe(){
   toggleTopBtn();
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
+<script>
+/*** 전역 fade-in 효과 제어 스크립트*/
+document.addEventListener("DOMContentLoaded", function() {
+  const observerOptions = {
+    threshold: 0.15, // 요소가 10%만 보여도 나타나기 시작
+    rootMargin: "0px 0px -70px 0px" // 바닥에서 50px 미리 감지
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        // 한 번 나타나면 계속 감시할 필요 없으므로 해제 (선택사항)
+        // observer.unobserve(entry.target); 
+      }
+    });
+  }, observerOptions);
+
+  // HTML에서 .fade-in 클래스를 넣은 모든 요소를 자동으로 찾아 감시합니다.
+  const fadeElements = document.querySelectorAll('.fade-in');
+  fadeElements.forEach(el => observer.observe(el));
+});
+</script>
+<!--fade in 종료-->
 </body>
 </html>
