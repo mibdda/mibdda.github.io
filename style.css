@@ -19,10 +19,12 @@ body {
 }
     /* 페이드인 효과 */
     .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+  opacity: 0;
+  transform: translateY(40px); /* 기존 30px보다 조금 더 아래에서 위로 */
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform; /* 브라우저 최적화 */
+}
     .fade-in.show {
       opacity: 1;
       transform: translateY(0);
@@ -66,7 +68,98 @@ body {
     #hero .hero-title{font-weight:700;}
     #hero .hero-sub{opacity:.95; font-size:1rem;}
 
-  
+    /* 히어로 배경 줌 효과 (Ken Burns 효과) */
+.hero-container {
+    overflow: hidden; /* 이미지가 넘치는 것 방지 */
+    position: relative;
+}
+/* 1. 5개 이미지 모두에 서서히 커지는 효과 주기 */
+.hero-container img { 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1); /* 시작 크기 */
+    animation: heroZoom 20s infinite alternate ease-in-out; /* 20초 동안 아주 천천히 */
+    will-change: transform;
+}
+
+@keyframes heroZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.12); } /* 12% 커짐 */
+}
+
+/* 2. 이미지 5개 위에 '일관된 어둠' 깔기 (글자 가독성+임팩트) */
+/* 이미지가 바뀌어도 이 어둠은 고정되어 있어 글자가 팍 튑니다 */
+.hero-container::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(0,0,0,0.2) 0%, 
+        rgba(0,0,0,0.5) 100%
+    ); /* 위는 밝고 아래는 더 어둡게 */
+    z-index: 1; /* 이미지보다는 위, 글자보다는 아래 */
+    pointer-events: none; /* 클릭 방해 금지 */
+}
+
+/* 3. 히어로 텍스트의 레이어 순서 조정 */
+/* 위의 ::after(어둠)보다 글자가 위에 있어야 하므로 z-index를 줍니다 */
+.hero-caption {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1); 
+    
+    /* Safari 호환성을 위한 접두사 추가 */
+    -webkit-backdrop-filter: blur(3px); 
+    backdrop-filter: blur(3px); 
+    
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    
+    /* 텍스트 컬러 확인: 배경이 어두워지므로 화이트 계열 추천 */
+    color: #ffffff; 
+}
+/* 히어로 텍스트 층차 애니메이션 */
+.hero-caption h1 {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroTextUp 0.8s forwards 0.3s; /* 0.3초 뒤 등장 */
+}
+
+.hero-caption p {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroTextUp 0.8s forwards 0.6s; /* 0.6초 뒤 등장 */
+}
+
+.hero-cta-group {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: heroPop 0.5s forwards 1.0s; /* 1초 뒤 팝업 */
+}
+
+@keyframes heroTextUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px);
+        letter-spacing: -2px; /* 시작할 때 약간 모여있음 */
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+        letter-spacing: 0; /* 정상으로 복귀 */
+    }
+}
+
+@keyframes heroPop {
+    to { opacity: 1; transform: scale(1); }
+}
+/* 히어로 끝 */
     /* 버튼 */ /* 부트스트랩의 .btn-primary:not([disabled])와 경쟁하여 우선순위에서 이기거나 최소한 동등하게 만듭니다. */
     .btn-primary:not([disabled]){background:var(--brand-dark); border-color:var(--brand-dark); }
     .btn-primary:hover:not([disabled]){background:#002244; border-color:#002244; }
