@@ -61,10 +61,6 @@ body {
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
     }
     #hero .overlay{position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35)); z-index:1;}
-    #hero .hero-caption{
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff; z-index:2; padding:0 4vw;
-    }
     #hero .hero-title{font-weight:700;}
     #hero .hero-sub{opacity:.95; font-size:1rem;}
 
@@ -88,41 +84,37 @@ body {
     to { transform: scale(1.12); } /* 12% 커짐 */
 }
 
-/* 2. 이미지 5개 위에 '일관된 어둠' 깔기 (글자 가독성+임팩트) */
-/* 이미지가 바뀌어도 이 어둠은 고정되어 있어 글자가 팍 튑니다 */
-.hero-container::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(
-        to bottom, 
-        rgba(0,0,0,0.2) 0%, 
-        rgba(0,0,0,0.5) 100%
-    ); /* 위는 밝고 아래는 더 어둡게 */
-    z-index: 1; /* 이미지보다는 위, 글자보다는 아래 */
-    pointer-events: none; /* 클릭 방해 금지 */
-}
+/* 3) hero-caption: 히어로 전역 유리박스(전체 덮기) */
+#hero .hero-caption{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 4vw;
 
-/* 3. 히어로 텍스트의 레이어 순서 조정 */
-/* 위의 ::after(어둠)보다 글자가 위에 있어야 하므로 z-index를 줍니다 */
-.hero-caption {
-    position: relative;
-    z-index: 10;
-    display: inline-block;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.1); 
-    
-    /* Safari 호환성을 위한 접두사 추가 */
-    -webkit-backdrop-filter: blur(3px); 
-    backdrop-filter: blur(3px); 
-    
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    
-    /* 텍스트 컬러 확인: 배경이 어두워지므로 화이트 계열 추천 */
-    color: #ffffff; 
+  /* 전역 유리효과 */
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.20);
+  color: #fff;
+
+  z-index: 2;
+}
+/* 2) overlay: 어둠 + 블러 */
+#hero .overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.35));
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+/* 1) 히어로 높이 (데스크탑) */
+#hero .carousel-item{
+  position: relative;
+  height: clamp(520px, 80vh, 850px); /* 너무 크거나 작지 않게 */
 }
 /* 히어로 텍스트 층차 애니메이션 */
 .hero-caption h1 {
@@ -589,7 +581,7 @@ body {
     }
 */
     /* 1. 상담 신청 플로팅 버튼 숨기기 */
-    /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 */
+    /* 상담 신청 플로팅 버튼만 모바일에서 숨김 처리 
   .consult-btn {
     display: none !important;
   }
@@ -597,12 +589,11 @@ body {
   position: relative;
   z-index: 1100;
 }
-@media (max-width: 991.98px) {
   .navbar .nav-cta {
     display: inline-flex !important;
   }
 }
-
+*/
     /* 2. 카카오 채널 버튼 컨테이너 위치 조정 (인라인 스타일 bottom: 20px을 타겟) */
     /* 카카오 버튼 컨테이너를 하단 바(60px) 위에 10px 마진을 주어 총 70px 위로 올림 */
 /*
@@ -880,16 +871,18 @@ body {
   position: relative;
   line-height: 1.2;
 }
-/* ✅ 기본(회색) 언더라인: 탭별로 끊김 + 간격은 left/right로 결정 */
+
+/* ✅ 기본(회색) 언더라인: 탭별로 끊김 */
 .usp-tab::before{
   content:"";
   position:absolute;
-  left: 14px;     /* ← 이 값이 “언더라인 간격” */
-  right: 14px;    /* ← 숫자 키우면 간격 더 생김 */
+  left: 14px;
+  right: 14px;
   bottom: 0;
   height: 1px;
   background: #eee;
 }
+
 /* ✅ “현재 탭 언더라인” */
 .usp-tab::after{
   content:"";
@@ -903,6 +896,12 @@ body {
   transform-origin: center;
   transition: transform 220ms ease, background-color 220ms ease;
 }
+
+.usp-tab.active{
+  color:#111;
+  font-weight:800;
+}
+
 .usp-tab.active::after{
   background: var(--usp-accent);
   transform: scaleX(1);
@@ -915,12 +914,8 @@ body {
   max-width: 1240px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden; /* 프리뷰는 ‘잘린 채로’ 보이게 */
-}
-/* ✅ 선택된 탭: 글자 더 진하게 */
-.usp-tab.active{
-  color:#111;
-  font-weight:800;
+  overflow: hidden; /* 기본은 잘라두고(모바일 포함), 데스크탑에서만 visible로 변경 */
+  touch-action: pan-y; /* 패널 스와이프 UX용 (세로 스크롤은 허용) */
 }
 
 /* 기본 상태: next는 오른쪽(100%)에 대기, prev는 왼쪽(-100%)으로 퇴장 */
@@ -942,36 +937,9 @@ body {
   pointer-events: none;
 }
 
-.usp-panel img{
-  width: clamp(320px, 44%, 640px);
-  max-width: 640px;
-  border-radius: 18px;
-  flex: 0 0 auto;
-}
-
-.usp-text{
-  flex: 1 1 auto;
-  min-width: 240px;
-  max-width: 560px;
-}
-
-.usp-text h3{
-  margin: 0 0 12px;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #111;
-}
-
-.usp-text p{
-  margin: 0;
-  color: #6b6b6b;
-  line-height: 1.7;
-  font-size: 1.05rem;
-}
-
 /* 현재(보임) */
 .usp-panel.active{
-  position: relative;   /* ✅ 컨테이너 높이를 이 패널로 잡음 */
+  position: relative; /* ✅ 컨테이너 높이를 이 패널로 잡음 */
   opacity: 1;
   transform: translateX(0);
   z-index: 2;
@@ -996,33 +964,65 @@ body {
 .usp-panels.no-anim .usp-panel{
   transition: none !important;
 }
-/* ✅ USP 이미지 세로 과성장(길쭉해짐) 눌러주기: 고정 높이 + cover 크롭 */
+
+/* =========================
+   IMAGE (중복 제거: 여기 1번만)
+   - 데스크탑: 높이 넉넉
+   - 화면이 줄수록: 자연스럽게 눌림
+   ========================= */
 .usp-panel img{
   display: block;
-  height: clamp(220px, 32vh, 380px);   /* ← 여기만 조절하면 “위아래 눌림” */
-  object-fit: cover;                  /* 비율 유지하면서 박스에 맞게 크롭 */
+  width: clamp(320px, 44%, 640px);
+  max-width: 640px;
+  border-radius: 18px;
+  flex: 0 0 auto;
+
+  height: clamp(240px, 42vh, 520px); /* ✅ 데스크탑 더 큼 */
+  object-fit: cover;
   object-position: center;
 }
 
-/* 태블릿/모바일: 폭은 기존대로 두고, 높이만 더 눌러주기 */
-@media (max-width: 991px){
-  .usp-panel img{
-    height: clamp(200px, 28vh, 320px);
-  }
-}
 /* =========================
-   DESKTOP PREVIEW (다음 화면 흐릿하게 대기)
+   TEXT
    ========================= */
-@media (min-width:992px){
+.usp-text{
+  flex: 1 1 auto;
+  min-width: 240px;
+  max-width: 560px;
+}
+
+.usp-text h3{
+  margin: 0 0 12px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.usp-text p{
+  margin: 0;
+  color: #6b6b6b;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* =========================
+   DESKTOP (프리뷰 + 오버플로우 정책)
+   ========================= */
+@media (min-width: 992px){
+  /* (2) 튀어나오게 하되, 가로 스크롤바는 막기 */
+  .usp-tab-section{ overflow-x: hidden; }
+
+  /* (3) 패널 박스 밖으로 프리뷰가 보이도록 */
+  .usp-panels{ overflow: visible; }
+
+  /* (4) 글 폭을 줄여서 이미지/프리뷰와 겹칠 여지를 없앰 */
+  .usp-text{ max-width: 480px; }
+
   .usp-panel.next{
     opacity: .18;
     filter: blur(1px);
-
-    /* 🔑 프리뷰가 보이도록: ‘오른쪽 끝에 일부만’ 남김 */
-    transform: translateX(calc(100% - var(--usp-peek)));
-
-    /* 🔑 다음 프리뷰는 자리 잡을 때 슬라이드 애니메이션 불필요 */
-    transition: none;
+    transform: translateX(calc(100% + var(--usp-spill) - var(--usp-peek)));
+    transition: none; /* 프리뷰는 애니메이션 불필요 */
   }
 
   /* 프리뷰는 이미지 맛보기만 */
@@ -1030,19 +1030,18 @@ body {
 }
 
 /* =========================
-   TABLET & SMALL DESKTOP (글이 아래로 내려가도록)
+   TABLET & SMALL DESKTOP
    ========================= */
-@media (max-width:991px){
+@media (max-width: 991px){
   .usp-tab-section{
     padding-right: clamp(16px, 6vw, 84px) !important; /* 좁아지면 양쪽 여백 */
   }
+
   .usp-panels{
     max-width: 760px;
   }
 
-  /* ✅ 모바일/태블릿에서도 “슬라이드”는 유지해야 하므로
-     transform/transition/position을 강제로 죽이지 말고
-     레이아웃만 column으로 바꿈 */
+  /* 레이아웃만 column으로 */
   .usp-panel{
     flex-direction: column;
     text-align: center;
@@ -1052,6 +1051,8 @@ body {
   .usp-panel img{
     width: min(92vw, 560px);
     max-width: none;
+
+    height: clamp(200px, 32vh, 400px); /* ✅ 태블릿에서 한 단계 눌림 */
   }
 
   .usp-text{
@@ -1064,12 +1065,12 @@ body {
 }
 
 /* =========================
-   MOBILE USP TABS (2개 + 다음탭 살짝 + 오른쪽 fade 힌트)
+   MOBILE USP TABS
    ========================= */
-@media (max-width:576px){
+@media (max-width: 576px){
   :root{
     --usp-tab-gap: 10px;
-    --usp-tab-peek: 44px; /* 3번째 탭이 살짝 보이는 폭(원하면 32~64px) */
+    --usp-tab-peek: 44px;
   }
 
   .usp-tabs{
@@ -1081,18 +1082,18 @@ body {
     scroll-snap-type: x mandatory;
     overscroll-behavior-x: contain;
 
-    /* ✅ 오른쪽 끝 페이드 = “다음 탭 있음” 힌트 */
+    /* 오른쪽 끝 페이드 = “다음 탭 있음” 힌트 */
     -webkit-mask-image: linear-gradient(to right, #000 0%, #000 88%, transparent 100%);
             mask-image: linear-gradient(to right, #000 0%, #000 88%, transparent 100%);
 
     margin: 0 0 14px;
-    padding: 0 var(--usp-tab-peek) 10px 0; /* 끝에 여유(스크롤 끝에서 답답함 방지) */
+    padding: 0 var(--usp-tab-peek) 10px 0;
   }
 
   .usp-tabs::-webkit-scrollbar{ display:none; }
   .usp-tabs{ scrollbar-width:none; }
 
-  /* ✅ 핵심: "2개는 완전히 보이고 + 3번째는 peek 만큼 보이게" */
+  /* "2개는 완전히 보이고 + 3번째는 peek 만큼" */
   .usp-tab{
     flex: 0 0 calc((100% - var(--usp-tab-gap) - var(--usp-tab-peek)) / 2);
     max-width: 260px;
@@ -1101,29 +1102,16 @@ body {
     text-align: left;
     scroll-snap-align: start;
   }
-}
 
-/* 패널 스와이프 UX용 (세로 스크롤은 허용) */
-.usp-panels{ touch-action: pan-y; }
-
-@media (min-width: 992px){
-  /* (2) 탭/패널 밖으로 튀어나오게 하되, 가로 스크롤바는 막기 */
-  .usp-tab-section{ overflow-x: hidden; }
-
-  /* (3) 패널 박스 밖으로 프리뷰가 보이도록 */
-  .usp-panels{ overflow: visible; }
-
-  /* (4) 글 폭을 줄여서 이미지/프리뷰와 겹칠 여지를 없앰 (기존 560px) */
-  .usp-text{ max-width: 480px; }
-
-  /* (5) next 프리뷰를 ‘한 번 더’ 오른쪽으로 밀어서 텍스트와 간격 확보 */
-  .usp-panel.next{
-    transform: translateX(calc(100% + var(--usp-spill) - var(--usp-peek)));
+  .usp-panel img{
+    height: clamp(180px, 26vh, 320px); /* ✅ 모바일에서 가장 눌림 */
   }
 }
+
 /* =========================
    USP TAB SECTION STYLE END
    ========================= */
+
 /* =========================
    TRUST METRICS (FULL BLEED + 4열 → 2x2)
    ========================= */
@@ -1305,6 +1293,8 @@ body {
     height: 160px;      /* 필요하면 150~180 조절 */
     object-fit: cover; /* 강제 크롭 */
     border-radius: 12px;
+    display: block;      /* 이미지 아래 여백(인라인 baseline) 방지 */
+    object-position: center; /* 크롭 중심 고정(취향) */
   }
 }
 /* =========================
@@ -1470,6 +1460,7 @@ body {
   font-size: 14px;
 
   display: -webkit-box;
+  line-clamp: 3;          /* 표준(있으면 쓰고, 없으면 무시될 수 있음) */
   -webkit-line-clamp: 3;     /* ✅ 모바일에서도 3줄로 통일 */
   -webkit-box-orient: vertical;
   overflow: hidden;
