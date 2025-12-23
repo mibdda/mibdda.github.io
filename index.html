@@ -2,7 +2,6 @@
 
 <html lang="ko">
 <head>
-<link rel="stylesheet" href="style.css">
 <meta charset="utf-8"/>
 <meta content="1290180e5807a892540712eaf05c22f0a072d4d1" name="naver-site-verification">
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -38,6 +37,7 @@
     }
     </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
 <!-- 네이버, 당근, 디지털캠프 추적 스크립트 모음(당근,디지털캠프는 DB수집 액션버튼에 추적스크립트 추가)  -->
 <!-- digitalcamp SK MSSAGE BEGIN  -->
 <script src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&amp;adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&amp;type=cpa" type="text/javascript"></script>
@@ -134,6 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <!-- HERO: 페이드 슬라이드(6장), 중앙 카피 -->
 <header class="position-relative" id="hero">
+<div class="hero-container">
 <div class="carousel slide carousel-fade" data-bs-interval="3800" data-bs-ride="carousel" id="heroCarousel">
 <div class="carousel-inner">
 <div class="carousel-item active"><img alt="공유오피스 전경1" src="images/hero1.jpg"/></div>
@@ -141,6 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="carousel-item"><img alt="공유오피스 전경3" src="images/hero3.jpg"/></div>
 <div class="carousel-item"><img alt="공유오피스 전경4" src="images/hero4.jpg"/></div>
 <div class="carousel-item"><img alt="공유오피스 전경5" src="images/hero5.jpg"/></div>
+</div>
 </div>
 <div class="overlay"></div>
 <div class="hero-caption fade-in">
@@ -1094,21 +1096,6 @@ document.addEventListener('DOMContentLoaded', () => {
   sync(); // 첫 로드 상태 반영
   window.addEventListener('scroll', sync, { passive: true });
 });
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const faders = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target); // 한 번만 실행
-        }
-      });
-    }, { threshold: 0.2 }); // 20% 보이면 실행
-
-    faders.forEach(fader => observer.observe(fader));
-  });
 </script>
 <!--
 ==============================
