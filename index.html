@@ -227,7 +227,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="trust-note">사업자등록 반려 시 계약금액 100% 환불</div>
   </div>
 </section>
-<section id="pricing" class="fade-in" style="padding:80px 0; background:#ffffff;">
+<!-- =========================
+     ROADMAP (이용절차)
+     ========================= -->
+<section id="roadmap" class="roadmap-section fade-in">
+  <div class="container roadmap-wrap">
+    <h2 class="text-center fw-bold mb-3">이용 절차</h2>
+    <p class="roadmap-sub">전담 매니저 1:1 상담 후, 임대차 계약서까지 빠르게 안내해드려요.</p>
+
+    <ol class="roadmap-track" aria-label="이용 절차">
+      <li class="roadmap-step">
+        <button type="button" class="roadmap-node" aria-label="STEP 01 상담 신청">
+          <img src="images/step1.png" alt="" loading="lazy" decoding="async">
+        </button>
+        <div class="roadmap-meta">
+          <div class="roadmap-stepno">STEP 01</div>
+          <div class="roadmap-steptitle">상담 신청</div>
+          <div class="roadmap-stepdesc">전문 매니저 배정</div>
+        </div>
+      </li>
+
+      <li class="roadmap-step">
+        <button type="button" class="roadmap-node" aria-label="STEP 02 결제 및 안내">
+          <img src="images/step2.png" alt="" loading="lazy" decoding="async">
+        </button>
+        <div class="roadmap-meta">
+          <div class="roadmap-stepno">STEP 02</div>
+          <div class="roadmap-steptitle">결제 및 안내</div>
+          <div class="roadmap-stepdesc">비대면 전자 계약(카드 가능)</div>
+        </div>
+      </li>
+
+      <li class="roadmap-step">
+        <button type="button" class="roadmap-node" aria-label="STEP 03 계약서 발급">
+          <img src="images/step3.png" alt="" loading="lazy" decoding="async">
+        </button>
+        <div class="roadmap-meta">
+          <div class="roadmap-stepno">STEP 03</div>
+          <div class="roadmap-steptitle">계약서 발급</div>
+          <div class="roadmap-stepdesc">10분 내 발송 완료</div>
+        </div>
+      </li>
+
+      <li class="roadmap-step">
+        <button type="button" class="roadmap-node" aria-label="STEP 04 사업자 등록">
+          <img src="images/step4.png" alt="" loading="lazy" decoding="async">
+        </button>
+        <div class="roadmap-meta">
+          <div class="roadmap-stepno">STEP 04</div>
+          <div class="roadmap-steptitle">사업자 등록</div>
+          <div class="roadmap-stepdesc">사업 개시 & 지원 시작</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+<!-- =========================
+     PRICING SECTION START
+     ========================= -->
+<section id="pricing" class="fade-in" style="padding:40px 0; background:#ffffff;">
 <div class="container" style="max-width:1140px;">
 <h2 class="text-center fw-bold mb-3">이용요금 안내</h2>
 
@@ -394,6 +452,104 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div></div>
 </div>
 </section>
+<!-- =========================
+     COMBO SECTION (비상주 결합상품)
+     ========================= -->
+<section id="combo" class="combo-section fade-in">
+  <div class="container combo-wrap">
+    <div class="combo-head">
+      <h2 class="text-center fw-bold mb-3">결합 서비스</h2>
+      <p class="combo-sub">전문가와 연계된 결합 서비스로 계약·세무·법인 설립까지 한 흐름으로 진행하세요.
+</p>
+    </div>
+
+    <div class="combo-grid">
+      <!-- 결합 A -->
+      <article class="combo-card">
+        <div class="combo-hero">
+  <img class="combo-heroimg" src="images/combotax.png" alt="비상주 + 세무 결합" loading="lazy" decoding="async">
+  <div class="combo-badge">결합 A형</div>
+</div>
+<h3 class="combo-name">비상주 사무실 + 세무 서비스</h3>
+
+        <ul class="combo-list">
+  <li>
+    <span class="diag-strike price-old">비상주 월 25,000원</span>
+    <span class="price-new">월 15,000원 <small>(개인,12개월 계약 기준)</small></span>
+  </li>
+  <li>
+    <span>법인은 설립 대행 수수료</span>
+    <span class="diag-strike price-old">평균 550,000원</span>
+    <span class="price-new">0원</span>
+   
+  </li>
+</ul>
+
+        <p class="combo-footnote">*세무기장료 별도 발생</p>
+
+        <button
+  type="button"
+  class="combo-cta open-combo"
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+  data-combo="A"
+  data-combo-title="세무 결합"
+>
+  결합 A형 신청하기
+</button>
+      </article>
+
+      <!-- 결합 B -->
+      <article class="combo-card">
+        <div class="combo-hero">
+  <img class="combo-heroimg" src="images/combofund.png" alt="비상주 + 자금상담 결합" loading="lazy" decoding="async">
+  <div class="combo-badge combo-badge-alt">결합 B형</div>
+</div>
+<h3 class="combo-name">비상주 사무실 + 정책 자금 서비스</h3>
+
+        <ul class="combo-list">
+          <li>
+  <span class="diag-strike price-old">비상주 월 25,000원</span>
+  <span class="price-new">월 15,000원 <small>(개인,12개월 계약 기준)</small></span>
+</li>
+          <li>무료 적합성 진단 리포트</li>
+          <li>준비서류 체크리스트</li>
+          <li>신청 루트 제안(1~3개)</li>
+        </ul>
+
+        <p class="combo-footnote">*상담/진단은 무료, 진행 조건은 사전 안내</p>
+
+        <button
+  type="button"
+  class="combo-cta combo-cta-alt open-combo"
+  data-bs-toggle="modal"
+  data-bs-target="#consultModal"
+  data-combo="B"
+  data-combo-title="자금 상담 결합"
+>
+  결합 B형 신청하기
+</button>
+      </article>
+    </div>
+
+    <!-- 비상주 기본 (하단 카드) -->
+    <article class="basic-card">
+      <div class="basic-badge">비상주 기본 제공</div>
+      <div class="basic-body">
+        <img class="basic-img" src="images/virtualbasic.png" alt="우편물 안내 · 미팅룸 · OA 이용" loading="lazy" decoding="async">
+        <div class="basic-text">
+          <h3 class="basic-title">비상주 기본 혜택</h3>
+          <div class="basic-chips">
+            <span class="basic-chip">우편물 안내</span>
+            <span class="basic-chip">미팅룸 이용</span>
+            <span class="basic-chip">OA존 이용</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- =========================
      고객후기 (따뜻한 풀밴드 + 자동 스크롤)
      ========================= -->
@@ -1334,6 +1490,60 @@ document.querySelectorAll(".open-general").forEach(btn => {
   btn.addEventListener("click", resetGeneralMode);
 });
 
+document.querySelectorAll(".open-combo").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const inquirySelect = document.getElementById("inquiryCategory");
+    if (inquirySelect) inquirySelect.value = "비상주";
+
+    const combo = btn.dataset.combo;
+
+    if (combo === "A") {
+      modalTitle.innerHTML = `
+        <div style="font-size:20px; font-weight:700;">
+          결합 A형 상담 신청
+        </div>
+        <div style="font-size:14px; margin-top:4px; color:#555;">
+          <span class="diag-strike">비상주 월 25,000원</span>
+          <span class="combo-arrow">→</span>
+          <span class="price-new">월 15,000원</span>
+          <span class="price-desc-inline">(개인, 12개월 계약 기준)</span>
+        </div>
+        <div style="font-size:13px; margin-top:4px; color:#666;">
+          법인설립 대행 수수료
+          <span class="diag-strike">평균 550,000원</span>
+          <span class="combo-arrow">→</span>
+          <span class="price-new">0원</span>
+        </div>
+      `;
+
+      textarea.value =
+        `결합A형 상담을 요청합니다.\n` +
+        `(추가 문의는 아래 작성해주세요.)`;
+
+    } else if (combo === "B") {
+      modalTitle.innerHTML = `
+        <div style="font-size:20px; font-weight:700;">
+          결합 B형 상담 신청
+        </div>
+        <div style="font-size:14px; margin-top:4px; color:#555;">
+          <span class="diag-strike">비상주 월 25,000원</span>
+          <span class="combo-arrow">→</span>
+          <span class="price-new">월 15,000원</span>
+          <span class="price-desc-inline">(개인, 12개월 계약 기준)</span>
+        </div>
+        <div style="font-size:13px; margin-top:4px; color:#666;">
+          자금 상담: 적합성 진단 리포트 · 준비서류 체크리스트 · 신청 루트 제안(1~3개)
+        </div>
+      `;
+
+      textarea.value =
+        `결합B형 상담을 요청합니다.\n` +
+        `(추가 문의는 아래 작성해주세요.)`;
+    }
+  });
+});
+
+
 // ✅ 문의 분류 select
 const inquirySelect = document.getElementById("inquiryCategory");
 
@@ -1369,6 +1579,7 @@ document.querySelectorAll(".open-plan").forEach(btn => {
 
   return; 
 }
+
 
     // ✅ 2) 비상주 (개인/법인) 기존 로직 + 문의 분류 자동 '비상주'
 
