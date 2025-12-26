@@ -1660,3 +1660,511 @@ body {
     border-radius: 18px;
   }
 }
+/* =========================
+   ROADMAP (Station style) - v2 FIX
+   ========================= */
+:root{
+  --rm-steps: 4;                 /* 스텝 수 */
+  --rm-navy: #1A2B4C;            /* 포인트 네이비 */
+  --rm-line-light: #e5e7eb;      /* 라인 기본 회색 */
+  --rm-bg1: #f3f6fb;             /* ✅ 그레이시 블루 배경 */
+  --rm-bg2: #ffffff;
+
+  --rm-node: 200px;             /* ✅ 정거장 원 (더 큼) */
+  --rm-icon: 152px;             /* ✅ 내부 이미지 (더 큼) */
+  --rm-line-y: calc(var(--rm-node) / 2);  /* 라인 위치 = 정거장 중앙 */
+}
+
+#roadmap.roadmap-section{
+  padding: 80px 0 74px;
+  /* ✅ 배경색 다시 살림(파스텔 느낌 없이 그레이시 블루) */
+    background: linear-gradient(180deg, #fff 0%, var(--offwhite) 100%);
+}
+
+#roadmap .roadmap-wrap{ max-width: 1140px; }
+
+
+#roadmap .roadmap-sub{
+  text-align:center;
+  margin:0 0 36px;
+  color:#4b5563;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+#roadmap .roadmap-track{
+  list-style:none;
+  margin:0;
+  padding: 10px 0 0;
+  display:grid;
+  grid-template-columns: repeat(var(--rm-steps), 1fr);
+  gap: 26px;
+  position: relative;
+}
+
+/* ✅ 라인의 시작/끝을 "첫 칸 중앙 ~ 마지막 칸 중앙"으로 고정(삐져나옴 해결) */
+#roadmap .roadmap-track::before{
+  content:"";
+  position:absolute;
+  left: calc((100% / var(--rm-steps)) / 2);
+  right: calc((100% / var(--rm-steps)) / 2);
+  top: var(--rm-line-y);
+  height: 1px;
+  background: var(--rm-line-light);
+  z-index: 0;
+}
+
+/* ✅ 진행될수록 '진해지는' 라인(왼쪽 연함 → 오른쪽 진함) */
+#roadmap .roadmap-track::after{
+  content:"";
+  position:absolute;
+  left: calc((100% / var(--rm-steps)) / 2);
+  right: calc((100% / var(--rm-steps)) / 2);
+  top: var(--rm-line-y);
+  height: 1px;
+  /* 왼쪽은 연한 그레이시 블루 → 오른쪽은 네이비로 진해짐 */
+  background: linear-gradient(
+    90deg,
+    #cbd5e1 0%,
+    #94a3b8 45%,
+    var(--rm-navy) 100%
+  );
+  opacity: 0.95; /* ✅ 확실히 보이게 */
+  z-index: 0;
+}
+
+#roadmap .roadmap-step{
+  text-align:center;
+  position: relative;
+  z-index: 1; /* 노드가 라인 위로 */
+}
+
+#roadmap .roadmap-node{
+  width: var(--rm-node);
+  height: var(--rm-node);
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--rm-line-light);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin: 0 auto 16px;
+  padding: 0;
+  cursor: default;
+
+  box-shadow: none; /* 기본은 플랫 */
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+#roadmap .roadmap-node img{
+  width: var(--rm-icon);
+  height: var(--rm-icon);
+  object-fit: contain;
+  display:block;
+}
+
+/* hover에서만 살짝 */
+#roadmap .roadmap-node:hover,
+#roadmap .roadmap-node:focus-visible{
+  border-color: var(--rm-navy);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+#roadmap .roadmap-stepno{
+  font-weight: 800;
+  font-size: .95rem;
+  letter-spacing: -0.01em;
+  color: var(--rm-navy);
+  margin-bottom: 4px;
+}
+
+#roadmap .roadmap-steptitle{
+  font-weight: 900;
+  font-size: 1.14rem;
+  letter-spacing: -0.02em;
+  color:#111827;
+  margin-bottom: 4px;
+}
+
+#roadmap .roadmap-stepdesc{
+  font-weight: 600;
+  font-size: 1.0rem;
+  color:#6b7280;
+  letter-spacing: -0.01em;
+}
+
+/* 모바일: 세로 타임라인 */
+@media (max-width: 576.98px){
+  :root{
+    --rm-node: 118px;
+    --rm-icon: 86px;
+  }
+
+  #roadmap .roadmap-track{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 0 0 30px;
+  }
+
+  #roadmap .roadmap-track::before,
+  #roadmap .roadmap-track::after{
+    left: 14px;
+    right: auto;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    height: auto;
+  }
+
+  /* 세로에서도 위→아래로 갈수록 진해지게 */
+  #roadmap .roadmap-track::after{
+    background: linear-gradient(
+      180deg,
+      #cbd5e1 0%,
+      #94a3b8 45%,
+      var(--rm-navy) 100%
+    );
+    opacity: 0.95;
+  }
+
+  #roadmap .roadmap-step{
+    display:grid;
+    grid-template-columns: var(--rm-node) 1fr;
+    gap: 12px;
+    align-items:center;
+    text-align:left;
+  }
+
+  #roadmap .roadmap-node{ margin: 0; }
+}
+/* =========================
+   COMBO (결합 서비스)
+   ========================= */
+#combo.combo-section{
+  padding: 86px 0 72px;
+  background: linear-gradient(180deg, #fff 0%, var(--offwhite) 100%);
+}
+
+#combo .combo-wrap{ max-width: 1140px; }
+
+#combo .combo-head{
+  text-align:center;
+  margin-bottom: 34px;
+}
+
+#combo .combo-sub{
+  margin:0;
+  color:#4b5563;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+#combo .combo-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+#combo .combo-card{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius: 22px;
+  padding: 18px 18px 16px;
+  position: relative;
+  box-shadow: none;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  height:100%;
+}
+
+#combo .combo-card:hover{
+  border-color: rgba(0,51,102,0.22);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+/* 카드 상단 히어로 */
+#combo .combo-hero{
+  position: relative;
+  margin: -18px -18px 12px;
+  padding: 18px 18px 0;
+  border-radius: 22px 22px 16px 16px;
+  overflow: hidden;
+}
+
+/* ✅ 최종 적용값만 1번만 */
+#combo .combo-heroimg{
+  width: 100%;
+  height: clamp(220px, 18vw, 290px); /* (최종) 크게 */
+  object-fit: contain;               /* 찌그러짐 방지 */
+  display: block;
+  margin: 0;
+  max-width: none;
+  transform: scale(1.12);            /* (최종) 살짝 확대 */
+  transform-origin: center;
+}
+
+/* ✅ 뱃지 */
+#combo .combo-badge{
+  display:inline-flex;
+  align-items:center;
+  height: 44px;          /* (최종) 크게 */
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(0,51,102,0.08);
+  color: var(--brand-dark);
+  font-weight: 900;
+  font-size: 1.12rem;
+  letter-spacing: -0.01em;
+}
+
+/* 뱃지를 이미지 위에 고정 */
+#combo .combo-hero .combo-badge{
+  position:absolute;
+  top: 14px;
+  left: 14px;
+  margin: 0;
+  z-index: 2;
+}
+
+#combo .combo-badge-alt{
+  background: rgba(0,112,255,0.08);
+  color: #0b4fb3;
+}
+
+/* ✅ 카드명(세무 결합/자금 상담 결합) */
+#combo .combo-name{
+  margin: 8px 0 14px;    /* (최종) */
+  font-weight: 900;
+  font-size: 1.6rem;     /* (최종) 크게 */
+  letter-spacing: -0.02em;
+  color:#111827;
+}
+
+#combo .combo-list{
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  color:#374151;
+  font-weight: 600;
+}
+
+#combo .combo-list li{
+  display:block;
+  text-align:center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+#combo .combo-list li:last-child{ border-bottom: 0; }
+
+#combo .combo-note{
+  display:block;
+  margin: 6px 0 0;
+  font-weight: 700;
+  color:#6b7280;
+  font-size: .95rem;
+}
+
+#combo .combo-footnote{
+  margin: 10px 0 14px;
+  color:#6b7280;
+  font-size: .93rem;
+  letter-spacing: -0.01em;
+}
+
+#combo .combo-cta{
+  appearance: none;
+  -webkit-appearance: none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--brand-dark);
+  color:#fff;
+  font-weight: 900;
+  text-decoration: none;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+#combo .combo-cta-alt{ background: #0b4fb3; }
+
+/* 가격 표기 (일자 취소선 + 신규가) */
+.diag-strike{
+  position: relative;
+  display: inline-block;
+  padding: 0 4px;
+  color:#9ca3af;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+.diag-strike::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: 55%;
+  border-top: 1.5px solid rgba(17,24,39,0.35);
+  transform: none;
+}
+.combo-arrow{
+  display:inline-block;
+  margin: 0 6px;
+  color:#94a3b8;
+  font-weight: 900;
+}
+.price-new{ font-weight: 900; color:#0b4fb3; }
+.price-desc-inline{
+  display:inline-block;
+  margin-left: 6px;
+  font-size: .95rem;
+  color:#6b7280;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* =========================
+   비상주 기본 제공 카드 (데스크탑: 현재처럼 좋음 유지)
+   ========================= */
+#combo .basic-card{
+  margin-top: 18px;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius: 22px;
+  padding: 18px;
+  text-align: left; /* ✅ 좌측정렬 */
+}
+
+#combo .basic-badge{
+  display:inline-flex;
+  align-items:center;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.05);
+  color:#111827;
+  font-weight: 800;
+  font-size: .92rem;
+  margin: 0 0 12px 0; /* ✅ 왼쪽 고정 */
+}
+
+#combo .basic-body{
+  display:flex;
+  flex-direction: row;        /* ✅ (최종) 데스크탑 가로 */
+  gap: 18px;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+#combo .basic-img{
+  width: 220px;              /* ✅ (최종) 데스크탑 이미지 크기 */
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+  display: block;
+  flex: 0 0 auto;
+}
+
+#combo .basic-title{
+  margin:0 0 22px;
+  font-weight: 900;
+  font-size: 1.6rem;
+  color:#111827;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+#combo .basic-chips{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content:flex-start; /* ✅ 왼쪽 */
+}
+
+#combo .basic-chip{
+  display:inline-flex;
+  align-items:center;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid #eee;
+  background: #fafafa;
+  color:#374151;
+  font-weight: 800;
+  font-size: .95rem;
+}
+
+/* =========================
+   모바일
+   ========================= */
+@media (max-width: 576.98px){
+  #combo .combo-grid{ grid-template-columns: 1fr; }
+
+  /* 결합 A/B 이미지: 모바일 최종 값 */
+  #combo .combo-heroimg{
+    height: clamp(190px, 52vw, 250px);
+    transform: scale(1.06);
+  }
+
+  /* ✅ 비상주 기본제공 카드: 모바일에서 더 "납작하게" */
+
+  #combo .basic-body{
+    flex-direction: column;      /* 모바일은 세로 */
+    align-items: flex-start;
+    gap: 6px;                    /* 10 -> 6으로 더 압축 */
+  }
+
+  #combo .basic-img{
+    width: min(500px, 100%);     /* 320 -> 280으로 더 압축 */
+    max-width: none;
+    max-height: 200px;           /* ✅ 핵심: 이미지 영역 높이 제한 */
+  }
+/* 모바일: 비상주 기본혜택(제목+칩) 가운데 정렬 */
+  #combo .basic-title{
+    text-align: center !important;
+  }
+  #combo .basic-chips{
+    justify-content: center !important;
+  }
+  #combo .basic-text{
+    text-align: center !important;
+    width: 100% !important;
+  }
+}
+
+/* ✅ pricing 끝 ↔ combo 시작 간격만 줄이기 (다른 곳 영향 X) */
+#pricing + #combo.combo-section{
+  padding-top: 0px !important; /* 86px → 원하는 값으로 조절 */
+}
+/* =========================
+   TEXT SIZE OVERRIDES (1.15rem)
+   ========================= */
+/* 회사소개 문구 */
+#about .section-sub{
+  font-size: 1.15rem;
+}
+/* FAQ 안내 문구 */
+#faq .section-sub{
+  font-size: 1.15rem;
+}
+/* USP 섹션 부제: "공간을 넘어, 사업 운영까지 연결합니다" */
+#services > p.text-center.text-secondary.mb-5{
+  font-size: 1.15rem;
+}
+/* 이용절차 부제 */
+#roadmap .roadmap-sub{
+  font-size: 1.15rem;
+}
+/* 문의(이미지 위 오버레이) 설명 문구: 현재 inline(0.9rem)이라 !important로 덮기 */
+#contact .position-absolute p.mb-4{
+  font-size: 1.15rem !important;
+}
