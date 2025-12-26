@@ -1498,48 +1498,48 @@ document.querySelectorAll(".open-combo").forEach(btn => {
     const combo = btn.dataset.combo;
 
     if (combo === "A") {
-      modalTitle.innerHTML = `
-        <div style="font-size:20px; font-weight:700;">
-          결합 A형 상담 신청
-        </div>
-        <div style="font-size:14px; margin-top:4px; color:#555;">
-          <span class="diag-strike">비상주 월 25,000원</span>
-          <span class="combo-arrow">→</span>
-          <span class="price-new">월 15,000원</span>
-          <span class="price-desc-inline">(개인, 12개월 계약 기준)</span>
-        </div>
-        <div style="font-size:13px; margin-top:4px; color:#666;">
-          법인설립 대행 수수료
-          <span class="diag-strike">평균 550,000원</span>
-          <span class="combo-arrow">→</span>
-          <span class="price-new">0원</span>
-        </div>
-      `;
+  modalTitle.innerHTML = `
+    <div style="font-size:20px; font-weight:700;">
+      결합 A형 상담 신청
+    </div>
 
-      textarea.value =
-        `결합A형 상담을 요청합니다.\n` +
-        `(추가 문의는 아래 작성해주세요.)`;
+    <div style="font-size:14px; margin-top:4px; color:#555;">
+      비상주 월 요금 <span class="price-new">10,000원 할인</span>
+      <span class="price-desc-inline">(개인, 12개월 계약 기준)</span>
+    </div>
 
-    } else if (combo === "B") {
-      modalTitle.innerHTML = `
-        <div style="font-size:20px; font-weight:700;">
-          결합 B형 상담 신청
-        </div>
-        <div style="font-size:14px; margin-top:4px; color:#555;">
-          <span class="diag-strike">비상주 월 25,000원</span>
-          <span class="combo-arrow">→</span>
-          <span class="price-new">월 15,000원</span>
-          <span class="price-desc-inline">(개인, 12개월 계약 기준)</span>
-        </div>
-        <div style="font-size:13px; margin-top:4px; color:#666;">
-          자금 상담: 적합성 진단 리포트 · 준비서류 체크리스트 · 신청 루트 제안(1~3개)
-        </div>
-      `;
+    <div style="font-size:13px; margin-top:4px; color:#666;">
+      법인설립 대행 수수료
+      <span class="diag-strike">평균 550,000원</span>
+      <span class="combo-arrow">→</span>
+      <span class="price-new">0원</span>
+    </div>
+  `;
 
-      textarea.value =
-        `결합B형 상담을 요청합니다.\n` +
-        `(추가 문의는 아래 작성해주세요.)`;
-    }
+  textarea.value =
+    `결합A형 상담을 요청합니다.\n` +
+    `(추가 문의는 아래 작성해주세요.)`;
+
+} else if (combo === "B") {
+  modalTitle.innerHTML = `
+    <div style="font-size:20px; font-weight:700;">
+      결합 B형 상담 신청
+    </div>
+
+    <div style="font-size:14px; margin-top:4px; color:#555;">
+      비상주 월 요금 <span class="price-new">10,000원 할인</span>
+      <span class="price-desc-inline">(개인, 12개월 계약 기준)</span>
+    </div>
+
+    <div style="font-size:13px; margin-top:4px; color:#666;">
+      자금 상담: 적합성 진단 리포트 · 준비서류 체크리스트 · 신청 루트 제안(1~3개)
+    </div>
+  `;
+
+  textarea.value =
+    `결합B형 상담을 요청합니다.\n` +
+    `(추가 문의는 아래 작성해주세요.)`;
+}
   });
 });
 
