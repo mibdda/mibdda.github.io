@@ -1012,70 +1012,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   </div>
 </section>
-<!-- 당근 전환 추적 실행 스크립트 -->
-<script>
-document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function () {
-  window.karrotPixel.track('Lead');
-});
-</script>
-<script>
-document.querySelector('form[action*="formResponse"]')// 폼 제출 시 모든 필드 초기화 (뒤로가기 시 데이터 유지 방지)
-  ?.addEventListener('submit', function (e) {
-    // 리셋 지연: 전송 직후 사용자 입력이 즉시 사라지는 혼란 방지
-    setTimeout(() => e.target.reset(), 1200);
-  });
-  </script>
-<!-- NAVER CTS Lead 전환 (Google Form 안정형: 숨김 iframe target) -->
-<script>
-(() => {
-  const form = document.querySelector('form[action*="formResponse"]');
-  if (!form) return;
 
-  // 숨김 iframe 생성
-  let iframe = document.getElementById('gf_iframe');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = 'gf_iframe';
-    iframe.name = 'gf_iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-  }
-
-  // ✅ 제출 타깃을 숨김 iframe으로
-  form.setAttribute('target', 'gf_iframe');
-
-  let submitted = false;
-  form.addEventListener('submit', () => { submitted = true; });
-
-  // ✅ "전송이 끝나 iframe이 로드된 뒤" lead 전송
-  iframe.addEventListener('load', () => {
-    if (!submitted) return;
-    submitted = false;
-
-    if (window.wcs) wcs.trans({ type: 'lead' });
-  });
-})();
-</script>
-<!-- digitalcamp SK MSSAGE view BEGIN 디지털캠프 추적 실행 스크립트 -->
-<script>
-document.querySelector('form[action*="formResponse"]')?.addEventListener('submit', function(e) {
-  const name = e.target.querySelector('input[name="entry.1727161775"]').value;
-  const phone = e.target.querySelector('input[name="entry.53713410"]').value;
-  const email = e.target.querySelector('input[name="entry.1336222686"]').value;
-  const message = e.target.querySelector('textarea[name="entry.701133298"]').value;
-  const category = e.target.querySelector('select[name="entry.989899118"]').value;
-
-  dcampconv_sp_1601('submit', {
-    'items': [
-      { 'name': name },
-      { 'phone': phone },
-      { 'email': email },
-      { 'message': message },
-      { 'category': category }
-    ]
-  }, 'cpa');
-});
-</script>
 <!-- digitalcamp SK MSSAGE view END -->
 <!-- 전화상담 버튼 (상담신청 바로 위, 데스크탑 전용)현재 사용 안함. -->
     <!--
@@ -1465,6 +1402,83 @@ sections.forEach(s => io.observe(s));
     </p>
   </div>
 </div>
+    <!-- ✅ 전환/리셋: consultModal 폼 전용 (모달 DOM 뒤에 배치) -->
+<script>
+(() => {
+  const FORM_SEL = '#consultModal form[action*="formResponse"]';
+
+  function ensureIframeTarget(form) {
+    let iframe = document.getElementById('gf_iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'gf_iframe';
+      iframe.name = 'gf_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+    form.setAttribute('target', 'gf_iframe');
+    return iframe;
+  }
+
+  function bindOnce() {
+    const form = document.querySelector(FORM_SEL);
+    if (!form) return;
+
+    // 중복 바인딩 방지
+    if (form.dataset.convBound === '1') return;
+    form.dataset.convBound = '1';
+
+    const iframe = ensureIframeTarget(form);
+    let submitted = false;
+
+    form.addEventListener('submit', (e) => {
+      submitted = true;
+
+      // 1) 당근 전환
+      try { window.karrotPixel?.track?.('Lead'); } catch (_) {}
+
+      // 2) 디지털캠프 전환 (폼 값 읽어서 전송)
+      try {
+        const get = (sel) => (e.target.querySelector(sel)?.value ?? '');
+        const name = get('input[name="entry.1727161775"]');
+        const phone = get('input[name="entry.53713410"]');
+        const email = get('input[name="entry.1336222686"]');
+        const message = get('textarea[name="entry.701133298"]');
+        const category = get('select[name="entry.989899118"]');
+
+        if (typeof window.dcampconv_sp_1601 === 'function') {
+          window.dcampconv_sp_1601('submit', {
+            items: [{ name }, { phone }, { email }, { message }, { category }]
+          }, 'cpa');
+        }
+      } catch (_) {}
+
+      // 3) 제출 후 입력값 리셋(뒤로가기 값 유지 방지)
+      setTimeout(() => {
+        try { e.target.reset(); } catch (_) {}
+      }, 1200);
+    });
+
+    // 4) 네이버 CTS Lead: 구글폼 제출 완료(iframe load) 이후 전송
+    iframe.addEventListener('load', () => {
+      if (!submitted) return;
+      submitted = false;
+
+      try {
+        if (window.wcs) window.wcs.trans({ type: 'lead' });
+      } catch (_) {}
+    });
+  }
+
+  // 모달보다 앞에서 실행되는 걸 방지(안전장치)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindOnce);
+  } else {
+    bindOnce();
+  }
+})();
+</script>
+
 <!-- 가격표 스크립트 삽입-->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
