@@ -2168,3 +2168,52 @@ body {
 #contact .position-absolute p.mb-4{
   font-size: 1.15rem !important;
 }
+.nav-cta{
+  position: relative; /* 기준점 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 말풍선 */
+.nav-cta .cta-bubble{
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 5px;                 /* ✅ 버튼 오른쪽 끝 고정 */
+  transform: translateY(0);
+
+  background: #fff;
+  color: #007BFF;
+  border: 1.5px solid #007BFF;
+  border-radius: 999px;
+
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  animation: ctaFloat 2.6s ease-in-out infinite;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* 꼬리(다이아몬드) */
+.nav-cta .cta-bubble::before{
+  content:"";
+  position: absolute;
+  top: -6px;
+  right: 48px;              /* ✅ 꼬리 위치만 숫자로 튜닝 */
+  width: 10px;
+  height: 10px;
+
+  background: #fff;
+  border-left: 1.5px solid #007BFF;
+  border-top: 1.5px solid #007BFF;
+  transform: rotate(45deg);
+}
+
+@keyframes ctaFloat{
+  0%   { transform: translateY(0); opacity: .90; }
+  50%  { transform: translateY(-6px); opacity: 1; }
+  100% { transform: translateY(0); opacity: .90; }
+}
