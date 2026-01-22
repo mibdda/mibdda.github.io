@@ -151,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="hero-caption fade-in">
 <div class="container">
 <!-- 메인 타이틀 -->
-<h1 class="display-5 hero-title mb-3">강남 비상주사무실 · 신논현 공유오피스</h1>
+<h1 class="display-5 hero-title mb-3">더브릿지플러스 | 강남 비상주사무실 · 신논현 공유오피스</h1>
 <!-- 서브 타이틀 -->
 <p class="hero-sub">비상주 · 상주 · 유연한 선택<br>
   사업 시작에 필요한 공간과 행정 지원</p>
@@ -1460,6 +1460,7 @@ sections.forEach(s => io.observe(s));
     const iframe = ensureIframeTarget(form);
     let submitted = false;
 
+    // ✅ (1) submit: 전환만 처리 (리셋 없음)
     form.addEventListener('submit', (e) => {
       submitted = true;
 
@@ -1481,21 +1482,70 @@ sections.forEach(s => io.observe(s));
           }, 'cpa');
         }
       } catch (_) {}
-
-      // 3) 제출 후 입력값 리셋(뒤로가기 값 유지 방지)
-      setTimeout(() => {
-        try { e.target.reset(); } catch (_) {}
-      }, 1200);
     });
 
-    // 4) 네이버 CTS Lead: 구글폼 제출 완료(iframe load) 이후 전송
+    // ✅ (2) iframe load: 제출 성공 확정 시점 → 네이버 전환 + 팝업
     iframe.addEventListener('load', () => {
       if (!submitted) return;
       submitted = false;
 
+      // 네이버 CTS lead 전송
       try {
         if (window.wcs) window.wcs.trans({ type: 'lead' });
       } catch (_) {}
+
+      // 제출 완료 팝업 (중복 방지)
+      if (document.getElementById('leadConfirmOverlay')) return;
+
+      const overlay = document.createElement('div');
+      overlay.id = 'leadConfirmOverlay';
+      overlay.style.cssText =
+        'position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:999999;' +
+        'display:flex; align-items:center; justify-content:center;';
+
+      const box = document.createElement('div');
+      box.style.cssText =
+        'max-width:92vw; display:inline-block; background:#fff; border-radius:14px; padding:18px 16px;' +
+        'box-shadow:0 10px 30px rgba(0,0,0,.25);';
+
+      const msg = document.createElement('div');
+      msg.textContent = '상담 문의가 접수되었습니다.';
+      msg.style.cssText = 'font-size:15px; color:#111; margin-bottom:14px;' + 'white-space:nowrap;';
+;
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '확인';
+      btn.style.cssText =
+         'width:100%; padding:10px 12px; border:0; border-radius:10px;' +
+         'background:var(--brand-dark); color:#fff;' +
+        'font-weight:700; font-size:14px; cursor:pointer;';
+      btn.addEventListener('click', () => {
+        // 팝업 닫기
+        overlay.remove();
+
+        // 모달 닫기 (Bootstrap 5)
+        try {
+          const modalEl = document.getElementById('consultModal');
+          const modal =
+            window.bootstrap?.Modal?.getInstance(modalEl) ||
+            new window.bootstrap.Modal(modalEl);
+          modal.hide();
+        } catch (_) {}
+
+        // 폼 리셋 (리프레시 느낌을 위해 지연)
+        setTimeout(() => {
+          try {
+            const f = document.querySelector(FORM_SEL);
+            f?.reset();
+          } catch (_) {}
+        }, 1200);
+      });
+
+      box.appendChild(msg);
+      box.appendChild(btn);
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
     });
   }
 
