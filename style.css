@@ -881,8 +881,8 @@ body {
   position: absolute;
   
   /* 위치: 오른쪽 상단 */
-  top: -24px; 
-  right: -10px;
+  top: -16px; 
+  right: -5px;
   left: auto;
   
   /* 디자인: 브랜드 남색(--brand-dark) 및 양수 각도 회전 */
