@@ -840,13 +840,90 @@ body {
   font-weight: 700;
   font-size: 0.95rem;
 }
-
-/* 약한 줄 */
-.floorplan-btn .fp-weak {
-  display: block;
-  font-size: 0.8rem;
-  opacity: 0.75;
+/* [수정] 1. 데스크탑 안내 문구 확대 (992px 이상) */
+@media (min-width: 992px) {
+  #floorplanModal .modal-body p.text-center.small {
+    font-size: 1.15rem !important; /* 기존보다 약 1.5배 확대 */
+    font-weight: 700;
+    color: #333 !important;
+    margin-bottom: 25px;
+  }
 }
+
+/* [수정/추가] 2. 클릭 영역(Hotspot) 디자인 및 화살표 애니메이션 */
+/* 1. 데스크탑 안내 문구: 가독성 강화 */
+@media (min-width: 992px) {
+  #floorplanModal .modal-body p.text-center.small {
+    font-size: 1.2rem !important;
+    font-weight: 800;
+    color: #111 !important;
+    margin-bottom: 25px;
+  }
+}
+
+/* 2. 원형 영역(Hotspot): 기존 투명 화이트 스타일 유지 */
+.room-hotspot {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: transform 0.2s ease;
+}
+
+/* 3. 화살표: 양수 각도 + 브랜드 남색 + 수직 미세 바운스 */
+.room-hotspot::before {
+  content: "\f063"; /* FontAwesome 화살표 아이콘 */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  
+  /* 위치: 오른쪽 상단 */
+  top: -24px; 
+  right: -10px;
+  left: auto;
+  
+  /* 디자인: 브랜드 남색(--brand-dark) 및 양수 각도 회전 */
+  color: var(--brand-dark);
+  font-size: 20px;
+  transform: rotate(45deg); /* 양수 각도 유지 */
+  text-shadow: 1px 1px 0px #fff; 
+  
+  /* 애니메이션: 과하지 않은 수직 움직임 */
+  animation: subtleVerticalBounce 2s infinite ease-in-out;
+  z-index: 10;
+}
+
+/* 4. 미세 수직 바운스 애니메이션 (과하지 않게 4px만 이동) */
+@keyframes subtleVerticalBounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(-4px); } 
+}
+
+/* 호버 효과: 원형만 살짝 강조 */
+.room-hotspot:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  transform: scale(1.1);
+}
+
+/* 5. 모바일 환경 최적화 (576.98px 이하) */
+@media (max-width: 576.98px) {
+  .room-hotspot::before {
+    font-size: 15px !important;
+    top: -18px !important;
+    right: -6px !important;
+  }
+  
+  @keyframes subtleVerticalBounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(-3px); }
+  }
+} /* <--- 닫는 괄호 확인: 데스크탑 깨짐 방지 */
+/* =========================
+   평면도 모달 END
+   ========================= */
 /* =========================
    USP TAB SECTION STYLE START
    ========================= */
