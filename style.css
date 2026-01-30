@@ -161,6 +161,40 @@ body {
 @keyframes heroPop {
     to { opacity: 1; transform: scale(1); }
 }
+
+/* 히어로 신뢰 문구 유리박스 스타일 */
+.hero-trust-line {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+/* 모바일에서는 문구가 너무 커지지 않게 조정 */
+@media (max-width: 576px) {
+  .hero-trust-line { 
+    font-size: 0.85rem; 
+    padding: 6px 14px;
+    margin-bottom: 20px;
+  }
+}
+/* ✅ 신뢰 문구 내부 아이템 및 구분선 스타일 추가 */
+.trust-item {
+  font-weight: 700;
+  color: #fff;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.5); /* 반투명한 흰색 선 */
+  margin: 0 15px; /* 선 좌우 간격 */
+  display: inline-block;
+}
+
 /* 히어로 끝 */
     /* 버튼 */ /* 부트스트랩의 .btn-primary:not([disabled])와 경쟁하여 우선순위에서 이기거나 최소한 동등하게 만듭니다. */
     .btn-primary:not([disabled]){background:var(--brand-dark); border-color:var(--brand-dark); }
