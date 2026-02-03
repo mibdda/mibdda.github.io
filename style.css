@@ -303,7 +303,7 @@ body {
 /* 요금 섹션 타이틀 그룹 */
 .section-title { font-weight: 800; font-size: 28px; color: #111827; margin-bottom: 8px; text-align: center; }
 .section-desc { font-size: 18px; color: #374151; margin-bottom: 24px; text-align: left; }
-.group-title { font-weight: 700; font-size: 18px; color: #111827; margin: 24px 0 12px; text-align: left; }
+.group-title { font-weight: 700; font-size: 20px; color: #111827; margin: 24px 0 12px; text-align: left; }
 
 /* 🖥️ 데스크탑 레이아웃 (992px 이상) */
 @media (min-width: 992px) {
@@ -312,7 +312,7 @@ body {
   
   /* Flex 레이아웃: 사이드바 + 카드영역 */
   .pricing-group {
-    display: flex !important; align-items: flex-start;
+    display: flex !important; align-items: center;
     gap: clamp(20px, 4vw, 50px); margin-bottom: 80px; padding: 0 4%;
   }
   .group-side { flex: 0 0 160px; text-align: left; display: block !important; }
