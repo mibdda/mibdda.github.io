@@ -366,10 +366,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
                 textarea.value = `결합A형 상담을 요청합니다.\n(추가 문의는 아래 작성해주세요.)`;
             } else if (combo === "B") {
+                 // HTML에 정의된 설명이 있으면 그걸 쓰고, 없으면 기존 메인 페이지용(자금 상담) 텍스트를 씁니다.(27.03.05 업데이트. seller.html, creator.html usp별도로 추가)
+                const comboBText = window.COMBO_B_DESC || "자금 상담: 적합성 진단 리포트 · 준비서류 체크리스트 · 신청 루트 제안(1~3개)";
                 modalTitle.innerHTML = `
                     <div style="font-size:20px; font-weight:700;">결합 B형 상담 신청</div>
                     <div style="font-size:14px; margin-top:4px; color:#555;">비상주 월 요금 <span class="price-new">10,000원 할인</span> <span class="price-desc-inline">(개인, 12개월 계약 기준)</span></div>
-                    <div style="font-size:13px; margin-top:4px; color:#666;">자금 상담: 적합성 진단 리포트 · 준비서류 체크리스트 · 신청 루트 제안(1~3개)</div>
+                    <div style="font-size:13px; margin-top:4px; color:#666;">${comboBText}</div>
                 `;
                 textarea.value = `결합B형 상담을 요청합니다.\n(추가 문의는 아래 작성해주세요.)`;
             }
@@ -446,7 +448,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // [USP TAB] 특장점 탭 슬라이더
 // =================================================================
 (function() {
-    const USP_DATA = [
+    const USP_DATA = window.PAGE_USP_DATA || [
+    // 아래는 window.PAGE_USP_DATA가 없을 때(즉, 기존 메인 index.html) 띄워줄 기본 데이터입니다.(27.03.05 업데이트. seller.html, creator.html usp별도로 추가)
         { title:"실사 대응 전문", subtitle:"관공서 실사가 나오면 어떻게 대응할까?", desc:"👉 실사 대응 경험이 있는 담당자가 상주하며 준비부터 운영까지 안내합니다.", img:"images/usp-inspection-support.png" },
         { title:"정책자금 무료 체크", subtitle:"내게 맞는 정책자금이나 사업자금 확보방법은 뭐가 있을까?", desc:"👉 정책자금·보증·바우처 안내부터 자격 조건, 신청 준비까지 전문가가 함께 도와드립니다!", img:"images/usp-policy-fund-check.png" },
         { title:"세무 연계 혜택", subtitle:"세무·회계 같은 사업주 필수 서비스도 연계가 가능할까?", desc:"👉 세무,법무등 사업자에게 필요한 모든 상담과 서비스 연계 시 저렴한 비용으로 구성합니다.", img:"images/usp-tax-benefit.png" },
