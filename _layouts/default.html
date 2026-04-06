@@ -10,25 +10,45 @@
   <link rel="stylesheet" href="/style.css">
 
   <style>
-    /* [BLOG NAV] 네이버 스타일 헤더 */
+    /* [BLOG NAV] 상단바 */
     .blog-navbar { 
       background: #2c2c2c; height: 70px; position: fixed; top: 0; left: 0; right: 0; z-index: 2030;
       display: flex; align-items: center; justify-content: space-between; padding: 0 20px; color: #fff;
     }
-    .brand-abs-blog { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); line-height: 0; }
     .brand-title-center { color: #fff; font-weight: 800; font-size: 1.2rem; position: absolute; left: 50%; transform: translateX(-50%); }
     .nav-icon { font-size: 1.5rem; cursor: pointer; color: #fff; }
 
-    /* [SEARCH] 상단 검색바 */
-    .search-overlay {
-      position: fixed; top: -100%; left: 0; right: 0; height: 70px; background: #fff; 
-      transition: top 0.3s ease-in-out; z-index: 2040; display: flex; align-items: center; padding: 0 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* [SEARCH OVERLAY] 전면 검색 플로팅 (배경 100% 덮음) */
+    #searchFullOverlay {
+      position: fixed; inset: 0; background: #fff; z-index: 3000;
+      display: none; flex-direction: column;
     }
-    .search-overlay.active { top: 0; }
-    #searchInput { border: none; width: 100%; font-size: 1.1rem; outline: none; font-weight: 700; }
+    #searchFullOverlay.active { display: flex; }
 
-    /* [CATEGORY] 슬라이딩 메뉴 */
+    /* 검색바 상단 (뒤로가기 < | 입력창 | 전체 검색) */
+    .search-header {
+      height: 70px; display: flex; align-items: center; padding: 0 15px;
+      border-bottom: 1px solid #eee; gap: 15px;
+    }
+    .search-back-btn { font-size: 1.5rem; color: #333; cursor: pointer; border: 0; background: none; }
+    #searchInput {
+      flex: 1; border: none; font-size: 1.1rem; outline: none; font-weight: 500;
+    }
+    .search-submit-btn {
+      color: #007BFF; font-weight: 800; font-size: 1rem; border: 0; background: none; white-space: nowrap;
+    }
+
+    /* 인기 검색어 영역 */
+    .popular-search-wrap { padding: 30px 20px; }
+    .popular-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; color: #111; }
+    .popular-list { list-style: none; padding: 0; margin: 0; }
+    .popular-item { 
+      display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5;
+      text-decoration: none; color: #333; font-size: 1rem;
+    }
+    .popular-num { color: #007BFF; font-weight: 900; margin-right: 15px; width: 20px; }
+
+    /* 카테고리 메뉴 */
     #categoryDrawer {
       position: fixed; top: 70px; left: 0; right: 0; background: #fff;
       max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
@@ -39,21 +59,34 @@
     #categoryDrawer li { padding: 15px 0; border-bottom: 1px solid #eee; }
     #categoryDrawer a { color: #333; text-decoration: none; display: flex; justify-content: space-between; font-weight: 700; }
 
-    /* 본문 영역 최하단 푸터 고정 */
     main { padding-top: 100px; min-height: calc(100vh - 450px); }
   </style>
 </head>
 <body>
 
-  <nav class="blog-navbar">
+  <nav class="blog-navbar shadow-sm">
     <i class="fa-solid fa-folder-open nav-icon" id="folderIcon"></i>
     <div class="brand-title-center">더브릿지플러스</div>
     <i class="fa-solid fa-magnifying-glass nav-icon" id="searchIcon"></i>
   </nav>
 
-  <div class="search-overlay" id="searchOverlay">
-    <input type="text" id="searchInput" placeholder="검색어를 입력하세요...">
-    <i class="fa-solid fa-xmark fs-3 cursor-pointer" id="searchClose"></i>
+  <div id="searchFullOverlay">
+    <div class="search-header">
+      <button class="search-back-btn" id="searchCloseBtn"><i class="fa-solid fa-chevron-left"></i></button>
+      <input type="text" id="searchInput" placeholder="이 블로그 검색">
+      <button class="search-submit-btn">전체 검색</button>
+    </div>
+
+    <div class="popular-search-wrap">
+      <h4 class="popular-title">인기 검색어</h4>
+      <div class="popular-list">
+        <a href="/blog/tax/" class="popular-item"><span class="popular-num">1</span> 세무 가이드</a>
+        <a href="/blog/grants/" class="popular-item"><span class="popular-num">2</span> 정부지원금 합격</a>
+        <a href="/blog/corp/" class="popular-item"><span class="popular-num">3</span> 법인 설립 절차</a>
+        <a href="/blog/registration/" class="popular-item"><span class="popular-num">4</span> 사업자 등록 방법</a>
+        <a href="/blog/grants/" class="popular-item"><span class="popular-num">5</span> 예비창업패키지</a>
+      </div>
+    </div>
   </div>
 
   <div id="categoryDrawer">
@@ -73,60 +106,30 @@
   </main>
 
   <footer class="site-footer" id="footer">
-    <div class="sf-top">
-      <div class="sf-inner">
-        <div class="sf-grid">
-          <section class="sf-col">
-            <h3 class="sf-title">대표이사 상담</h3>
-            <div class="sf-one">
-              <div class="sf-label">휴대폰 번호</div>
-              <a class="sf-num accent" href="tel:010-9453-4102">010-9453-4102</a>
-            </div>
-          </section>
-          <section class="sf-col">
-            <h3 class="sf-title">고객센터</h3>
-            <div class="sf-one">
-              <div class="sf-label">대표 전화번호</div>
-              <a class="sf-num accent" href="tel:02-2135-8227">02-2135-8227</a>
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
-    <div class="sf-bottom">
-      <div class="sf-inner">
-        <div class="sf-legal">
-          대표이사 : 김배기 | 사업자등록번호 : 309-88-03426<br/>
-          주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)<br/>
-          EMAIL : rayofusa@thebridgeplus.co.kr
-          <div class="sf-copy">© (주)더브릿지플러스 All Rights Reserved.</div>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // 모든 블로그 로직 통합 관리
     const folderIcon = document.getElementById('folderIcon');
     const searchIcon = document.getElementById('searchIcon');
-    const searchClose = document.getElementById('searchClose');
+    const searchCloseBtn = document.getElementById('searchCloseBtn');
     const drawer = document.getElementById('categoryDrawer');
-    const searchOverlay = document.getElementById('searchOverlay');
+    const searchOverlay = document.getElementById('searchFullOverlay');
 
-    // 카테고리 토글
+    // 📂 카테고리 토글
     folderIcon.onclick = () => {
       drawer.classList.toggle('open');
       searchOverlay.classList.remove('active');
     };
 
-    // 검색창 열기/닫기
+    // 🔍 검색창 열기 (전면 덮기)
     searchIcon.onclick = () => {
       searchOverlay.classList.add('active');
       drawer.classList.remove('open');
       document.getElementById('searchInput').focus();
     };
-    searchClose.onclick = () => searchOverlay.classList.remove('active');
+
+    // < 버튼 눌러서 닫기
+    searchCloseBtn.onclick = () => searchOverlay.classList.remove('active');
   </script>
 </body>
 </html>
