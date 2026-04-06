@@ -3,76 +3,51 @@ layout: default
 title: 창업 인사이트
 ---
 
-<div class="container-fluid px-0">
-  
-  <section class="popular-section py-5 bg-white">
-    <div class="container">
-      <h3 class="fw-bold mb-4">인기글</h3>
-      <div class="popular-posts-container">
-        
-        {% assign popular_posts = site.posts | where: "popular", true %}
-        {% for post in popular_posts %}
-        <article class="popular-card">
-          <a href="{{ post.url }}">
-            <div class="popular-thumb">
-              {% if post.image %}
-                <img src="{{ post.image }}" alt="{{ post.title }}">
-              {% else %}
-                <i class="fa-solid fa-image fa-3x"></i> {% endif %}
-            </div>
-          </a>
-          <div class="popular-content">
-            <h5 class="fw-bold mb-2">
-              <a href="{{ post.url }}" class="popular-title text-dark">{{ post.title }}</a>
-            </h5>
-            <div class="text-muted small mb-3">{{ post.excerpt | strip_html | truncate: 70 }}</div>
-            <div class="small text-primary">{{ post.date | date: "%Y년 %m월 %d일" }}</div>
+<style>
+  /* 이 페이지 전용 스타일만 간단히 추가 */
+  .popular-posts-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
+  .popular-posts-container::-webkit-scrollbar { display: none; }
+  .popular-card { min-width: 260px; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: transform 0.3s; }
+  .popular-card:hover { transform: translateY(-5px); }
+  .blog-card { border-radius: 15px; transition: all 0.3s; cursor: pointer; }
+  .blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important; }
+</style>
+
+<div class="py-4">
+  <section class="mb-5">
+    <h3 class="fw-bold mb-4">인기글</h3>
+    <div class="popular-posts-container">
+      {% assign popular_posts = site.posts | where: "popular", true %}
+      {% for post in popular_posts %}
+      <article class="popular-card shadow-sm">
+        <a href="{{ post.url }}" class="text-decoration-none">
+          <div style="height: 150px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ post.image | default: '/images/logotop.png' }}" style="height: 100%; width: 100%; object-fit: cover;">
           </div>
-        </article>
-        {% else %}
-        <div class="col-12 py-5 text-center text-muted">
-          게시글 상단에 `popular: true`를 추가하여 첫 번째 인기글을 남겨보세요!
-        </div>
-        {% endfor %}
-        
-      </div>
+          <div class="p-3">
+            <h5 class="fw-bold text-dark text-truncate">{{ post.title }}</h5>
+            <p class="text-muted small mb-0">{{ post.date | date: "%Y년 %m월 %d일" }}</p>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
     </div>
   </section>
 
-  <section class="all-posts-section py-5 bg-light">
-    <div class="container">
-      <h3 class="fw-bold mb-5">전체글</h3>
-      <div class="row">
-        {% for post in site.posts %}
-        <div class="col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm" style="border-radius:15px; transition: transform 0.3s ease-in-out;">
-            <div class="card-body p-4">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="badge bg-primary text-white" style="border-radius:10px; font-weight:700;">{{ post.categories | first }}</span>
-                <div class="small text-muted">{{ post.date | date: "%Y년 %m월 %d일" }}</div>
-              </div>
-              <h4 class="fw-bold"><a href="{{ post.url }}" class="text-dark text-decoration-none">{{ post.title }}</a></h4>
-              <p class="text-muted small">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-              <div class="mt-3 text-primary small">자세히 보기 →</div>
-            </div>
+  <section>
+    <h3 class="fw-bold mb-4">전체글</h3>
+    <div class="row">
+      {% for post in site.posts %}
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 border-0 shadow-sm blog-card">
+          <div class="card-body p-4">
+            <span class="badge bg-primary mb-2">{{ post.categories | first }}</span>
+            <h4 class="fw-bold"><a href="{{ post.url }}" class="text-dark text-decoration-none">{{ post.title }}</a></h4>
+            <p class="text-muted small mb-0">{{ post.excerpt | strip_html | truncate: 100 }}</p>
           </div>
         </div>
-        {% else %}
-        <div class="col-12 text-center py-5">
-          <p class="text-muted">아직 작성된 글이 없습니다. _posts 폴더에 첫 글을 남겨보세요!</p>
-        </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </section>
-
 </div>
-
-<script>
-  // 카드 뉴스 호버 효과 추가
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', () => card.style.transform = 'translateY(-5px)');
-    card.addEventListener('mouseleave', () => card.style.transform = 'translateY(0)');
-  });
-</script>
