@@ -1,0 +1,28 @@
+# 1. 사이트 기본 정보 (검색 엔진 노출용)
+title: 더브릿지플러스
+email: rayofusa@thebridgeplus.co.kr
+description: >-
+  강남 비상주사무실 및 신논현 공유오피스 운영 지원 서비스. 
+  사업자등록 주소지, 우편 관리, 회의실 제공과 창업지원까지 한곳에서.
+
+# 2. 주소 및 URL 구조 설정
+url: "https://www.thebridgeplus.co.kr"
+baseurl: ""
+permalink: /blog/:categories/:title/
+
+# 3. 글 작성 자동화 설정 (이게 있어야 관리가 편해집니다)
+defaults:
+  - scope:
+      path: ""       # 모든 파일에 대해
+      type: "posts"  # _posts 폴더 안의 글이라면
+    values:
+      layout: "post" # 자동으로 _layouts/post.html 디자인을 입혀라
+
+# 4. 렌더링 엔진 및 확장 기능
+markdown: kramdown
+highlighter: rouge
+
+# 5. 필수 플러그인 (SEO 및 피드 생성)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
