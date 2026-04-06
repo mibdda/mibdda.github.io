@@ -1,0 +1,31 @@
+<nav class="navbar fixed-top slimbar shadow-sm">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+    
+    <a class="navbar-brand" href="/">
+      <img src="/images/logotop.png" style="height:50px;" alt="로고">
+    </a>
+
+    <div class="navbar-brand-name fw-bold" style="color:#fff; font-size:1.1rem;">
+      더브릿지플러스
+    </div>
+
+    <div class="d-flex gap-3 align-items-center" style="font-size: 1.5rem; cursor: pointer;">
+      <span id="searchBtn">🔍</span>
+      <span id="folderMenuBtn">📂</span>
+    </div>
+
+  </div>
+
+  <div id="categoryDrawer" class="category-drawer">
+    <div class="drawer-header">전체 카테고리</div>
+    <ul class="list-unstyled">
+      {% for category in site.categories %}
+      <li>
+        <a href="/blog/{{ category | first | slugify }}/">
+          {{ category | first }} <span class="count">{{ category | last | size }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
