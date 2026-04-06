@@ -15,33 +15,37 @@
       background: #2c2c2c; height: 70px; position: fixed; top: 0; left: 0; right: 0; z-index: 2030;
       display: flex; align-items: center; justify-content: space-between; padding: 0 20px; color: #fff;
     }
-    .brand-title-center { color: #fff; font-weight: 800; font-size: 1.2rem; position: absolute; left: 50%; transform: translateX(-50%); }
+    
+    /* 로고 배치 스타일 (절대 위치) */
+    .brand-abs-blog {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      line-height: 0; z-index: 2045; /* 다른 요소보다 최상단에 배치 */
+    }
+
+    /* 중앙 타이틀 (요청하신 네이밍 반영) */
+    .brand-title-center { 
+      color: #fff; font-weight: 800; font-size: 1.2rem; 
+      position: absolute; left: 50%; transform: translateX(-50%); 
+      white-space: nowrap;
+    }
+
     .nav-icon { font-size: 1.5rem; cursor: pointer; color: #fff; border: 0; background: none; }
 
-    /* [SEARCH] 전면 검색 오버레이 (배경 100% 화이트) */
+    /* [SEARCH] 전면 검색 오버레이 */
     #searchFullOverlay {
       position: fixed; inset: 0; background: #fff; z-index: 3000;
       display: none; flex-direction: column; overflow-y: auto;
     }
     #searchFullOverlay.active { display: flex; }
-
-    .search-header {
-      height: 70px; display: flex; align-items: center; padding: 0 15px;
-      border-bottom: 1px solid #eee; gap: 15px; flex-shrink: 0;
-    }
+    .search-header { height: 70px; display: flex; align-items: center; padding: 0 15px; border-bottom: 1px solid #eee; gap: 15px; flex-shrink: 0; }
     #searchInput { flex: 1; border: none; font-size: 1.1rem; outline: none; font-weight: 500; }
     .search-submit-btn { color: #007BFF; font-weight: 800; font-size: 1rem; border: 0; background: none; white-space: nowrap; cursor: pointer; }
 
-    /* 인기 검색어 및 결과 영역 */
     .search-body { padding: 30px 20px; flex: 1; }
     .popular-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; color: #111; }
-    .popular-item { 
-      display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5;
-      text-decoration: none; color: #333; font-size: 1rem; cursor: pointer;
-    }
+    .popular-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5; text-decoration: none; color: #333; font-size: 1rem; cursor: pointer; }
     .popular-num { color: #007BFF; font-weight: 900; margin-right: 15px; width: 20px; }
 
-    /* 검색 결과 리스트 스타일 */
     #searchResults { list-style: none; padding: 0; margin-top: 20px; }
     #searchResults li { padding: 15px 0; border-bottom: 1px solid #eee; }
     #searchResults a { color: #111; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: block; }
@@ -64,8 +68,14 @@
 <body>
 
   <nav class="blog-navbar shadow-sm">
-    <button class="nav-icon" id="folderIcon"><i class="fa-solid fa-folder-open"></i></button>
-    <div class="brand-title-center">더브릿지플러스</div>
+    <div class="brand-abs-blog">
+      <a href="/"><img alt="더브릿지플러스" src="/images/logotop.png" style="height:160px;"/></a>
+    </div>
+
+    <button class="nav-icon" id="folderIcon" style="margin-left: 60px;"><i class="fa-solid fa-folder-open"></i></button>
+    
+    <div class="brand-title-center">THE BRIDGE PLUS | INSIGHT</div>
+    
     <button class="nav-icon" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
   </nav>
 
@@ -75,7 +85,6 @@
       <input type="text" id="searchInput" placeholder="이 블로그 검색">
       <button class="search-submit-btn" id="totalSearchBtn">전체 검색</button>
     </div>
-
     <div class="search-body">
       <div id="popularWrap">
         <h4 class="popular-title">인기 검색어</h4>
@@ -94,11 +103,7 @@
   <div id="categoryDrawer">
     <ul>
       {% for category in site.categories %}
-      <li>
-        <a href="/blog/{{ category | first | slugify }}/">
-          {{ category | first }} <span class="text-primary">{{ category | last | size }}</span>
-        </a>
-      </li>
+      <li><a href="/blog/{{ category | first | slugify }}/">{{ category | first }} <span class="text-primary">{{ category | last | size }}</span></a></li>
       {% endfor %}
     </ul>
   </div>
@@ -147,28 +152,10 @@
     const popularWrap = document.getElementById('popularWrap');
     const searchInput = document.getElementById('searchInput');
 
-    // 📂 카테고리 토글
-    document.getElementById('folderIcon').onclick = () => {
-      drawer.classList.toggle('open');
-      searchOverlay.classList.remove('active');
-    };
+    document.getElementById('folderIcon').onclick = () => { drawer.classList.toggle('open'); searchOverlay.classList.remove('active'); };
+    document.getElementById('searchIcon').onclick = () => { searchOverlay.classList.add('active'); drawer.classList.remove('open'); searchInput.focus(); };
+    document.getElementById('searchCloseBtn').onclick = () => { searchOverlay.classList.remove('active'); searchInput.value = ''; popularWrap.style.display = 'block'; document.getElementById('searchResults').innerHTML = ''; };
 
-    // 🔍 검색창 열기
-    document.getElementById('searchIcon').onclick = () => {
-      searchOverlay.classList.add('active');
-      drawer.classList.remove('open');
-      searchInput.focus();
-    };
-
-    // < 버튼 닫기
-    document.getElementById('searchCloseBtn').onclick = () => {
-      searchOverlay.classList.remove('active');
-      searchInput.value = '';
-      popularWrap.style.display = 'block';
-      document.getElementById('searchResults').innerHTML = '';
-    };
-
-    // 검색 엔진 초기화
     const sjs = SimpleJekyllSearch({
       searchInput: searchInput,
       resultsContainer: document.getElementById('searchResults'),
@@ -177,22 +164,13 @@
       noResultsText: '<li>검색 결과가 없습니다.</li>'
     });
 
-    // 입력 시작 시 인기검색어 숨기기
-    searchInput.oninput = () => {
-      popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block';
-    };
+    searchInput.oninput = () => { popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block'; };
+    document.getElementById('totalSearchBtn').onclick = () => { if(searchInput.value.length > 0) popularWrap.style.display = 'none'; };
 
-    // 전체 검색 버튼 및 엔터키 처리
-    document.getElementById('totalSearchBtn').onclick = () => {
-      if(searchInput.value.length > 0) popularWrap.style.display = 'none';
-    };
-
-    // 인기검색어 클릭 시 바로 검색
     function quickSearch(keyword) {
       searchInput.value = keyword;
       popularWrap.style.display = 'none';
       searchInput.focus();
-      // SimpleJekyllSearch가 입력값 변화를 감지하도록 강제 트리거
       const event = new Event('input', { bubbles: true });
       searchInput.dispatchEvent(event);
     }
