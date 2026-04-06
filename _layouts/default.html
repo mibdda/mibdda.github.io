@@ -10,45 +10,44 @@
   <link rel="stylesheet" href="/style.css">
 
   <style>
-    /* [BLOG NAV] 상단바 */
+    /* [NAV] 상단바 디자인 */
     .blog-navbar { 
       background: #2c2c2c; height: 70px; position: fixed; top: 0; left: 0; right: 0; z-index: 2030;
       display: flex; align-items: center; justify-content: space-between; padding: 0 20px; color: #fff;
     }
     .brand-title-center { color: #fff; font-weight: 800; font-size: 1.2rem; position: absolute; left: 50%; transform: translateX(-50%); }
-    .nav-icon { font-size: 1.5rem; cursor: pointer; color: #fff; }
+    .nav-icon { font-size: 1.5rem; cursor: pointer; color: #fff; border: 0; background: none; }
 
-    /* [SEARCH OVERLAY] 전면 검색 플로팅 (배경 100% 덮음) */
+    /* [SEARCH] 전면 검색 오버레이 (배경 100% 화이트) */
     #searchFullOverlay {
       position: fixed; inset: 0; background: #fff; z-index: 3000;
-      display: none; flex-direction: column;
+      display: none; flex-direction: column; overflow-y: auto;
     }
     #searchFullOverlay.active { display: flex; }
 
-    /* 검색바 상단 (뒤로가기 < | 입력창 | 전체 검색) */
     .search-header {
       height: 70px; display: flex; align-items: center; padding: 0 15px;
-      border-bottom: 1px solid #eee; gap: 15px;
+      border-bottom: 1px solid #eee; gap: 15px; flex-shrink: 0;
     }
-    .search-back-btn { font-size: 1.5rem; color: #333; cursor: pointer; border: 0; background: none; }
-    #searchInput {
-      flex: 1; border: none; font-size: 1.1rem; outline: none; font-weight: 500;
-    }
-    .search-submit-btn {
-      color: #007BFF; font-weight: 800; font-size: 1rem; border: 0; background: none; white-space: nowrap;
-    }
+    #searchInput { flex: 1; border: none; font-size: 1.1rem; outline: none; font-weight: 500; }
+    .search-submit-btn { color: #007BFF; font-weight: 800; font-size: 1rem; border: 0; background: none; white-space: nowrap; cursor: pointer; }
 
-    /* 인기 검색어 영역 */
-    .popular-search-wrap { padding: 30px 20px; }
+    /* 인기 검색어 및 결과 영역 */
+    .search-body { padding: 30px 20px; flex: 1; }
     .popular-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; color: #111; }
-    .popular-list { list-style: none; padding: 0; margin: 0; }
     .popular-item { 
       display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5;
-      text-decoration: none; color: #333; font-size: 1rem;
+      text-decoration: none; color: #333; font-size: 1rem; cursor: pointer;
     }
     .popular-num { color: #007BFF; font-weight: 900; margin-right: 15px; width: 20px; }
 
-    /* 카테고리 메뉴 */
+    /* 검색 결과 리스트 스타일 */
+    #searchResults { list-style: none; padding: 0; margin-top: 20px; }
+    #searchResults li { padding: 15px 0; border-bottom: 1px solid #eee; }
+    #searchResults a { color: #111; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: block; }
+    #searchResults .result-date { font-size: 0.85rem; color: #888; margin-top: 5px; }
+
+    /* [CATEGORY] 카테고리 드로워 */
     #categoryDrawer {
       position: fixed; top: 70px; left: 0; right: 0; background: #fff;
       max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
@@ -65,27 +64,30 @@
 <body>
 
   <nav class="blog-navbar shadow-sm">
-    <i class="fa-solid fa-folder-open nav-icon" id="folderIcon"></i>
+    <button class="nav-icon" id="folderIcon"><i class="fa-solid fa-folder-open"></i></button>
     <div class="brand-title-center">더브릿지플러스</div>
-    <i class="fa-solid fa-magnifying-glass nav-icon" id="searchIcon"></i>
+    <button class="nav-icon" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
   </nav>
 
   <div id="searchFullOverlay">
     <div class="search-header">
-      <button class="search-back-btn" id="searchCloseBtn"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="nav-icon" style="color:#333;" id="searchCloseBtn"><i class="fa-solid fa-chevron-left"></i></button>
       <input type="text" id="searchInput" placeholder="이 블로그 검색">
-      <button class="search-submit-btn">전체 검색</button>
+      <button class="search-submit-btn" id="totalSearchBtn">전체 검색</button>
     </div>
 
-    <div class="popular-search-wrap">
-      <h4 class="popular-title">인기 검색어</h4>
-      <div class="popular-list">
-        <a href="/blog/tax/" class="popular-item"><span class="popular-num">1</span> 세무 가이드</a>
-        <a href="/blog/grants/" class="popular-item"><span class="popular-num">2</span> 정부지원금 합격</a>
-        <a href="/blog/corp/" class="popular-item"><span class="popular-num">3</span> 법인 설립 절차</a>
-        <a href="/blog/registration/" class="popular-item"><span class="popular-num">4</span> 사업자 등록 방법</a>
-        <a href="/blog/grants/" class="popular-item"><span class="popular-num">5</span> 예비창업패키지</a>
+    <div class="search-body">
+      <div id="popularWrap">
+        <h4 class="popular-title">인기 검색어</h4>
+        <div class="popular-list">
+          <div class="popular-item" onclick="quickSearch('세무')"><span class="popular-num">1</span> 세무 가이드</div>
+          <div class="popular-item" onclick="quickSearch('지원금')"><span class="popular-num">2</span> 정부지원금 합격</div>
+          <div class="popular-item" onclick="quickSearch('법인')"><span class="popular-num">3</span> 법인 설립 절차</div>
+          <div class="popular-item" onclick="quickSearch('사업자')"><span class="popular-num">4</span> 사업자 등록 방법</div>
+          <div class="popular-item" onclick="quickSearch('창업')"><span class="popular-num">5</span> 예비창업패키지</div>
+        </div>
       </div>
+      <ul id="searchResults"></ul>
     </div>
   </div>
 
@@ -105,31 +107,95 @@
     {{ content }}
   </main>
 
-  <footer class="site-footer" id="footer">
-    </footer>
+  <footer class="site-footer" id="footer" style="background: #121212; color: #fff;">
+    <div class="sf-top" style="border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <div class="sf-inner" style="max-width: 1320px; margin: 0 auto; padding: 34px 16px;">
+        <div class="sf-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+          <section class="sf-col">
+            <h3 class="sf-title" style="font-weight: 800; font-size: 1.35rem; margin-bottom: 18px;">대표이사 상담</h3>
+            <div class="sf-one">
+              <div class="sf-label" style="opacity: 0.72; font-size: 0.95rem;">휴대폰 번호</div>
+              <a class="sf-num" href="tel:010-9453-4102" style="color: #ff6a00; font-weight: 900; font-size: 2rem; text-decoration: none;">010-9453-4102</a>
+            </div>
+          </section>
+          <section class="sf-col">
+            <h3 class="sf-title" style="font-weight: 800; font-size: 1.35rem; margin-bottom: 18px;">고객센터</h3>
+            <div class="sf-one">
+              <div class="sf-label" style="opacity: 0.72; font-size: 0.95rem;">대표 전화번호</div>
+              <a class="sf-num" href="tel:02-2135-8227" style="color: #ff6a00; font-weight: 900; font-size: 2rem; text-decoration: none;">02-2135-8227</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="sf-bottom" style="background: #101010; padding: 24px 16px;">
+      <div class="sf-inner" style="max-width: 1320px; margin: 0 auto;">
+        <div class="sf-legal" style="font-size: 0.95rem; opacity: 0.9; line-height: 1.7;">
+          대표이사 : 김배기 | 사업자등록번호 : 309-88-03426<br/>
+          주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)<br/>
+          EMAIL : rayofusa@thebridgeplus.co.kr
+          <div class="sf-copy" style="margin-top: 14px; opacity: 0.75;">© (주)더브릿지플러스 All Rights Reserved.</div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
   <script>
-    const folderIcon = document.getElementById('folderIcon');
-    const searchIcon = document.getElementById('searchIcon');
-    const searchCloseBtn = document.getElementById('searchCloseBtn');
     const drawer = document.getElementById('categoryDrawer');
     const searchOverlay = document.getElementById('searchFullOverlay');
+    const popularWrap = document.getElementById('popularWrap');
+    const searchInput = document.getElementById('searchInput');
 
     // 📂 카테고리 토글
-    folderIcon.onclick = () => {
+    document.getElementById('folderIcon').onclick = () => {
       drawer.classList.toggle('open');
       searchOverlay.classList.remove('active');
     };
 
-    // 🔍 검색창 열기 (전면 덮기)
-    searchIcon.onclick = () => {
+    // 🔍 검색창 열기
+    document.getElementById('searchIcon').onclick = () => {
       searchOverlay.classList.add('active');
       drawer.classList.remove('open');
-      document.getElementById('searchInput').focus();
+      searchInput.focus();
     };
 
-    // < 버튼 눌러서 닫기
-    searchCloseBtn.onclick = () => searchOverlay.classList.remove('active');
+    // < 버튼 닫기
+    document.getElementById('searchCloseBtn').onclick = () => {
+      searchOverlay.classList.remove('active');
+      searchInput.value = '';
+      popularWrap.style.display = 'block';
+      document.getElementById('searchResults').innerHTML = '';
+    };
+
+    // 검색 엔진 초기화
+    const sjs = SimpleJekyllSearch({
+      searchInput: searchInput,
+      resultsContainer: document.getElementById('searchResults'),
+      json: '/search.json',
+      searchResultTemplate: '<li><a href="{url}">{title}</a><div class="result-date">{date}</div></li>',
+      noResultsText: '<li>검색 결과가 없습니다.</li>'
+    });
+
+    // 입력 시작 시 인기검색어 숨기기
+    searchInput.oninput = () => {
+      popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block';
+    };
+
+    // 전체 검색 버튼 및 엔터키 처리
+    document.getElementById('totalSearchBtn').onclick = () => {
+      if(searchInput.value.length > 0) popularWrap.style.display = 'none';
+    };
+
+    // 인기검색어 클릭 시 바로 검색
+    function quickSearch(keyword) {
+      searchInput.value = keyword;
+      popularWrap.style.display = 'none';
+      searchInput.focus();
+      // SimpleJekyllSearch가 입력값 변화를 감지하도록 강제 트리거
+      const event = new Event('input', { bubbles: true });
+      searchInput.dispatchEvent(event);
+    }
   </script>
 </body>
 </html>
