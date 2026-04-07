@@ -4,29 +4,26 @@ title: 창업 인사이트
 ---
 
 <style>
-  /* 이 페이지 전용 스타일만 간단히 추가 */
-  .popular-posts-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
-  .popular-posts-container::-webkit-scrollbar { display: none; }
-  .popular-card { min-width: 260px; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: transform 0.3s; }
-  .popular-card:hover { transform: translateY(-5px); }
-  .blog-card { border-radius: 15px; transition: all 0.3s; cursor: pointer; }
-  .blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important; }
+  /* 성호님이 만드신 기존 스타일 유지 */
+  .popular-posts-container { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 25px; scrollbar-width: none; }
+  .popular-card { min-width: 280px; border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; }
+  .blog-card { border-radius: 12px; border: 1px solid #f0f0f0 !important; }
 </style>
 
 <div class="py-4">
   <section class="mb-5">
-    <h3 class="fw-bold mb-4">인기글</h3>
+    <h2 class="fw-bold mb-4" style="letter-spacing: -1px;">🔥 인기 인사이트</h2>
     <div class="popular-posts-container">
       {% assign popular_posts = site.posts | where: "popular", true %}
       {% for post in popular_posts %}
-      <article class="popular-card shadow-sm">
+      <article class="popular-card shadow-sm bg-white">
         <a href="{{ post.url }}" class="text-decoration-none">
-          <div style="height: 150px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
-            <img src="{{ post.image | default: '/images/logotop.png' }}" style="height: 100%; width: 100%; object-fit: cover;">
+          <div class="ratio ratio-16x9">
+            <img src="{{ post.image | default: '/images/logotop.png' }}" class="object-fit-cover">
           </div>
           <div class="p-3">
-            <h5 class="fw-bold text-dark text-truncate">{{ post.title }}</h5>
-            <p class="text-muted small mb-0">{{ post.date | date: "%Y년 %m월 %d일" }}</p>
+            <h5 class="fw-bold text-dark mb-1">{{ post.title }}</h5>
+            <p class="text-muted small mb-0">{{ post.date | date: "%Y.%m.%d" }}</p>
           </div>
         </a>
       </article>
@@ -35,15 +32,15 @@ title: 창업 인사이트
   </section>
 
   <section>
-    <h3 class="fw-bold mb-4">전체글</h3>
-    <div class="row">
+    <h2 class="fw-bold mb-4" style="letter-spacing: -1px;">전체 글보기</h2>
+    <div class="row g-4">
       {% for post in site.posts %}
-      <div class="col-md-6 mb-4">
-        <div class="card h-100 border-0 shadow-sm blog-card">
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm blog-card">
           <div class="card-body p-4">
-            <span class="badge bg-primary mb-2">{{ post.categories | first }}</span>
+            <span class="text-primary fw-bold small mb-2 d-block">#{{ post.categories | first }}</span>
             <h4 class="fw-bold"><a href="{{ post.url }}" class="text-dark text-decoration-none">{{ post.title }}</a></h4>
-            <p class="text-muted small mb-0">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+            <p class="text-muted small mt-2 mb-0">{{ post.excerpt | strip_html | truncate: 80 }}</p>
           </div>
         </div>
       </div>
