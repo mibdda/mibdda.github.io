@@ -272,6 +272,15 @@ sections.forEach(s => io.observe(s));
 
         form.addEventListener('submit', (e) => {
             submitted = true;
+            
+            // [추가] 중복 클릭 방지: 제출 버튼 비활성화 및 시각적 피드백
+            const submitBtn = form.querySelector('#contactSubmit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                // Bootstrap 스피너를 추가하여 로딩 중임을 명확히 표시
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>접수 중입니다...';
+            }
+
             // 당근 전환
             try { window.karrotPixel?.track?.('Lead'); } catch (_) {}
             // 디지털캠프 전환
@@ -322,7 +331,19 @@ sections.forEach(s => io.observe(s));
                     const modal = window.bootstrap?.Modal?.getInstance(modalEl) || new window.bootstrap.Modal(modalEl);
                     modal.hide();
                 } catch (_) {}
-                setTimeout(() => { try { form.reset(); } catch (_) {} }, 1200);
+                
+                setTimeout(() => { 
+                    try { 
+                        form.reset(); 
+                        
+                        // [추가] 폼 초기화 시 버튼 다시 활성화 및 텍스트 원복
+                        const submitBtn = form.querySelector('#contactSubmit');
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '무료 상담 신청하기';
+                        }
+                    } catch (_) {} 
+                }, 1200);
             });
 
             box.appendChild(msg); box.appendChild(btn);
