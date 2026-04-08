@@ -265,6 +265,7 @@
     const searchOverlay = document.getElementById('searchFullOverlay');
     const searchInput = document.getElementById('searchInput');
     const popularWrap = document.getElementById('popularWrap');
+    const searchResults = document.getElementById('searchResults'); // 결과창 변수 추가
 
     document.getElementById('searchIcon').addEventListener('click', () => { 
       searchOverlay.classList.add('active'); 
@@ -275,10 +276,17 @@
       searchOverlay.classList.remove('active'); 
       searchInput.value = ''; 
       popularWrap.style.display = 'block'; 
+      searchResults.innerHTML = ''; // 창 닫을 때 잔여 결과물 초기화
     });
     
     searchInput.addEventListener('input', () => { 
-      popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block'; 
+      // 검색어가 한 글자라도 있으면 인기검색어 숨김, 다 지워지면 다시 표시 및 결과창 초기화
+      if (searchInput.value.trim().length > 0) {
+        popularWrap.style.display = 'none';
+      } else {
+        popularWrap.style.display = 'block';
+        searchResults.innerHTML = ''; // ⭐️ 검색어를 지웠을 때 '결과 없음' 문구도 깔끔하게 날림
+      }
     });
 
     function quickSearch(keyword) {
@@ -290,9 +298,10 @@
 
     SimpleJekyllSearch({
       searchInput: searchInput,
-      resultsContainer: document.getElementById('searchResults'),
+      resultsContainer: searchResults,
       json: '/search.json',
-      searchResultTemplate: '<li class="py-3 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none fs-5">{title}</a></li>'
+      searchResultTemplate: '<li class="py-3 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none fs-5">{title}</a></li>',
+      noResultsText: '<li class="py-4 text-center text-muted fs-5 fw-bold">검색 결과가 없습니다.</li>' // ⭐️ 영어 대신 한국어로 출력되도록 강제 설정
     });
   </script>
 </body>
