@@ -3,36 +3,56 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  
+  <link rel="icon" href="/favicon.ico"> 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="/style.css">
   <title>{{ page.title }} | 더브릿지플러스</title>
 
+  <script src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&amp;adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&amp;type=cpa" type="text/javascript"></script>
+  <script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
+  <script>window.karrotPixel.init('1759197528761893001'); window.karrotPixel.track('ViewPage');</script>
   <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script> 
+  <script type="text/javascript">if(!wcs_add)var wcs_add={}; wcs_add["wa"]="s_17cea933ed8b"; if(!_nasa)var _nasa={}; if(window.wcs){wcs.inflow("thebridgeplus.co.kr"); wcs_do();}</script>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MGSJ25R9');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '4289893637922263');fbq('track', 'PageView');</script>
 
   <style>
-    /* 푸터 하단 고정 및 레이아웃 최적화 */
-    html, body { height: 100%; margin: 0; }
-    body { display: flex; flex-direction: column; }
-    main { flex: 1; padding-top: 100px; padding-bottom: 50px; background: #fff; }
+    /* 레이아웃 하단 푸터 고정 */
+    html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
+    main { flex: 1; padding-top: 100px; padding-bottom: 60px; background: #fff; }
 
-    /* 블로그 전용 모바일 중앙 정렬 아이콘 */
-    .blog-mobile-center { display: flex; align-items: center; justify-content: center; gap: 15px; color: #fff; flex: 1; }
-    .blog-title-text { font-weight: 800; font-size: 1.1rem; letter-spacing: -1px; }
-    .blog-icon { background: none; border: 0; color: #fff; font-size: 1.3rem; padding: 0; }
-    
-    /* 검색 오버레이 */
-    #searchFullOverlay { position: fixed; inset: 0; background: #fff; z-index: 3000; display: none; flex-direction: column; }
+    /* [Mobile] 블로그 중앙 정렬 전용 스타일 (로고와 햄버거 사이 절대 중앙) */
+    .blog-mobile-center {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .blog-title-text { font-weight: 900; font-size: 1.15rem; color: #fff; letter-spacing: -0.5px; margin: 0; }
+    .blog-icon { background: none; border: 0; color: #fff; font-size: 1.35rem; padding: 0; outline: none; }
+
+    /* [Blog Features] 검색 & 카테고리 드로워 */
+    #searchFullOverlay { position: fixed; inset: 0; background: #fff; z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
     #searchFullOverlay.active { display: flex; }
     .search-header { height: 80px; display: flex; align-items: center; padding: 0 20px; border-bottom: 1px solid #eee; gap: 15px; }
-    #searchInput { flex: 1; border: none; font-size: 1.2rem; outline: none; font-weight: 600; }
+    #searchInput { flex: 1; border: none; font-size: 1.2rem; outline: none; font-weight: 600; color: #000; }
+    
+    .search-body { padding: 30px 20px; flex: 1; }
+    .popular-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; color: #111; }
+    .popular-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; color: #333; font-weight: 600; }
+    .popular-num { color: #007BFF; font-weight: 900; margin-right: 15px; width: 20px; text-align: center; }
+
+    #categoryDrawer { position: fixed; top: 80px; left: 0; right: 0; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    #categoryDrawer.open { max-height: 600px; padding: 10px 0; border-bottom: 3px solid #003366; overflow-y: auto; }
   </style>
 </head>
-<body class="d-flex flex-column h-100">
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGSJ25R9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4289893637922263&ev=PageView&noscript=1"/></noscript>
 
   <nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm is-scrolled">
-    <div class="container-fluid">
+    <div class="container-fluid position-relative">
+      
       <a class="navbar-brand brand-abs" href="/">
         <img alt="더브릿지플러스" src="/images/logotop.png" style="height:160px;"/>
       </a>
@@ -41,7 +61,7 @@
         <ul class="navbar-nav" style="gap:30px;">
           <li class="nav-item"><a class="nav-link" href="/#services">서비스</a></li>
           <li class="nav-item"><a class="nav-link" href="/#pricing">이용요금</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold text-info" href="/blog">인사이트</a></li>
+          <li class="nav-item"><a class="nav-link text-info fw-bold" href="/blog">인사이트</a></li>
           <li class="nav-item"><a class="nav-link" href="/#about">회사소개</a></li>
           <li class="nav-item"><a class="nav-link" href="/#faq">자주 묻는 질문</a></li>
           <li class="nav-item"><a class="nav-link" href="/#location">위치</a></li>
@@ -49,23 +69,20 @@
         </ul>
       </div>
 
+      <div class="d-flex d-lg-none blog-mobile-center">
+        <button class="blog-icon" id="folderIcon"><i class="fa-regular fa-folder"></i></button>
+        <span class="blog-title-text">더브릿지BLOG</span>
+        <button class="blog-icon" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
       <div class="ms-auto d-flex align-items-center gap-2">
-        <div class="d-none d-lg-block">
-          <a class="btn fw-bold nav-cta" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border-radius:24px; padding:10px 22px; position:relative;" data-bs-toggle="modal" data-bs-target="#consultModal">
+        <div class="d-none d-lg-block position-relative">
+          <a class="btn fw-bold nav-cta" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border-radius:24px; padding:10px 22px; cursor:pointer;">
             지금 문의하기
             <span class="cta-bubble">24시간 상담 가능</span>
           </a>
         </div>
-
-        <div class="d-flex d-lg-none blog-mobile-center" style="margin-left: 90px;">
-          <button class="blog-icon" id="folderIcon"><i class="fa-solid fa-folder-tree"></i></button>
-          <span class="blog-title-text">더브릿지BLOG</span>
-          <button class="blog-icon" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-
-        <button class="navbar-toggler" type="button" id="menuBtn">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler" type="button" id="menuBtn"><span class="navbar-toggler-icon"></span></button>
       </div>
     </div>
   </nav>
@@ -81,12 +98,33 @@
     <a href="/#contact">문의</a>
   </div>
 
+  <div id="categoryDrawer">
+    <ul class="list-unstyled px-4 m-0">
+      <li class="py-3 border-bottom"><a href="/blog" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">전체글 보기</a></li>
+      {% for category in site.categories %}
+      <li class="py-3 border-bottom"><a href="/blog/{{ category | first | slugify }}/" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">{{ category | first }} <span class="text-primary">{{ category | last | size }}</span></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
   <div id="searchFullOverlay">
     <div class="search-header">
       <button class="blog-icon text-dark" id="searchCloseBtn"><i class="fa-solid fa-chevron-left fs-3"></i></button>
-      <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+      <input type="text" id="searchInput" placeholder="이 블로그 검색">
     </div>
-    <div class="container py-4"><ul id="searchResults" class="list-unstyled"></ul></div>
+    <div class="search-body">
+      <div id="popularWrap">
+        <h4 class="popular-title">인기 검색어</h4>
+        <div class="popular-list">
+          <div class="popular-item" onclick="quickSearch('세무')"><span class="popular-num">1</span> 세무 가이드</div>
+          <div class="popular-item" onclick="quickSearch('지원금')"><span class="popular-num">2</span> 정부지원금 합격</div>
+          <div class="popular-item" onclick="quickSearch('법인')"><span class="popular-num">3</span> 법인 설립 절차</div>
+          <div class="popular-item" onclick="quickSearch('사업자')"><span class="popular-num">4</span> 사업자 등록 방법</div>
+          <div class="popular-item" onclick="quickSearch('창업')"><span class="popular-num">5</span> 예비창업패키지</div>
+        </div>
+      </div>
+      <ul id="searchResults" class="list-unstyled mt-4"></ul>
+    </div>
   </div>
 
   <main class="container">
@@ -104,39 +142,65 @@
     </div></div></div>
   </footer>
 
-  <button type="button" id="toTop" class="to-top">↑</button>
-  <button type="button" class="btn contact-btn-channel" id="contactChannelTalkBtn" style="position:fixed; right:20px; bottom:20px; z-index:10000; display:none;"></button>
+  <button type="button" id="toTop" class="to-top" aria-label="맨 위로">↑</button>
+
+  <div style="position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:28px;">
+    <div id="kakao-hint" style="position:relative; background:#fff; color:#333; border-radius:8px; padding:6px 10px; box-shadow:0 6px 18px rgba(0,0,0,.15); font-size:14px; display:flex; align-items:center; gap:6px; font-weight:bold;">
+      <span>채팅으로 문의하세요.</span>
+      <button id="kakao-hint-close" style="background:#eee; border:none; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer;">×</button>
+      <span style="position:absolute; right:-7px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:7px solid transparent; border-bottom:7px solid transparent; border-left:7px solid #fff;"></span>
+    </div>
+    <div id="kakao-add-channel-button" style="transform: scale(1.2); transform-origin: right center;"></div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
   <script>
-    // 1. 햄버거 드로워 제어 (원본 로직)
+    // 1. 카카오톡 플로팅 버튼 활성화
+    Kakao.init('9afd461025355aea5741642fb73a9414');
+    Kakao.Channel.createAddChannelButton({ container: '#kakao-add-channel-button', channelPublicId: '_pBgtn' });
+    document.getElementById('kakao-hint-close')?.addEventListener('click', function(){ document.getElementById('kakao-hint').style.display = 'none'; });
+
+    // 2. To-Top 최상단 이동 버튼
+    const toTop = document.getElementById('toTop');
+    window.onscroll = () => { if(window.scrollY > 300) toTop.classList.add('show'); else toTop.classList.remove('show'); };
+    toTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+
+    // 3. 메인 햄버거 메뉴 열기/닫기
     const menuBtn = document.getElementById('menuBtn');
-    const drawer = document.getElementById('drawer');
-    const closeBtn = document.getElementById('closeDrawerBtn');
-    menuBtn.onclick = () => drawer.classList.add('open');
-    closeBtn.onclick = () => drawer.classList.remove('open');
+    const mainDrawer = document.getElementById('drawer');
+    menuBtn.onclick = () => mainDrawer.classList.add('open');
+    document.getElementById('closeDrawerBtn').onclick = () => mainDrawer.classList.remove('open');
 
-    // 2. 검색 오버레이 제어
+    // 4. [Blog] 카테고리(폴더) 드로워 열기/닫기
+    const catDrawer = document.getElementById('categoryDrawer');
+    document.getElementById('folderIcon').onclick = () => catDrawer.classList.toggle('open');
+
+    // 5. [Blog] 검색 오버레이 제어 및 인기 검색어
     const searchOverlay = document.getElementById('searchFullOverlay');
-    document.getElementById('searchIcon').onclick = () => { searchOverlay.classList.add('active'); document.getElementById('searchInput').focus(); };
-    document.getElementById('searchCloseBtn').onclick = () => searchOverlay.classList.remove('active');
+    const searchInput = document.getElementById('searchInput');
+    const popularWrap = document.getElementById('popularWrap');
 
-    // 3. SimpleJekyllSearch
+    document.getElementById('searchIcon').onclick = () => { searchOverlay.classList.add('active'); searchInput.focus(); };
+    document.getElementById('searchCloseBtn').onclick = () => { searchOverlay.classList.remove('active'); searchInput.value=''; popularWrap.style.display='block'; document.getElementById('searchResults').innerHTML=''; };
+
+    searchInput.oninput = () => { popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block'; };
+
+    function quickSearch(keyword) {
+      searchInput.value = keyword;
+      popularWrap.style.display = 'none';
+      searchInput.focus();
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
     SimpleJekyllSearch({
-      searchInput: document.getElementById('searchInput'),
+      searchInput: searchInput,
       resultsContainer: document.getElementById('searchResults'),
       json: '/search.json',
-      searchResultTemplate: '<li class="py-2 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none">{title}</a></li>'
+      searchResultTemplate: '<li class="py-3 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none fs-5">{title}</a></li>'
     });
-
-    // 4. To-Top & 스크롤 감지
-    const toTop = document.getElementById('toTop');
-    window.onscroll = () => {
-      if (window.scrollY > 300) { toTop.classList.add('show'); } 
-      else { toTop.classList.remove('show'); }
-    };
-    toTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   </script>
 </body>
 </html>
