@@ -19,9 +19,9 @@
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '4289893637922263');fbq('track', 'PageView');</script>
 
   <style>
-    /* [수정] 스크롤 마비를 일으켰던 body flex 고정 삭제! */
-    /* 대신 main의 최소 높이를 화면 뷰포트(vh) 기준으로 잡아 푸터 들뜸 방지 */
-    main { padding-top: 100px; padding-bottom: 60px; min-height: calc(100vh - 380px); background: #fff; }
+    /* [레이아웃 원복] 푸터 하단 고정 완벽 보장 */
+    html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
+    main { flex: 1; padding-top: 100px; padding-bottom: 60px; background: #fff; }
 
     /* [Mobile] 블로그 중앙 정렬 최적화 */
     .blog-mobile-center {
@@ -86,7 +86,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-
     </div>
   </nav>
 
@@ -238,80 +237,59 @@
   <script src="/script.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // 1. To-Top 스크롤 이벤트 (스크롤 마비 현상 해결완료)
-      const toTop = document.getElementById('toTop');
-      if (toTop) {
-        window.addEventListener('scroll', function() {
-          if (window.scrollY > 300 || document.documentElement.scrollTop > 300) {
-            toTop.classList.add('show');
-          } else {
-            toTop.classList.remove('show');
-          }
-        });
-        toTop.addEventListener('click', function() {
-          window.scrollTo({top: 0, behavior: 'smooth'});
-        });
-      }
+    // 1. To-Top 스크롤 (원복 완료)
+    const toTopBtn = document.getElementById('toTop');
+    window.addEventListener('scroll', () => { 
+      if (window.scrollY > 300) toTopBtn.classList.add('show'); 
+      else toTopBtn.classList.remove('show'); 
+    });
+    toTopBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-      // 2. 메인 햄버거 메뉴 (script.js 충돌 방지)
-      const menuBtn = document.getElementById('menuBtn');
-      const mainDrawer = document.getElementById('drawer');
-      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
-      if (menuBtn && mainDrawer) {
-        menuBtn.addEventListener('click', () => mainDrawer.classList.add('open'));
-      }
-      if (closeDrawerBtn && mainDrawer) {
-        closeDrawerBtn.addEventListener('click', () => mainDrawer.classList.remove('open'));
-      }
+    // 2. 햄버거 메뉴 (script.js 오류 방지용 안전 처리)
+    const menuBtn = document.getElementById('menuBtn');
+    const mainDrawer = document.getElementById('drawer');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+    if (menuBtn && mainDrawer) {
+      menuBtn.addEventListener('click', () => mainDrawer.classList.add('open'));
+    }
+    if (closeDrawerBtn && mainDrawer) {
+      closeDrawerBtn.addEventListener('click', () => mainDrawer.classList.remove('open'));
+    }
 
-      // 3. 블로그 카테고리(폴더) 열기
-      const folderIcon = document.getElementById('folderIcon');
-      const catDrawer = document.getElementById('categoryDrawer');
-      if (folderIcon && catDrawer) {
-        folderIcon.addEventListener('click', () => catDrawer.classList.toggle('open'));
-      }
+    // 3. 카테고리(폴더) 드로워
+    document.getElementById('folderIcon').addEventListener('click', () => {
+      document.getElementById('categoryDrawer').classList.toggle('open');
+    });
 
-      // 4. 검색 오버레이 제어
-      const searchIcon = document.getElementById('searchIcon');
-      const searchOverlay = document.getElementById('searchFullOverlay');
-      const searchCloseBtn = document.getElementById('searchCloseBtn');
-      const searchInput = document.getElementById('searchInput');
-      const popularWrap = document.getElementById('popularWrap');
+    // 4. 검색창 및 인기 검색어
+    const searchOverlay = document.getElementById('searchFullOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const popularWrap = document.getElementById('popularWrap');
 
-      if (searchIcon && searchOverlay) {
-        searchIcon.addEventListener('click', () => { 
-          searchOverlay.classList.add('active'); 
-          if(searchInput) searchInput.focus(); 
-        });
-      }
-      if (searchCloseBtn && searchOverlay) {
-        searchCloseBtn.addEventListener('click', () => { 
-          searchOverlay.classList.remove('active'); 
-          if(searchInput) searchInput.value = ''; 
-          if(popularWrap) popularWrap.style.display = 'block'; 
-        });
-      }
-      if (searchInput && popularWrap) {
-        searchInput.addEventListener('input', () => { 
-          popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block'; 
-        });
-      }
+    document.getElementById('searchIcon').addEventListener('click', () => { 
+      searchOverlay.classList.add('active'); 
+      searchInput.focus(); 
+    });
+    
+    document.getElementById('searchCloseBtn').addEventListener('click', () => { 
+      searchOverlay.classList.remove('active'); 
+      searchInput.value = ''; 
+      popularWrap.style.display = 'block'; 
+    });
+    
+    searchInput.addEventListener('input', () => { 
+      popularWrap.style.display = searchInput.value.length > 0 ? 'none' : 'block'; 
     });
 
     function quickSearch(keyword) {
-      const searchInput = document.getElementById('searchInput');
-      const popularWrap = document.getElementById('popularWrap');
-      if(searchInput && popularWrap) {
-        searchInput.value = keyword;
-        popularWrap.style.display = 'none';
-        searchInput.focus();
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
+      searchInput.value = keyword;
+      popularWrap.style.display = 'none';
+      searchInput.focus();
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
 
     SimpleJekyllSearch({
-      searchInput: document.getElementById('searchInput'),
+      searchInput: searchInput,
       resultsContainer: document.getElementById('searchResults'),
       json: '/search.json',
       searchResultTemplate: '<li class="py-3 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none fs-5">{title}</a></li>'
