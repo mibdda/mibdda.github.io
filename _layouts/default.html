@@ -19,19 +19,19 @@
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '4289893637922263');fbq('track', 'PageView');</script>
 
   <style>
-    /* 레이아웃 하단 푸터 고정 */
+    /* 하단 푸터 고정 */
     html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
     main { flex: 1; padding-top: 100px; padding-bottom: 60px; background: #fff; }
 
-    /* [Mobile] 블로그 중앙 정렬 전용 스타일 (로고와 햄버거 사이 절대 중앙) */
+    /* [Mobile] 중앙 정렬 및 타이틀 폰트 최적화 */
     .blog-mobile-center {
       position: absolute; left: 50%; transform: translateX(-50%);
       display: flex; align-items: center; justify-content: center; gap: 12px;
     }
-    .blog-title-text { font-weight: 900; font-size: 1.15rem; color: #fff; letter-spacing: -0.5px; margin: 0; }
+    .blog-title-text { font-weight: 900; font-size: 1.1rem; color: #fff; letter-spacing: -0.5px; margin: 0; }
     .blog-icon { background: none; border: 0; color: #fff; font-size: 1.35rem; padding: 0; outline: none; }
 
-    /* [Blog Features] 검색 & 카테고리 드로워 */
+    /* 드로워 & 검색 오버레이 */
     #searchFullOverlay { position: fixed; inset: 0; background: #fff; z-index: 3000; display: none; flex-direction: column; overflow-y: auto; }
     #searchFullOverlay.active { display: flex; }
     .search-header { height: 80px; display: flex; align-items: center; padding: 0 20px; border-bottom: 1px solid #eee; gap: 15px; }
@@ -71,13 +71,13 @@
 
       <div class="d-flex d-lg-none blog-mobile-center">
         <button class="blog-icon" id="folderIcon"><i class="fa-regular fa-folder"></i></button>
-        <span class="blog-title-text">더브릿지BLOG</span>
+        <span class="blog-title-text">더브릿지플러스BLOG</span>
         <button class="blog-icon" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
 
       <div class="ms-auto d-flex align-items-center gap-2">
         <div class="d-none d-lg-block position-relative">
-          <a class="btn fw-bold nav-cta" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border-radius:24px; padding:10px 22px; cursor:pointer;">
+          <a class="btn fw-bold nav-cta" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border-radius:24px; padding:10px 22px; cursor:pointer;" data-bs-toggle="modal" data-bs-target="#consultModal">
             지금 문의하기
             <span class="cta-bubble">24시간 상담 가능</span>
           </a>
@@ -91,11 +91,11 @@
     <button type="button" class="btn-close btn-close-white" id="closeDrawerBtn"></button>
     <a href="/#services">서비스</a>
     <a href="/#pricing">이용요금</a>
-    <a href="/blog" class="text-info fw-bold">인사이트(블로그)</a>
     <a href="/#about">회사소개</a>
     <a href="/#faq">자주 묻는 질문</a>
     <a href="/#location">위치</a>
     <a href="/#contact">문의</a>
+    <a href="/blog" class="text-info fw-bold">인사이트(블로그)</a>
   </div>
 
   <div id="categoryDrawer">
@@ -144,41 +144,28 @@
 
   <button type="button" id="toTop" class="to-top" aria-label="맨 위로">↑</button>
 
-  <div style="position:fixed; right:20px; bottom:20px; z-index:10000; display:flex; align-items:center; gap:28px;">
-    <div id="kakao-hint" style="position:relative; background:#fff; color:#333; border-radius:8px; padding:6px 10px; box-shadow:0 6px 18px rgba(0,0,0,.15); font-size:14px; display:flex; align-items:center; gap:6px; font-weight:bold;">
-      <span>채팅으로 문의하세요.</span>
-      <button id="kakao-hint-close" style="background:#eee; border:none; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer;">×</button>
-      <span style="position:absolute; right:-7px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:7px solid transparent; border-bottom:7px solid transparent; border-left:7px solid #fff;"></span>
-    </div>
-    <div id="kakao-add-channel-button" style="transform: scale(1.2); transform-origin: right center;"></div>
-  </div>
+  <script src="/script.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
-  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
   <script>
-    // 1. 카카오톡 플로팅 버튼 활성화
-    Kakao.init('9afd461025355aea5741642fb73a9414');
-    Kakao.Channel.createAddChannelButton({ container: '#kakao-add-channel-button', channelPublicId: '_pBgtn' });
-    document.getElementById('kakao-hint-close')?.addEventListener('click', function(){ document.getElementById('kakao-hint').style.display = 'none'; });
-
-    // 2. To-Top 최상단 이동 버튼
+    // To-Top 스크롤 이벤트 (스크립트로만 있던 기능을 버튼 태그와 연결)
     const toTop = document.getElementById('toTop');
-    window.onscroll = () => { if(window.scrollY > 300) toTop.classList.add('show'); else toTop.classList.remove('show'); };
-    toTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+    window.addEventListener('scroll', () => { 
+      if(window.scrollY > 300) toTop.classList.add('show'); 
+      else toTop.classList.remove('show'); 
+    });
+    toTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-    // 3. 메인 햄버거 메뉴 열기/닫기
-    const menuBtn = document.getElementById('menuBtn');
-    const mainDrawer = document.getElementById('drawer');
-    menuBtn.onclick = () => mainDrawer.classList.add('open');
-    document.getElementById('closeDrawerBtn').onclick = () => mainDrawer.classList.remove('open');
+    // 메인 햄버거 메뉴 
+    document.getElementById('menuBtn').onclick = () => document.getElementById('drawer').classList.add('open');
+    document.getElementById('closeDrawerBtn').onclick = () => document.getElementById('drawer').classList.remove('open');
 
-    // 4. [Blog] 카테고리(폴더) 드로워 열기/닫기
-    const catDrawer = document.getElementById('categoryDrawer');
-    document.getElementById('folderIcon').onclick = () => catDrawer.classList.toggle('open');
+    // 블로그 카테고리(폴더) 열기
+    document.getElementById('folderIcon').onclick = () => document.getElementById('categoryDrawer').classList.toggle('open');
 
-    // 5. [Blog] 검색 오버레이 제어 및 인기 검색어
+    // 검색 오버레이 및 인기검색어 로직
     const searchOverlay = document.getElementById('searchFullOverlay');
     const searchInput = document.getElementById('searchInput');
     const popularWrap = document.getElementById('popularWrap');
