@@ -3,35 +3,33 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>{{ page.title }} | 더브릿지플러스</title>
-  
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="/style.css">
+  <title>{{ page.title }} | 더브릿지플러스</title>
 
-  <script src="https://wcs.naver.net/wcslog.js"></script> 
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script> 
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MGSJ25R9');</script>
 
   <style>
-    /* 블로그 전용 추가 스타일 (모바일 네비바 최적화) */
-    .blog-nav-text { color: #fff; font-weight: 800; font-size: 1rem; margin: 0 10px; white-space: nowrap; }
-    .blog-icon-btn { background: none; border: 0; color: #fff; font-size: 1.25rem; padding: 5px; cursor: pointer; }
+    /* 푸터 하단 고정 및 레이아웃 최적화 */
+    html, body { height: 100%; margin: 0; }
+    body { display: flex; flex-direction: column; }
+    main { flex: 1; padding-top: 100px; padding-bottom: 50px; background: #fff; }
+
+    /* 블로그 전용 모바일 중앙 정렬 아이콘 */
+    .blog-mobile-center { display: flex; align-items: center; justify-content: center; gap: 15px; color: #fff; flex: 1; }
+    .blog-title-text { font-weight: 800; font-size: 1.1rem; letter-spacing: -1px; }
+    .blog-icon { background: none; border: 0; color: #fff; font-size: 1.3rem; padding: 0; }
     
-    /* 검색 오버레이 & 드로워 (흰 배경에 명확한 블랙 아이콘) */
+    /* 검색 오버레이 */
     #searchFullOverlay { position: fixed; inset: 0; background: #fff; z-index: 3000; display: none; flex-direction: column; }
     #searchFullOverlay.active { display: flex; }
     .search-header { height: 80px; display: flex; align-items: center; padding: 0 20px; border-bottom: 1px solid #eee; gap: 15px; }
-    #searchInput { flex: 1; border: none; font-size: 1.2rem; outline: none; font-weight: 600; color: #000; }
-    .black-icon { color: #000 !important; font-size: 1.4rem; }
-
-    #categoryDrawer { position: fixed; top: 80px; left: 0; right: 0; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-    #categoryDrawer.open { max-height: 500px; padding: 20px 0; border-bottom: 3px solid #003366; }
-
-    main { padding-top: 100px; background: #fff; min-height: 70vh; }
+    #searchInput { flex: 1; border: none; font-size: 1.2rem; outline: none; font-weight: 600; }
   </style>
 </head>
-<body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGSJ25R9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body class="d-flex flex-column h-100">
 
   <nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm is-scrolled">
     <div class="container-fluid">
@@ -43,47 +41,57 @@
         <ul class="navbar-nav" style="gap:30px;">
           <li class="nav-item"><a class="nav-link" href="/#services">서비스</a></li>
           <li class="nav-item"><a class="nav-link" href="/#pricing">이용요금</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/blog" style="color: #66CCFF !important; font-weight: 800;">인사이트</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-info" href="/blog">인사이트</a></li>
           <li class="nav-item"><a class="nav-link" href="/#about">회사소개</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#faq">자주 묻는 질문</a></li>
           <li class="nav-item"><a class="nav-link" href="/#location">위치</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">문의</a></li>
         </ul>
       </div>
 
       <div class="ms-auto d-flex align-items-center gap-2">
         <div class="d-none d-lg-block">
-          <a class="btn fw-bold nav-cta" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border-radius:24px; padding:10px 22px;" data-bs-toggle="modal" data-bs-target="#consultModal">
+          <a class="btn fw-bold nav-cta" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border-radius:24px; padding:10px 22px; position:relative;" data-bs-toggle="modal" data-bs-target="#consultModal">
             지금 문의하기
             <span class="cta-bubble">24시간 상담 가능</span>
           </a>
         </div>
 
-        <div class="d-flex d-lg-none align-items-center gap-2" style="margin-left: 100px;">
-          <button class="blog-icon-btn" id="folderIcon"><i class="fa-solid fa-folder-tree"></i></button>
-          <span class="blog-nav-text">더브릿지BLOG</span>
-          <button class="blog-icon-btn" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
-          <button class="navbar-toggler border-0" type="button" id="menuBtn"><span class="navbar-toggler-icon"></span></button>
+        <div class="d-flex d-lg-none blog-mobile-center" style="margin-left: 90px;">
+          <button class="blog-icon" id="folderIcon"><i class="fa-solid fa-folder-tree"></i></button>
+          <span class="blog-title-text">더브릿지BLOG</span>
+          <button class="blog-icon" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
+
+        <button class="navbar-toggler" type="button" id="menuBtn">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <div id="categoryDrawer">
-    <ul class="list-unstyled px-4">
-      {% for category in site.categories %}
-      <li class="py-3 border-bottom"><a href="/blog/{{ category | first | slugify }}/" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">{{ category | first }} <span>{{ category | last | size }}</span></a></li>
-      {% endfor %}
-    </ul>
+  <div id="drawer" class="side-drawer">
+    <button type="button" class="btn-close btn-close-white" id="closeDrawerBtn"></button>
+    <a href="/#services">서비스</a>
+    <a href="/#pricing">이용요금</a>
+    <a href="/blog" class="text-info fw-bold">인사이트(블로그)</a>
+    <a href="/#about">회사소개</a>
+    <a href="/#faq">자주 묻는 질문</a>
+    <a href="/#location">위치</a>
+    <a href="/#contact">문의</a>
   </div>
 
   <div id="searchFullOverlay">
     <div class="search-header">
-      <button class="blog-icon-btn black-icon" id="searchCloseBtn"><i class="fa-solid fa-chevron-left"></i></button>
-      <input type="text" id="searchInput" placeholder="이 블로그 검색">
+      <button class="blog-icon text-dark" id="searchCloseBtn"><i class="fa-solid fa-chevron-left fs-3"></i></button>
+      <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
     </div>
     <div class="container py-4"><ul id="searchResults" class="list-unstyled"></ul></div>
   </div>
 
-  <main>{{ content }}</main>
+  <main class="container">
+    {{ content }}
+  </main>
 
   <footer class="site-footer" id="footer">
     <div class="sf-top"><div class="sf-inner"><div class="sf-grid">
@@ -97,29 +105,38 @@
   </footer>
 
   <button type="button" id="toTop" class="to-top">↑</button>
+  <button type="button" class="btn contact-btn-channel" id="contactChannelTalkBtn" style="position:fixed; right:20px; bottom:20px; z-index:10000; display:none;"></button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
   <script>
-    // 검색/카테고리 로직
-    const drawer = document.getElementById('categoryDrawer');
+    // 1. 햄버거 드로워 제어 (원본 로직)
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    const closeBtn = document.getElementById('closeDrawerBtn');
+    menuBtn.onclick = () => drawer.classList.add('open');
+    closeBtn.onclick = () => drawer.classList.remove('open');
+
+    // 2. 검색 오버레이 제어
     const searchOverlay = document.getElementById('searchFullOverlay');
-    document.getElementById('folderIcon').onclick = () => drawer.classList.toggle('open');
     document.getElementById('searchIcon').onclick = () => { searchOverlay.classList.add('active'); document.getElementById('searchInput').focus(); };
     document.getElementById('searchCloseBtn').onclick = () => searchOverlay.classList.remove('active');
 
+    // 3. SimpleJekyllSearch
     SimpleJekyllSearch({
       searchInput: document.getElementById('searchInput'),
       resultsContainer: document.getElementById('searchResults'),
       json: '/search.json',
-      searchResultTemplate: '<li class="mb-3"><a href="{url}" class="text-dark fs-5 fw-bold text-decoration-none">{title}</a></li>'
+      searchResultTemplate: '<li class="py-2 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none">{title}</a></li>'
     });
 
-    // To-Top 기능 (원본 style.css show 클래스 활용)
+    // 4. To-Top & 스크롤 감지
+    const toTop = document.getElementById('toTop');
     window.onscroll = () => {
-      document.getElementById('toTop').classList.toggle('show', window.scrollY > 300);
+      if (window.scrollY > 300) { toTop.classList.add('show'); } 
+      else { toTop.classList.remove('show'); }
     };
-    document.getElementById('toTop').onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+    toTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   </script>
 </body>
 </html>
