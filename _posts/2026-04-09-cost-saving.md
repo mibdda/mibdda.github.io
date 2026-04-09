@@ -128,28 +128,3 @@ image: /assets/img/blog/office-1.jpg
 </div>
 
 </div>
-
-<section class="section fade-in" id="contact" style="margin-top: 50px; padding: 20px 0; min-height: auto; display: block;">
-  <div class="container p-0">
-    <div class="row g-4">
-      <div class="col-lg-12 position-relative text-center">
-        <img src="/images/overlaycontact.jpg" class="img-fluid w-100 rounded shadow-sm" style="max-height: 380px; object-fit: cover;">
-        
-        <div class="position-absolute top-50 start-50 translate-middle" style="color: white; width: 100%; text-shadow: 0 2px 6px rgba(0,0,0,0.6);">
-          <h2 class="fw-bold mb-3" style="font-size: 2rem;">무료 상담 및 문의하기</h2>
-          <p class="mb-4" style="font-size: 0.9rem;">
-            1분 만에 상담 요청을 완료하실 수 있어요.<br>24시간 언제든지 문의 가능합니다.
-          </p>
-          <div class="contact-actions d-flex justify-content-center gap-2">
-            <button type="button" class="open-general btn contact-btn contact-btn-consult" data-bs-toggle="modal" data-bs-target="#consultModal" style="background: linear-gradient(135deg, #007BFF, #00BFFF); color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold;">
-              상담 신청하기
-            </button>
-            <button type="button" class="btn contact-btn contact-btn-channel" id="contactChannelTalkBtn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 12px 24px; border-radius: 30px; font-weight: bold;">
-              <i class="fa-solid fa-comment-dots me-2"></i> 간편 상담 하기
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
