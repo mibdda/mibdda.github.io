@@ -1,7 +1,8 @@
 ---
 layout: default
 title: "강남 비상주사무실로 초기 사업 비용 획기적으로 절감하는 방법"
-categories: [비상주사무실, 창업가이드]
+categories: [비상주사무실]
+image: /assets/img/blog/office-1.jpg
 ---
 
 <style>
