@@ -19,7 +19,7 @@ title: 창업 인사이트
   <section class="mb-5">
     <h3 class="fw-bold mb-4">최신 인사이트</h3>
     <div class="popular-posts-container">
-      {% assign recent_posts = site.posts | limit: 5 %}
+      {% assign recent_posts = site.posts | limit: 2 %}
       {% for post in recent_posts %}
       <article class="popular-card shadow-sm">
         <a href="{{ post.url }}" class="text-decoration-none">
