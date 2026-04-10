@@ -17,17 +17,20 @@ title: 창업 인사이트
 
 <div class="py-4">
   <section class="mb-5">
-    <h3 class="fw-bold mb-4">인기글</h3>
+    <h3 class="fw-bold mb-4">최신 인사이트</h3>
     <div class="popular-posts-container">
-      {% assign popular_posts = site.posts | where: "popular", true %}
-      {% for post in popular_posts %}
+      {% assign recent_posts = site.posts | limit: 5 %}
+      {% for post in recent_posts %}
       <article class="popular-card shadow-sm">
         <a href="{{ post.url }}" class="text-decoration-none">
           <div style="height: 150px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
             <img src="{{ post.image | default: '/images/logotop.png' }}" style="height: 100%; width: 100%; object-fit: cover;">
           </div>
           <div class="p-3">
-            <h5 class="fw-bold text-dark text-truncate">{{ post.title }}</h5>
+            <div class="mb-1">
+              <span style="color: #28a745; font-weight: 800; font-size: 0.75rem;">#{{ post.categories | first }}</span>
+            </div>
+            <h5 class="fw-bold text-dark text-truncate" style="font-size: 1rem;">{{ post.title }}</h5>
             <p class="text-muted small mb-0">{{ post.date | date: "%Y년 %m월 %d일" }}</p>
           </div>
         </a>
