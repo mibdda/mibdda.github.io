@@ -245,23 +245,12 @@
     });
     toTopBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-    // 2. 햄버거 메뉴 (script.js 오류 방지용 안전 처리)
-    const menuBtn = document.getElementById('menuBtn');
-    const mainDrawer = document.getElementById('drawer');
-    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
-    if (menuBtn && mainDrawer) {
-      menuBtn.addEventListener('click', () => mainDrawer.classList.add('open'));
-    }
-    if (closeDrawerBtn && mainDrawer) {
-      closeDrawerBtn.addEventListener('click', () => mainDrawer.classList.remove('open'));
-    }
-
-    // 3. 카테고리(폴더) 드로워
+    // 2. 카테고리(폴더) 드로워
     document.getElementById('folderIcon').addEventListener('click', () => {
       document.getElementById('categoryDrawer').classList.toggle('open');
     });
 
-    // 4. 검색창 및 인기 검색어
+    // 3. 검색창 및 인기 검색어
     const searchOverlay = document.getElementById('searchFullOverlay');
     const searchInput = document.getElementById('searchInput');
     const popularWrap = document.getElementById('popularWrap');
