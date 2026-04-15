@@ -2,14 +2,14 @@
 layout: post
 title: "단순 주소 임대? NO! 비상주사무실 200% 활용하는 5가지 필수 부가서비스"
 categories: [비상주사무실]
-image: /assets/img/blog/office-service-1.jpg
+image: /assets/img/blog/office-service-1.png
 ---
 
 성공적인 창업을 위해 비상주사무실(Virtual Office)을 알아보고 계신가요? 많은 대표님들이 비상주사무실을 '단순히 사업자등록을 위한 주소지 대여' 정도로만 생각하시지만, 실제로는 비즈니스 운영에 필요한 핵심 인프라를 제공하는 스마트한 솔루션입니다. 
 
 사업의 효율성을 극대화하고 고정 지출을 줄이기 위해, 주소지 외에 어떤 필수 서비스들을 활용할 수 있는지 명확하게 정리해 드립니다.
 
-<img src="/assets/img/blog/office-service-1.jpg" alt="더브릿지플러스 비상주사무실 전경" class="blog-image">
+<img src="/assets/img/blog/office-service-1.png" alt="더브릿지플러스 비상주사무실 전경" class="blog-image">
 
 <br>
 
@@ -30,7 +30,7 @@ image: /assets/img/blog/office-service-1.jpg
 * **실시간 알림 서비스:** 우편물이 도착하는 즉시 카카오 알림톡이나 문자 메시지를 통해 즉각적으로 수신 여부를 안내받을 수 있는 자동화 시스템이 갖춰져 있는지 확인하세요.
 * **우편물 포워딩(전달):** 방문 수령이 어려운 대표님들을 위해 지정한 주소지로 월 단위 등 정기 발송해 주는 맞춤형 우편물 포워딩 서비스를 활용하면 업무 흐름이 끊기지 않습니다.
 
-<img src="/assets/img/blog/office-service-2.jpg" alt="더브릿지플러스 알림톡 우편물 관리 시스템" class="blog-image">
+<img src="/assets/img/blog/office-service-2.png" alt="더브릿지플러스 알림톡 우편물 관리 시스템" class="blog-image">
 
 <br>
 
@@ -49,7 +49,7 @@ image: /assets/img/blog/office-service-1.jpg
 * **세무 기장 제휴 할인:** 신뢰할 수 있는 파트너 세무사와의 연계를 통해 기장료 할인이나 초기 세무 컨설팅 혜택을 받을 수 있습니다.
 * **법무 및 노무 상담:** 고용 계약서 작성, 상표권 등록, 법률 검토 등 사업 과정에서 발생하는 다양한 허들을 제휴 전문가를 통해 빠르고 안전하게 해결할 수 있습니다.
 
-<img src="/assets/img/blog/office-service-3.jpg" alt="더브릿지플러스 회의실 및 실사 지원" class="blog-image">
+<img src="/assets/img/blog/office-service-3.png" alt="더브릿지플러스 회의실 및 실사 지원" class="blog-image">
 
 <br>
 
