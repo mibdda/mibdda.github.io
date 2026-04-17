@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[2026 최신] 초기 창업자를 위한 비상주사무실 법인 설립 절차 및 필수 체크리스트"
-categories: [창업 가이드, 비상주사무실]
+categories: [창업 가이드, 법인설립]
 tags: [법인설립절차, 강남비상주사무실, 1인법인, 사업자등록, 더브릿지플러스]
 image: /assets/img/blog/corporate-setup-1.jpg
 ---

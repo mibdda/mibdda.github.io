@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "강남 비상주사무실, 실패 없는 선택을 위한 체크리스트 및 비용 절감 가이드"
-categories: [비상주사무실]
+categories: [비상주사무실, 세무 가이드]
 image: /assets/img/blog/office-1.jpg
 ---
 

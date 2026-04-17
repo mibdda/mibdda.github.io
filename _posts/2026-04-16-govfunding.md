@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "2025년 정부지원사업 완벽 가이드: 개인 vs 법인사업자 맞춤 혜택 총정리"
-categories: [정부지원금, 창업가이드]
+categories: [정부지원금, 창업 가이드]
 tags: [2025년정부지원사업, 개인사업자지원금, 법인사업자지원금, 창업패키지, 비상주사무실]
 image: /assets/img/blog/govfunding-1.jpg
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "단순 주소 임대? NO! 비상주사무실 200% 활용하는 5가지 필수 부가서비스"
-categories: [비상주사무실]
+categories: [비상주사무실, 공유오피스]
 image: /assets/img/blog/office-service-1.png
 ---
 
