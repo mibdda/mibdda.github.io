@@ -19,9 +19,9 @@
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '4289893637922263');fbq('track', 'PageView');</script>
 
   <style>
-    /* [레이아웃 원복] 푸터 하단 고정 완벽 보장 */
-    html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
-    main { flex: 1; padding-top: 100px; padding-bottom: 60px; background: #fff; }
+    /* [레이아웃 원복] 푸터 하단 고정 완벽 보장 및 배경 흰색으로 통일 */
+    html, body { height: 100%; margin: 0; display: flex; flex-direction: column; background: #fff !important; }
+    main { flex: 1; padding-top: 100px; padding-bottom: 60px; background: #fff !important; }
 
     /* [Mobile] 블로그 중앙 정렬 최적화 */
     .blog-mobile-center {
@@ -42,8 +42,27 @@
     .popular-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; color: #333; font-weight: 600; }
     .popular-num { color: #007BFF; font-weight: 900; margin-right: 15px; width: 20px; text-align: center; }
 
+    /* 모바일 카테고리 드로워 */
     #categoryDrawer { position: fixed; top: 80px; left: 0; right: 0; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-    #categoryDrawer.open { max-height: 600px; padding: 10px 0; border-bottom: 3px solid #003366; overflow-y: auto; }
+    #categoryDrawer.open { max-height: 600px; border-bottom: 3px solid #003366; overflow-y: auto; }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #eee; }
+
+    /* 데스크탑 전용 사이드바 스타일 */
+    .desktop-sidebar {
+      position: sticky;
+      top: 120px; /* 네비바 아래 적당한 위치 고정 */
+      height: fit-content;
+    }
+    .sidebar-cat-link {
+      display: block;
+      padding: 10px 0;
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid #f1f3f5;
+      transition: color 0.2s;
+    }
+    .sidebar-cat-link:hover { color: #0d6efd; }
   </style>
 </head>
 <body>
@@ -101,7 +120,11 @@
   </div>
 
   <div id="categoryDrawer">
-    <ul class="list-unstyled px-4 m-0">
+    <div class="drawer-header d-lg-none">
+      <span class="fw-bold" style="font-size: 1.1rem;">카테고리</span>
+      <button type="button" class="btn-close" id="categoryCloseBtn" aria-label="카테고리 닫기"></button>
+    </div>
+    <ul class="list-unstyled px-4 m-0 pb-3">
       <li class="py-3 border-bottom"><a href="/blog" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">전체글 보기</a></li>
       {% for category in site.categories %}
       <li class="py-3 border-bottom"><a href="/blog/{{ category | first | slugify }}/" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">{{ category | first }} <span class="text-primary">{{ category | last | size }}</span></a></li>
@@ -130,7 +153,26 @@
   </div>
 
   <main class="container">
-    {{ content }}
+    <div class="row">
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="desktop-sidebar pe-4">
+          <h4 class="fw-bold mb-4" style="color: #003366;">CATEGORY</h4>
+          <nav>
+            <a href="/blog" class="sidebar-cat-link">전체보기</a>
+            {% for category in site.categories %}
+            <a href="/blog/{{ category | first | slugify }}/" class="sidebar-cat-link d-flex justify-content-between align-items-center">
+              {{ category | first }}
+              <span class="badge rounded-pill bg-light text-dark border">{{ category | last | size }}</span>
+            </a>
+            {% endfor %}
+          </nav>
+        </div>
+      </aside>
+
+      <div class="col-lg-9 col-12">
+        {{ content }}
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer" id="footer">
@@ -237,7 +279,7 @@
   <script src="/script.js"></script>
 
   <script>
-    // 1. To-Top 스크롤 (원복 완료)
+    // 1. To-Top 스크롤
     const toTopBtn = document.getElementById('toTop');
     window.addEventListener('scroll', () => { 
       if (window.scrollY > 300) toTopBtn.classList.add('show'); 
@@ -245,16 +287,27 @@
     });
     toTopBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-    // 2. 카테고리(폴더) 드로워
-    document.getElementById('folderIcon').addEventListener('click', () => {
-      document.getElementById('categoryDrawer').classList.toggle('open');
-    });
+    // 2. 카테고리(폴더) 드로워 제어 (열기/닫기)
+    const categoryDrawer = document.getElementById('categoryDrawer');
+    const folderIcon = document.getElementById('folderIcon');
+    const categoryCloseBtn = document.getElementById('categoryCloseBtn');
+
+    if (folderIcon) {
+      folderIcon.addEventListener('click', () => {
+        categoryDrawer.classList.toggle('open');
+      });
+    }
+    if (categoryCloseBtn) {
+      categoryCloseBtn.addEventListener('click', () => {
+        categoryDrawer.classList.remove('open');
+      });
+    }
 
     // 3. 검색창 및 인기 검색어
     const searchOverlay = document.getElementById('searchFullOverlay');
     const searchInput = document.getElementById('searchInput');
     const popularWrap = document.getElementById('popularWrap');
-    const searchResults = document.getElementById('searchResults'); // 결과창 변수 추가
+    const searchResults = document.getElementById('searchResults');
 
     document.getElementById('searchIcon').addEventListener('click', () => { 
       searchOverlay.classList.add('active'); 
@@ -265,16 +318,15 @@
       searchOverlay.classList.remove('active'); 
       searchInput.value = ''; 
       popularWrap.style.display = 'block'; 
-      searchResults.innerHTML = ''; // 창 닫을 때 잔여 결과물 초기화
+      searchResults.innerHTML = ''; 
     });
     
     searchInput.addEventListener('input', () => { 
-      // 검색어가 한 글자라도 있으면 인기검색어 숨김, 다 지워지면 다시 표시 및 결과창 초기화
       if (searchInput.value.trim().length > 0) {
         popularWrap.style.display = 'none';
       } else {
         popularWrap.style.display = 'block';
-        searchResults.innerHTML = ''; // ⭐️ 검색어를 지웠을 때 '결과 없음' 문구도 깔끔하게 날림
+        searchResults.innerHTML = ''; 
       }
     });
 
@@ -290,7 +342,7 @@
       resultsContainer: searchResults,
       json: '/search.json',
       searchResultTemplate: '<li class="py-3 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none fs-5">{title}</a></li>',
-      noResultsText: '<li class="py-4 text-center text-muted fs-5 fw-bold">검색 결과가 없습니다.</li>' // ⭐️ 영어 대신 한국어로 출력되도록 강제 설정
+      noResultsText: '<li class="py-4 text-center text-muted fs-5 fw-bold">검색 결과가 없습니다.</li>'
     });
   </script>
 </body>
