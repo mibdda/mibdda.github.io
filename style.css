@@ -890,3 +890,30 @@ body {
    ----------------------------------------------------------------- */
 #privacyDrawer.offcanvas { z-index: 1060 !important; }
 .offcanvas-backdrop { z-index: 1058 !important; }
+
+/* [NAVBAR] 모바일 타이틀 공통 (index & default 공용) */
+.nav-mobile-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 1001;
+}
+
+.nav-mobile-title {
+  font-weight: 900; /* 폰트 웨이트 900 적용 */
+  font-size: 1.1rem;
+  color: #fff !important;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 모바일 로고 숨김 (글자와 겹침 방지) */
+@media (max-width: 991.98px) {
+  .brand-abs img { opacity: 0; pointer-events: none; }
+}
