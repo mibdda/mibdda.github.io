@@ -891,23 +891,31 @@ body {
 #privacyDrawer.offcanvas { z-index: 1060 !important; }
 .offcanvas-backdrop { z-index: 1058 !important; }
 
-/* [Mobile] 디폴트 원본 CSS 그대로 복구 */
-.mobile-center-box {
-  position: absolute; 
-  left: 50%; 
-  transform: translateX(-50%); /* Y축 건드리지 않음 (원본 동일) */
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  gap: 12px;
-  z-index: 1050; /* 로고 위로 올라오게만 추가 */
-}
+/* [NAVBAR] 모바일 타이틀: 로고 옆 고정 배치 */
+/* 반드시 이 미디어 쿼리 안에 넣으세요. 그래야 데스크탑에서 사라집니다. */
+@media (max-width: 991.98px) {
+  .mobile-center-box {
+    position: absolute !important;
+    /* 1. 좌표 대신 %를 사용해 모든 모바일/태블릿 대응 */
+    left: 45% !important;
+    top: 50% !important;
+    /* 2. 글자 자체 너비의 절반만큼 왼쪽으로 당겨서 '진짜 중앙' 배치 */
+    transform: translate(-50%, -50%) !important;
+    /* 3. 부트스트랩 d-lg-none과 충돌하지 않도록 설정 */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 1050;
+    pointer-events: none; /* 로고 클릭 방해 방지 */
+  }
 
-.mobile-center-text { 
-  font-weight: 900; 
-  font-size: 1.1rem; 
-  color: #fff !important; /* 파란색 방지 */
-  letter-spacing: -0.5px; 
-  margin: 0; 
-}
-
+  .mobile-center-text {
+    pointer-events: auto; /* 글자 클릭은 가능하게 */
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 1.1rem !important;
+    white-space: nowrap;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 가독성 확보 */
+  }
