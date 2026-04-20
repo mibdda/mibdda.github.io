@@ -891,29 +891,38 @@ body {
 #privacyDrawer.offcanvas { z-index: 1060 !important; }
 .offcanvas-backdrop { z-index: 1058 !important; }
 
-/* [NAVBAR] 모바일 타이틀 공통 (index & default 공용) */
-.nav-mobile-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
+.mobile-title-center {
+  position: absolute !important;
+  /* 부모(.container-fluid) 기준 정중앙 배치 */
+  left: 50% !important;
+  top: 50% !important;
+  /* 핵심: 왼쪽으로 50% 다시 당겨야 '진짜 중앙'이 됨 */
+  transform: translate(-50%, -50%) !important; 
+  display: flex !important;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  z-index: 1001;
-}
-
-.nav-mobile-title {
-  font-weight: 900; /* 폰트 웨이트 900 적용 */
-  font-size: 1.1rem;
-  color: #fff !important;
-  letter-spacing: -0.5px;
-  text-decoration: none;
+  z-index: 1000;
   white-space: nowrap;
 }
 
-/* 모바일 로고 숨김 (글자와 겹침 방지) */
+/* 글자 스타일 */
+.mobile-title-text {
+  font-weight: 900 !important;
+  font-size: 1.1rem !important;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
 @media (max-width: 991.98px) {
-  .brand-abs img { opacity: 0; pointer-events: none; }
+  /* 로고 간섭 방지: 글자보다 뒤로 보냄 */
+  .brand-abs {
+    z-index: 999 !important;
+  }
+  /* 로고가 너무 넓어서 글자를 가리는 것만 방지 (폭 제한) */
+  .brand-abs img {
+    max-width: 140px; /* 로고 높이 160px일 때 적절한 가로폭 제한 */
+    height: auto !important; /* 인라인 160px 유지하되 비율 맞춤 */
+    object-fit: contain;
+  }
 }
