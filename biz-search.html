@@ -13,11 +13,12 @@
 <script src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&amp;adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&amp;type=cpa" type="text/javascript"></script>
 <script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
 <script>window.karrotPixel.init('1759197528761893001'); window.karrotPixel.track('ViewPage');</script>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MGSJ25R9');</script>
 
 <style>
-    /* 검색 페이지 전용 UI (기존 충돌 방지) */
     .navbar.slimbar.is-top { background-color: #121212 !important; }
+    
+    /* 플레이스홀더 회색 처리 */
+    #searchInput::placeholder { color: #9e9e9e !important; font-weight: 400; }
     
     .biz-hero { background: #f8f9fa; padding: 120px 0 60px; margin-top: 80px; border-bottom: 1px solid #eee; }
     .category-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 25px 10px; text-align: center; cursor: pointer; transition: all 0.3s; height: 100%; }
@@ -32,11 +33,14 @@
 </style>
 </head>
 <body>
-<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-MGSJ25R9" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 
 <nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand brand-abs" href="/"><img alt="더브릿지플러스" src="images/logotop.png" style="height:160px;"/></a>
+    <a class="navbar-brand brand-abs d-flex align-items-center" href="/">
+      <img alt="더브릿지플러스 로고" src="images/logotop.png" style="height:160px;"/>
+      <span class="d-lg-none text-white fw-bold ms-2 fs-5" style="margin-top:-5px;">더브릿지플러스</span>
+    </a>
+    
     <div class="d-none d-lg-flex flex-fill justify-content-center align-items-center" style="gap:30px;">
       <ul class="navbar-nav" style="gap:30px;">
         <li class="nav-item"><a class="nav-link" href="/#services">서비스</a></li>
@@ -121,7 +125,7 @@
 <div class="offcanvas offcanvas-end shadow-lg" id="bizDetailCanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" style="width: 450px; max-width: 100vw; border-left: 1px solid #ddd;">
   <div class="offcanvas-header border-bottom bg-light">
     <h5 class="fw-bold mb-0 text-dark">업종 상세 분석 리포트</h5>
-    <button class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+    <button class="btn-close" data-bs-dismiss="offcanvas" type="button" id="closeOffcanvasBtn"></button>
   </div>
   <div class="offcanvas-body" id="offcanvasContent"></div>
 </div>
@@ -195,8 +199,6 @@
     <p><strong>개인정보 수집 주체</strong> : (주)더브릿지플러스</p>
     <p><strong>수집 및 이용 목적</strong><br>
       고객님의 문의에 신속하고 정확하게 답변드리기 위해 최소한의 개인정보를 수집합니다. 
-      또한 상담 이력 관리, 문의에 대한 후속 안내, 서비스 이용과 직접 관련된 정보 제공 등 
-      원활한 고객 응대를 목적으로 활용됩니다.
     </p>
     <p><strong>수집 항목</strong></p>
     <ul>
@@ -204,12 +206,7 @@
       <li><b>선택</b> : 이메일 주소</li>
     </ul>
     <p><strong>보유 및 이용 기간</strong><br>
-      수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 
-      최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
-    </p>
-    <p class="mt-3">
-      ※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 
-      다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.
+      관련 법령에 따라 최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.
     </p>
   </div>
 </div>
@@ -219,7 +216,7 @@
 
 <script>
     let bizData = [];
-    let detailOffcanvas = null; // 인스턴스 중복 생성 방지
+    let detailOffcanvas = null;
     
     const iconMap = {
       "제조업": "fa-industry", "건설업": "fa-helmet-safety", "농업, 임업 및 어업": "fa-tractor",
@@ -231,7 +228,6 @@
     };
 
     document.addEventListener("DOMContentLoaded", async () => {
-      // 오프캔버스 인스턴스 미리 생성
       detailOffcanvas = new bootstrap.Offcanvas(document.getElementById('bizDetailCanvas'));
 
       try {
@@ -250,14 +246,35 @@
       } catch(e) { console.error("JSON 로드 실패", e); }
     });
 
+    // 외부 영역 클릭 시 창 닫기 로직 (핵심 추가본)
+    document.addEventListener('click', function(e) {
+      // 1. 오프캔버스(상세창) 닫기
+      const canvas = document.getElementById('bizDetailCanvas');
+      if (canvas.classList.contains('show')) {
+        // 사이드바 내부나, 클릭해서 연 버튼(리스트)이 아니면 닫기
+        if (!canvas.contains(e.target) && !e.target.closest('.list-group-item')) {
+          detailOffcanvas.hide();
+        }
+      }
+      
+      // 2. 햄버거 메뉴(드로어) 닫기
+      const drawer = document.getElementById('drawer');
+      const menuBtn = document.getElementById('menuBtn');
+      if (drawer && drawer.classList.contains('open')) {
+        if (!drawer.contains(e.target) && !menuBtn.contains(e.target)) {
+          drawer.classList.remove('open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
     function filterByCat(c) {
       const filtered = bizData.filter(i => i['업태명'] === c);
       renderResults(filtered);
     }
 
-    // [강력해진 검색 로직] - 공백 제거 후 비교하여 누락 완벽 방지
     document.getElementById('searchInput').addEventListener('input', e => {
-      const val = e.target.value.replace(/\s+/g, '').toLowerCase(); // 검색어 공백 제거
+      const val = e.target.value.replace(/\s+/g, '').toLowerCase();
       if(!val) {
         document.getElementById('resultArea').style.display = 'none';
         document.getElementById('categoryGrid').style.display = 'flex';
@@ -345,7 +362,6 @@
           </div>
         </div>
       `;
-      // 열려있든 닫혀있든 깔끔하게 보여주기
       detailOffcanvas.show();
     }
 </script>
