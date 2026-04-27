@@ -127,13 +127,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <span class="trust-divider"></span>
       <span class="trust-item">플랫폼 입점 반려 시 100% 환불</span>
     </div>
-<div class="mt-4">
+
+<div class="hero-cta-area">
 <a class="open-general btn btn-primary btn-lg fw-bold mt-3"
   style="padding:18px 44px; font-size:1.25rem; border-radius:30px;"
   data-bs-toggle="modal"
   data-bs-target="#consultModal">
   지금 문의하기
-</a>
+</a></div>
+<div class="mt-5 hero-search-container fade-in">
+  <p class="search-title">비상주 등록 가능 여부와 세무정보를 확인해 보세요.</p>
+  <div class="transparent-search-bar">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    <input type="text" id="heroSearchInput" 
+           placeholder="업종명 또는 코드 6자리를 입력하세요" 
+           autocomplete="off">
+    <button type="button" id="heroSearchBtn">조회</button>
+  </div>
+</div>
 </div>
 </div>
 </div>
@@ -620,6 +631,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p><strong>수집 항목</strong></p><ul><li><b>필수</b> : 성함, 연락처(전화번호), 문의 내용</li><li><b>선택</b> : 이메일 주소</li></ul>
     <p><strong>보유 및 이용 기간</strong><br>수집된 개인정보는 문의 처리 완료 후 관련 법령(전자상거래 등에서의 소비자보호에 관한 법률)에 따라 최대 3년간 보관되며, 이후에는 안전하게 파기됩니다.</p>
     <p class="mt-3">※ 귀하는 개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 다만, 동의를 거부하실 경우 1:1 문의 접수가 제한될 수 있습니다.</p>
+  </div>
+</div>
+<!-- 업종 조회 Drawer -->
+<div class="offcanvas offcanvas-end shadow-lg" id="bizDetailCanvas" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" style="width: 450px; max-width: 100vw; border-left: 1px solid #ddd; z-index: 1060;">
+  <div class="offcanvas-header border-bottom bg-light">
+    <h5 class="fw-bold mb-0 text-dark">업종 상세 분석 리포트</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas" type="button" aria-label="닫기"></button>
+  </div>
+  
+  <div class="offcanvas-body" id="offcanvasContent">
+    <div class="text-center py-5 text-muted">
+      <i class="fa-solid fa-magnifying-glass fs-2 mb-3 opacity-25"></i>
+      <p>조회하실 업종명이나 코드를 입력해주세요.</p>
+    </div>
   </div>
 </div>
 
