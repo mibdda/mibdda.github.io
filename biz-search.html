@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>업종별 비상주 가능 여부 조회 | 더브릿지플러스</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&amp;adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&amp;type=cpa" type="text/javascript"></script>
+  <script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
+  <script>window.karrotPixel.init('1759197528761893001'); window.karrotPixel.track('ViewPage');</script>
+
+  <style>
+    /* 네비바 강제 색상 고정 (투명해지는 현상 방지) */
+    .navbar.slimbar.is-top { background-color: #2c2c2c !important; }
+    
+    .biz-hero { background: #f8f9fa; padding: 120px 0 60px; margin-top: 80px; border-bottom: 1px solid #eee; }
+    .category-card {
+      background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 25px 10px;
+      text-align: center; cursor: pointer; transition: all 0.3s; height: 100%;
+    }
+    .category-card:hover { border-color: #007BFF; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .category-icon { font-size: 2.2rem; color: #003366; margin-bottom: 15px; }
+    .category-name { font-size: 0.95rem; font-weight: 800; color: #333; word-break: keep-all; line-height: 1.3; }
+    
+    .badge-purple { background-color: #6f42c1; color: #fff; }
+    .ai-comment-box { background: #f0f7ff; border-left: 5px solid #007BFF; padding: 20px; border-radius: 12px; margin: 20px 0; }
+    .detail-label { font-size: 0.85rem; color: #666; font-weight: 700; margin-bottom: 4px; }
+    .detail-value { font-size: 1rem; color: #111; font-weight: 700; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark slimbar fixed-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand brand-abs" href="/">
+      <img alt="더브릿지플러스" src="images/logotop.png" style="height:160px;"/>
+    </a>
+    <div class="d-none d-lg-flex flex-fill justify-content-center align-items-center" style="gap:30px;">
+      <ul class="navbar-nav" style="gap:30px;">
+        <li class="nav-item"><a class="nav-link" href="/#services">서비스</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#pricing">이용요금</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#about">회사소개</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#faq">자주 묻는 질문</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#location">위치</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">문의</a></li>
+        <li class="nav-item"><a class="nav-link text-info fw-bold" href="/blog">Blog</a></li>
+      </ul>
+    </div>
+    <div class="ms-auto d-flex align-items-center gap-2">
+      <a class="open-general btn fw-bold nav-cta" data-bs-target="#consultModal" data-bs-toggle="modal" style="background:linear-gradient(135deg,#007BFF,#00BFFF); color:#fff; border:none; border-radius:24px; padding:10px 22px; font-size:15px; min-width:120px;">
+        지금 문의하기 <span class="cta-bubble">24시간 상담 가능</span>
+      </a>
+      <button class="navbar-toggler" id="menuBtn" type="button"><span class="navbar-toggler-icon"></span></button>
+    </div>
+  </div>
+</nav>
+
+<div id="drawer" class="side-drawer">
+  <button type="button" class="btn-close btn-close-white" id="closeDrawerBtn"></button>
+  <a href="/#services">서비스</a>
+  <a href="/#pricing">이용요금</a>
+  <a href="/#about">회사소개</a>
+  <a href="/#faq">자주 묻는 질문</a>
+  <a href="/#location">위치</a>
+  <a href="#contact">문의</a>
+  <a href="/blog">Blog</a>
+</div>
+
+<section class="biz-hero">
+  <div class="container text-center" style="max-width: 800px;">
+    <h1 class="display-6 fw-bold mb-3">비상주 사무실 업종 조회</h1>
+    <p class="text-secondary mb-5">계획 중인 업종의 등록 가능 여부와 세무 정보를 즉시 확인하세요.</p>
+    <div class="input-group input-group-lg shadow-sm border rounded-pill overflow-hidden bg-white">
+      <span class="input-group-text bg-white border-0 ps-4"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+      <input type="text" id="searchInput" class="form-control border-0 py-3 shadow-none" placeholder="업종명 또는 코드 6자리를 입력하세요">
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container" style="max-width: 1140px;">
+    
+    <div id="categoryGrid" class="row g-4 mb-5"></div>
+
+    <div id="resultArea" style="display: none;">
+      <h4 class="fw-bold mb-4">검색 결과 <span id="resultCount" class="text-primary">0</span>건</h4>
+      <div class="list-group list-group-flush border-top border-bottom" id="resultList"></div>
+      <div class="text-center mt-5">
+          <button class="btn btn-outline-secondary rounded-pill px-4" onclick="location.reload()">카테고리로 돌아가기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-in" id="contact" style="padding:40px 0; display:block;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 position-relative text-center">
+        <img src="images/overlaycontact.jpg" class="img-fluid w-100 rounded shadow-sm" style="max-height:380px; object-fit:cover;">
+        <div class="position-absolute top-50 start-50 translate-middle" style="color:white; width:100%; text-shadow:0 2px 6px rgba(0,0,0,0.6);">
+          <h2 class="fw-bold mb-3">무료 상담 및 문의하기</h2>
+          <p class="mb-4">24시간 언제든지 문의 가능합니다.</p>
+          <div class="contact-actions">
+            <button class="open-general btn contact-btn contact-btn-consult" data-bs-target="#consultModal" data-bs-toggle="modal">상담 신청하기</button>
+            <button class="btn contact-btn contact-btn-channel" id="contactChannelTalkBtn"><i class="fa-solid fa-comment-dots me-2"></i> 간편 상담 하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="footer">
+  <div class="sf-top">
+    <div class="sf-inner">
+      <div class="sf-grid">
+        <section class="sf-col"><h3 class="sf-title">대표이사 상담</h3><div class="sf-one"><div class="sf-label">휴대폰 번호</div><a class="sf-num accent" href="tel:010-9453-4102">010-9453-4102</a></div></section>
+        <section class="sf-col"><h3 class="sf-title">고객센터</h3><div class="sf-one"><div class="sf-label">대표 전화번호</div><a class="sf-num accent" href="tel:02-2135-8227">02-2135-8227</a></div></section>
+      </div>
+    </div>
+  </div>
+  <div class="sf-bottom">
+    <div class="sf-inner">
+      <div class="sf-legal">
+        대표이사 : 김배기 | 사업자등록번호 : 309-88-03426<br/>주소 : 서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)<br/>EMAIL : rayofusa@thebridgeplus.co.kr
+        <div class="sf-copy">© (주)더브릿지플러스 All Rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="offcanvas offcanvas-end" id="bizDetailCanvas" style="width: 450px; max-width: 100vw;">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="fw-bold mb-0">업종 상세 분석 리포트</h5>
+    <button class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
+  </div>
+  <div class="offcanvas-body" id="offcanvasContent"></div>
+</div>
+
+<div class="modal fade" id="consultModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">무료 상담 신청</h5><button class="btn-close" data-bs-dismiss="modal" type="button"></button></div>
+      <div class="modal-body">
+        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdH1Hm9GKuy3ATgljHOnEABX2b0qa_gdYzwg8MZ4Jp-FcGeEw/formResponse" method="POST">
+          <div class="mb-3"><label class="form-label required">문의 분류</label><select class="form-select" name="entry.989899118" required><option disabled selected value="">선택하세요</option><option value="상주">상주</option><option value="비상주">비상주</option><option value="기타">기타</option></select></div>
+          <div class="mb-3"><label class="form-label required">이름</label><input class="form-control" name="entry.1727161775" required type="text"></div>
+          <div class="mb-3"><label class="form-label required">전화번호</label><input class="form-control" name="entry.53713410" required type="tel"></div>
+          <div class="mb-3"><label class="form-label">이메일 (선택)</label><input class="form-control" name="entry.1336222686" type="email"></div>
+          <div class="mb-3"><label class="form-label">문의내용 (선택)</label><textarea class="form-control" name="entry.701133298" rows="4"></textarea></div>
+          <div class="mb-3 form-check d-flex justify-content-center"><input class="form-check-input me-2" id="privacyCheck" required type="checkbox"><label class="form-check-label">개인정보 수집 및 이용 동의 <a data-bs-target="#privacyDrawer" data-bs-toggle="offcanvas" href="#">자세히 보기</a></label></div>
+          <button class="btn btn-primary d-block mx-auto fw-bold w-50" id="contactSubmit" type="submit">무료 상담 신청하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" id="privacyDrawer" tabindex="-1">
+  <div class="offcanvas-header"><h5>개인정보 수집 및 이용 안내</h5><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body"><p>고객 문의 응대를 위해 최소한의 개인정보를 수집합니다.</p></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+    let bizData = [];
+    
+    // 아이콘 매핑
+    const iconMap = {
+      "제조업": "fa-industry", "건설업": "fa-helmet-safety", "농업, 임업 및 어업": "fa-tractor",
+      "도매 및 소매업": "fa-cart-shopping", "정보통신업": "fa-laptop-code", "전문, 과학 및 기술서비스업": "fa-microscope",
+      "부동산업": "fa-building", "교육서비스업": "fa-graduation-cap", "예술, 스포츠 및 여가관련 서비스업": "fa-palette",
+      "숙박 및 음식점업": "fa-utensils", "운수 및 창고업": "fa-truck-fast", "금융 및 보험업": "fa-building-columns"
+    };
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch('biz_data.json');
+        bizData = await res.json();
+        
+        const cats = [...new Set(bizData.map(i => i['업태명']))].filter(Boolean);
+        const grid = document.getElementById('categoryGrid');
+        
+        let html = '';
+        cats.forEach(c => {
+          html += `
+            <div class="col-6 col-md-3">
+              <div class="category-card" onclick="filterByCat('${c}')">
+                <i class="fa-solid ${iconMap[c] || 'fa-folder-open'} category-icon"></i>
+                <div class="category-name">${c}</div>
+              </div>
+            </div>`;
+        });
+        grid.innerHTML = html;
+      } catch(e) { 
+        console.error("JSON 로드 실패", e); 
+      }
+    });
+
+    function filterByCat(c) {
+      const filtered = bizData.filter(i => i['업태명'] === c);
+      renderResults(filtered);
+    }
+
+    document.getElementById('searchInput').addEventListener('input', e => {
+      const val = e.target.value.trim().toLowerCase();
+      if(!val) {
+        document.getElementById('resultArea').style.display = 'none';
+        document.getElementById('categoryGrid').style.display = 'flex';
+        return;
+      }
+      const filtered = bizData.filter(i => String(i['업종코드']).includes(val) || i['업종명'].toLowerCase().includes(val));
+      renderResults(filtered);
+    });
+
+    function renderResults(data) {
+      document.getElementById('categoryGrid').style.display = 'none';
+      document.getElementById('resultArea').style.display = 'block';
+      document.getElementById('resultCount').innerText = data.length;
+      
+      const listEl = document.getElementById('resultList');
+      if(data.length === 0) {
+        listEl.innerHTML = '<div class="text-center py-4 text-muted">결과가 없습니다.</div>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(i => {
+        const safeJson = encodeURIComponent(JSON.stringify(i));
+        return `
+          <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3" onclick="openDetail('${safeJson}')">
+            <div>
+              <div class="fw-bold">${i['업종명']}</div>
+              <small class="text-muted">코드: ${i['업종코드']} | ${i['업태명']}</small>
+            </div>
+            <span class="badge rounded-pill ${i['badge_class']}">${i['상태']}</span>
+          </button>`;
+      }).join('');
+    }
+
+    function openDetail(encodedStr) {
+      const i = JSON.parse(decodeURIComponent(encodedStr));
+      document.getElementById('offcanvasContent').innerHTML = `
+        <div class="text-center mb-4">
+          <span class="badge ${i['badge_class']} fs-6 mb-2">${i['상태']}</span>
+          <h3 class="fw-bold">${i['업종명']}</h3>
+          <p class="text-muted">코드 ${i['업종코드']}</p>
+        </div>
+        
+        <div class="ai-comment-box">
+          <h6 class="fw-bold"><i class="fa-solid fa-robot me-2"></i>AI 분석 의견</h6>
+          <p class="small mb-0">${i['참고사항']}</p>
+        </div>
+        
+        <button class="btn btn-primary w-100 py-3 mb-4 rounded-3 fw-bold" data-bs-toggle="modal" data-bs-target="#consultModal">
+          <i class="fa-solid fa-headset me-2"></i>비상주 등록 상담하기
+        </button>
+        
+        <div class="accordion" id="taxAcc">
+          <div class="accordion-item border-0 shadow-sm">
+            <h2 class="accordion-header">
+              <button class="accordion-button bg-light fw-bold rounded-3" data-bs-toggle="collapse" data-bs-target="#taxInfo">상세 세무 정보 (경비율 등)</button>
+            </h2>
+            <div id="taxInfo" class="accordion-collapse collapse show">
+              <div class="accordion-body px-2">
+                <div class="detail-label">국세청 분류</div>
+                <div class="detail-value small">${i['중분류']} > ${i['세분류']}</div>
+                
+                <div class="row">
+                  <div class="col-6">
+                    <div class="detail-label">단순경비율</div>
+                    <div class="detail-value text-primary">${i['단순경비율(일반율)']}%</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="detail-label">기준경비율</div>
+                    <div class="detail-value text-primary">${i['기준경비율(일반율)']}%</div>
+                  </div>
+                </div>
+                
+                <div class="detail-label">적용 기준 설명</div>
+                <div class="p-2 bg-light rounded" style="font-size:0.8rem; white-space:pre-wrap;">${i['적용기준내용']}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      new bootstrap.Offcanvas(document.getElementById('bizDetailCanvas')).show();
+    }
+</script>
+</body>
+</html>
