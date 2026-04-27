@@ -18,7 +18,7 @@
 <style>
     .navbar.slimbar.is-top { background-color: #121212 !important; }
     
-    /* 뱃지 색상 강제 지정 (부트스트랩5 호환 문제 해결) */
+    /* 뱃지 색상 강제 지정 */
     .badge-success { background-color: #198754 !important; color: #fff !important; }
     .badge-danger { background-color: #dc3545 !important; color: #fff !important; }
     .badge-warning { background-color: #fd7e14 !important; color: #fff !important; }
@@ -82,7 +82,7 @@
     <p class="text-secondary mb-5">계획 중인 업종의 등록 가능 여부와 세무 정보를 즉시 확인하세요.</p>
     <div class="input-group input-group-lg shadow-sm border rounded-pill overflow-hidden bg-white">
       <span class="input-group-text bg-white border-0 ps-4"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
-      <input type="text" id="searchInput" class="form-control border-0 py-3 shadow-none" placeholder="업종명 또는 코드 6자리를 입력하세요">
+      <input type="text" id="searchInput" class="form-control border-0 py-3 shadow-none" placeholder="업종명 또는 코드6자리를 입력하세요">
     </div>
   </div>
 </section>
@@ -244,21 +244,24 @@
       } catch(e) { console.error("JSON 로드 실패", e); }
     });
 
-    // 외부 영역 클릭 시 창 닫기
+    // 외부 영역 클릭 시 창 닫기 로직 (완벽 개선)
     document.addEventListener('click', function(e) {
+      // 1. 상세창(오프캔버스) 닫기
       const canvas = document.getElementById('bizDetailCanvas');
       if (canvas.classList.contains('show')) {
+        // 클릭한 곳이 캔버스 내부나 여는 버튼(.list-group-item)이 아니면 닫음
         if (!canvas.contains(e.target) && !e.target.closest('.list-group-item')) {
           detailOffcanvas.hide();
         }
       }
       
+      // 2. 모바일 메뉴 드로어 닫기
       const drawer = document.getElementById('drawer');
       const menuBtn = document.getElementById('menuBtn');
       if (drawer && drawer.classList.contains('open')) {
         if (!drawer.contains(e.target) && !menuBtn.contains(e.target)) {
           drawer.classList.remove('open');
-          menuBtn.setAttribute('aria-expanded', 'false');
+          if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
         }
       }
     });
@@ -268,7 +271,6 @@
       renderResults(filtered);
     }
 
-    // [개선됨] 소수점, 띄어쓰기, 하이픈 등 모두 제거하고 검색
     document.getElementById('searchInput').addEventListener('input', e => {
       const val = e.target.value.replace(/[\s-]/g, '').toLowerCase(); 
       if(!val) {
@@ -278,7 +280,6 @@
       }
       
       const filtered = bizData.filter(i => {
-        // Pandas 변환 시 생긴 .0 제거 및 공백 압착
         const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
         const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
         return codeStr.includes(val) || nameStr.includes(val);
@@ -293,78 +294,4 @@
       
       const listEl = document.getElementById('resultList');
       if(data.length === 0) {
-        listEl.innerHTML = '<div class="text-center py-5 text-muted"><i class="fa-solid fa-circle-exclamation fs-3 mb-2 d-block"></i>검색 결과가 없습니다. 코드를 다시 확인해주세요.</div>';
-        return;
-      }
-
-      listEl.innerHTML = data.map(i => {
-        const safeJson = encodeURIComponent(JSON.stringify(i));
-        // 코드 노출 시에도 .0 제거
-        const cleanCode = String(i['업종코드'] || '').split('.')[0];
-        
-        return `
-          <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3" onclick="openDetail('${safeJson}')">
-            <div>
-              <div class="fw-bold fs-5 mb-1 text-dark">${i['업종명']}</div>
-              <small class="text-muted">코드: <span class="fw-bold">${cleanCode}</span> | ${i['업태명']}</small>
-            </div>
-            <span class="badge rounded-pill ${i['badge_class']} fs-6 px-3 py-2">${i['상태']}</span>
-          </button>`;
-      }).join('');
-    }
-
-    function openDetail(encodedStr) {
-      const i = JSON.parse(decodeURIComponent(encodedStr));
-      const cleanCode = String(i['업종코드'] || '').split('.')[0];
-      
-      document.getElementById('offcanvasContent').innerHTML = `
-        <div class="text-center mb-4 mt-2">
-          <span class="badge ${i['badge_class']} fs-6 mb-3 px-3 py-2">${i['상태']}</span>
-          <h3 class="fw-bold text-dark">${i['업종명']}</h3>
-          <p class="text-muted">코드 ${cleanCode}</p>
-        </div>
-        
-        <div class="ai-comment-box shadow-sm">
-          <h6 class="fw-bold text-dark mb-2" style="font-size:1.05rem;">
-            <i class="fa-solid fa-building-circle-check text-primary me-2"></i>TheBridge Comment
-          </h6>
-          <p class="mb-0 text-dark" style="font-size:0.95rem; line-height:1.6;">${i['참고사항']}</p>
-        </div>
-        
-        <button class="btn btn-dark w-100 py-3 mb-4 rounded-3 fw-bold fs-5 shadow-sm" data-bs-toggle="modal" data-bs-target="#consultModal">
-          <i class="fa-solid fa-headset me-2"></i>비상주 등록 상담하기
-        </button>
-        
-        <div class="accordion" id="taxAcc">
-          <div class="accordion-item border border-light shadow-sm rounded-3 overflow-hidden">
-            <h2 class="accordion-header">
-              <button class="accordion-button bg-light fw-bold text-dark" data-bs-toggle="collapse" data-bs-target="#taxInfo">상세 세무 정보 (경비율 등)</button>
-            </h2>
-            <div id="taxInfo" class="accordion-collapse collapse show">
-              <div class="accordion-body px-3 py-4 bg-white border-top">
-                <div class="detail-label">국세청 분류</div>
-                <div class="detail-value text-secondary">${i['중분류']} > ${i['세분류']}</div>
-                
-                <div class="row mb-3">
-                  <div class="col-6">
-                    <div class="detail-label">단순경비율</div>
-                    <div class="detail-value text-primary fs-5">${i['단순경비율(일반율)']}%</div>
-                  </div>
-                  <div class="col-6">
-                    <div class="detail-label">기준경비율</div>
-                    <div class="detail-value text-primary fs-5">${i['기준경비율(일반율)']}%</div>
-                  </div>
-                </div>
-                
-                <div class="detail-label">적용 기준 설명</div>
-                <div class="p-3 bg-light rounded text-dark" style="font-size:0.85rem; line-height:1.6; white-space:pre-wrap;">${i['적용기준내용']}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-      detailOffcanvas.show();
-    }
-</script>
-</body>
-</html>
+        listEl.innerHTML =
