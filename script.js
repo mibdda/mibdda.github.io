@@ -737,3 +737,209 @@ document.addEventListener("DOMContentLoaded", () => {
         track.style.animationPlayState = document.hidden ? 'paused' : 'running';
     });
 })();
+// =================================================================
+// [BIZ SEARCH] 업종 조회 및 오프캔버스(드로어) 통합 로직
+// =================================================================
+let bizData = [];
+let detailOffcanvas = null;
+
+const iconMap = {
+    "제조업": "fa-industry", "건설업": "fa-person-digging", "농업, 임업 및 어업": "fa-tractor",
+    "도매 및 소매업": "fa-cart-shopping", "정보통신업": "fa-laptop-code", "전문, 과학 및 기술서비스업": "fa-microscope",
+    "부동산업": "fa-building", "교육서비스업": "fa-graduation-cap", "예술, 스포츠 및 여가관련 서비스업": "fa-palette",
+    "숙박 및 음식점업": "fa-utensils", "운수 및 창고업": "fa-truck-fast", "금융 및 보험업": "fa-building-columns",
+    "사업시설 관리, 사업지원 및 임대 서비스업": "fa-briefcase", "보건업 및 사회복지 서비스업": "fa-hospital",
+    "협회 및 단체, 수리 및 기타 개인서비스업": "fa-handshake-angle", "공공 행정, 국방 및 사회보장 행정": "fa-landmark",
+    "광업": "fa-gem", "수도, 하수 및 폐기물처리, 원료재생업": "fa-faucet-drip", "전기, 가스, 증기 및 공기조절 공급업": "fa-bolt"
+};
+
+document.addEventListener("DOMContentLoaded", async () => {
+    // 오프캔버스 초기화 (공통)
+    const canvasEl = document.getElementById('bizDetailCanvas');
+    if (canvasEl) detailOffcanvas = new bootstrap.Offcanvas(canvasEl);
+
+    // 데이터 로드
+    try {
+        const res = await fetch('biz_data.json');
+        bizData = await res.json();
+        
+        // --- [A] 서브페이지(biz-search.html) 전용: 카테고리 그리드 렌더링 ---
+        const grid = document.getElementById('categoryGrid');
+        if (grid) {
+            const cats = [...new Set(bizData.map(i => i['업태명']))].filter(Boolean);
+            grid.innerHTML = cats.map(c => `
+              <div class="col-6 col-md-3">
+                <div class="category-card" onclick="filterByCat('${c}')">
+                  <i class="fa-solid ${iconMap[c] || 'fa-folder-open'} category-icon"></i>
+                  <div class="category-name">${c}</div>
+                </div>
+              </div>`).join('');
+        }
+    } catch(e) { console.error("JSON 로드 실패", e); }
+
+    // --- [B] 메인 페이지(index.html) 전용: 히어로 검색창 이벤트 ---
+    const heroBtn = document.getElementById('heroSearchBtn');
+    const heroInput = document.getElementById('heroSearchInput');
+    
+    function handleHeroSearch() {
+        if(!heroInput) return;
+        const val = heroInput.value.replace(/[\s-]/g, '').toLowerCase();
+        if(!val) return alert("업종명 또는 코드를 입력해주세요.");
+        
+        const filtered = bizData.filter(i => {
+            const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
+            const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
+            return codeStr.includes(val) || nameStr.includes(val);
+        });
+        
+        renderHeroDrawerResults(filtered);
+        if (detailOffcanvas) detailOffcanvas.show();
+    }
+    
+    if (heroBtn) heroBtn.addEventListener('click', handleHeroSearch);
+    if (heroInput) heroInput.addEventListener('keypress', e => { if(e.key === 'Enter') handleHeroSearch(); });
+
+    // --- [C] 서브페이지(biz-search.html) 전용: 메인 검색창 실시간 필터링 ---
+    const mainSearch = document.getElementById('searchInput');
+    if (mainSearch) {
+        mainSearch.addEventListener('input', e => {
+            const val = e.target.value.replace(/[\s-]/g, '').toLowerCase(); 
+            const resArea = document.getElementById('resultArea');
+            const catGrid = document.getElementById('categoryGrid');
+            
+            if(!val) {
+                if(resArea) resArea.style.display = 'none';
+                if(catGrid) catGrid.style.display = 'flex';
+                return;
+            }
+            const filtered = bizData.filter(i => {
+                const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
+                const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
+                return codeStr.includes(val) || nameStr.includes(val);
+            });
+            renderResults(filtered);
+        });
+    }
+});
+
+// 전역 함수 (HTML inline onclick에서 호출됨)
+window.filterByCat = function(c) {
+    const filtered = bizData.filter(i => i['업태명'] === c);
+    renderResults(filtered);
+};
+
+window.openDetail = function(codeStr) {
+    const i = bizData.find(item => String(item['업종코드'] || '').split('.')[0] === String(codeStr));
+    if (!i) return;
+    renderDetailToCanvas(i);
+    if (detailOffcanvas) detailOffcanvas.show();
+};
+
+// [biz-search.html] 서브페이지 목록 렌더링
+function renderResults(data) {
+    document.getElementById('categoryGrid').style.display = 'none';
+    document.getElementById('resultArea').style.display = 'block';
+    document.getElementById('resultCount').innerText = data.length;
+    
+    const listEl = document.getElementById('resultList');
+    if(data.length === 0) {
+        listEl.innerHTML = '<div class="text-center py-5 text-muted"><i class="fa-solid fa-circle-exclamation fs-3 mb-2 d-block"></i>검색 결과가 없습니다. 코드를 다시 확인해주세요.</div>';
+        return;
+    }
+    listEl.innerHTML = data.map(i => {
+        const cleanCode = String(i['업종코드'] || '').split('.')[0];
+        return `
+          <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3" onclick="openDetail('${cleanCode}')">
+            <div>
+              <div class="fw-bold fs-5 mb-1 text-dark">${i['업종명']}</div>
+              <small class="text-muted">코드: <span class="fw-bold">${cleanCode}</span> | ${i['업태명']}</small>
+            </div>
+            <span class="badge rounded-pill ${i['badge_class']} fs-6 px-3 py-2">${i['상태']}</span>
+          </button>`;
+    }).join('');
+}
+
+// [index.html] 히어로 검색 시 드로어에 바로 리스트 렌더링 (결과가 여러 개일 때)
+function renderHeroDrawerResults(results) {
+    const content = document.getElementById('offcanvasContent');
+    if (!content) return;
+    
+    if (results.length === 0) {
+        content.innerHTML = `<div class="text-center py-5 text-muted"><i class="fa-solid fa-circle-exclamation fs-3 mb-3 d-block"></i>검색 결과가 없습니다.<br>코드를 다시 확인하시거나 상담을 신청해주세요.</div>`;
+    } else if (results.length === 1) {
+        renderDetailToCanvas(results[0]);
+    } else {
+        content.innerHTML = `<p class="text-center fw-bold text-dark mb-3 mt-2">${results.length}개의 업종이 검색되었습니다.<br><span class="fw-normal text-muted" style="font-size:0.9rem;">원하시는 업종을 선택하세요.</span></p>` + 
+        `<div class="list-group list-group-flush border-top border-bottom">` +
+        results.map(i => {
+            const cleanCode = String(i['업종코드'] || '').split('.')[0];
+            return `<button class="list-group-item list-group-item-action p-3" onclick="openDetail('${cleanCode}')">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <div class="fw-bold text-dark">${i['업종명']}</div>
+                    <span class="badge ${i['badge_class']} rounded-pill" style="font-size:0.75rem;">${i['상태']}</span>
+                </div>
+                <small class="text-muted">${cleanCode} | ${i['업태명']}</small>
+            </button>`;
+        }).join('') + `</div>`;
+    }
+}
+
+// 오프캔버스 내부에 상세 리포트 그리기 (공통)
+function renderDetailToCanvas(i) {
+    const cleanCode = String(i['업종코드'] || '').split('.')[0];
+    const safeCriteria = (i['적용기준내용'] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const content = document.getElementById('offcanvasContent');
+    if(!content) return;
+    
+    content.innerHTML = `
+        <div class="text-center mb-4 mt-2">
+          <span class="badge ${i['badge_class']} fs-6 mb-3 px-3 py-2">${i['상태']}</span>
+          <h3 class="fw-bold text-dark">${i['업종명']}</h3>
+          <p class="text-muted">코드 ${cleanCode}</p>
+        </div>
+        <div class="ai-comment-box shadow-sm">
+          <h6 class="fw-bold text-dark mb-2" style="font-size:1.05rem;">
+            <i class="fa-solid fa-building-circle-check text-primary me-2"></i>TheBridge Comment
+          </h6>
+          <p class="mb-0 text-dark" style="font-size:0.95rem; line-height:1.6;">${i['참고사항']}</p>
+        </div>
+        <button class="btn btn-dark w-100 py-3 mb-4 rounded-3 fw-bold fs-5 shadow-sm" onclick="bootstrap.Offcanvas.getInstance(document.getElementById('bizDetailCanvas')).hide();" data-bs-toggle="modal" data-bs-target="#consultModal">
+          <i class="fa-solid fa-headset me-2"></i>비상주 등록 상담하기
+        </button>
+        <div class="accordion" id="taxAcc">
+          <div class="accordion-item border border-light shadow-sm rounded-3 overflow-hidden">
+            <h2 class="accordion-header">
+              <button class="accordion-button bg-light fw-bold text-dark" data-bs-toggle="collapse" data-bs-target="#taxInfo">상세 세무 정보 (경비율 등)</button>
+            </h2>
+            <div id="taxInfo" class="accordion-collapse collapse show">
+              <div class="accordion-body px-3 py-4 bg-white border-top">
+                <div class="detail-label">국세청 분류</div>
+                <div class="detail-value text-secondary">${i['중분류']} > ${i['세분류']}</div>
+                <div class="row mb-3">
+                  <div class="col-6">
+                    <div class="detail-label">단순경비율</div>
+                    <div class="detail-value text-primary fs-5">${i['단순경비율(일반율)']}%</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="detail-label">기준경비율</div>
+                    <div class="detail-value text-primary fs-5">${i['기준경비율(일반율)']}%</div>
+                  </div>
+                </div>
+                <div class="detail-label">적용 기준 설명</div>
+                <div class="p-3 bg-light rounded text-dark" style="font-size:0.85rem; line-height:1.6; white-space:pre-wrap;">${safeCriteria}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+    `;
+}
+
+// 오프캔버스 외부 클릭 시 닫기 로직
+document.addEventListener('click', function(e) {
+    const canvas = document.getElementById('bizDetailCanvas');
+    if (canvas && canvas.classList.contains('show')) {
+        if (!canvas.contains(e.target) && !e.target.closest('.list-group-item') && !e.target.closest('#heroSearchBtn')) {
+            detailOffcanvas.hide();
+        }
+    }
+});
