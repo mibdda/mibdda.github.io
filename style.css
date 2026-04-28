@@ -1020,3 +1020,24 @@ body {
     margin-top: 10px !important; 
   }
 }
+/* =================================================================
+   [BIZ SEARCH] 업종 조회 결과 리포트 (드로어) 공통 스타일
+   ================================================================= */
+/* 뱃지(신호등) 상태별 색상 강제 지정 */
+.badge-success { background-color: #198754 !important; color: #fff !important; }
+.badge-danger { background-color: #dc3545 !important; color: #fff !important; }
+.badge-warning { background-color: #fd7e14 !important; color: #fff !important; }
+.badge-purple { background-color: #6f42c1 !important; color: #fff !important; }
+
+/* TheBridge Comment 박스 (스크린샷 스타일) */
+.ai-comment-box { 
+  background: #f0f7ff; 
+  border-left: 5px solid #003366; 
+  padding: 20px; 
+  border-radius: 12px; 
+  margin: 20px 0; 
+}
+
+/* 상세 세무 정보 텍스트 규격 */
+.detail-label { font-size: 0.85rem; color: #666; font-weight: 700; margin-bottom: 4px; }
+.detail-value { font-size: 1rem; color: #111; font-weight: 700; margin-bottom: 15px; }
