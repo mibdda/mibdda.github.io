@@ -903,6 +903,9 @@ function renderDetailToCanvas(i) {
           </h6>
           <p class="mb-0 text-dark" style="font-size:0.95rem; line-height:1.6;">${i['참고사항']}</p>
         </div>
+        <div class="text-muted mb-4 px-1" style="font-size: 0.8rem; line-height: 1.5; word-break: keep-all;">
+          <i class="fa-solid fa-circle-info me-1"></i>본 리포트는 단순 참고용이며, 관할 세무서의 판단이나 정책 기조에 따라 실제 등록 가능 여부는 달라질 수 있습니다.
+        </div>
         <button class="btn btn-dark w-100 py-3 mb-4 rounded-3 fw-bold fs-5 shadow-sm" onclick="bootstrap.Offcanvas.getInstance(document.getElementById('bizDetailCanvas')).hide();" data-bs-toggle="modal" data-bs-target="#consultModal">
           <i class="fa-solid fa-headset me-2"></i>비상주 등록 상담하기
         </button>
