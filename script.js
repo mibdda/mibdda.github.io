@@ -789,8 +789,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         const filtered = bizData.filter(i => {
             const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
             const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
-            return codeStr.includes(val) || nameStr.includes(val);
-        });
+            // 2. 적용기준내용 변수 추가 (공백 제거 및 소문자 변환)
+    const descStr = String(i['적용기준내용'] || '').replace(/\s+/g, '').toLowerCase();
+    
+    // 3. 리턴 조건에 descStr 포함 (OR 조건)
+    return codeStr.includes(val) || nameStr.includes(val) || descStr.includes(val);
+});
         
         renderHeroDrawerResults(filtered);
         if (detailOffcanvas) detailOffcanvas.show();
