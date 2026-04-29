@@ -753,17 +753,80 @@ const iconMap = {
     "광업": "fa-gem", "수도, 하수 및 폐기물처리, 원료재생업": "fa-faucet-drip", "전기, 가스, 증기 및 공기조절 공급업": "fa-bolt"
 };
 
+// [NEW] 검색어 하이라이팅 헬퍼 함수
+function highlightText(text, keyword) {
+    if (!text || !keyword) return text || '';
+    // 정규식 생성: 대소문자 무시(i), 전역 검색(g)
+    const regex = new RegExp(`(${keyword})`, 'gi');
+    return String(text).replace(regex, '<span class="text-primary fw-bold bg-light px-1 rounded">$1</span>');
+}
+
+// [NEW] 적용기준내용 스니펫(미리보기) 추출 헬퍼 함수
+function getSnippet(text, keyword) {
+    if (!text || !keyword) return '';
+    const strText = String(text);
+    const idx = strText.toLowerCase().indexOf(keyword.toLowerCase());
+    if (idx === -1) return '';
+    
+    // 키워드 앞뒤로 약 20글자씩 잘라서 스니펫 생성
+    const start = Math.max(0, idx - 20);
+    const end = Math.min(strText.length, idx + keyword.length + 20);
+    let snippet = strText.substring(start, end);
+    
+    if (start > 0) snippet = '...' + snippet;
+    if (end < strText.length) snippet = snippet + '...';
+    
+    return highlightText(snippet, keyword);
+}
+
+// [NEW] 통합 검색 및 점수 매기기 (Scoring) 로직
+function performSearch(val) {
+    // 1. 공백 제거된 원본 검색어 (비교용)
+    const searchVal = val.replace(/[\s-]/g, '').toLowerCase();
+    
+    const scoredData = bizData.map(i => {
+        const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
+        const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
+        const catStr = String(i['업태명'] || '').replace(/\s+/g, '').toLowerCase();
+        const descStr = String(i['적용기준내용'] || '').replace(/\s+/g, '').toLowerCase();
+        
+        let score = 0;
+        let matchType = [];
+
+        // 1순위 (3점): 업종명 또는 업종코드 일치
+        if (codeStr.includes(searchVal) || nameStr.includes(searchVal)) {
+            score += 3;
+            matchType.push('name');
+        }
+        // 2순위 (2점): 업태명 일치
+        if (catStr.includes(searchVal)) {
+            score += 2;
+            matchType.push('cat');
+        }
+        // 3순위 (1점): 적용기준내용 일치
+        if (descStr.includes(searchVal)) {
+            score += 1;
+            matchType.push('desc');
+        }
+
+        return { ...i, _score: score, _matchType: matchType };
+    });
+
+    // 점수가 1점 이상인 것만 필터링하고, 점수 내림차순으로 정렬
+    return scoredData
+        .filter(item => item._score > 0)
+        .sort((a, b) => b._score - a._score);
+}
+
+
 document.addEventListener("DOMContentLoaded", async () => {
-    // 오프캔버스 초기화 (공통)
     const canvasEl = document.getElementById('bizDetailCanvas');
     if (canvasEl) detailOffcanvas = new bootstrap.Offcanvas(canvasEl);
 
-    // 데이터 로드
     try {
         const res = await fetch('biz_data.json');
         bizData = await res.json();
         
-        // --- [A] 서브페이지(biz-search.html) 전용: 카테고리 그리드 렌더링 ---
         const grid = document.getElementById('categoryGrid');
         if (grid) {
             const cats = [...new Set(bizData.map(i => i['업태명']))].filter(Boolean);
@@ -777,59 +840,51 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     } catch(e) { console.error("JSON 로드 실패", e); }
 
-    // --- [B] 메인 페이지(index.html) 전용: 히어로 검색창 이벤트 ---
+    // --- [B] 메인 페이지 전용: 히어로 검색창 ---
     const heroBtn = document.getElementById('heroSearchBtn');
     const heroInput = document.getElementById('heroSearchInput');
     
     function handleHeroSearch() {
         if(!heroInput) return;
-        const val = heroInput.value.replace(/[\s-]/g, '').toLowerCase();
+        const rawVal = heroInput.value.trim();
+        const val = rawVal.replace(/[\s-]/g, '').toLowerCase();
+        
         if(!val) return alert("업종명 또는 코드를 입력해주세요.");
+        if(val.length === 1) return alert("검색어가 너무 짧습니다. 두 글자 이상 입력해주세요."); // [NEW] 한 글자 제한
         
-        const filtered = bizData.filter(i => {
-            const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
-            const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
-            // 2. 적용기준내용 변수 추가 (공백 제거 및 소문자 변환)
-    const descStr = String(i['적용기준내용'] || '').replace(/\s+/g, '').toLowerCase();
-    
-    // 3. 리턴 조건에 descStr 포함 (OR 조건)
-    return codeStr.includes(val) || nameStr.includes(val) || descStr.includes(val);
-});
-        
-        renderHeroDrawerResults(filtered);
+        const results = performSearch(val);
+        renderHeroDrawerResults(results, rawVal);
         if (detailOffcanvas) detailOffcanvas.show();
     }
     
     if (heroBtn) heroBtn.addEventListener('click', handleHeroSearch);
     if (heroInput) heroInput.addEventListener('keypress', e => { if(e.key === 'Enter') handleHeroSearch(); });
 
-    // --- [C] 서브페이지(biz-search.html) 전용: 메인 검색창 실시간 필터링 ---
+    // --- [C] 서브페이지 전용: 메인 검색창 ---
     const mainSearch = document.getElementById('searchInput');
     if (mainSearch) {
         mainSearch.addEventListener('input', e => {
-            const val = e.target.value.replace(/[\s-]/g, '').toLowerCase(); 
+            const rawVal = e.target.value.trim();
+            const val = rawVal.replace(/[\s-]/g, '').toLowerCase(); 
             const resArea = document.getElementById('resultArea');
             const catGrid = document.getElementById('categoryGrid');
             
-            if(!val) {
+            if(!val || val.length === 1) { // [NEW] 한 글자 제한 (실시간 검색 시에는 경고창 없이 목록만 숨김 처리)
                 if(resArea) resArea.style.display = 'none';
                 if(catGrid) catGrid.style.display = 'flex';
                 return;
             }
-            const filtered = bizData.filter(i => {
-                const codeStr = String(i['업종코드'] || '').split('.')[0].replace(/\s+/g, '');
-                const nameStr = String(i['업종명'] || '').replace(/\s+/g, '').toLowerCase();
-                return codeStr.includes(val) || nameStr.includes(val);
-            });
-            renderResults(filtered);
+            
+            const results = performSearch(val);
+            renderResults(results, rawVal);
         });
     }
 });
 
-// 전역 함수 (HTML inline onclick에서 호출됨)
+// 전역 함수
 window.filterByCat = function(c) {
-    const filtered = bizData.filter(i => i['업태명'] === c);
-    renderResults(filtered);
+    const filtered = bizData.filter(i => i['업태명'] === c).map(i => ({...i, _score: 0, _matchType: []})); // 카테고리 클릭 시 점수 로직 우회
+    renderResults(filtered, "");
 };
 
 window.openDetail = function(codeStr) {
@@ -839,8 +894,8 @@ window.openDetail = function(codeStr) {
     if (detailOffcanvas) detailOffcanvas.show();
 };
 
-// [biz-search.html] 서브페이지 목록 렌더링
-function renderResults(data) {
+// [biz-search.html] 서브페이지 렌더링
+function renderResults(data, keyword) {
     document.getElementById('categoryGrid').style.display = 'none';
     document.getElementById('resultArea').style.display = 'block';
     document.getElementById('resultCount').innerText = data.length;
@@ -852,19 +907,31 @@ function renderResults(data) {
     }
     listEl.innerHTML = data.map(i => {
         const cleanCode = String(i['업종코드'] || '').split('.')[0];
+        const highlightedName = keyword ? highlightText(i['업종명'], keyword) : i['업종명'];
+        const highlightedCat = keyword ? highlightText(i['업태명'], keyword) : i['업태명'];
+        
+        // 스니펫 조건: 1점(기준내용만 일치)이거나 기준내용에 매칭되었을 경우
+        let snippetHtml = '';
+        if (keyword && i._matchType && i._matchType.includes('desc') && !i._matchType.includes('name')) {
+             snippetHtml = `<div class="mt-2 p-2 bg-light rounded text-muted" style="font-size:0.8rem;"><i class="fa-solid fa-file-lines me-1"></i>${getSnippet(i['적용기준내용'], keyword)}</div>`;
+        }
+
         return `
-          <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3" onclick="openDetail('${cleanCode}')">
-            <div>
-              <div class="fw-bold fs-5 mb-1 text-dark">${i['업종명']}</div>
-              <small class="text-muted">코드: <span class="fw-bold">${cleanCode}</span> | ${i['업태명']}</small>
+          <button class="list-group-item list-group-item-action p-3 text-start" onclick="openDetail('${cleanCode}')">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="fw-bold fs-5 mb-1 text-dark">${highlightedName}</div>
+                <small class="text-muted">코드: <span class="fw-bold">${cleanCode}</span> | ${highlightedCat}</small>
+              </div>
+              <span class="badge rounded-pill ${i['badge_class']} fs-6 px-3 py-2">${i['상태']}</span>
             </div>
-            <span class="badge rounded-pill ${i['badge_class']} fs-6 px-3 py-2">${i['상태']}</span>
+            ${snippetHtml}
           </button>`;
     }).join('');
 }
 
-// [index.html] 히어로 검색 시 드로어에 바로 리스트 렌더링 (결과가 여러 개일 때)
-function renderHeroDrawerResults(results) {
+// [index.html] 히어로 검색 렌더링
+function renderHeroDrawerResults(results, keyword) {
     const content = document.getElementById('offcanvasContent');
     if (!content) return;
     
@@ -877,18 +944,27 @@ function renderHeroDrawerResults(results) {
         `<div class="list-group list-group-flush border-top border-bottom">` +
         results.map(i => {
             const cleanCode = String(i['업종코드'] || '').split('.')[0];
-            return `<button class="list-group-item list-group-item-action p-3" onclick="openDetail('${cleanCode}')">
+            const highlightedName = highlightText(i['업종명'], keyword);
+            const highlightedCat = highlightText(i['업태명'], keyword);
+            
+            let snippetHtml = '';
+            if (keyword && i._matchType && i._matchType.includes('desc') && !i._matchType.includes('name')) {
+                 snippetHtml = `<div class="mt-2 p-2 bg-light rounded text-muted" style="font-size:0.75rem;"><i class="fa-solid fa-file-lines me-1"></i>${getSnippet(i['적용기준내용'], keyword)}</div>`;
+            }
+
+            return `<button class="list-group-item list-group-item-action p-3 text-start" onclick="openDetail('${cleanCode}')">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <div class="fw-bold text-dark">${i['업종명']}</div>
+                    <div class="fw-bold text-dark">${highlightedName}</div>
                     <span class="badge ${i['badge_class']} rounded-pill" style="font-size:0.75rem;">${i['상태']}</span>
                 </div>
-                <small class="text-muted">${cleanCode} | ${i['업태명']}</small>
+                <small class="text-muted">${cleanCode} | ${highlightedCat}</small>
+                ${snippetHtml}
             </button>`;
         }).join('') + `</div>`;
     }
 }
 
-// 오프캔버스 내부에 상세 리포트 그리기 (공통)
+// 오프캔버스 내부에 상세 리포트 그리기 (공통) - 원본 유지
 function renderDetailToCanvas(i) {
     const cleanCode = String(i['업종코드'] || '').split('.')[0];
     const safeCriteria = (i['적용기준내용'] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -941,7 +1017,7 @@ function renderDetailToCanvas(i) {
     `;
 }
 
-// 오프캔버스 외부 클릭 시 닫기 로직
+// 오프캔버스 외부 클릭 시 닫기 로직 - 원본 유지
 document.addEventListener('click', function(e) {
     const canvas = document.getElementById('bizDetailCanvas');
     if (canvas && canvas.classList.contains('show')) {
