@@ -1027,65 +1027,42 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 타 도메인/새 창에서도 진입점 유지하는 무적 라우팅
+// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직 (최종 심플 버전)
 // =================================================================
-// [중요] 블로그(인사이트)가 깃허브 페이지(github.io)처럼 완전히 다른 주소라면, 
-// 돌아갈 곳을 찾지 못하므로 아래에 더브릿지플러스 메인 주소를 꼭 적어주세요.
-// 같은 도메인의 서브 폴더(/blog) 형태라면 비워두셔도 됩니다.
-const MAIN_DOMAIN_URL = 'https://www.thebridgeplus.co.kr'; 
-
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. URL 꼬리표(?ref=seller) 낚아채기: 별도 도메인(블로그) 도착 시 강제 저장
-    const urlParams = new URLSearchParams(window.location.search);
-    const ref = urlParams.get('ref');
-    if (ref) {
-        sessionStorage.setItem('entryHome', ref + '.html');
-    }
+    // 문서 전체에서 클릭을 감시 (다른 스크립트와 충돌 방지)
+    document.body.addEventListener('click', function(e) {
+        // 클릭한 요소가 a 태그인지 확인
+        const link = e.target.closest('a');
+        if (!link) return;
 
-    const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
-    const currentUrl = window.location.pathname;
-    const isSubPage = currentUrl.includes('biz-search') || currentUrl.includes('blog');
+        const href = link.getAttribute('href');
+        if (!href) return;
 
-    // 2. 서브페이지로 떠날 때 모든 링크에 꼬리표 미리 달아두기
-    const pageName = entryHome.replace('.html', '');
-    document.querySelectorAll('a[href*="/blog"], a[href*="biz-search"]').forEach(link => {
-        let href = link.getAttribute('href');
-        // 이미 꼬리표가 있거나 앵커(#) 링크면 패스
-        if (href && !href.includes('?ref=') && !href.startsWith('#')) {
-            const separator = href.includes('?') ? '&' : '?';
-            link.setAttribute('href', href + separator + 'ref=' + pageName);
-        }
-    });
+        // 로고인지, 혹은 해시(#) 링크인지 판별
+        const isLogo = link.classList.contains('navbar-brand');
+        const isHashLink = href.startsWith('#');
 
-    // 3. 로고 클릭 시 복귀
-    const logoLink = document.querySelector('.navbar-brand.brand-abs');
-    if (logoLink && isSubPage) {
-        logoLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            const base = MAIN_DOMAIN_URL || window.location.origin;
-            window.location.href = base + '/' + entryHome;
-        });
-    }
-});
+        // 현재 서브페이지(업종조회, 블로그)에 있는지 확인
+        const currentPath = window.location.pathname;
+        const isSubPage = currentPath.includes('biz-search') || currentPath.includes('blog');
 
-// 4. 메뉴(해시 #) 링크 클릭 시 복귀 (요금조회, FAQ 등)
-document.addEventListener('click', function(e) {
-    const link = e.target.closest('a');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-    
-    if (href && href.startsWith('#') && href.length > 1) {
-        const currentUrl = window.location.pathname;
-        const isSubPage = currentUrl.includes('biz-search') || currentUrl.includes('blog');
-
-        if (isSubPage) {
-            e.preventDefault();
-            const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
-            const base = MAIN_DOMAIN_URL || window.location.origin;
+        // 서브페이지에서 로고나 해시 메뉴를 눌렀을 때만 작동!
+        if (isSubPage && (isLogo || isHashLink)) {
+            e.preventDefault(); // 기본 이동 기능 강제 정지
             
-            // 타 도메인에서 메인 도메인의 특정 해시로 정확히 슛!
-            window.location.href = base + '/' + entryHome + href; 
+            // 캐비닛에서 진입점 꺼내기 (없으면 index.html)
+            const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
+
+            if (isLogo || href === '#') {
+                // 1. 로고를 눌렀을 때 -> 해당 홈으로 귀환
+                window.location.href = '/' + entryHome;
+            } else if (isHashLink && href.length > 1) {
+                // 2. 메뉴(예: #pricing, #faq)를 눌렀을 때 -> 해당 홈의 섹션으로 귀환
+                window.location.href = '/' + entryHome + href;
+            }
         }
-    }
+        // 서브페이지가 아닌 메인 페이지(seller 등)에 있을 때는 
+        // 이 로직이 무시되므로 원래의 부드러운 스크롤이 정상 작동합니다.
+    });
 });
