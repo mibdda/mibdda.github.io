@@ -1027,40 +1027,58 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 서브페이지 전용: 물리적 주소 치환 (localStorage 버전)
+// [ROUTING] 100% 자동화된 맞춤형 홈 귀환 로직 (패러다임 전환)
 // =================================================================
-document.addEventListener("DOMContentLoaded", function() {
-    const currentPath = window.location.pathname;
-    const isSubPage = currentPath.includes('biz-search') || currentPath.includes('blog');
-    
-    // 서브페이지가 아니면 로직 종료 (메인 페이지의 스크롤 기능 보호)
-    if (!isSubPage) return;
+(function() {
+    // 1. 현재 주소(URL)를 분석해서 자기가 서브페이지인지 메인페이지인지 스스로 판단
+    const path = window.location.pathname;
+    const isSubPage = path.includes('/blog') || path.includes('/biz-search');
 
-    // 1. 굳건한 localStorage에서 고향 찾기
-    let entryHome = localStorage.getItem('entryHome');
-    
-    // 혹시라도 비어있다면, 이전 방문 기록(referrer)에서 유추해서 강제 저장
-    if (!entryHome) {
-        const ref = document.referrer;
-        if (ref.includes('seller.html')) entryHome = 'seller.html';
-        else if (ref.includes('creator.html')) entryHome = 'creator.html';
-        else entryHome = 'index.html'; // 둘 다 아니면 index
-        localStorage.setItem('entryHome', entryHome);
+    // 2. [메인 페이지인 경우] 자기가 누군지 파악하고 스스로 도장 쾅!
+    if (!isSubPage) {
+        let myName = path.split('/').pop();
+        
+        // 주소가 '/' 이거나 비어있으면 무조건 index
+        if (!myName || myName === '') myName = 'index.html';
+        
+        // 확장자(.html)가 빠진 채로 접속되는 서버 환경 방어 (예: /seller -> seller.html)
+        if (!myName.includes('.html') && myName !== 'index.html') {
+            myName = myName + '.html';
+        }
+        
+        // 브라우저에 강력하게 내 이름 저장
+        localStorage.setItem('smartHome', myName);
     }
 
-    // 2. 상단 네비게이션의 로고와 해시(#) 링크들을 싹 다 잡아서 주소 개조
-    const linksToFix = document.querySelectorAll('.nav-link[href^="#"], .navbar-brand');
+    // 3. [서브 페이지인 경우] 화면 어디든 클릭하는 '그 찰나의 순간'을 가로챔
+    document.addEventListener('click', function(e) {
+        if (!isSubPage) return; // 메인 페이지면 참견 안 함 (기존 스크롤 기능 보호)
 
-    linksToFix.forEach(link => {
+        // 클릭한 곳에서 가장 가까운 a 태그 찾기
+        const link = e.target.closest('a');
+        if (!link) return;
+
         const href = link.getAttribute('href');
-        
-        // 로고이거나 그냥 '#'인 경우 -> 메인 주소로만 세팅
-        if (link.classList.contains('navbar-brand') || href === '#') {
-            link.setAttribute('href', '/' + entryHome);
-        } 
-        // 요금, FAQ 등 해시 메뉴인 경우 -> 고향 주소 + 해시로 세팅 (예: /seller.html#pricing)
-        else if (href.startsWith('#')) {
-            link.setAttribute('href', '/' + entryHome + href);
+        if (!href) return;
+
+        // 방아쇠 조건: 로고(.navbar-brand)이거나 해시(#) 메뉴인가?
+        const isLogo = link.classList.contains('navbar-brand') || link.classList.contains('brand-abs');
+        const isHash = href.startsWith('#');
+
+        if (isLogo || isHash) {
+            e.preventDefault(); // 일단 브라우저 스톱!
+
+            // 저장해둔 고향 주소 꺼내기 (만약 알 수 없으면 무조건 index.html)
+            const smartHome = localStorage.getItem('smartHome') || 'index.html';
+
+            // 로고나 최상단 이동(#)이면 고향 홈페이지로 직행
+            if (isLogo || href === '#') {
+                window.location.href = '/' + smartHome;
+            } 
+            // 요금(#pricing) 등 특정 섹션 이동이면 고향 홈페이지 + 해당 구역으로 직행
+            else {
+                window.location.href = '/' + smartHome + href;
+            }
         }
     });
-});
+})();
