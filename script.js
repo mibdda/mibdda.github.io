@@ -1027,42 +1027,43 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직 (강력한 디버깅 버전)
+// [ROUTING] 서브페이지 전용: 링크 물리 주소 변환 로직
 // =================================================================
-document.addEventListener("DOMContentLoaded", function() {
-    document.body.addEventListener('click', function(e) {
-        // 1. 클릭된 요소에서 가장 가까운 a 태그를 찾습니다.
-        const link = e.target.closest('a');
-        if (!link) return; // a 태그가 아니면 무시
+function fixSubPageLinks() {
+    // 1. 현재 어떤 서브페이지인지 확인
+    const currentPath = window.location.pathname;
+    const isSubPage = currentPath.includes('biz-search') || currentPath.includes('blog');
+    
+    if (!isSubPage) return;
 
+    // 2. 고향(진입점) 확인 - 세션이 없으면 '이전 페이지 주소(Referrer)'에서 힌트 획득
+    let entryHome = sessionStorage.getItem('entryHome');
+    
+    if (!entryHome) {
+        const ref = document.referrer;
+        if (ref.includes('seller.html')) entryHome = 'seller.html';
+        else if (ref.includes('creator.html')) entryHome = 'creator.html';
+        else entryHome = 'index.html'; // 둘 다 아니면 기본 홈
+        
+        sessionStorage.setItem('entryHome', entryHome);
+    }
+
+    // 3. 모든 네비게이션 링크(#)와 로고를 찾아서 주소 앞에 고향 주소를 붙임
+    // 요금(#pricing), FAQ(#faq), 문의(#contact) 등 모든 해시 링크 대상
+    const linksToFix = document.querySelectorAll('.nav-link[href^="#"], .navbar-brand');
+
+    linksToFix.forEach(link => {
         const href = link.getAttribute('href');
-        if (!href) return;
-
-        // 2. 현재 우리가 서브페이지에 있는지 확인합니다.
-        const currentPath = window.location.pathname;
-        const isSubPage = currentPath.includes('biz-search') || currentPath.includes('blog');
-
-        // 서브페이지가 아니라면 기본 브라우저 동작(스크롤)을 방해하지 않습니다.
-        if (!isSubPage) return; 
-
-        // 3. 로고인지, 해시(#) 링크인지 판별합니다.
-        const isLogo = link.classList.contains('navbar-brand');
-        const isHashLink = href.startsWith('#');
-
-        // 로고나 해시 링크를 눌렀을 때만 라우팅 개입!
-        if (isLogo || isHashLink) {
-            e.preventDefault(); // 일단 브라우저가 제멋대로 튕기는 것을 막습니다.
-
-            // 4. 세션 스토리지에서 고향(진입점)을 꺼냅니다.
-            const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
-
-            if (isLogo || href === '#') {
-                // 로고 클릭 시 홈으로 이동
-                window.location.href = '/' + entryHome;
-            } else if (isHashLink && href.length > 1) {
-                // 해시 링크 클릭 시 (예: #pricing) 해당 홈의 특정 구역으로 이동
-                window.location.href = '/' + entryHome + href;
-            }
+        
+        if (link.classList.contains('navbar-brand') || href === '#') {
+            // 로고 클릭 시 이동할 홈 주소 강제 지정
+            link.setAttribute('href', '/' + entryHome);
+        } else if (href.startsWith('#')) {
+            // 해시 링크 클릭 시 이동할 고향+섹션 주소 강제 지정 (예: /seller.html#pricing)
+            link.setAttribute('href', '/' + entryHome + href);
         }
     });
-});
+}
+
+// 페이지 로드 시 즉시 실행
+document.addEventListener("DOMContentLoaded", fixSubPageLinks);
