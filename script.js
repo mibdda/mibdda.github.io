@@ -1027,42 +1027,42 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직 (최종 심플 버전)
+// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직 (강력한 디버깅 버전)
 // =================================================================
 document.addEventListener("DOMContentLoaded", function() {
-    // 문서 전체에서 클릭을 감시 (다른 스크립트와 충돌 방지)
     document.body.addEventListener('click', function(e) {
-        // 클릭한 요소가 a 태그인지 확인
+        // 1. 클릭된 요소에서 가장 가까운 a 태그를 찾습니다.
         const link = e.target.closest('a');
-        if (!link) return;
+        if (!link) return; // a 태그가 아니면 무시
 
         const href = link.getAttribute('href');
         if (!href) return;
 
-        // 로고인지, 혹은 해시(#) 링크인지 판별
-        const isLogo = link.classList.contains('navbar-brand');
-        const isHashLink = href.startsWith('#');
-
-        // 현재 서브페이지(업종조회, 블로그)에 있는지 확인
+        // 2. 현재 우리가 서브페이지에 있는지 확인합니다.
         const currentPath = window.location.pathname;
         const isSubPage = currentPath.includes('biz-search') || currentPath.includes('blog');
 
-        // 서브페이지에서 로고나 해시 메뉴를 눌렀을 때만 작동!
-        if (isSubPage && (isLogo || isHashLink)) {
-            e.preventDefault(); // 기본 이동 기능 강제 정지
-            
-            // 캐비닛에서 진입점 꺼내기 (없으면 index.html)
+        // 서브페이지가 아니라면 기본 브라우저 동작(스크롤)을 방해하지 않습니다.
+        if (!isSubPage) return; 
+
+        // 3. 로고인지, 해시(#) 링크인지 판별합니다.
+        const isLogo = link.classList.contains('navbar-brand');
+        const isHashLink = href.startsWith('#');
+
+        // 로고나 해시 링크를 눌렀을 때만 라우팅 개입!
+        if (isLogo || isHashLink) {
+            e.preventDefault(); // 일단 브라우저가 제멋대로 튕기는 것을 막습니다.
+
+            // 4. 세션 스토리지에서 고향(진입점)을 꺼냅니다.
             const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
 
             if (isLogo || href === '#') {
-                // 1. 로고를 눌렀을 때 -> 해당 홈으로 귀환
+                // 로고 클릭 시 홈으로 이동
                 window.location.href = '/' + entryHome;
             } else if (isHashLink && href.length > 1) {
-                // 2. 메뉴(예: #pricing, #faq)를 눌렀을 때 -> 해당 홈의 섹션으로 귀환
+                // 해시 링크 클릭 시 (예: #pricing) 해당 홈의 특정 구역으로 이동
                 window.location.href = '/' + entryHome + href;
             }
         }
-        // 서브페이지가 아닌 메인 페이지(seller 등)에 있을 때는 
-        // 이 로직이 무시되므로 원래의 부드러운 스크롤이 정상 작동합니다.
     });
 });
