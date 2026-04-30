@@ -1026,3 +1026,35 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+// =================================================================
+// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직
+// =================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
+    const currentUrl = window.location.pathname;
+    const isSubPage = currentUrl.includes('biz-search') || currentUrl.includes('blog');
+
+    // 1. 로고 클릭 처리
+    const logoLink = document.querySelector('.navbar-brand.brand-abs');
+    if (logoLink && isSubPage) {
+        logoLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/' + entryHome;
+        });
+    }
+
+    // 2. 해시(#)가 포함된 메뉴 링크 처리 (요금, FAQ, 문의 등)
+    const hashLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    hashLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (isSubPage) {
+                const targetHash = this.getAttribute('href'); // 예: #pricing, #faq
+                if (targetHash === '#') return; // 단순 최상단 이동은 제외
+
+                e.preventDefault();
+                // 저장된 홈 페이지 뒤에 타겟 해시를 붙여서 이동 (예: creator.html#faq)
+                window.location.href = '/' + entryHome + targetHash;
+            }
+        });
+    });
+});
