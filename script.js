@@ -1027,14 +1027,14 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직 (개선본)
+// [ROUTING] 맞춤형 홈 및 섹션 귀환 로직
 // =================================================================
 document.addEventListener("DOMContentLoaded", function() {
     const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
     const currentUrl = window.location.pathname;
     const isSubPage = currentUrl.includes('biz-search') || currentUrl.includes('blog');
 
-    // 1. 로고 클릭 처리 (기존과 동일하게 유지 - 정상 동작)
+    // 1. 로고 클릭 처리
     const logoLink = document.querySelector('.navbar-brand.brand-abs');
     if (logoLink && isSubPage) {
         logoLink.addEventListener('click', function(e) {
@@ -1042,27 +1042,19 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location.href = '/' + entryHome;
         });
     }
-});
 
-// 2. 메뉴(해시) 링크 처리 - 이벤트 위임 방식 (문서 전체에서 클릭 감지)
-document.addEventListener('click', function(e) {
-    // 사용자가 클릭한 요소가 a 태그인지(또는 a 태그 안의 글자인지) 확인
-    const link = e.target.closest('a');
-    if (!link) return;
+    // 2. 해시(#)가 포함된 메뉴 링크 처리 (요금, FAQ, 문의 등)
+    const hashLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    hashLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (isSubPage) {
+                const targetHash = this.getAttribute('href'); // 예: #pricing, #faq
+                if (targetHash === '#') return; // 단순 최상단 이동은 제외
 
-    const href = link.getAttribute('href');
-    
-    // href가 있고, '#'으로 시작하며, 단순 '#'이 아닌 경우 (#pricing, #faq 등)
-    if (href && href.startsWith('#') && href.length > 1) {
-        const currentUrl = window.location.pathname;
-        const isSubPage = currentUrl.includes('biz-search') || currentUrl.includes('blog');
-
-        if (isSubPage) {
-            e.preventDefault(); // 서브페이지에서 앵커(해시) 작동을 강제로 멈춤
-            const entryHome = sessionStorage.getItem('entryHome') || 'index.html';
-            
-            // 진입했던 홈의 해당 섹션으로 슛! (예: /creator.html#pricing)
-            window.location.href = '/' + entryHome + href; 
-        }
-    }
+                e.preventDefault();
+                // 저장된 홈 페이지 뒤에 타겟 해시를 붙여서 이동 (예: creator.html#faq)
+                window.location.href = '/' + entryHome + targetHash;
+            }
+        });
+    });
 });
