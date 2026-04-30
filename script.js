@@ -1027,43 +1027,40 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 서브페이지 전용: 링크 물리 주소 변환 로직
+// [ROUTING] 서브페이지 전용: 물리적 주소 치환 (localStorage 버전)
 // =================================================================
-function fixSubPageLinks() {
-    // 1. 현재 어떤 서브페이지인지 확인
+document.addEventListener("DOMContentLoaded", function() {
     const currentPath = window.location.pathname;
     const isSubPage = currentPath.includes('biz-search') || currentPath.includes('blog');
     
+    // 서브페이지가 아니면 로직 종료 (메인 페이지의 스크롤 기능 보호)
     if (!isSubPage) return;
 
-    // 2. 고향(진입점) 확인 - 세션이 없으면 '이전 페이지 주소(Referrer)'에서 힌트 획득
-    let entryHome = sessionStorage.getItem('entryHome');
+    // 1. 굳건한 localStorage에서 고향 찾기
+    let entryHome = localStorage.getItem('entryHome');
     
+    // 혹시라도 비어있다면, 이전 방문 기록(referrer)에서 유추해서 강제 저장
     if (!entryHome) {
         const ref = document.referrer;
         if (ref.includes('seller.html')) entryHome = 'seller.html';
         else if (ref.includes('creator.html')) entryHome = 'creator.html';
-        else entryHome = 'index.html'; // 둘 다 아니면 기본 홈
-        
-        sessionStorage.setItem('entryHome', entryHome);
+        else entryHome = 'index.html'; // 둘 다 아니면 index
+        localStorage.setItem('entryHome', entryHome);
     }
 
-    // 3. 모든 네비게이션 링크(#)와 로고를 찾아서 주소 앞에 고향 주소를 붙임
-    // 요금(#pricing), FAQ(#faq), 문의(#contact) 등 모든 해시 링크 대상
+    // 2. 상단 네비게이션의 로고와 해시(#) 링크들을 싹 다 잡아서 주소 개조
     const linksToFix = document.querySelectorAll('.nav-link[href^="#"], .navbar-brand');
 
     linksToFix.forEach(link => {
         const href = link.getAttribute('href');
         
+        // 로고이거나 그냥 '#'인 경우 -> 메인 주소로만 세팅
         if (link.classList.contains('navbar-brand') || href === '#') {
-            // 로고 클릭 시 이동할 홈 주소 강제 지정
             link.setAttribute('href', '/' + entryHome);
-        } else if (href.startsWith('#')) {
-            // 해시 링크 클릭 시 이동할 고향+섹션 주소 강제 지정 (예: /seller.html#pricing)
+        } 
+        // 요금, FAQ 등 해시 메뉴인 경우 -> 고향 주소 + 해시로 세팅 (예: /seller.html#pricing)
+        else if (href.startsWith('#')) {
             link.setAttribute('href', '/' + entryHome + href);
         }
     });
-}
-
-// 페이지 로드 시 즉시 실행
-document.addEventListener("DOMContentLoaded", fixSubPageLinks);
+});
