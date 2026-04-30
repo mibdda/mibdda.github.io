@@ -1027,57 +1027,48 @@ document.addEventListener('click', function(e) {
     }
 });
 // =================================================================
-// [ROUTING] 100% 자동화된 맞춤형 홈 귀환 로직 (패러다임 전환)
+// [ROUTING] 100% 자동화된 맞춤형 홈 귀환 로직 (패러다임 전환 + 예외 처리 완료)
 // =================================================================
 (function() {
-    // 1. 현재 주소(URL)를 분석해서 자기가 서브페이지인지 메인페이지인지 스스로 판단
     const path = window.location.pathname;
     const isSubPage = path.includes('/blog') || path.includes('/biz-search');
 
-    // 2. [메인 페이지인 경우] 자기가 누군지 파악하고 스스로 도장 쾅!
     if (!isSubPage) {
         let myName = path.split('/').pop();
-        
-        // 주소가 '/' 이거나 비어있으면 무조건 index
         if (!myName || myName === '') myName = 'index.html';
-        
-        // 확장자(.html)가 빠진 채로 접속되는 서버 환경 방어 (예: /seller -> seller.html)
         if (!myName.includes('.html') && myName !== 'index.html') {
             myName = myName + '.html';
         }
-        
-        // 브라우저에 강력하게 내 이름 저장
         localStorage.setItem('smartHome', myName);
     }
 
-    // 3. [서브 페이지인 경우] 화면 어디든 클릭하는 '그 찰나의 순간'을 가로챔
     document.addEventListener('click', function(e) {
-        if (!isSubPage) return; // 메인 페이지면 참견 안 함 (기존 스크롤 기능 보호)
+        if (!isSubPage) return;
 
-        // 클릭한 곳에서 가장 가까운 a 태그 찾기
         const link = e.target.closest('a');
         if (!link) return;
 
         const href = link.getAttribute('href');
         if (!href) return;
 
-        // 방아쇠 조건: 로고(.navbar-brand)이거나 해시(#) 메뉴인가?
+        // [핵심 변경점] 로고이거나, 순수 해시(#)이거나, 슬래시 해시(/#)인 경우 모두 잡습니다.
         const isLogo = link.classList.contains('navbar-brand') || link.classList.contains('brand-abs');
-        const isHash = href.startsWith('#');
+        const isHash = href.startsWith('#') || href.startsWith('/#');
 
         if (isLogo || isHash) {
-            e.preventDefault(); // 일단 브라우저 스톱!
+            e.preventDefault(); 
 
-            // 저장해둔 고향 주소 꺼내기 (만약 알 수 없으면 무조건 index.html)
             const smartHome = localStorage.getItem('smartHome') || 'index.html';
+            
+            // href에서 앞에 있는 슬래시(/)를 제거하여 순수 해시값만 추출 (예: /#faq -> #faq)
+            const cleanHash = href.startsWith('/#') ? href.replace('/', '') : href;
 
-            // 로고나 최상단 이동(#)이면 고향 홈페이지로 직행
-            if (isLogo || href === '#') {
+            if (isLogo || cleanHash === '#') {
                 window.location.href = '/' + smartHome;
             } 
-            // 요금(#pricing) 등 특정 섹션 이동이면 고향 홈페이지 + 해당 구역으로 직행
             else {
-                window.location.href = '/' + smartHome + href;
+                // 추출한 순수 해시를 고향 주소에 붙여서 직행! (예: /seller.html#faq)
+                window.location.href = '/' + smartHome + cleanHash;
             }
         }
     });
