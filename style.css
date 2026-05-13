@@ -1004,8 +1004,7 @@ body {
   align-items: center;    /* 다시 중앙 정렬로 복구 */
   padding-top: 60px;      /* 상단 로고/메뉴와 안 겹치게 여백 추가 */
   padding-bottom: 20px;   /* 불필요한 바닥 여백 축소 */
-}
-  
+} 
   /* 중복 선언 제거: 최종 적용되는 값만 유지 */
   .hero-search-container {
     max-width: 370px;
@@ -1015,6 +1014,17 @@ body {
   /* 버튼과 위 문구 사이 간격 축소 */
   .hero-cta-area {
     margin-top: 10px !important; 
+  }
+  /* biz-search 검색창 모바일 글자 및 높이 최적화 */
+  #searchInput {
+    font-size: 0.95rem; /* 메인 검색창과 동일한 크기로 축소 */
+  }
+  #searchInput::placeholder {
+    font-size: 0.9rem; /* 플레이스홀더 텍스트도 살짝 작게 */
+  }
+  .biz-hero .input-group-lg .form-control {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important; /* 상하 여백을 줄여서 검색창 뚱뚱한 느낌 제거 */
   }
 }
 /* =================================================================
