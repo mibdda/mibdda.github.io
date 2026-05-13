@@ -142,13 +142,16 @@ body {
 /* 📱 모바일 대응 (Hero Section) */
 @media (max-width: 576.98px) {
   /* 높이 줄임 (너무 길지 않게) */
-  #hero .carousel-item { height: clamp(420px, 72vh, 640px); }
+  #hero .carousel-item { height: clamp(520px, 85vh, 750px); }
   #hero .carousel-item img { object-position: 50% 35%; }
   /* 긴 설명글 2줄로 자름 */
   #hero .hero-sub {
     display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
     -webkit-line-clamp: 2; line-clamp: 2;
     font-size: 0.95rem; line-height: 1.35;
+  }
+  #hero .hero-title {
+    font-size: 1.8rem; /* 너무 작으면 1.9rem 등으로 조절해 보세요 */
   }
   .hero-trust-line { font-size: 0.85rem; padding: 6px 14px; margin-bottom: 20px; }
 }
@@ -912,13 +915,6 @@ body {
   z-index: 1050; /* 로고 위로 오게만 추가 */
 }
 
-.index-title-text { 
-  font-weight: 900; 
-  font-size: 1.1rem; 
-  color: #fff !important; 
-  letter-spacing: -0.5px; 
-  margin: 0; 
-}
 
 /* =========================================
    히어로 검색바
@@ -1000,14 +996,15 @@ body {
 
 /* 모바일 대응 */
 @media (max-width: 576px) {
-  .search-title { font-size: 0.9rem; }
+  .search-title { font-size: 0.9rem; !important;}
   .transparent-search-bar { padding-left: 15px; }
-  .transparent-search-bar input { font-size: 0.95rem; }
+  .transparent-search-bar input { font-size: 0.82rem; }
   
   #hero .hero-caption {
-    align-items: flex-end;  /* 모바일에서만 콘텐츠를 아래로 밀어냄 */
-    padding-bottom: 80px;   /* 모바일 바닥 여백 */
-  }
+  align-items: center;    /* 다시 중앙 정렬로 복구 */
+  padding-top: 60px;      /* 상단 로고/메뉴와 안 겹치게 여백 추가 */
+  padding-bottom: 20px;   /* 불필요한 바닥 여백 축소 */
+}
   
   /* 중복 선언 제거: 최종 적용되는 값만 유지 */
   .hero-search-container {
