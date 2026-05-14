@@ -694,7 +694,7 @@ body {
 }
 .to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: 576px) {
   .to-top {
     width: 40px; height: 40px; border-radius: 16px; font-size: 25px;
     bottom: calc(106px + env(safe-area-inset-bottom));
@@ -991,6 +991,10 @@ body {
   font-size: 0.95rem;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap !important; /* 절대 줄바꿈 금지 */
+  word-break: keep-all !important;
+  flex-shrink: 0 !important; /* 검색창이 길어져도 버튼 크기는 축소되지 않도록 고정 */
+  min-width: fit-content !important;
 }
 
 #heroSearchBtn:hover {
