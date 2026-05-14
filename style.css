@@ -1024,7 +1024,7 @@ body {
   }
   /* biz-search 검색창 모바일 글자 및 높이 최적화 */
   #searchInput {
-    font-size: 0.95rem; /* 메인 검색창과 동일한 크기로 축소 */
+    font-size: 0.90rem; /* 메인 검색창과 동일한 크기로 축소 */
   }
   #searchInput::placeholder {
     font-size: 0.9rem; /* 플레이스홀더 텍스트도 살짝 작게 */
