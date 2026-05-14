@@ -17,6 +17,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   background: var(--paper);
   color: #222;
+  /* 아래 두 줄 추가 */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* -----------------------------------------------------------------
