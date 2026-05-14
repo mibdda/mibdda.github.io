@@ -986,15 +986,15 @@ body {
   color: #003366; /* 더브릿지플러스 브랜드 컬러 */
   border: none;
   border-radius: 40px;
-  padding: 8px 24px;
+  padding: 8px 20px; !important; /* 좁은 모바일 화면을 위해 좌우 패딩을 살짝 줄임 */
   font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
   transition: background 0.2s;
   white-space: nowrap !important; /* 절대 줄바꿈 금지 */
   word-break: keep-all !important;
-  flex-shrink: 0 !important; /* 검색창이 길어져도 버튼 크기는 축소되지 않도록 고정 */
-  min-width: fit-content !important;
+  flex: 0 0 auto !important; /* 브라우저가 임의로 크기를 줄이거나 늘리지 못하게 묶음 */
+  min-width: 70px !important; /* 어떤 상황에서도 최소 70px은 유지하도록 강제 (핵심) */
 }
 
 #heroSearchBtn:hover {
