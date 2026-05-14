@@ -34,7 +34,7 @@
 
     /* [Mobile] 블로그 중앙 정렬 최적화 */
     .blog-mobile-center {
-      position: absolute; left: 50%; transform: translateX(-50%);
+      position: absolute; left: 55%; transform: translateX(-50%);
       display: flex; align-items: center; justify-content: center; gap: 12px;  z-index: 1050; white-space: nowrap;
     }
     .blog-title-text { font-weight: 900; font-size: 1.1rem; color: #fff; letter-spacing: -0.5px; margin: 0; }
@@ -110,7 +110,10 @@
 
   <div id="categoryDrawer">
     <ul class="list-unstyled px-4 m-0">
-      <li class="py-3 border-bottom"><a href="/blog/" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">전체글 보기</a></li>
+        <li class="py-3 border-bottom d-flex justify-content-between align-items-center">
+        <a href="/blog/" class="text-dark text-decoration-none fw-bold">전체글 보기</a>
+        <i class="fa-solid fa-xmark fs-4 text-secondary" id="categoryCloseX" style="cursor:pointer; padding-right:5px;"></i>
+      </li>
       {% for category in site.categories %}
       <li class="py-3 border-bottom"><a href="/blog/{{ category | first | slugify }}/" class="text-dark text-decoration-none fw-bold d-flex justify-content-between">{{ category | first }} <span class="text-primary">{{ category | last | size }}</span></a></li>
       {% endfor %}
@@ -317,6 +320,10 @@
       json: '/search.json',
       searchResultTemplate: '<li class="py-3 border-bottom"><a href="{url}" class="text-dark fw-bold text-decoration-none fs-5">{title}</a></li>',
       noResultsText: '<li class="py-4 text-center text-muted fs-5 fw-bold">검색 결과가 없습니다.</li>' // ⭐️ 영어 대신 한국어로 출력되도록 강제 설정
+    });
+    // 카테고리 드로워 내부 X 버튼 클릭 시 닫기
+      document.getElementById('categoryCloseX').addEventListener('click', () => {
+      document.getElementById('categoryDrawer').classList.remove('open');
     });
   </script>
 </body>
