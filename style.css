@@ -447,7 +447,8 @@ body {
   white-space: normal !important; border-color: var(--brand-dark) !important;
   text-align: center; padding: 8px 14px;
 }
-.floorplan-btn .fp-strong { display: block; font-weight: 700; font-size: 0.80rem; }
+.floorplan-btn .fp-strong { display: block; font-weight: 700; font-size: 0.80rem; 
+  word-break: keep-all !important; /* 글자가 낱개로 찢어져 줄바꿈 되는 현상 금지 */}
 
 @media (min-width: 992px) {
   #floorplanModal .modal-body p.text-center.small {
