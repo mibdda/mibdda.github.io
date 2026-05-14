@@ -447,7 +447,7 @@ body {
   white-space: normal !important; border-color: var(--brand-dark) !important;
   text-align: center; padding: 8px 14px;
 }
-.floorplan-btn .fp-strong { display: block; font-weight: 700; font-size: 0.85rem; }
+.floorplan-btn .fp-strong { display: block; font-weight: 700; font-size: 0.80rem; }
 
 @media (min-width: 992px) {
   #floorplanModal .modal-body p.text-center.small {
