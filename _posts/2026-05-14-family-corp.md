@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "가족법인 설립비용 획기적으로 줄이는 공유오피스 활용 전략 (세무·승계 완벽 가이드)"
-categories: [창업 가이드, 세무 가이드]
+categories: [법인설립, 세무 가이드]
 tags: [가족법인, 법인설립, 공유오피스, 비상주사무실, 절세전략, 가업승계]
 image: /assets/img/blog/family-corp-1.jpg
 ---
