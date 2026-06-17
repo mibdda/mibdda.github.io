@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.thebridgeplus.co.kr/sitemap.xml
+
+#DaumWebMasterTool:bfef0d7feadbe5d8bd3e0349df849566ce763406d457a6e8dde274c7eb6bb018:ruHu+xVXCDpCnavLxw1mcQ==
