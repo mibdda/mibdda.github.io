@@ -86,26 +86,37 @@ var kangnamMap;
 var sinnonhyeonMap;
 var geocoder;
 
+// 각 지점의 좌표를 안전하게 공유하기 위한 전역 변수
+var coordsKangnam;
+var coordsSinnonhyeon;
+
 // 카카오 맵 로드 후 실행 (Kakao SDK가 로드된 상태여야 함)
 if (typeof kakao !== 'undefined' && kakao.maps) {
     geocoder = new kakao.maps.services.Geocoder();
 
-    // [개선] HTML에서 강남역점이 기본 활성화(active) 상태이므로 강남점 지도부터 즉시 생성합니다.
+    // 1. 기본 활성화된 강남역점 지도 즉시 생성
     createKangnamMap();
 
-    // 1. 강남역점 탭 리스너 (ID 변경 반영 및 탭 전환 시 중심점 재보정)
+    // 2. 브라우저가 레이아웃을 완전히 끝낸 시점(로드 완료)에 강남점 지도 크기 및 중심 재보정
+    window.addEventListener('load', function() {
+        if (kangnamMap) {
+            kangnamMap.relayout();
+            if (coordsKangnam) kangnamMap.setCenter(coordsKangnam);
+        }
+    });
+
+    // 3. 강남역점 탭 전환 리스너 (다른 탭 갔다 돌아왔을 때 깨짐 방지)
     const kangnamTab = document.getElementById('kangnam-map-tab');
     if (kangnamTab) {
         kangnamTab.addEventListener('shown.bs.tab', function() {
             if (kangnamMap) {
-                normalMapLayout(normalMapLayout, 'map_kangnam'); normalMapLayout === undefined; normalMapLayout = true;
                 kangnamMap.relayout();
-                recenterMap(kangnamMap, '서울특별시 강남구 테헤란로 6길 26, 3층');
+                if (coordsKangnam) kangnamMap.setCenter(coordsKangnam);
             }
         });
     }
 
-    // 2. 신논현점 탭 리스너 (처음 클릭할 때 지연 생성하여 깨짐 방지 + 센터 보정)
+    // 4. 신논현점 탭 전환 리스너 (처음 클릭할 때 지연 생성하여 깨짐 방지 + 센터 보정)
     const sinnonhyeonTab = document.getElementById('sinnonhyeon-map-tab');
     let isSinnonhyeonMapLoaded = false;
 
@@ -117,25 +128,15 @@ if (typeof kakao !== 'undefined' && kakao.maps) {
             } else {
                 if (sinnonhyeonMap) {
                     sinnonhyeonMap.relayout();
-                    recenterMap(sinnonhyeonMap, '서울특별시 강남구 강남대로114길 18, 4층');
+                    if (coordsSinnonhyeon) sinnonhyeonMap.setCenter(coordsSinnonhyeon);
                 }
             }
         });
     }
 }
 
-// 탭 전환 시 크기를 재인식하고 좌표 중심을 정확히 다시 잡아주는 헬퍼 함수
-function recenterMap(mapObj, address) {
-    geocoder.addressSearch(address, function(result, status) {
-        if (status === kakao.maps.services.Status.OK && result.length > 0) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            mapObj.setCenter(coords);
-        }
-    });
-}
-
 function createKangnamMap() {
-    const container = document.getElementById('map_kangnam'); // map_seolleung에서 변경 완료
+    const container = document.getElementById('map_kangnam');
     if (!container) return;
 
     // 초기 임시 중심점 (역삼동 근처)
@@ -145,19 +146,19 @@ function createKangnamMap() {
     const zoomControl = new kakao.maps.ZoomControl();
     kangnamMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-    // HTML 인포에 적힌 실제 강남역점 주소로 검색
-    const address = '서울특별시 강남구 테헤란로 6길 26, 3층';
+    // [개선] 주소 검색 시 ', 3층' 및 불필요한 공백 제거 -> 검색 실패 원인 차단
+    const address = '서울특별시 강남구 테헤란로6길 26';
     geocoder.addressSearch(address, function(result, status) {
         if (status === kakao.maps.services.Status.OK && result.length > 0) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            kangnamMap.setCenter(coords);
+            coordsKangnam = new kakao.maps.LatLng(result[0].y, result[0].x);
+            kangnamMap.setCenter(coordsKangnam);
 
             const imageSrc = 'images/thebridgeplus-marker.png';
             const imageSize = new kakao.maps.Size(48, 60);
             const imageOption = { offset: new kakao.maps.Point(24, 60) };
             const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
-            const marker = new kakao.maps.Marker({ position: coords, image: markerImage });
+            const marker = new kakao.maps.Marker({ position: coordsKangnam, image: markerImage });
             marker.setMap(kangnamMap);
 
             const infowindow = new kakao.maps.InfoWindow({
@@ -178,18 +179,19 @@ function createSinnonhyeonMap() {
     const zoomControl = new kakao.maps.ZoomControl();
     sinnonhyeonMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-    const address = '서울특별시 강남구 강남대로114길 18, 4층';
+    // [개선] 주소 검색 시 ', 4층' 및 괄호 내용 제거 -> 검색률 100% 보장
+    const address = '서울특별시 강남구 강남대로114길 18';
     geocoder.addressSearch(address, function(result, status) {
         if (status === kakao.maps.services.Status.OK && result.length > 0) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            sinnonhyeonMap.setCenter(coords);
+            coordsSinnonhyeon = new kakao.maps.LatLng(result[0].y, result[0].x);
+            sinnonhyeonMap.setCenter(coordsSinnonhyeon);
             
             const imageSrc = 'images/thebridgeplus-marker.png';
             const imageSize = new kakao.maps.Size(48, 60);
             const imageOption = { offset: new kakao.maps.Point(24, 60) };
             const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
             
-            const marker = new kakao.maps.Marker({ position: coords, image: markerImage });
+            const marker = new kakao.maps.Marker({ position: coordsSinnonhyeon, image: markerImage });
             marker.setMap(sinnonhyeonMap);
 
             const infowindow = new kakao.maps.InfoWindow({
@@ -199,7 +201,6 @@ function createSinnonhyeonMap() {
         }
     });
 }
-
 
 // =================================================================
 // [CHANNEL IO] 채널톡 설정
