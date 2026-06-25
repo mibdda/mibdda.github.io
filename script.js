@@ -82,50 +82,103 @@ document.addEventListener("DOMContentLoaded", function() {
 // =================================================================
 // [MAP] 카카오지도 설정
 // =================================================================
+var kangnamMap;
 var sinnonhyeonMap;
-var seolleungMap;
 var geocoder;
 
 // 카카오 맵 로드 후 실행 (Kakao SDK가 로드된 상태여야 함)
 if (typeof kakao !== 'undefined' && kakao.maps) {
     geocoder = new kakao.maps.services.Geocoder();
 
-    // 1. 신논현점 지도 생성
-    createSinnonhyeonMap();
+    // [개선] HTML에서 강남역점이 기본 활성화(active) 상태이므로 강남점 지도부터 즉시 생성합니다.
+    createKangnamMap();
 
-    // 2. 탭 전환 이벤트 리스너 (지도 깨짐 방지)
-    const seolleungTab = document.getElementById('seolleung-map-tab');
-    let isSeolleungMapLoaded = false;
-
-    if (seolleungTab) {
-        seolleungTab.addEventListener('shown.bs.tab', function(event) {
-            if (!isSeolleungMapLoaded) {
-                createSeolleungMap();
-                isSeolleungMapLoaded = true;
+    // 1. 강남역점 탭 리스너 (ID 변경 반영 및 탭 전환 시 중심점 재보정)
+    const kangnamTab = document.getElementById('kangnam-map-tab');
+    if (kangnamTab) {
+        kangnamTab.addEventListener('shown.bs.tab', function() {
+            if (kangnamMap) {
+                normalMapLayout(normalMapLayout, 'map_kangnam'); normalMapLayout === undefined; normalMapLayout = true;
+                kangnamMap.relayout();
+                recenterMap(kangnamMap, '서울특별시 강남구 테헤란로 6길 26, 3층');
             }
-            if (seolleungMap) seolleungMap.relayout();
         });
     }
 
+    // 2. 신논현점 탭 리스너 (처음 클릭할 때 지연 생성하여 깨짐 방지 + 센터 보정)
     const sinnonhyeonTab = document.getElementById('sinnonhyeon-map-tab');
+    let isSinnonhyeonMapLoaded = false;
+
     if (sinnonhyeonTab) {
-        sinnonhyeonTab.addEventListener('shown.bs.tab', function(event) {
-            if (sinnonhyeonMap) sinnonhyeonMap.relayout();
+        sinnonhyeonTab.addEventListener('shown.bs.tab', function() {
+            if (!isSinnonhyeonMapLoaded) {
+                createSinnonhyeonMap();
+                isSinnonhyeonMapLoaded = true;
+            } else {
+                if (sinnonhyeonMap) {
+                    sinnonhyeonMap.relayout();
+                    recenterMap(sinnonhyeonMap, '서울특별시 강남구 강남대로114길 18, 4층');
+                }
+            }
         });
     }
+}
+
+// 탭 전환 시 크기를 재인식하고 좌표 중심을 정확히 다시 잡아주는 헬퍼 함수
+function recenterMap(mapObj, address) {
+    geocoder.addressSearch(address, function(result, status) {
+        if (status === kakao.maps.services.Status.OK && result.length > 0) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            mapObj.setCenter(coords);
+        }
+    });
+}
+
+function createKangnamMap() {
+    const container = document.getElementById('map_kangnam'); // map_seolleung에서 변경 완료
+    if (!container) return;
+
+    // 초기 임시 중심점 (역삼동 근처)
+    const options = { center: new kakao.maps.LatLng(37.4979, 127.0276), level: 3 };
+    kangnamMap = new kakao.maps.Map(container, options);
+
+    const zoomControl = new kakao.maps.ZoomControl();
+    kangnamMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    // HTML 인포에 적힌 실제 강남역점 주소로 검색
+    const address = '서울특별시 강남구 테헤란로 6길 26, 3층';
+    geocoder.addressSearch(address, function(result, status) {
+        if (status === kakao.maps.services.Status.OK && result.length > 0) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            kangnamMap.setCenter(coords);
+
+            const imageSrc = 'images/thebridgeplus-marker.png';
+            const imageSize = new kakao.maps.Size(48, 60);
+            const imageOption = { offset: new kakao.maps.Point(24, 60) };
+            const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+            const marker = new kakao.maps.Marker({ position: coords, image: markerImage });
+            marker.setMap(kangnamMap);
+
+            const infowindow = new kakao.maps.InfoWindow({
+                content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">더브릿지플러스 강남역점<br>서울특별시 강남구 테헤란로 6길 26, 3층</div>`
+            });
+            infowindow.open(kangnamMap, marker);
+        }
+    });
 }
 
 function createSinnonhyeonMap() {
     const container = document.getElementById('map_sinnonhyeon');
     if (!container) return;
     
-    const options = { center: new kakao.maps.LatLng(37.5665, 126.9780), level: 3 };
+    const options = { center: new kakao.maps.LatLng(37.5044, 127.0240), level: 3 };
     sinnonhyeonMap = new kakao.maps.Map(container, options);
 
     const zoomControl = new kakao.maps.ZoomControl();
     sinnonhyeonMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-    const address = '서울특별시 강남구 강남대로114길 18, 4층(논현동, 필스빌딩)';
+    const address = '서울특별시 강남구 강남대로114길 18, 4층';
     geocoder.addressSearch(address, function(result, status) {
         if (status === kakao.maps.services.Status.OK && result.length > 0) {
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -140,41 +193,9 @@ function createSinnonhyeonMap() {
             marker.setMap(sinnonhyeonMap);
 
             const infowindow = new kakao.maps.InfoWindow({
-                content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">더브릿지플러스<br>서울특별시 강남구 강남대로114길 18, 4층</div>`
+                content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">더브릿지플러스 신논현점<br>서울특별시 강남구 강남대로114길 18, 4층</div>`
             });
             infowindow.open(sinnonhyeonMap, marker);
-        }
-    });
-}
-
-function createSeolleungMap() {
-    const container = document.getElementById('map_seolleung');
-    if (!container) return;
-
-    const options = { center: new kakao.maps.LatLng(37.5044, 127.0489), level: 3 };
-    seolleungMap = new kakao.maps.Map(container, options);
-
-    const zoomControl = new kakao.maps.ZoomControl();
-    seolleungMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-    const address = '서울특별시 강남구 선릉로92길 28, 4층';
-    geocoder.addressSearch(address, function(result, status) {
-        if (status === kakao.maps.services.Status.OK && result.length > 0) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            seolleungMap.setCenter(coords);
-
-            const imageSrc = 'images/thebridgeplus-marker.png';
-            const imageSize = new kakao.maps.Size(48, 60);
-            const imageOption = { offset: new kakao.maps.Point(24, 60) };
-            const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-
-            const marker = new kakao.maps.Marker({ position: coords, image: markerImage });
-            marker.setMap(seolleungMap);
-
-            const infowindow = new kakao.maps.InfoWindow({
-                content: `<div style="padding:8px 13px; font-size:11px; text-align:center; width:220px;">더브릿지플러스 (선릉점)<br>서울특별시 강남구 선릉로92길 28, 4층</div>`
-            });
-            infowindow.open(seolleungMap, marker);
         }
     });
 }
