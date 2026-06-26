@@ -443,6 +443,16 @@ src="https://www.facebook.com/tr?id=4289893637922263&ev=PageView&noscript=1"
     type="button"
     class="btn btn-outline-secondary floorplan-btn"
     data-bs-toggle="modal"
+    data-bs-target="#floorplanKangnamModal"
+  >
+    <span class="fp-strong">상주 사무실 보기</span>
+    <span class="fp-weak">강남역점</span>
+  </button>
+
+  <button
+    type="button"
+    class="btn btn-outline-secondary floorplan-btn"
+    data-bs-toggle="modal"
     data-bs-target="#floorplanModal"
   >
     <span class="fp-strong">상주 사무실 보기</span>
@@ -1169,6 +1179,37 @@ AFTER (스크린샷 스타일로 교체)
 </div>
 
 <!-- 평면도 보기 모달 -->
+<div class="modal fade" id="floorplanKangnamModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">강남역점 평면도 안내</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body" style="padding: 15px;">
+        <p class="text-center small text-muted fw-bold">
+          방을 선택해주세요.<br>
+          평면도의 원형 영역을 터치하면 실제 사진을 볼 수 있어요.
+        </p>
+
+        <div class="floorplan-wrap" style="position: relative; width: 100%; height: auto;">
+          <img src="images/floorplan_kangnam.png" class="floorplan-img" style="width:100%; height:auto; display:block;">
+
+          <button class="room-hotspot" data-room="kangnam_main" data-cap="" 
+                  style="position: absolute; top: 65%; left: 65%; transform: translate(-50%, -50%); width: 30%; height: 25%; border-radius: 12px; border: none; background: rgba(0, 123, 255, 0.15);"></button>
+          
+          <button class="room-hotspot" data-room="kangnam_lounge" data-cap="" 
+                  style="position: absolute; top: 30%; left: 63%; transform: translate(-50%, -50%); width: 40%; height: 5%; border-radius: 12px; border: none; background: rgba(0, 123, 255, 0.15);"></button>
+          
+          <button class="room-hotspot" data-room="kangnam_room_bottom" data-cap="" 
+                  style="position: absolute; top: 79%; left: 26%; transform: translate(-50%, -50%); width: 15%; height: 9%; border-radius: 12px; border: none; background: rgba(0, 123, 255, 0.15);"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="floorplanModal" tabindex="-1">
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
