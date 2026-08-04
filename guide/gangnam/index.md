@@ -177,7 +177,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
         <span class="step-badge">1</span> 회의실 상태 표시
       </div>
       <div class="guide-img-box">
-        <img src="https://mibdda.github.io/assets/img/md/gangnam-01.JPG" alt="강남역점 회의실 도어 사인">
+        <img src="https://mibdda.github.io/assets/img/md/door-sign.JPG" alt="강남역점 회의실 도어 사인">
       </div>
       <ul class="guide-list">
         <li>방에 들어가실 때 입구에 부착된 도어 사인 슬라이드를 밀어 <strong>'공실'에서 '회의중'으로</strong> 변경해 주세요.</li>
@@ -190,7 +190,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
         <span class="step-badge">2</span> 와이파이 (Wi-Fi) 연결
       </div>
       <div class="guide-img-box">
-        <img src="https://mibdda.github.io/assets/img/md/gangnam-02.JPG" alt="강남역점 와이파이 아이디와 비밀번호">
+        <img src="https://mibdda.github.io/assets/img/md/gangnam_wifi.JPG" alt="강남역점 와이파이 아이디와 비밀번호">
       </div>
       <ul class="guide-list">
         <li>위 사진에 표시된 <strong>Wi-Fi ID와 비밀번호</strong>를 확인해 직접 연결해 주세요.</li>
@@ -203,7 +203,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
         <span class="step-badge">3</span> 전등 스위치 및 냉난방기 조절
       </div>
       <div class="guide-img-box">
-        <img src="https://mibdda.github.io/assets/img/md/gangnam-03.JPG" alt="강남역점 회의실 전등 스위치와 냉난방기 리모컨">
+        <img src="https://mibdda.github.io/assets/img/md/gangnam_swich.JPG" alt="강남역점 회의실 전등 스위치와 냉난방기 리모컨">
       </div>
       <ul class="guide-list">
         <li><strong>전등 사용:</strong> 가운데 있는 4개의 전등 스위치 중 <strong>'메인'</strong> 스위치를 켜면 회의실 전등을 사용할 수 있습니다.</li>
@@ -217,7 +217,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
         <span class="step-badge">4</span> 커피머신 이용
       </div>
       <div class="guide-img-box">
-        <img src="https://mibdda.github.io/assets/img/md/gangnam-04.JPG" alt="강남역점 커피머신">
+        <img src="https://mibdda.github.io/assets/img/md/gangnam_coffee.JPG" alt="강남역점 커피머신">
       </div>
       <ul class="guide-list">
         <li>원활한 기기 작동과 최적의 맛을 위해, 반드시 화면 좌측 상단의 <strong>'Espresso(에스프레소)'</strong> 버튼만 눌러서 추출해 주세요.</li>
@@ -233,7 +233,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
 
       <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:center; margin-bottom:24px;">
         <div class="guide-img-box" style="flex:0 0 250px; margin-bottom:0;">
-          <img src="https://mibdda.github.io/assets/img/md/gangnam-05.JPG" alt="강남역점 복합기">
+          <img src="https://mibdda.github.io/assets/img/md/gangnam_printer.JPG" alt="강남역점 복합기">
         </div>
         <div style="flex:1; min-width:280px;">
           <p style="font-size:1.05rem; color:#444; line-height:1.6; margin:0;">
