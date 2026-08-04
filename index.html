@@ -54,8 +54,19 @@
 <script src="https://sconv.digitalcamp.co.kr/skp/skp_message.php?adNum=1601&amp;adKey=82662a1e609035fb51e1b675112c16f87be42b01833341f50181054e2def31b5&amp;type=cpa" type="text/javascript"></script>
 <!-- digitalcamp SK MSSAGE END -->
 <!-- Danggeun Market Code -->
-<script src="https://karrot-pixel.business.daangn.com/0.4/karrot-pixel.umd.js"></script>
 <script>
+  (function (w, d) {
+    if (w.karrotPixel) return;
+    var k = { stub: true, queue: [] };
+    k.init = function () { k.queue.push(['init', arguments, Date.now()]); };
+    k.track = function () { k.queue.push(['track', arguments, Date.now()]); };
+    w.karrotPixel = k;
+    var s = d.createElement('script');
+    s.async = true;
+    s.src = 'https://karrot-pixel.business.daangn.com/karrot-pixel.js';
+    var f = d.getElementsByTagName('script')[0];
+    f && f.parentNode ? f.parentNode.insertBefore(s, f) : d.head.appendChild(s);
+  })(window, document);
   window.karrotPixel.init('1759197528761893001');
   window.karrotPixel.track('ViewPage');
 </script>
