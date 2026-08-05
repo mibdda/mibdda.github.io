@@ -149,6 +149,62 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+  .printer-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: printer-step;
+  }
+  .printer-steps > li {
+    position: relative;
+    padding-left: 46px;
+    margin-bottom: 22px;
+    color: #374151;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .printer-steps > li::before {
+    counter-increment: printer-step;
+    content: counter(printer-step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #003366;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+  .printer-setting-box {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    line-height: 1.85;
+  }
+  .driver-note {
+    margin: 12px 0 18px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    background: #eef6ff;
+    border: 1px solid #cfe3ff;
+    color: #1f3f66;
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+  .guide-img-caption {
+    margin: 10px 0 0;
+    color: #6b7280;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    text-align: center;
+  }
   @media (max-width: 768px) {
     .printer-grid { grid-template-columns: 1fr; }
     .guide-title { font-size: 1.8rem; }
@@ -244,121 +300,133 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
       </div>
 
       <div class="printer-grid">
-              <div class="printer-box" style="grid-column:1 / -1;">
-  <h4>
-    A. Windows 사용자
-    <span style="font-size:0.9rem; color:#6b7280; font-weight:normal;">
-      (PCL 드라이버 설치)
-    </span>
-  </h4>
+        <div class="printer-box" style="grid-column:1 / -1;">
+          <h4>
+            A. Windows 사용자
+            <span style="font-size:0.9rem; color:#6b7280; font-weight:normal;">
+              (C368 Series PCL 드라이버)
+            </span>
+          </h4>
 
-  <div class="guide-img-box" style="margin-bottom:22px; padding:10px;">
-    <img
-      src="https://mibdda.github.io/assets/img/md/gangnam-printer-setting.png"
-      alt="강남역점 복합기 IP 주소 및 사용자 인증 설정 화면"
-      style="display:block; width:100%; max-height:none; object-fit:contain;"
-    >
-  </div>
+          <div class="driver-note">
+            <strong>드라이버 선택 안내:</strong>
+            복합기 본체에는 <strong>bizhub C225DN</strong>이라고 표시되어 있지만,
+            강남역점 PC에는 설치 기사 설정과 동일한
+            <strong>C368_Series_PCL 드라이버</strong>를 설치해 주세요.
+          </div>
 
-  <ul class="guide-list">
-    <li>
-      아래 다운로드 페이지에 접속하여 사용 중인 Windows에 맞는
-      <strong>PCL 드라이버</strong>를 내려받아 설치합니다.<br>
+          <ol class="printer-steps">
+            <li>
+              아래 다운로드 페이지에 접속하여 사용 중인 Windows의 비트 수에 맞는
+              <strong>C368_Series_PCL 드라이버</strong>를 내려받습니다.<br>
 
-      <a
-        class="guide-link"
-        href="https://www.tids.co.kr/sub/sub02_01.php?boardid=download&amp;category=&amp;etc3=&amp;cat_no=&amp;etc1=1&amp;etc2=108&amp;x=44&amp;y=15"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        강남역점 복합기 드라이버 다운로드
-      </a>
-    </li>
+              <a
+                class="guide-link"
+                href="https://www.tids.co.kr/sub/sub02_01.php?boardid=download&amp;category=&amp;etc3=&amp;cat_no=&amp;etc1=1&amp;etc2=108&amp;x=44&amp;y=15"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                강남역점 복합기 C368 Series PCL 드라이버 다운로드
+              </a>
+            </li>
 
-    <li>
-      Windows의 <code>설정</code> &gt;
-      <code>Bluetooth 및 장치</code> &gt;
-      <code>프린터 및 스캐너</code>로 이동하여
-      <strong>장치 추가</strong>를 선택합니다.
-    </li>
+            <li>
+              다운로드한 압축 파일을 마우스 오른쪽 버튼으로 클릭한 뒤
+              <strong>모두 압축 풀기</strong>를 선택해 압축을 해제합니다.
+              이후 드라이버를 선택해야 하므로 압축을 푼 폴더 위치를 기억해 주세요.
+            </li>
 
-    <li>
-      프린터가 자동으로 표시되지 않으면
-      <strong>수동으로 추가</strong>를 선택하고,
-      <strong>TCP/IP 주소 또는 호스트 이름으로 프린터 추가</strong>를 선택합니다.
-    </li>
+            <li>
+              Windows의 <strong>제어판</strong>을 열고
+              <code>하드웨어 및 소리</code> &gt;
+              <code>장치 및 프린터</code>로 이동한 뒤
+              상단의 <strong>프린터 추가</strong>를 선택합니다.
+            </li>
 
-    <li>
-      프린터 정보를 아래와 같이 입력합니다.
+            <li>
+              프린터 검색 화면이 나타나면 잠시 기다린 뒤
+              <strong>원하는 프린터가 목록에 없습니다</strong>를 선택합니다.
+            </li>
 
-      <div style="
-        margin-top:10px;
-        padding:14px 16px;
-        background:#fff;
-        border:1px solid #e5e7eb;
-        border-radius:10px;
-        line-height:1.8;
-      ">
-        <strong>장치 유형:</strong> TCP/IP 장치<br>
-        <strong>호스트 이름 또는 IP 주소:</strong> 172.30.1.200<br>
-        <strong>포트 이름:</strong> 자동으로 입력된 값을 그대로 사용
-      </div>
-    </li>
+            <li>
+              <strong>TCP/IP 주소 또는 호스트 이름으로 프린터 추가</strong>를 선택하고
+              다음 단계로 진행합니다.
+            </li>
 
-    <li>
-      포트 이름이 자동으로 입력되지 않는 경우에는
-      <strong>IP_172.30.1.200</strong>으로 입력해 주세요.
-    </li>
+            <li>
+              프린터 정보를 아래와 같이 입력합니다.
 
-    <li>
-      <strong>프린터를 검색하고 사용할 드라이버를 자동으로 선택</strong>은
-      체크하지 않은 상태로 다음 단계로 진행합니다.
-    </li>
+              <div class="printer-setting-box">
+                <strong>장치 유형:</strong> TCP/IP 장치<br>
+                <strong>호스트 이름 또는 IP 주소:</strong> 172.30.1.200<br>
+                <strong>포트 이름:</strong> 자동으로 입력된 값을 그대로 사용
+              </div>
 
-    <li>
-      드라이버 선택 화면에서
-      <strong>KONICA MINOLTA C287SeriesPCL(컬러)</strong>을 선택하여
-      설치를 완료합니다.
-    </li>
+              포트 이름이 자동으로 입력되지 않는 경우에는
+              <strong>IP_172.30.1.200</strong>으로 입력해 주세요.<br>
+              <strong>프린터를 검색하고 사용할 드라이버를 자동으로 선택</strong>은
+              체크하지 않은 상태로 <strong>다음</strong>을 누릅니다.
+            </li>
+          </ol>
 
-    <li>
-      설치 후 <code>프린터 및 스캐너</code>에서 설치된 복합기를 선택하고
-      <strong>인쇄 기본 설정</strong>을 엽니다.
-    </li>
+          <div class="guide-img-box" style="margin:4px 0 24px; padding:10px;">
+            <img
+              src="https://mibdda.github.io/assets/img/md/gangnam-printer-setting.png"
+              alt="강남역점 복합기 TCP IP 주소 입력 및 인증 설정 화면"
+              style="display:block; width:100%; max-height:none; object-fit:contain;"
+            >
+            <p class="guide-img-caption">
+              왼쪽: TCP/IP 주소 입력 화면 · 오른쪽: 설치 완료 후 인증/부문 관리 화면
+            </p>
+          </div>
 
-    <li>
-      인쇄 기본 설정의 <strong>인증/부문 관리</strong>를 선택한 뒤
-      등록된 사용자 ID와 비밀번호를 입력해야 출력할 수 있습니다.
-    </li>
-  </ul>
+          <ol class="printer-steps" style="counter-reset:printer-step 6;">
+            <li>
+              프린터 드라이버 선택 화면이 나타나면
+              <strong>디스크 있음</strong> 또는 <strong>찾아보기</strong>를 선택합니다.
+              앞에서 압축을 풀어 둔 <strong>C368_Series_PCL 드라이버 폴더</strong>로 이동하여
+              폴더 안의 <strong>.inf 파일</strong>을 선택합니다.
+            </li>
 
-  <div class="guide-alert">
-    <strong>
-      <i class="fa-solid fa-circle-exclamation"></i>
-      출력 계정 설정 안내
-    </strong><br>
+            <li>
+              목록에 표시되는
+              <strong>KONICA MINOLTA C368 Series PCL</strong> 계열 드라이버를 선택하고
+              화면 안내에 따라 프린터 추가를 완료합니다.
+            </li>
 
-    사용자 ID와 비밀번호는 공개 홈페이지에 제공하지 않습니다.<br>
-    드라이버와 프린터 설치를 완료한 후
-    <strong>현장 관리자에게 출력 계정 설정을 요청해 주세요.</strong>
-  </div>
-</div>
+            <li>
+              설치가 끝나면
+              <code>제어판</code> &gt; <code>장치 및 프린터</code>에서
+              설치된 복합기를 마우스 오른쪽 버튼으로 클릭하고
+              <strong>인쇄 기본 설정</strong>을 엽니다.
+            </li>
 
-        <div class="printer-box">
+            <li>
+              <strong>기본 설정</strong> 탭의
+              <strong>인증/부문 관리</strong>를 선택한 뒤,
+              <strong>등록된 사용자</strong>에 사용자 ID와 비밀번호를 입력해야 출력할 수 있습니다.
+            </li>
+          </ol>
+        </div>
+
+        <div class="printer-box" style="grid-column:1 / -1;">
           <h4>B. Mac 사용자</h4>
           <ul class="guide-list">
             <li><code>시스템 설정</code> &gt; <code>프린터 및 스캐너</code> &gt; <code>프린터, 스캐너 또는 팩스 추가</code>로 이동합니다.</li>
             <li>상단의 <strong>IP</strong> 탭을 선택합니다.</li>
             <li>주소 입력란에 <strong>172.30.1.200</strong>을 입력합니다.</li>
             <li>강남역점 복합기와 호환되는 드라이버를 선택해 추가합니다.</li>
+            <li>추가 인증 설정이 필요하므로 설치 완료 후 현장 관리자에게 연락해 주세요.</li>
           </ul>
         </div>
       </div>
 
       <div class="guide-alert">
-        <strong><i class="fa-solid fa-circle-exclamation"></i> 출력 요청 안내</strong><br>
+        <strong><i class="fa-solid fa-circle-exclamation"></i> 출력 계정 설정 안내</strong><br>
         강남역점 복합기는 출력할 때 사용자 ID와 비밀번호 입력이 필요합니다.
-        보안과 계정 관리를 위해 <strong>실제 출력은 현장 관리자에게 요청해 주세요.</strong>
+        계정 정보는 공개 홈페이지에 제공하지 않으므로,
+        드라이버와 프린터 설치를 완료한 뒤
+        <strong>현장 관리자에게 출력 계정 설정을 요청해 주세요.</strong>
       </div>
 
     </div>
