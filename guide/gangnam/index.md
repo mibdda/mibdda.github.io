@@ -203,7 +203,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
         <span class="step-badge">3</span> 전등 스위치 및 냉난방기 조절
       </div>
       <div class="guide-img-box">
-        <img src="https://mibdda.github.io/assets/img/md/gangnam_swich.JPG" alt="강남역점 회의실 전등 스위치와 냉난방기 리모컨">
+        <img src="https://mibdda.github.io/assets/img/md/gangnam-03.JPG" alt="강남역점 회의실 전등 스위치와 냉난방기 리모컨">
       </div>
       <ul class="guide-list">
         <li><strong>전등 사용:</strong> 가운데 있는 4개의 전등 스위치 중 <strong>'메인'</strong> 스위치를 켜면 회의실 전등을 사용할 수 있습니다.</li>
@@ -217,7 +217,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
         <span class="step-badge">4</span> 커피머신 이용
       </div>
       <div class="guide-img-box">
-        <img src="https://mibdda.github.io/assets/img/md/gangnam_coffee.JPG" alt="강남역점 커피머신">
+        <img src="https://mibdda.github.io/assets/img/md/gangnam-04.JPG" alt="강남역점 커피머신">
       </div>
       <ul class="guide-list">
         <li>원활한 기기 작동과 최적의 맛을 위해, 반드시 화면 좌측 상단의 <strong>'Espresso(에스프레소)'</strong> 버튼만 눌러서 추출해 주세요.</li>
@@ -233,7 +233,7 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
 
       <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:center; margin-bottom:24px;">
         <div class="guide-img-box" style="flex:0 0 250px; margin-bottom:0;">
-          <img src="https://mibdda.github.io/assets/img/md/gangnam_printer.JPG" alt="강남역점 복합기">
+          <img src="https://mibdda.github.io/assets/img/md/gangnam-05.JPG" alt="강남역점 복합기">
         </div>
         <div style="flex:1; min-width:280px;">
           <p style="font-size:1.05rem; color:#444; line-height:1.6; margin:0;">
@@ -242,7 +242,9 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
           </p>
         </div>
       </div>
-      <div class="printer-box" style="grid-column:1 / -1;">
+
+      <div class="printer-grid">
+              <div class="printer-box" style="grid-column:1 / -1;">
   <h4>
     A. Windows 사용자
     <span style="font-size:0.9rem; color:#6b7280; font-weight:normal;">
@@ -339,5 +341,26 @@ title: 더브릿지플러스 강남역점 회의실 사용 안내서
     사용자 ID와 비밀번호는 공개 홈페이지에 제공하지 않습니다.<br>
     드라이버와 프린터 설치를 완료한 후
     <strong>현장 관리자에게 출력 계정 설정을 요청해 주세요.</strong>
+  </div>
+</div>
+
+        <div class="printer-box">
+          <h4>B. Mac 사용자</h4>
+          <ul class="guide-list">
+            <li><code>시스템 설정</code> &gt; <code>프린터 및 스캐너</code> &gt; <code>프린터, 스캐너 또는 팩스 추가</code>로 이동합니다.</li>
+            <li>상단의 <strong>IP</strong> 탭을 선택합니다.</li>
+            <li>주소 입력란에 <strong>172.30.1.200</strong>을 입력합니다.</li>
+            <li>강남역점 복합기와 호환되는 드라이버를 선택해 추가합니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="guide-alert">
+        <strong><i class="fa-solid fa-circle-exclamation"></i> 출력 요청 안내</strong><br>
+        강남역점 복합기는 출력할 때 사용자 ID와 비밀번호 입력이 필요합니다.
+        보안과 계정 관리를 위해 <strong>실제 출력은 현장 관리자에게 요청해 주세요.</strong>
+      </div>
+
+    </div>
   </div>
 </div>
