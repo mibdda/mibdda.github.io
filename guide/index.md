@@ -298,8 +298,9 @@ permalink: /guide/
 
           <div class="guide-branch__chips" aria-label="강남역점 안내 항목">
             <span class="guide-branch__chip">회의실</span>
-            <span class="guide-branch__chip">복합기</span>
             <span class="guide-branch__chip">Wi-Fi</span>
+            <span class="guide-branch__chip">복합기</span>
+            <span class="guide-branch__chip">커피머신</span>
           </div>
 
           <div class="guide-branch__link">
@@ -333,6 +334,7 @@ permalink: /guide/
 
           <div class="guide-branch__chips" aria-label="신논현점 안내 항목">
             <span class="guide-branch__chip">회의실</span>
+            <span class="guide-branch__chip">Wi-Fi</span>
             <span class="guide-branch__chip">복합기</span>
             <span class="guide-branch__chip">커피머신</span>
           </div>
