@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[2026 창업 가이드] 초기 자본 아끼고 강남 핵심 상권에 둥지 트는 청년 창업 성공 전략"
-categories: [창업 가이드, 비상주사무실]
+categories: [창업 가이드]
 tags: [청년창업, 강남비상주사무실, 1인기업]
 image: /assets/img/blog/startup-virtual-office-1.jpg
 ---

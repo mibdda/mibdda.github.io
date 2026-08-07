@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[비상주사무실 사업자등록] 반려 없는 완벽 가이드: 서류 준비부터 업종별 주의사항까지"
-categories: [비상주사무실, 창업 가이드]
+categories: [사업자등록]
 tags: [공유오피스, 비상주사무실, 사업자등록, 임대차계약서, 법인설립, 실사대비]
 image: /assets/img/blog/virtual-office-1.png
 ---

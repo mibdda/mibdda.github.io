@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "개인사업자 vs 법인사업자 차이와 선택 기준 총정리: 나에게 맞는 최적의 창업 전략"
-categories: [창업 가이드, 세무 가이드]
+categories: [창업 가이드]
 tags: [개인사업자 법인사업자 차이, 법인설립 조건, 사업자등록]
 image: /assets/img/blog/business-type-1.jpg
 ---

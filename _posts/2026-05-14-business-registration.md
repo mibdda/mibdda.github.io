@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "초보 창업자를 위한 개인사업자 등록 A to Z: 서류 준비부터 전략적 주소지 선택까지"
-categories: [창업 가이드, 세무 가이드]
+categories: [사업자등록]
 tags: [개인사업자등록, 사업자등록서류, 창업준비]
 image: /assets/img/blog/business-registration-1.jpg
 ---

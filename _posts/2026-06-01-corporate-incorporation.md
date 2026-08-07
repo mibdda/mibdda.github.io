@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "법인 설립도 비상주사무실 주소로 가능할까? 필수 조건과 세금 절약 전략"
-categories: [법인설립, 세무 가이드]
+categories: [법인 가이드]
 tags: [비상주사무실, 법인사업자등록, 과밀억제권역]
 image: /assets/img/blog/corporate-incorporation-1.jpg
 ---

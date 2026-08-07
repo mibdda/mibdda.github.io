@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "집 주소로 사업자등록, 진짜 돈 아끼는 걸까? (숨겨진 리스크 5가지 분석)"
-categories: [창업 가이드, 비상주사무실]
+categories: [사업자등록]
 tags: [사업자등록주소, 자택사업자등록, 건강보험료폭탄, 통신판매업주소, 법인본점이전]
 image: /assets/img/blog/business-address-risk-1.jpg
 ---

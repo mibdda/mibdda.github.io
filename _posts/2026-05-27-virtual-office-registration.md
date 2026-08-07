@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "비상주사무실 사업자등록 완벽 가이드: 반려 없는 5단계 실무 매뉴얼"
-categories: [창업 가이드]
+categories: [사업자등록]
 tags: [사업자등록증, 비상주사무실, 1인창업, 홈택스신청, 임대차계약서]
 image: /assets/img/blog/virtual-office-registration-1.jpg
 ---

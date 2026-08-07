@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "사업자등록 반려 피하는 사무실 용도별 핵심 가이드 (자택, 비상주, 상가)"
-categories: [창업 가이드, 비상주사무실]
+categories: [사업자등록]
 tags: [사업자등록, 비상주사무실, 건축물대장, 법인설립, 공간임대, 창업정보]
 image: /assets/img/blog/business-registrations-1.jpg
 ---
@@ -38,7 +38,7 @@ image: /assets/img/blog/business-registrations-1.jpg
 
 만약 직원 고용이 필요하거나 외부 미팅이 잦아 번듯한 '일반 임대 사무실(업무시설)'을 구하셨다면, 계약 시 상가임대차보호법의 적용을 받기 위해 최소 1년 이상의 계약 기간을 설정하는 것을 권장해 드립니다. 세무서 제출용으로 확정일자를 받은 임대차계약서 사본과 신분증만 챙기면 비교적 수월하게 등록을 마칠 수 있습니다.
 
-<img src="/assets/img/blog/business-registrations-2.jpg" alt="노트북으로 비즈니스 서류와 건축물대장을 확인하는 예비 창업자" class="blog-image">
+<img src="/assets/img/blog/business-registrations-1.jpg" alt="노트북으로 비즈니스 서류와 건축물대장을 확인하는 예비 창업자" class="blog-image">
 
 ### <mark style="background: linear-gradient(to top, #eaffc2 50%, transparent 50%); padding: 0 4px;">초기 고정비 0원의 마법, '비상주사무실' 현명하게 활용하기</mark>
 
@@ -62,7 +62,7 @@ image: /assets/img/blog/business-registrations-1.jpg
 
 게다가 취득세와 재산세 등 각종 세금이 업무시설 대비 훌쩍 뛰어오르기 때문에, 상가를 계약할 때는 월세뿐만 아니라 이런 숨은 부대비용까지 자금 계획에 꼼꼼히 반영하셔야 자금난을 피할 수 있습니다. 영업신고증이나 위생교육 이수증 등 업종별 특수 서류 챙기는 것도 잊지 마시고요.
 
-<img src="/assets/img/blog/business-registration-2.jpg" alt="상가 임대차 계약서 및 세무 서류를 검토하는 모습" class="blog-image">
+<img src="/assets/img/blog/business-registrations-2.jpg" alt="상가 임대차 계약서 및 세무 서류를 검토하는 모습" class="blog-image">
 
 <div style="border: 2px solid #a3cfbb; border-radius: 12px; padding: 30px; margin: 40px 0; background: #fdfdfe; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
   <h3 style="margin-top:0; color: #198754; font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
