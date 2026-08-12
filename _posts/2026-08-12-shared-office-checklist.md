@@ -1,4 +1,3 @@
-```markdown
 ---
 layout: post
 title: "공유오피스 고르는 법: 가격보다 먼저 확인할 7가지 실무 체크리스트"
@@ -186,4 +185,3 @@ image: /assets/img/blog/shared-office-checklist-1.jpg
     👉 더브릿지플러스 연계 서비스 및 이용료 보기
   </a>
 </div>
-```
