@@ -442,6 +442,21 @@ body {
 .room-oazone   { top: 50%; left: 65%; }
 .room-restroom { top: 68%; left: 65%; }
 
+/* 강남역점 방 위치 좌표 — 세로 평면도에서도 신논현점과 같은 가로 타원 비율 */
+#floorplanKangnamModal .room-hotspot { width: 18%; height: 8.3%; }
+.room-kangnam-01 { top: 15.05%; left: 16%; }
+.room-kangnam-02 { top: 22.95%; left: 14%; }
+.room-kangnam-03 { top: 13.85%; left: 34%; }
+.room-kangnam-04 { top: 17.85%; left: 60%; }
+.room-kangnam-05 { top: 32.85%; left: 60%; }
+.room-kangnam-06 { top: 46.35%; left: 67%; }
+.room-kangnam-07 { top: 56.00%; left: 67%; }
+.room-kangnam-08 { top: 65.55%; left: 67%; }
+.room-kangnam-09 { top: 54.75%; left: 40%; }
+.room-kangnam-10 { top: 74.05%; left: 16%; }
+.room-kangnam-11 { top: 76.85%; left: 40%; }
+.room-kangnam-12 { top: 76.85%; left: 64%; }
+
 /* 모달창 스타일 (이미지 꽉 차게) */
 #roomPhotoModal .modal-dialog { max-height: 90vh; }
 #roomPhotoModal .modal-body {
@@ -459,7 +474,8 @@ body {
   word-break: keep-all !important; /* 글자가 낱개로 찢어져 줄바꿈 되는 현상 금지 */}
 
 @media (min-width: 992px) {
-  #floorplanModal .modal-body p.text-center.small {
+  #floorplanModal .modal-body p.text-center.small,
+  #floorplanKangnamModal .modal-body p.text-center.small {
     font-size: 1.2rem !important; font-weight: 800; color: #111 !important; margin-bottom: 25px;
   }
 }
