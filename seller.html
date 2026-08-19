@@ -705,7 +705,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- 평면도 보기 모달 -->
 <div class="modal fade" id="floorplanKangnamModal" tabindex="-1" aria-labelledby="floorplanKangnamModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 520px;">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -741,11 +741,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
 <div class="modal fade" id="floorplanModal" tabindex="-1">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 760px;">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title">평면도 안내</h5>
+        <h5 class="modal-title">평면도 보기 · 신논현역점</h5>
         <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
@@ -776,18 +776,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <!-- 방 사진 모달 (완전 분리, X 1개만) -->
-<div class="modal fade" id="roomPhotoModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="roomPhotoModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content bg-black">
       <div class="modal-body p-0 position-relative d-flex justify-content-center align-items-center">
-        <!-- 유일한 X 버튼 -->
-         <button type="button" class="btn-close btn-close-white position-absolute" style="top:12px; right:12px; z-index:20;" data-bs-dismiss="modal" aria-label="공간 사진 닫기"></button>
-        <img id="roomPhoto" alt="더브릿지플러스 강남역, 신논현 비상주사무실 및 공유오피스 내부 시설 사진">
+         <button type="button" class="btn-close btn-close-white position-absolute" style="top:12px; right:12px; z-index:20;" data-bs-dismiss="modal"></button>
+        <img id="roomPhoto" alt="더브릿지플러스 위탁판매 및 해외구매대행 셀러 전용 강남 비상주사무실 내부 사진">
       </div>
     </div>
   </div>
 </div>
-
 
 <script>
   window.PAGE_USP_DATA = [
