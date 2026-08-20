@@ -405,6 +405,20 @@ body {
   #about .about-grid > div { width: 100%; }
   #about .about-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; display: block; object-position: center; }
 }
+/* 강남점·신논현점 소개 갤러리 비율 통일 */
+#about .about-grid .cell {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+#about .about-grid .cell img {
+  display: block;
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+}
 
 /* =================================================================
    [MODAL] 평면도 모달 & 핫스팟
